@@ -6,6 +6,7 @@ import unittest
 from GraphRevised.operations import RefusedWrite, load_operations, run_write
 from GraphRevised.proposals.aliases import conventional_forms, decide, parts_from_heading, propose, suggest
 from GraphRevised.proposals.store import ReviewError
+from GraphRevised import localdb
 
 COMMANDER, HEIR, OTHER = "chr:entity:test-alias-commander", "chr:entity:test-alias-heir", "chr:entity:test-alias-other"
 QUESTION, PASSAGE = "chr:entity:test-alias-question", "chr:observation:test-alias-passage"
@@ -30,10 +31,10 @@ class AliasLiveTests(unittest.TestCase):
     def setUpClass(cls):
         from neo4j import GraphDatabase
         cls.operations = load_operations()
-        cls.driver = GraphDatabase.driver(os.environ.get("NEO4J_URI", "neo4j://127.0.0.1:7687"),
-                                          auth=(os.environ.get("NEO4J_USERNAME", "neo4j"), os.environ["NEO4J_PASSWORD"]),
+        cls.driver = GraphDatabase.driver(localdb.uri(),
+                                          auth=localdb.auth(),
                                           notifications_min_severity="OFF")
-        cls.session = cls.driver.session(database=os.environ.get("NEO4J_DATABASE", "neo4j"))
+        cls.session = cls.driver.session(database=localdb.database())
 
     @classmethod
     def tearDownClass(cls):

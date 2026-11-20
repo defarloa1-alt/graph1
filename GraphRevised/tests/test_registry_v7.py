@@ -12,6 +12,7 @@ from GraphRevised.proposals.validator import Outcome, validate
 from GraphRevised.tests.test_proposals_offline import (
     AGRIPPA, COMMAND_PASSAGE, FLEET, QUOTE, WORK, FakeReader, command, entity,
 )
+from GraphRevised import localdb
 
 RIVAL = entity("chr:entity:test-rival", "Person")
 WAR = entity("chr:entity:test-war", "Event")
@@ -202,10 +203,10 @@ class WorkFormLiveTests(unittest.TestCase):
 
         cls.operations, cls.registry = load_operations(), load_registry()
         cls.driver = GraphDatabase.driver(
-            os.environ.get("NEO4J_URI", "neo4j://127.0.0.1:7687"),
-            auth=(os.environ.get("NEO4J_USERNAME", "neo4j"), os.environ["NEO4J_PASSWORD"]),
+            localdb.uri(),
+            auth=localdb.auth(),
             notifications_min_severity="OFF")
-        cls.session = cls.driver.session(database=os.environ.get("NEO4J_DATABASE", "neo4j"))
+        cls.session = cls.driver.session(database=localdb.database())
 
     @classmethod
     def tearDownClass(cls):

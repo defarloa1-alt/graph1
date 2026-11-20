@@ -9,6 +9,7 @@ from GraphRevised.harvest.wikidata_harvest import classify, load_rules, tether
 from GraphRevised.proposals.registry import load_registry
 from GraphRevised.proposals.temporal import TimeValueError, wikidata_time
 from GraphRevised.proposals.validator import validate
+from GraphRevised import localdb
 
 JULIAN = "http://www.wikidata.org/entity/Q1985786"
 PAYLOAD = Path(__file__).resolve().parents[1] / "phase-5-source" / "wikidata-Q51673-r2553883228.json"
@@ -222,10 +223,10 @@ class AuthorityOperationTests(unittest.TestCase):
 
         cls.operations = load_operations()
         cls.driver = GraphDatabase.driver(
-            os.environ.get("NEO4J_URI", "neo4j://127.0.0.1:7687"),
-            auth=(os.environ.get("NEO4J_USERNAME", "neo4j"), os.environ["NEO4J_PASSWORD"]),
+            localdb.uri(),
+            auth=localdb.auth(),
             notifications_min_severity="OFF")
-        cls.session = cls.driver.session(database=os.environ.get("NEO4J_DATABASE", "neo4j"))
+        cls.session = cls.driver.session(database=localdb.database())
 
     @classmethod
     def tearDownClass(cls):

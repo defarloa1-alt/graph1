@@ -44,6 +44,7 @@ from GraphRevised.capture.notes import (DEFAULT_FOLDER, Neo4jNoteReader, Note, n
 from GraphRevised.proposals.lens import LENSES_PATH
 from GraphRevised.proposals.passage_reader import DEFAULT_MODEL, RUNS_DIRECTORY
 from GraphRevised.spend_meter import ceiling
+from GraphRevised import localdb
 
 TRIAGE_CANDIDATES = 40
 PLACEHOLDER = "replace-me"
@@ -334,11 +335,11 @@ def main(argv: list[str] | None = None) -> int:
     args.stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
     client = anthropic_client() if args.read else None  # refuses here when no budget is named
 
-    driver = GraphDatabase.driver(os.environ.get("NEO4J_URI", "neo4j://127.0.0.1:7687"),
-                                  auth=(os.environ.get("NEO4J_USERNAME", "neo4j"), os.environ["NEO4J_PASSWORD"]),
+    driver = GraphDatabase.driver(localdb.uri(),
+                                  auth=localdb.auth(),
                                   notifications_min_severity="OFF")
     try:
-        with driver.session(database=os.environ.get("NEO4J_DATABASE", "neo4j")) as session:
+        with driver.session(database=localdb.database()) as session:
             total = (run_triage if args.step == "triage" else run_read)(args, session, client)
     finally:
         driver.close()

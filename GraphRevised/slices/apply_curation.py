@@ -41,6 +41,7 @@ from GraphRevised.proposals.store import Neo4jReader, submit
 from GraphRevised.proposals.wikidata_proposer import drafts_from_observation
 from GraphRevised.slices.add_entity import persist_identity, persist_local_entity, preserved_identity_payload
 from GraphRevised.slices.add_work import apply_work
+from GraphRevised import localdb
 
 GRAPH_REVISED = Path(__file__).resolve().parents[1]
 
@@ -118,12 +119,12 @@ def main(argv: list[str] | None = None) -> int:
     args = parser.parse_args(argv)
     manifest = json.loads(args.manifest.read_text(encoding="utf-8"))
     driver = GraphDatabase.driver(
-        os.environ.get("NEO4J_URI", "neo4j://127.0.0.1:7687"),
-        auth=(os.environ.get("NEO4J_USERNAME", "neo4j"), os.environ["NEO4J_PASSWORD"]),
+        localdb.uri(),
+        auth=localdb.auth(),
         notifications_min_severity="OFF",
     )
     try:
-        with driver.session(database=os.environ.get("NEO4J_DATABASE", "neo4j")) as session:
+        with driver.session(database=localdb.database()) as session:
             tx = session.begin_transaction()
             try:
                 before = tx.run(SNAPSHOT).single().data() if args.dry_run else None

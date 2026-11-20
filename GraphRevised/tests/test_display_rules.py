@@ -133,5 +133,85 @@ class Descriptions(unittest.TestCase):
         self.assertIsNotNone(data["t"]["description"])
 
 
+NETWORKS = {"hub": "Hub", "order": ["Coins", "Open hub"],
+            "systems": {"Hub": {"network": "Open hub", "link": "https://hub.test/{id}", "hosts": ["hub.test"]},
+                        "Mint": {"network": "Coins", "link": "https://mint.test/{id}", "hosts": ["mint.test"]},
+                        "Atlas": {"network": "Ancient places", "link": "https://atlas.test/{id}", "hosts": ["atlas.test"]},
+                        "Folk": {"network": "People", "link": "https://folk.test/author/{id}",
+                                 "linkByKind": {"Place": "https://folk.test/place/{id}"}, "hosts": ["folk.test"]}},
+            "expected": {"Person": ["Folk"], "Place": ["Atlas"]}}
+
+
+def authority(system, identifier, role="crosswalk", status="accepted", uri=None):
+    return {"system": system, "identifier": identifier, "label": f"{system} record ({identifier})", "role": role,
+            "status": status, "relation": "closeMatch", "others": 0, "sourceUri": uri}
+
+
+class Elsewhere(unittest.TestCase):
+    def run_rule(self, data):
+        nodes = {data["id"]: data}
+        display.elsewhere(nodes, NETWORKS)
+        return data.get("elsewhere")
+
+    def test_each_record_says_how_it_is_held_in_the_profile_order(self):
+        data = {"id": "p", "kind": "Person", "authority": [
+            authority("Hub", "H1", role="entity_identity", uri="https://hub.test/H1.json"),
+            authority("Mint", "m1", uri="https://hub.test/H1.json"),
+            authority("Mint", "m2", uri="https://mint.test/m2"),
+            authority("Mint", "m3", status="proposed", uri="https://mint.test/m3")]}
+        ew = self.run_rule(data)
+        self.assertEqual([g["network"] for g in ew["networks"]], ["Coins", "Open hub", "People"])
+        coins = {r["identifier"]: r for r in ew["networks"][0]["rows"]}
+        self.assertEqual(coins["m1"]["words"], "per Hub")
+        self.assertEqual(coins["m2"]["words"], "checked there")
+        self.assertEqual(coins["m3"]["words"], "proposed")
+        self.assertEqual(coins["m2"]["url"], "https://mint.test/m2")
+        self.assertEqual(ew["networks"][1]["rows"][0]["words"], "its identity · close match")
+        self.assertEqual(ew["networks"][2]["rows"], [{"system": "Folk", "missing": True, "words": "none held",
+                                                     "why": "No record held here yet."}])
+        self.assertEqual(ew["summary"], "4 records in 2 networks, 1 per Hub only.")
+
+    def test_a_place_reads_its_gazetteer_and_its_kind_link(self):
+        data = {"id": "x", "kind": "Place", "authority": [authority("Folk", "7", uri="https://folk.test/7")],
+                "gazetteer": [{"system": "Atlas", "identifier": "42", "label": "Old town", "status": "accepted",
+                               "basis": "Atlas 42 (crosswalk)"}]}
+        rows = {r["system"]: r for g in self.run_rule(data)["networks"] for r in g["rows"]}
+        self.assertEqual((rows["Atlas"]["label"], rows["Atlas"]["words"]), ("Old town (Atlas 42)", "its location"))
+        self.assertEqual(rows["Folk"]["url"], "https://folk.test/place/7")
+        self.assertNotIn("missing", rows["Atlas"], "a gazetteer record is held, not missing")
+
+    def test_a_crosswalk_the_gazetteer_holds_is_its_location(self):
+        data = {"id": "x", "kind": "Place", "authority": [authority("Atlas", "42", uri="https://hub.test/Q1.json")],
+                "gazetteer": [{"system": "Atlas", "identifier": "42", "label": "Old town", "status": "accepted"}]}
+        rows = [r for g in self.run_rule(data)["networks"] for r in g["rows"] if r["system"] == "Atlas"]
+        self.assertEqual([(r["label"], r["words"]) for r in rows], [("Atlas record (42)", "its location")])
+
+
+def voice(*sources):
+    return {"accordingTo": sources[0], "quotes": [{"source": s} for s in sources[1:]]}
+
+
+class EvidenceKinds(unittest.TestCase):
+    def setUp(self):
+        self.works = {"Coin series": {"form": "coinage"}, "Old history": {"standing": "primary"},
+                      "New study": {"standing": "secondary"}, "A play": {"form": "play", "standing": "primary"}}
+
+    def kinds(self, *voices):
+        return display.evidence_of({"voices": list(voices)}, self.works, frozenset({"play", "poem"}))
+
+    def test_two_kinds_agreeing_are_named(self):
+        ev = self.kinds(voice("Old history"), voice("New study", "Coin series"))
+        self.assertEqual([k["kind"] for k in ev["kinds"]], ["text", "coin"])
+        self.assertEqual(ev["sentence"], "2 independent kinds of evidence: ancient text and coin.")
+        self.assertEqual(ev["also"], ["1 modern study"])
+        self.assertEqual(ev["missing"], ["inscription"])
+
+    def test_any_creative_form_is_imagined_never_a_text(self):
+        ev = self.kinds(voice("A play"))
+        self.assertEqual(ev["kinds"], [])
+        self.assertEqual(ev["also"], ["1 imaginative work"])
+        self.assertEqual(ev["sentence"], "No ancient evidence held: only later writers say it.")
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -31,6 +31,7 @@ from GraphRevised.operations import load_operations
 
 from .core import NOTE_TYPES, CaptureError, capture
 from .highlights import match_book, parse_kindle, parse_readwise
+from GraphRevised import localdb
 
 GRAPH_REVISED = Path(__file__).resolve().parents[1]
 READING_MAPPING = GRAPH_REVISED / "curation" / "reading.json"
@@ -102,13 +103,13 @@ def main(argv: list[str] | None = None) -> int:
             return 0
 
     driver = GraphDatabase.driver(
-        os.environ.get("NEO4J_URI", "neo4j://127.0.0.1:7687"),
-        auth=(os.environ.get("NEO4J_USERNAME", "neo4j"), os.environ["NEO4J_PASSWORD"]),
+        localdb.uri(),
+        auth=localdb.auth(),
         notifications_min_severity="OFF",
     )
     operations, written, refused = load_operations(), 0, []
     try:
-        with driver.session(database=os.environ.get("NEO4J_DATABASE", "neo4j")) as session:
+        with driver.session(database=localdb.database()) as session:
             for item in items:
                 try:
                     result = session.execute_write(lambda tx: capture(tx, operations, item))

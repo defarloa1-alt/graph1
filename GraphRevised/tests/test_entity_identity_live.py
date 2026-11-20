@@ -8,6 +8,7 @@ from unittest import mock
 from GraphRevised.operations import load_operations, run_write
 from GraphRevised.proposals import review
 from GraphRevised.proposals.review import ReviewError, set_entity_identity
+from GraphRevised import localdb
 
 ENTITY = "chr:entity:test-misidentified-place"
 WRONG, RIGHT = "QTEST1", "QTEST2"
@@ -23,10 +24,10 @@ class EntityIdentityLiveTests(unittest.TestCase):
     def setUpClass(cls):
         from neo4j import GraphDatabase
         cls.operations = load_operations()
-        cls.driver = GraphDatabase.driver(os.environ.get("NEO4J_URI", "neo4j://127.0.0.1:7687"),
-                                          auth=(os.environ.get("NEO4J_USERNAME", "neo4j"), os.environ["NEO4J_PASSWORD"]),
+        cls.driver = GraphDatabase.driver(localdb.uri(),
+                                          auth=localdb.auth(),
                                           notifications_min_severity="OFF")
-        cls.session = cls.driver.session(database=os.environ.get("NEO4J_DATABASE", "neo4j"))
+        cls.session = cls.driver.session(database=localdb.database())
 
     @classmethod
     def tearDownClass(cls):

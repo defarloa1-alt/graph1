@@ -34,6 +34,7 @@ from pydantic import BaseModel
 from GraphRevised.adapters.sources import PassageSource, open_source
 from GraphRevised.proposals.passage_reader import Inquiry, anthropic_client, load_inquiries
 from GraphRevised.proposals.prompt_version import prompt_version
+from GraphRevised import localdb
 
 GRAPH_REVISED = Path(__file__).resolve().parents[1]
 FINDS_DIRECTORY = GRAPH_REVISED / "finds"
@@ -164,12 +165,12 @@ def main(argv: list[str] | None = None) -> int:
     args = parser.parse_args(argv)
 
     driver = GraphDatabase.driver(
-        os.environ.get("NEO4J_URI", "neo4j://127.0.0.1:7687"),
-        auth=(os.environ.get("NEO4J_USERNAME", "neo4j"), os.environ["NEO4J_PASSWORD"]),
+        localdb.uri(),
+        auth=localdb.auth(),
         notifications_min_severity="OFF",
     )
     try:
-        with driver.session(database=os.environ.get("NEO4J_DATABASE", "neo4j")) as session:
+        with driver.session(database=localdb.database()) as session:
             inquiries = session.execute_read(lambda tx: load_inquiries(args.inquiry, tx))
             event = session.run("MATCH (e:Entity {id: $id}) RETURN e {.label, .description} AS e",
                                 id=inquiries[0].narrative_event_id).single()["e"]

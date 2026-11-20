@@ -10,6 +10,7 @@ from GraphRevised.proposals.review import decide_entity
 from GraphRevised.proposals.schema import ProposalDraft, QualifierQuotation, Quotation, TimeQualifier
 from GraphRevised.proposals.store import ReviewError, submit
 from GraphRevised.proposals.validator import Outcome
+from GraphRevised import localdb
 
 PASSAGE = "chr:observation:test:period-passage"
 TEXT = "Thus ended the Test Commonwealth, which had lasted from 509 to 27 B.C., and a new order began."
@@ -24,10 +25,10 @@ class ProposedEntityTests(unittest.TestCase):
 
         cls.operations, cls.registry = load_operations(), load_registry()
         cls.driver = GraphDatabase.driver(
-            os.environ.get("NEO4J_URI", "neo4j://127.0.0.1:7687"),
-            auth=(os.environ.get("NEO4J_USERNAME", "neo4j"), os.environ["NEO4J_PASSWORD"]),
+            localdb.uri(),
+            auth=localdb.auth(),
             notifications_min_severity="OFF")
-        cls.session = cls.driver.session(database=os.environ.get("NEO4J_DATABASE", "neo4j"))
+        cls.session = cls.driver.session(database=localdb.database())
 
     @classmethod
     def tearDownClass(cls):

@@ -53,6 +53,7 @@ import yaml
 from GraphRevised.adapters.lc_catalog import SOURCE_DIRECTORY, isbn_digits, isbn_valid, parse_record
 from GraphRevised.capture.core import annotation_id, annotation_label, transcription_id
 from GraphRevised.operations import run_write
+from GraphRevised import localdb
 
 GRAPH_REVISED = Path(__file__).resolve().parents[1]
 DEFAULT_FOLDER = GRAPH_REVISED / "obsidian_book_notes"
@@ -459,12 +460,12 @@ def main(argv: list[str] | None = None) -> int:
     paths = notes_in(args.folder)
     chosen = {n: p for n, p in paths.items() if args.note in (None, n)}
     operations = load_operations()
-    driver = GraphDatabase.driver(os.environ.get("NEO4J_URI", "neo4j://127.0.0.1:7687"),
-                                  auth=(os.environ.get("NEO4J_USERNAME", "neo4j"), os.environ["NEO4J_PASSWORD"]),
+    driver = GraphDatabase.driver(localdb.uri(),
+                                  auth=localdb.auth(),
                                   notifications_min_severity="OFF")
     written, failed = [], 0
     try:
-        with driver.session(database=os.environ.get("NEO4J_DATABASE", "neo4j")) as session:
+        with driver.session(database=localdb.database()) as session:
             tx = session.begin_transaction()
             try:
                 reader = Neo4jNoteReader(tx)

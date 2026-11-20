@@ -28,6 +28,7 @@ from .registry import PredicateRegistry
 from .schema import QuantityQualifier
 from .store import ReviewError, format_claim_labels
 from .temporal import display_edtf
+from GraphRevised import localdb
 
 PARTS = """
 MATCH (a:Assertion) WHERE a.id IN $ids
@@ -127,11 +128,11 @@ def main(argv: list[str] | None = None) -> int:
     if args.all == bool(args.entity_id) or (args.entity_id and not (args.by and args.basis)):
         parser.error("give an entity id with --by and --basis, or --all")
     sys.stdout.reconfigure(encoding="utf-8")
-    driver = GraphDatabase.driver(os.environ.get("NEO4J_URI", "neo4j://127.0.0.1:7687"),
-                                  auth=(os.environ.get("NEO4J_USERNAME", "neo4j"), os.environ["NEO4J_PASSWORD"]),
+    driver = GraphDatabase.driver(localdb.uri(),
+                                  auth=localdb.auth(),
                                   notifications_min_severity="OFF")
     try:
-        with driver.session(database=os.environ.get("NEO4J_DATABASE", "neo4j")) as session:
+        with driver.session(database=localdb.database()) as session:
             tx = session.begin_transaction()
             try:
                 if args.all:

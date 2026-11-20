@@ -129,6 +129,7 @@ their node).
 | `times` | Each source's own time words | "When" row; may disagree |
 | `voices` | Shape 3, one per source | The card's body |
 | `fold`, `foldVia` | A display rule's reason to leave the line off the canvas (D-162): `via-part` (a moment already in a phase of the event, `foldVia` names the phase), `part-says-distinct` ("distinct from" beside "part of" for the same pair), `reference-work` (described by a tertiary Work) | Not drawn; still counted and still on its card |
+| `evidence` | Kinds of evidence (display rule 8, 2026-11-20): `{kinds: [{kind, words, count, sources}], missing, also, sentence}`; kinds are ancient text, coin, inscription, read from the cited Works' form and standing; modern studies, reference works and imaginative works (any creative form) go in `also`, never a kind. Interim until the kind is on the evidence itself (41 §3.3); the header of 42 §4's line-structure panel | Strip on the fact card; three marks on a When row |
 
 Attestation values (D-148, 42: factual facts count independent lines of
 evidence, not authors): *well attested (N ancient sources)*, *attested (1
@@ -226,7 +227,9 @@ the authority line.
 | `subjectAccess[]` | For an entity with no library heading of its own: `{heading, via, viaLabel}`, the LCSH, LCNAF or FAST headings of the nearest whole it is part of ("Actium, Battle of, 31 B.C. via Battle of Actium"); derived, never stored (D-164) | built (2026-11-19) |
 | `referenceWorks` | How many reference works describe it: "Also in 5 reference works" | built (2026-11-19) |
 | `lines`, `imaginedOnly`, `folded` | Its lines by category; true when every line is imaginative (fiction off hides it); how many of its lines each rule folds | built (2026-11-19) |
-| `authority[]` | Quiet footer: one record per system, the identity first, the best-supported identifier shown and the rest counted ("Cleopatra in VIAF (VIAF 67762941) and 7 more"); never a code alone | built (2026-10-14) |
+| `authority[]` | Quiet footer: one record per system, the identity first, the best-supported identifier shown and the rest counted ("Cleopatra in VIAF (VIAF 67762941) and 7 more"); never a code alone | built (2026-10-14); each record keeps its link `status` (a proposed one ends "(proposed)"), and rejected links are left out except in the audit (D-168, 2026-11-20) |
+| `gazetteer[]` | A Place's gazetteer Locations: `{system, identifier, label, status, basis}` (Pleiades, GeoNames) | built (2026-11-20) |
+| `elsewhere` | The Elsewhere block (display rule 7, D-168): `{summary, networks: [{network, rows}]}`, networks in the federation profile's order; a row is `{system, identifier, label, url, note, others, status, words, why}` with `words` one of "its identity · close match", "its location", "checked there", "per Wikidata", "proposed", or, for a network the profile expects for the kind with no record, `{system, missing: true, words: "none held"}`. Shown in place of the quiet footer for scholar and student; the browser persona sees neither. **Curator to confirm** that Elsewhere replaces the footer | built (2026-11-20), wireframe |
 
 Signposts for Antony as the graph stands, for mock-ups: *Battles (1)*,
 *Commands (4)*, *Cleopatra*, *Octavian*, *Elsewhere in 31 BC (empty)*,

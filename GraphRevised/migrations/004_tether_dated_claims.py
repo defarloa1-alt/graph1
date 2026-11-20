@@ -19,6 +19,7 @@ from neo4j import GraphDatabase
 
 from GraphRevised.operations import load_operations, run_write
 from GraphRevised.proposals.temporal import parse_edtf, year_links
+from GraphRevised import localdb
 
 UNTETHERED = """
 MATCH (a:Assertion) WHERE a.timeEdtf IS NOT NULL AND a.timeCalendar IS NOT NULL AND NOT (a)-[:IN_YEAR]->(:Year)
@@ -43,11 +44,11 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--apply", action="store_true")
     args = parser.parse_args(argv)
-    driver = GraphDatabase.driver(os.environ.get("NEO4J_URI", "neo4j://127.0.0.1:7687"),
-                                  auth=(os.environ.get("NEO4J_USERNAME", "neo4j"), os.environ["NEO4J_PASSWORD"]),
+    driver = GraphDatabase.driver(localdb.uri(),
+                                  auth=localdb.auth(),
                                   notifications_min_severity="OFF")
     try:
-        with driver.session(database=os.environ.get("NEO4J_DATABASE", "neo4j")) as session:
+        with driver.session(database=localdb.database()) as session:
             lines = session.execute_write(tether_all, load_operations(), args.apply)
     finally:
         driver.close()

@@ -8,6 +8,7 @@ from GraphRevised.operations import load_operations, run_write
 from GraphRevised.proposals.registry import load_registry
 from GraphRevised.proposals.schema import ProposalDraft, QualifierQuotation
 from GraphRevised.proposals.validator import classify_related
+from GraphRevised import localdb
 
 BASE = "chr:assertion:a:commanded:b"
 
@@ -76,10 +77,10 @@ class LiveTests(unittest.TestCase):
 
         cls.operations, cls.registry = load_operations(), load_registry()
         cls.driver = GraphDatabase.driver(
-            os.environ.get("NEO4J_URI", "neo4j://127.0.0.1:7687"),
-            auth=(os.environ.get("NEO4J_USERNAME", "neo4j"), os.environ["NEO4J_PASSWORD"]),
+            localdb.uri(),
+            auth=localdb.auth(),
             notifications_min_severity="OFF")
-        cls.session = cls.driver.session(database=os.environ.get("NEO4J_DATABASE", "neo4j"))
+        cls.session = cls.driver.session(database=localdb.database())
 
     @classmethod
     def tearDownClass(cls):

@@ -8,6 +8,7 @@ from GraphRevised.adapters.periodo import PeriodDataset, PeriodDefinition, Perio
 from GraphRevised.discovery.period_survey import (
     Match, definition_draft, definition_edtf, load_config, match_definitions, record_text, store_evidence, work_label,
 )
+from GraphRevised import localdb
 
 IGNORED = set(load_config()["periodo"]["ignoredWords"])
 LCSH = PeriodSource(authority_id="lcsh", title="Library of Congress Subject Headings", creators=("Library of Congress",),
@@ -103,10 +104,10 @@ class StoreEvidenceTests(unittest.TestCase):
 
         cls.operations, cls.registry = load_operations(), load_registry()
         cls.driver = GraphDatabase.driver(
-            os.environ.get("NEO4J_URI", "neo4j://127.0.0.1:7687"),
-            auth=(os.environ.get("NEO4J_USERNAME", "neo4j"), os.environ["NEO4J_PASSWORD"]),
+            localdb.uri(),
+            auth=localdb.auth(),
             notifications_min_severity="OFF")
-        cls.session = cls.driver.session(database=os.environ.get("NEO4J_DATABASE", "neo4j"))
+        cls.session = cls.driver.session(database=localdb.database())
 
     @classmethod
     def tearDownClass(cls):

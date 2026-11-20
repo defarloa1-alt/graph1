@@ -20,6 +20,7 @@ from GraphRevised.proposals.store import (
 )
 from GraphRevised.proposals.validator import Outcome
 from GraphRevised.proposals.wikidata_proposer import WIKIDATA_WORK, drafts_from_observation
+from GraphRevised import localdb
 
 AGRIPPA_OBSERVATION = "chr:observation:wikidata:Q160387:P710:32bdfa2f:r2555342002"
 
@@ -47,11 +48,11 @@ class ProposalWorkflowLiveTests(unittest.TestCase):
         cls.operations = load_operations()
         cls.registry = load_registry()
         cls.driver = GraphDatabase.driver(
-            os.environ.get("NEO4J_URI", "neo4j://127.0.0.1:7687"),
-            auth=(os.environ.get("NEO4J_USERNAME", "neo4j"), os.environ["NEO4J_PASSWORD"]),
+            localdb.uri(),
+            auth=localdb.auth(),
             notifications_min_severity="OFF",
         )
-        cls.session = cls.driver.session(database=os.environ.get("NEO4J_DATABASE", "neo4j"))
+        cls.session = cls.driver.session(database=localdb.database())
 
     @classmethod
     def tearDownClass(cls):

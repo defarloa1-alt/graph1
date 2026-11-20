@@ -48,6 +48,7 @@ from GraphRevised.proposals.passage_reader import DEFAULT_MODEL, anthropic_clien
 from GraphRevised.proposals.prompt_version import prompt_version
 from GraphRevised.slices.add_entity import ENTITY_KINDS, persist_identity, preserved_identity_payload
 from GraphRevised.subject_backbone import local_config
+from GraphRevised import localdb
 
 GRAPH_REVISED = Path(__file__).resolve().parents[1]
 QUEUE_DIRECTORY = GRAPH_REVISED / "queues"
@@ -481,12 +482,12 @@ def main(argv: list[str] | None = None) -> int:
         return 0
 
     driver = GraphDatabase.driver(
-        os.environ.get("NEO4J_URI", "neo4j://127.0.0.1:7687"),
-        auth=(os.environ.get("NEO4J_USERNAME", "neo4j"), os.environ["NEO4J_PASSWORD"]),
+        localdb.uri(),
+        auth=localdb.auth(),
         notifications_min_severity="OFF",
     )
     try:
-        with driver.session(database=os.environ.get("NEO4J_DATABASE", "neo4j")) as session:
+        with driver.session(database=localdb.database()) as session:
             if args.command == "build":
                 print(f"queue: {build(args.inquiry, session).relative_to(GRAPH_REVISED.parent).as_posix()}")
             else:

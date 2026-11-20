@@ -39,6 +39,7 @@ from neo4j import GraphDatabase
 
 from GraphRevised.export.fact_layer import relationship_type
 from GraphRevised.proposals.registry import REGISTRY_PATH, PredicateRegistry, load_registry
+from GraphRevised import localdb
 
 REPOSITORY = Path(__file__).resolve().parents[2]
 
@@ -171,10 +172,10 @@ def main(argv: list[str] | None = None) -> int:
     args = parser.parse_args(argv)
     registry = load_registry()
     data = plan(registry)
-    driver = GraphDatabase.driver(os.environ.get("NEO4J_URI", "neo4j://127.0.0.1:7687"),
-                                  auth=(os.environ.get("NEO4J_USERNAME", "neo4j"), os.environ["NEO4J_PASSWORD"]))
+    driver = GraphDatabase.driver(localdb.uri(),
+                                  auth=localdb.auth())
     try:
-        with driver.session(database=os.environ.get("NEO4J_DATABASE", "neo4j")) as session:
+        with driver.session(database=localdb.database()) as session:
             before = session.run(DIFF).single().data()
             wanted = {p["properties"]["id"] for p in data["predicates"]}
             held = set(before["predicates"])

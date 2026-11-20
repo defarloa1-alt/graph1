@@ -9,6 +9,7 @@ import os
 import unittest
 
 from GraphRevised.operations import load_operations
+from GraphRevised import localdb
 
 ACTIUM = "chr:entity:battle-of-actium"
 AGRIPPA = "chr:entity:marcus-vipsanius-agrippa"
@@ -144,10 +145,10 @@ class DirectOperationsLiveTests(unittest.TestCase):
 
         cls.operations = load_operations()
         cls.driver = GraphDatabase.driver(
-            os.environ.get("NEO4J_URI", "neo4j://127.0.0.1:7687"),
-            auth=(os.environ.get("NEO4J_USERNAME", "neo4j"), os.environ["NEO4J_PASSWORD"]),
+            localdb.uri(),
+            auth=localdb.auth(),
         )
-        cls.session = cls.driver.session(database=os.environ.get("NEO4J_DATABASE", "neo4j"))
+        cls.session = cls.driver.session(database=localdb.database())
 
     @classmethod
     def tearDownClass(cls) -> None:
@@ -239,6 +240,19 @@ class DirectOperationsLiveTests(unittest.TestCase):
 
     def test_authority_with_conflicting_local_id_is_refused(self) -> None:
         self.assertRefused(UPSERT_AUTHORITY, authority_params(id="chr:authority:other"))
+
+    def test_authority_refetch_replaces_the_fetch_fields_together(self) -> None:
+        # 2026-11-20: a re-fetch from another source must not leave the old payload's hash and URI behind
+        fetch = {"retrievedAt": "2026-11-20T00:00:00+00:00", "sourceUri": "https://example.org/refetch.json",
+                 "sourceRevision": None, "contentHash": "refetch-hash", "rawPayloadUri": "phase-5-source/refetch.json"}
+        record = self.run_op(UPSERT_AUTHORITY, authority_params(**fetch))[0]["record"]
+        self.assertEqual({k: record.get(k) for k in fetch}, fetch)
+
+    def test_authority_without_a_fetch_keeps_its_provenance(self) -> None:
+        before = self.tx.run("MATCH (a:AuthorityRecord {id: $id}) RETURN a", id=AUTHORITY).single()["a"]
+        record = self.run_op(UPSERT_AUTHORITY, authority_params(label="Relabelled only"))[0]["record"]
+        for key in ("retrievedAt", "sourceUri", "sourceRevision", "contentHash", "rawPayloadUri"):
+            self.assertEqual(record.get(key), before.get(key), key)
 
     def test_authority_for_missing_entity_creates_nothing(self) -> None:
         self.assertRefused(

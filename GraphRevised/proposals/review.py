@@ -51,6 +51,7 @@ from GraphRevised.identity.local_candidates import candidates
 
 from .entities import proposed_entities
 from .store import REASON_CODES, ReviewError, accept, list_proposals, promote, reject, reopen, retract, supersede
+from GraphRevised import localdb
 
 
 def mark_quotation(passage: str, quotation: str | None) -> str:
@@ -255,12 +256,12 @@ def main(argv: list[str] | None = None) -> int:
     if not os.environ.get("NEO4J_PASSWORD"):
         parser.error("NEO4J_PASSWORD is not set")
     driver = GraphDatabase.driver(
-        os.environ.get("NEO4J_URI", "neo4j://127.0.0.1:7687"),
-        auth=(os.environ.get("NEO4J_USERNAME", "neo4j"), os.environ["NEO4J_PASSWORD"]),
+        localdb.uri(),
+        auth=localdb.auth(),
         notifications_min_severity="OFF",
     )
     try:
-        with driver.session(database=os.environ.get("NEO4J_DATABASE", "neo4j")) as session:
+        with driver.session(database=localdb.database()) as session:
             if args.command == "entities":
                 print_entities(session, load_operations(), load_registry())
                 return 0

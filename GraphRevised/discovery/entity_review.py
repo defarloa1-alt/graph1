@@ -33,6 +33,7 @@ from pydantic import BaseModel
 
 from GraphRevised.identity.local_candidates import candidates
 from GraphRevised.proposals.prompt_version import prompt_version
+from GraphRevised import localdb
 
 GRAPH_REVISED = Path(__file__).resolve().parents[1]
 DEFAULT_MODEL = "claude-sonnet-5-5"
@@ -294,10 +295,10 @@ def main(argv: list[str] | None = None) -> int:
         raise FileExistsError(f"output already exists: {args.output}")
     from GraphRevised.harvest.apply import SUPERCLASSES
     from GraphRevised.harvest.wikidata_harvest import Labels, load_rules
-    driver = GraphDatabase.driver(os.environ.get("NEO4J_URI", "neo4j://127.0.0.1:7687"),
-                                  auth=(os.environ.get("NEO4J_USERNAME", "neo4j"), os.environ["NEO4J_PASSWORD"]),
+    driver = GraphDatabase.driver(localdb.uri(),
+                                  auth=localdb.auth(),
                                   notifications_min_severity="OFF")
-    with driver, driver.session(database=os.environ.get("NEO4J_DATABASE", "neo4j"),
+    with driver, driver.session(database=localdb.database(),
                                 default_access_mode=READ_ACCESS) as session:
         packet = session.execute_read(lambda tx: prepare(tx, args.kind, args.entity, rules=load_rules(),
                                                          labels=Labels(), superclasses=SUPERCLASSES,

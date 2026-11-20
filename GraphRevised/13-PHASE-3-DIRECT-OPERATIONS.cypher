@@ -138,6 +138,9 @@ RETURN entity, relationship, year;
 
 // Create or reuse an AuthorityRecord and attach it to an Entity. The record is
 // keyed by (system, identifier); a retry under a different local ID is refused.
+// A re-fetch (2026-11-20) replaces the fetch's fields together: retrievedAt, sourceUri,
+// sourceRevision, contentHash and rawPayloadUri always describe one payload (02 §1). Without
+// a retrievedAt, only the words change and the record keeps the fetch it had.
 MATCH (entity:Entity {id: $entityId})
 OPTIONAL MATCH (existing:AuthorityRecord {system: $system, identifier: $identifier})
 WITH entity, existing
@@ -157,6 +160,10 @@ ON MATCH SET
   record.label = coalesce($label, record.label),
   record.shortLabel = coalesce($shortLabel, record.shortLabel),
   record.description = coalesce($description, record.description),
+  record.sourceUri = CASE WHEN $retrievedAt IS NULL THEN record.sourceUri ELSE $sourceUri END,
+  record.sourceRevision = CASE WHEN $retrievedAt IS NULL THEN record.sourceRevision ELSE $sourceRevision END,
+  record.contentHash = CASE WHEN $retrievedAt IS NULL THEN record.contentHash ELSE $contentHash END,
+  record.rawPayloadUri = CASE WHEN $retrievedAt IS NULL THEN record.rawPayloadUri ELSE $rawPayloadUri END,
   record.retrievedAt = coalesce($retrievedAt, record.retrievedAt)
 MERGE (entity)-[relationship:HAS_AUTHORITY_RECORD]->(record)
 ON CREATE SET

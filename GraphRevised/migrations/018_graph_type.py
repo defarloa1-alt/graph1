@@ -56,6 +56,7 @@ from neo4j import GraphDatabase
 
 from GraphRevised.export.fact_layer import relationship_type
 from GraphRevised.proposals.registry import load_registry
+from GraphRevised import localdb
 
 SUBTYPES = ["Person", "Place", "Event", "Group", "Work", "Object", "Period", "Office",
             "Concept", "Polity", "Type", "Question", "Position", "Other"]
@@ -334,10 +335,10 @@ def main(argv: list[str] | None = None) -> int:
     if args.show:
         print(statement)
         return 0
-    driver = GraphDatabase.driver(os.environ.get("NEO4J_URI", "neo4j://127.0.0.1:7687"),
-                                  auth=(os.environ.get("NEO4J_USERNAME", "neo4j"), os.environ["NEO4J_PASSWORD"]))
+    driver = GraphDatabase.driver(localdb.uri(),
+                                  auth=localdb.auth())
     try:
-        with driver.session(database=os.environ.get("NEO4J_DATABASE", "neo4j")) as session:
+        with driver.session(database=localdb.database()) as session:
             rules = checks()
             broken = preflight(session)
             print(f"{len(rules)} rules checked; {len(broken)} broken")

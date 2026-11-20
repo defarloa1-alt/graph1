@@ -15,6 +15,7 @@ from GraphRevised.proposals.store import _draft_from_stored
 from GraphRevised.proposals.validator import Outcome, validate
 from GraphRevised.proposals.wikidata_proposer import drafts_from_observation
 from GraphRevised.tests.test_proposals_offline import FakeReader, entity, observation
+from GraphRevised import localdb
 
 MANIPLE = entity("chr:entity:test-maniple", "Type")
 LEGION = entity("chr:entity:test-polybian-legion", "Type")
@@ -203,10 +204,10 @@ class LiveBase(unittest.TestCase):
 
         cls.operations, cls.registry = load_operations(), load_registry()
         cls.driver = GraphDatabase.driver(
-            os.environ.get("NEO4J_URI", "neo4j://127.0.0.1:7687"),
-            auth=(os.environ.get("NEO4J_USERNAME", "neo4j"), os.environ["NEO4J_PASSWORD"]),
+            localdb.uri(),
+            auth=localdb.auth(),
             notifications_min_severity="OFF")
-        cls.session = cls.driver.session(database=os.environ.get("NEO4J_DATABASE", "neo4j"))
+        cls.session = cls.driver.session(database=localdb.database())
 
     @classmethod
     def tearDownClass(cls):

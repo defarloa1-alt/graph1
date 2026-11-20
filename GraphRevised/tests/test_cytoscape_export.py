@@ -9,6 +9,7 @@ import os
 import unittest
 
 from GraphRevised.export.cytoscape import projection
+from GraphRevised import localdb
 
 FIXTURES = """
 CREATE (leader:Entity:Person {id: "chr:entity:test-x-leader", label: "Test leader", status: "provisional"})
@@ -54,6 +55,12 @@ CREATE (leader)-[:HAS_AUTHORITY_RECORD {role: "crosswalk", statementRank: "norma
 CREATE (leader)-[:HAS_AUTHORITY_RECORD {role: "crosswalk", statementRank: "normal", statementReferences: 0}]->
        (:AuthorityRecord {id: "chr:authority:test-x-c1", system: "Test cluster", identifier: "c1",
                           label: "Test leader in Test cluster (c1)"})
+CREATE (battle)-[:HAS_AUTHORITY_RECORD {role: "entity_identity", status: "rejected"}]->
+       (:AuthorityRecord {id: "chr:authority:test-x-wrong", system: "Test identity", identifier: "T9",
+                          label: "Test identity record: Test precinct (T9)"})
+CREATE (battle)-[:HAS_AUTHORITY_RECORD {role: "crosswalk", status: "proposed"}]->
+       (:AuthorityRecord {id: "chr:authority:test-x-p1", system: "Test catalogue", identifier: "p1",
+                          label: "Test catalogue record (p1)"})
 """
 
 
@@ -64,10 +71,10 @@ class ExplorationExportTests(unittest.TestCase):
         from neo4j import GraphDatabase
 
         cls.driver = GraphDatabase.driver(
-            os.environ.get("NEO4J_URI", "neo4j://127.0.0.1:7687"),
-            auth=(os.environ.get("NEO4J_USERNAME", "neo4j"), os.environ["NEO4J_PASSWORD"]),
+            localdb.uri(),
+            auth=localdb.auth(),
             notifications_min_severity="OFF")
-        cls.session = cls.driver.session(database=os.environ.get("NEO4J_DATABASE", "neo4j"))
+        cls.session = cls.driver.session(database=localdb.database())
 
     @classmethod
     def tearDownClass(cls):
@@ -126,7 +133,14 @@ class ExplorationExportTests(unittest.TestCase):
         nodes, _ = self.view()
         self.assertEqual(nodes["chr:entity:test-x-leader"]["authorityLines"],
                          ["Test identity record: Test leader (T1)", "Test leader in Test cluster (c9) and 2 more"])
-        self.assertEqual(nodes["chr:entity:test-x-battle"]["authorityLines"], [])
+
+    def test_rejected_links_are_left_out_and_proposed_ones_say_so(self):
+        nodes, _ = self.view()
+        self.assertEqual(nodes["chr:entity:test-x-battle"]["authorityLines"], ["Test catalogue record (p1) (proposed)"])
+        self.assertEqual([a["status"] for a in nodes["chr:entity:test-x-battle"]["authority"]], ["proposed"])
+        audit, _ = self.view(audit=True)
+        self.assertIn("Test identity record: Test precinct (T9) (rejected)",
+                      audit["chr:entity:test-x-battle"]["authorityLines"])
 
     def test_rejected_deprecated_and_dismissed_only_in_audit(self):
         nodes, edges = self.view()

@@ -6,6 +6,7 @@ import unittest
 from GraphRevised.operations import load_operations
 from GraphRevised.proposals.registry import load_registry
 from GraphRevised.slices.apply_curation import SNAPSHOT, apply_manifest
+from GraphRevised import localdb
 
 MANIFEST = {
     "localEntities": [
@@ -25,11 +26,11 @@ class CurationLiveTests(unittest.TestCase):
 
         cls.operations, cls.registry = load_operations(), load_registry()
         cls.driver = GraphDatabase.driver(
-            os.environ.get("NEO4J_URI", "neo4j://127.0.0.1:7687"),
-            auth=(os.environ.get("NEO4J_USERNAME", "neo4j"), os.environ["NEO4J_PASSWORD"]),
+            localdb.uri(),
+            auth=localdb.auth(),
             notifications_min_severity="OFF",
         )
-        cls.session = cls.driver.session(database=os.environ.get("NEO4J_DATABASE", "neo4j"))
+        cls.session = cls.driver.session(database=localdb.database())
 
     @classmethod
     def tearDownClass(cls):

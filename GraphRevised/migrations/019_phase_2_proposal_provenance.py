@@ -26,6 +26,7 @@ import sys
 from datetime import datetime, timezone
 
 from neo4j import GraphDatabase
+from GraphRevised import localdb
 
 PROPOSAL = "chr:proposal:accept-marcus-vipsanius-agrippa-participation-at-actium"
 VALUES = {
@@ -53,10 +54,10 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--apply", action="store_true")
     args = parser.parse_args(argv)
-    driver = GraphDatabase.driver(os.environ.get("NEO4J_URI", "neo4j://127.0.0.1:7687"),
-                                  auth=(os.environ.get("NEO4J_USERNAME", "neo4j"), os.environ["NEO4J_PASSWORD"]))
+    driver = GraphDatabase.driver(localdb.uri(),
+                                  auth=localdb.auth())
     try:
-        with driver.session(database=os.environ.get("NEO4J_DATABASE", "neo4j")) as session:
+        with driver.session(database=localdb.database()) as session:
             tx = session.begin_transaction()
             try:
                 row = tx.run(BACKFILL, id=PROPOSAL, values=VALUES, by="Claude (migration 019)", basis=BASIS,

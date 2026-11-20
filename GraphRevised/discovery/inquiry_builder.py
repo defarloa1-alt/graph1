@@ -36,6 +36,7 @@ from GraphRevised.discovery import source_brief
 from GraphRevised.operations import load_operations, run_write
 from GraphRevised.proposals.entities import proposed_entity_id
 from GraphRevised.proposals.registry import load_registry
+from GraphRevised import localdb
 
 GRAPH_REVISED = Path(__file__).resolve().parents[1]
 PLANS_DIRECTORY = GRAPH_REVISED / "plans"
@@ -160,12 +161,12 @@ def main(argv: list[str] | None = None) -> int:
         report = build(args.inquiry, plan, apply=False)
     else:
         driver = GraphDatabase.driver(
-            os.environ.get("NEO4J_URI", "neo4j://127.0.0.1:7687"),
-            auth=(os.environ.get("NEO4J_USERNAME", "neo4j"), os.environ["NEO4J_PASSWORD"]),
+            localdb.uri(),
+            auth=localdb.auth(),
             notifications_min_severity="OFF",
         )
         try:
-            with driver.session(database=os.environ.get("NEO4J_DATABASE", "neo4j")) as session:
+            with driver.session(database=localdb.database()) as session:
                 operations = load_operations()
                 report = session.execute_write(lambda tx: build(args.inquiry, plan, apply=True, tx=tx, operations=operations))
         finally:

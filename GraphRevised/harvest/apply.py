@@ -48,6 +48,7 @@ from GraphRevised.proposals.store import Neo4jReader, submit
 from GraphRevised.proposals.rule_accept import accept_by_rule
 from GraphRevised.proposals.wikidata_proposer import drafts_from_observation
 from GraphRevised.slices.add_entity import persist_identity, preserved_identity_payload
+from GraphRevised import localdb
 
 TIME_FIELDS = ("statementTimeEdtf", "statementTimeCalendar", "statementTimeMode", "statementTimeDisplay",
                "statementQualifiers")
@@ -286,11 +287,11 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--limit", type=int, default=50, help="new entities allowed in one --expand run")
     args = parser.parse_args(argv)
     sys.stdout.reconfigure(encoding="utf-8")  # labels in every script (Rzym, Kościelna) on a Windows console
-    driver = GraphDatabase.driver(os.environ.get("NEO4J_URI", "neo4j://127.0.0.1:7687"),
-                                  auth=(os.environ.get("NEO4J_USERNAME", "neo4j"), os.environ["NEO4J_PASSWORD"]),
+    driver = GraphDatabase.driver(localdb.uri(),
+                                  auth=localdb.auth(),
                                   notifications_min_severity="OFF")
     try:
-        with driver.session(database=os.environ.get("NEO4J_DATABASE", "neo4j")) as session:
+        with driver.session(database=localdb.database()) as session:
             tx = session.begin_transaction()
             try:
                 operations, registry, rules = load_operations(), load_registry(), load_rules()

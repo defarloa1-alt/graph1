@@ -18,6 +18,7 @@ from typing import Any
 from neo4j import GraphDatabase
 
 from GraphRevised.adapters.wikidata_context import entity_context
+from GraphRevised import localdb
 
 STOPWORDS = {"the", "of", "a", "an", "and", "at", "in", "on", "for", "to", "by", "versus", "vs"}
 
@@ -76,12 +77,12 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--threshold", type=float, default=0.5)
     args = parser.parse_args(argv)
     driver = GraphDatabase.driver(
-        os.environ.get("NEO4J_URI", "neo4j://127.0.0.1:7687"),
-        auth=(os.environ.get("NEO4J_USERNAME", "neo4j"), os.environ["NEO4J_PASSWORD"]),
+        localdb.uri(),
+        auth=localdb.auth(),
         notifications_min_severity="OFF",
     )
     try:
-        with driver.session(database=os.environ.get("NEO4J_DATABASE", "neo4j")) as session:
+        with driver.session(database=localdb.database()) as session:
             found = session.execute_read(lambda tx: candidates(tx, args.label, args.kind, threshold=args.threshold))
     finally:
         driver.close()

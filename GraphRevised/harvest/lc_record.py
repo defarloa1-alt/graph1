@@ -37,6 +37,7 @@ from GraphRevised.operations import load_operations, run_write
 from GraphRevised.proposals.registry import load_registry
 from GraphRevised.proposals.schema import ProposalDraft, Quotation
 from GraphRevised.proposals.store import submit
+from GraphRevised import localdb
 
 GRAPH_REVISED = Path(__file__).resolve().parents[1]
 RUNS = GRAPH_REVISED / "runs"
@@ -107,11 +108,11 @@ def main(argv: list[str] | None = None) -> int:
     report: dict[str, Any] = {"lccn": record.lccn, "work": args.work, "version": VERSION, "applied": args.apply,
                               "createdAt": datetime.now(timezone.utc).isoformat(), "outcomes": [], "forCurator": []}
 
-    driver = GraphDatabase.driver(os.environ.get("NEO4J_URI", "neo4j://127.0.0.1:7687"),
-                                  auth=(os.environ.get("NEO4J_USERNAME", "neo4j"), os.environ["NEO4J_PASSWORD"]),
+    driver = GraphDatabase.driver(localdb.uri(),
+                                  auth=localdb.auth(),
                                   notifications_min_severity="OFF")
     try:
-        with driver.session(database=os.environ.get("NEO4J_DATABASE", "neo4j")) as session:
+        with driver.session(database=localdb.database()) as session:
             tx = session.begin_transaction()
             try:
                 book_label = work_label(tx, args.work)

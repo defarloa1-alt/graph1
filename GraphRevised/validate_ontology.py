@@ -15,6 +15,7 @@ import sys
 from typing import Any
 
 from neo4j import GraphDatabase
+from GraphRevised import localdb
 
 
 SUBTYPES = (
@@ -90,11 +91,11 @@ def main() -> int:
         print("NEO4J_PASSWORD is required", file=sys.stderr)
         return 2
     driver = GraphDatabase.driver(
-        os.environ.get("NEO4J_URI", "neo4j://127.0.0.1:7687"),
+        localdb.uri(),
         auth=(os.environ.get("NEO4J_USERNAME", "neo4j"), password),
     )
     try:
-        with driver.session(database=os.environ.get("NEO4J_DATABASE", "neo4j")) as session:
+        with driver.session(database=localdb.database()) as session:
             result = session.execute_read(validate)
     finally:
         driver.close()

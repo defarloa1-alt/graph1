@@ -36,6 +36,7 @@ from typing import Any
 from neo4j import GraphDatabase
 
 from GraphRevised.harvest.wikipedia_footnotes import HELD, OBSERVATION_REF, _numbers, within
+from GraphRevised import localdb
 
 GRAPH_REVISED = Path(__file__).resolve().parents[1]
 ARTICLES = GRAPH_REVISED / "curation" / "article-citations.json"
@@ -156,11 +157,11 @@ def main(argv: list[str] | None = None) -> int:
     table = json.loads(ALIASES.read_text(encoding="utf-8"))
     pages = article_pages(GRAPH_REVISED.parent / config["pdf"], config["skipPages"], config["firstPage"])
     found = citations(pages, table)
-    driver = GraphDatabase.driver(os.environ.get("NEO4J_URI", "neo4j://127.0.0.1:7687"),
-                                  auth=(os.environ.get("NEO4J_USERNAME", "neo4j"), os.environ["NEO4J_PASSWORD"]),
+    driver = GraphDatabase.driver(localdb.uri(),
+                                  auth=localdb.auth(),
                                   notifications_min_severity="OFF")
     try:
-        with driver.session(database=os.environ.get("NEO4J_DATABASE", "neo4j")) as session:
+        with driver.session(database=localdb.database()) as session:
             held = session.execute_read(held_passages, {c["work"] for c in found if c["work"]})
     finally:
         driver.close()

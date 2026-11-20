@@ -43,6 +43,7 @@ from GraphRevised.proposals.entities import propose_entity
 from GraphRevised.proposals.schema import ProposalDraft, QualifierQuotation, Quotation, TimeQualifier
 from GraphRevised.proposals.store import submit
 from GraphRevised.proposals.temporal import TimeValueError, parse_edtf, to_astronomical
+from GraphRevised import localdb
 
 GRAPH_REVISED = Path(__file__).resolve().parents[1]
 CONFIG_PATH = GRAPH_REVISED / "curation" / "authorities.json"
@@ -363,11 +364,11 @@ def main(argv: list[str] | None = None) -> int:
     config, operations, registry = load_config(), load_operations(), load_registry()
     dataset = periodo_dataset(config)
     driver = GraphDatabase.driver(
-        os.environ.get("NEO4J_URI", "neo4j://127.0.0.1:7687"),
-        auth=(os.environ.get("NEO4J_USERNAME", "neo4j"), os.environ["NEO4J_PASSWORD"]),
+        localdb.uri(),
+        auth=localdb.auth(),
         notifications_min_severity="OFF")
     try:
-        with driver.session(database=os.environ.get("NEO4J_DATABASE", "neo4j")) as session:
+        with driver.session(database=localdb.database()) as session:
             entities = args.entities or [row["id"] for row in session.run(
                 "MATCH (e:Entity:Period) WHERE e.status IN ['proposed', 'provisional'] "
                 "RETURN e.id AS id ORDER BY id")]

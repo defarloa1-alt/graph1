@@ -34,6 +34,7 @@ from GraphRevised.operations import load_operations
 from GraphRevised.proposals.registry import load_registry
 from GraphRevised.proposals.store import REASON_CODES, ReviewError, accept, reject
 from GraphRevised.proposals.temporal import display_edtf
+from GraphRevised import localdb
 
 OPEN = ["submitted", "validating", "deferred"]
 LIVE = ["accepted", "proposed"]
@@ -330,11 +331,11 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--by", default="", help="the name decisions are signed with")
     parser.add_argument("--port", type=int, default=7860)
     args = parser.parse_args(argv)
-    driver = GraphDatabase.driver(os.environ.get("NEO4J_URI", "neo4j://127.0.0.1:7687"),
-                                  auth=(os.environ.get("NEO4J_USERNAME", "neo4j"), os.environ["NEO4J_PASSWORD"]),
+    driver = GraphDatabase.driver(localdb.uri(),
+                                  auth=localdb.auth(),
                                   notifications_min_severity="OFF")
     try:
-        build(driver, os.environ.get("NEO4J_DATABASE", "neo4j"), args.entity, args.by).launch(
+        build(driver, localdb.database(), args.entity, args.by).launch(
             server_name="127.0.0.1", server_port=args.port, inbrowser=False)
     finally:
         driver.close()

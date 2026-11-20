@@ -56,6 +56,7 @@ from GraphRevised.proposals.registry import load_registry
 from GraphRevised.proposals.schema import ProposalDraft, Quotation
 from GraphRevised.proposals.store import submit
 from GraphRevised.slices.add_entity import preserved_identity_payload
+from GraphRevised import localdb
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCES = ROOT / "phase-6-source"
@@ -256,11 +257,11 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--apply", action="store_true")
     args = parser.parse_args(argv)
     sys.stdout.reconfigure(encoding="utf-8")
-    driver = GraphDatabase.driver(os.environ.get("NEO4J_URI", "neo4j://127.0.0.1:7687"),
-                                  auth=(os.environ.get("NEO4J_USERNAME", "neo4j"), os.environ["NEO4J_PASSWORD"]),
+    driver = GraphDatabase.driver(localdb.uri(),
+                                  auth=localdb.auth(),
                                   notifications_min_severity="OFF")
     try:
-        with driver.session(database=os.environ.get("NEO4J_DATABASE", "neo4j")) as session:
+        with driver.session(database=localdb.database()) as session:
             tx = session.begin_transaction()
             try:
                 report = migrate(tx, load_operations(), load_registry())

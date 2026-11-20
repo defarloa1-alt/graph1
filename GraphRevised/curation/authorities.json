@@ -1,6 +1,6 @@
 {
   "description": "Which reference sources are consulted for each entity kind, and how. Code names no sources: it follows this file. Lookups only propose; identity and acceptance stay with the curator.",
-  "version": 1,
+  "version": 2,
   "kinds": {
     "Period": {
       "lookups": ["local", "wikidata", "periodo"],
@@ -13,5 +13,35 @@
     "nearYears": 50,
     "ignoredWords": ["period", "periode", "periodo", "age", "era", "epoch", "epoque", "zeit", "time", "times", "the"],
     "calendar": "gregorian"
+  },
+  "networks": {
+    "description": "The federation profile the card's Elsewhere block reads (export/display.py, rule 7; D-168): which outside network each system belongs to, in the order the card lists them; the link a reader opens (patterns checked at Wikidata's formatter URLs P6863, P2950, P1958, P11252 on 2026-11-19); the hosts a system's own records are fetched from, so a record read from another system's payload says so; and, per entity kind, the networks a kind is usually found in, shown as 'none held' when the entity has no record there. Edit freely: code follows this file.",
+    "hub": "Wikidata",
+    "order": ["People of the Republic", "Coins", "Ancient places", "Places", "Places today", "Materials and things", "Living things", "Periods", "Ancient-world identifiers", "Libraries", "Open hub"],
+    "systems": {
+      "DPRR": {"network": "People of the Republic", "link": "https://romanrepublic.ac.uk/person/{id}/", "hosts": ["romanrepublic.ac.uk"]},
+      "Nomisma": {"network": "Coins", "link": "http://nomisma.org/id/{id}", "hosts": ["nomisma.org"]},
+      "Pleiades": {"network": "Ancient places", "link": "https://pleiades.stoa.org/places/{id}", "hosts": ["pleiades.stoa.org"]},
+      "TGN": {"network": "Places", "link": "http://vocab.getty.edu/tgn/{id}", "hosts": ["vocab.getty.edu"]},
+      "GeoNames": {"network": "Places today", "link": "https://www.geonames.org/{id}", "hosts": ["www.geonames.org", "sws.geonames.org", "download.geonames.org"]},
+      "Getty AAT": {"network": "Materials and things", "link": "http://vocab.getty.edu/aat/{id}", "hosts": ["vocab.getty.edu"]},
+      "GBIF": {"network": "Living things", "link": "https://www.gbif.org/species/{id}", "hosts": ["api.gbif.org", "www.gbif.org"]},
+      "PeriodO": {"network": "Periods", "link": "http://n2t.net/ark:/99152/{id}", "hosts": ["data.perio.do", "n2t.net"]},
+      "Trismegistos": {"network": "Ancient-world identifiers", "link": "https://www.trismegistos.org/author/{id}", "linkByKind": {"Place": "https://www.trismegistos.org/place/{id}"}, "noteByKind": {"Person": "an author record"}, "hosts": ["www.trismegistos.org"]},
+      "LCNAF": {"network": "Libraries", "link": "https://id.loc.gov/authorities/names/{id}.html", "hosts": ["id.loc.gov"]},
+      "LCSH": {"network": "Libraries", "link": "https://id.loc.gov/authorities/subjects/{id}.html", "hosts": ["id.loc.gov"]},
+      "FAST": {"network": "Libraries", "link": "https://id.worldcat.org/fast/{id}", "hosts": ["id.worldcat.org"]},
+      "LCCN": {"network": "Libraries", "link": "https://lccn.loc.gov/{id}", "hosts": ["lccn.loc.gov"]},
+      "VIAF": {"network": "Libraries", "link": "https://viaf.org/viaf/{id}", "hosts": ["viaf.org"]},
+      "GND": {"network": "Libraries", "link": "https://d-nb.info/gnd/{id}", "hosts": ["d-nb.info"]},
+      "Wikidata": {"network": "Open hub", "link": "https://www.wikidata.org/wiki/{id}", "hosts": ["www.wikidata.org"]}
+    },
+    "expected": {
+      "Person": ["DPRR", "Trismegistos"],
+      "Place": ["Pleiades", "Trismegistos", "GeoNames"],
+      "Type": ["Getty AAT"],
+      "Event": ["LCSH"],
+      "Work": ["LCNAF"]
+    }
   }
 }

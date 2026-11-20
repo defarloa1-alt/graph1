@@ -24,6 +24,7 @@ from neo4j import GraphDatabase
 from GraphRevised.operations import load_operations, run_write
 from GraphRevised.proposals.registry import load_registry
 from GraphRevised.slices.add_entity import persist_identity, persist_local_entity, preserved_identity_payload
+from GraphRevised import localdb
 
 BY = "seed-types-v1 (curator's list, 43 §4)"
 
@@ -63,12 +64,12 @@ def main(argv: list[str] | None = None) -> int:
     sys.stdout.reconfigure(encoding="utf-8")
     types = json.loads(args.types.read_text(encoding="utf-8"))["types"]
     payloads = {t["qid"]: preserved_identity_payload(t["qid"]) for t in types if t.get("qid")}
-    driver = GraphDatabase.driver(os.environ.get("NEO4J_URI", "neo4j://127.0.0.1:7687"),
-                                  auth=(os.environ.get("NEO4J_USERNAME", "neo4j"), os.environ["NEO4J_PASSWORD"]),
+    driver = GraphDatabase.driver(localdb.uri(),
+                                  auth=localdb.auth(),
                                   notifications_min_severity="OFF")
     at = datetime.now(timezone.utc).isoformat(timespec="seconds")
     try:
-        with driver.session(database=os.environ.get("NEO4J_DATABASE", "neo4j")) as session:
+        with driver.session(database=localdb.database()) as session:
             tx = session.begin_transaction()
             try:
                 lines = seed(tx, load_operations(), types, load_registry().type_categories, payloads, at)

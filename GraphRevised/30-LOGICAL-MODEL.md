@@ -375,17 +375,17 @@ unique: `(system, identifier)`.
 
 | Property | Type | Mult. | Live | Notes |
 |---|---|---|---|---|
-| id | String | [1] | 325 | `chr:authority:<system>:<identifier>` |
-| system | AuthoritySystem | [1] | 325 | |
-| identifier | String | [1] | 325 | |
-| label | String | [1] | 325 | read from the record |
-| shortLabel | String | [0..1] | 325 | |
-| description | String | [0..1] | 220 | the authority's wording, not a local description |
-| retrievedAt | String | [0..1] | 320 | absent until the record is fetched: five LC headings are stubs (D-155; 02 §1, 2026-11-18) |
-| sourceRevision | Integer | [0..1] | 315 | |
-| sourceUri | String | [0..1] | 324 | |
-| contentHash | String | [0..1] | 320 | (as retrievedAt) |
-| rawPayloadUri | String | [0..1] | 320 | (as retrievedAt) |
+| id | String | [1] | 550 | `chr:authority:<system>:<identifier>` |
+| system | AuthoritySystem | [1] | 550 | |
+| identifier | String | [1] | 550 | |
+| label | String | [1] | 550 | read from the record |
+| shortLabel | String | [0..1] | 550 | |
+| description | String | [0..1] | 248 | the authority's wording, not a local description |
+| retrievedAt | String | [0..1] | 465 | absent until the record is fetched: LC neighbour headings are stubs (D-155; 02 §1, 2026-11-18) |
+| sourceRevision | Integer | [0..1] | 299 | Wikidata's revision; none for LC and OCLC records |
+| sourceUri | String | [0..1] | 549 | the payload the record was read from: its own authority's, or Wikidata's for a crosswalk (D-168) |
+| contentHash | String | [0..1] | 460 | (as retrievedAt) |
+| rawPayloadUri | String | [0..1] | 460 | (as retrievedAt); the five fetch fields always describe one payload (D-168) |
 | license | String | [0..1] | 1 | |
 | formerId | String | [0..1] | 10 | before a system rename (migration 007) |
 | mergedIds | List<String> | [0..1] | 1 | records merged into this one |
@@ -863,7 +863,7 @@ proposed, 1 accepted).
 | WorkForm | history, biography, chronicle, letters, speech, inscription, commentary, reference, dataset, coinage; creative: poem, play, novel, short story, film, television series, painting, sculpture, opera, song, video game | history 10, reference 5, poem 4, biography 3, dataset 3, coinage 2, inscription 1 |
 | Standing (D-148) | primary, secondary, tertiary | tertiary 40, primary 17, secondary 10 |
 | TypeCategory (registry v15, v16) | role, unit type, organizational pattern, power, status, ship type, naval fitting | role 26, ship type 7, unit type 4, naval fitting 3, status 1 |
-| AuthoritySystem | Wikidata, VIAF, GND, DPRR, Nomisma, FAST, LCNAF, LCSH, LCCN, Trismegistos, GeoNames, Pleiades, TGN | Wikidata 224, VIAF 28, GND 15, DPRR 13, Nomisma 11, LCSH 9, FAST 8, LCNAF 8, Trismegistos 2, GeoNames 2, Pleiades 2, TGN 2, LCCN 1 |
+| AuthoritySystem | Wikidata, LCSH, LCNAF, FAST, VIAF, Getty AAT, Nomisma, GND, DPRR, LCCN, GeoNames, Pleiades, TGN, Trismegistos, GBIF (decided, D-160; none yet); grouped into networks by the federation profile (02 §1, D-168) | Wikidata 225, LCSH 119, LCNAF 55, FAST 41, VIAF 28, Getty AAT 24, Nomisma 16, GND 15, DPRR 13, LCCN 6, GeoNames 2, Pleiades 2, TGN 2, Trismegistos 2 (2026-11-20) |
 | AuthorityLink.role | entity_identity, crosswalk, subject_access (02 reserves faceted_subject_access, classification_correspondence, place_gazetteer, period_definition, object_type) | 224 / 94 / 2 |
 | AuthorityLink.relation | closeMatch (exactMatch only with scope, type, and evidence) | closeMatch 320 |
 | LocationSystem | Pleiades, GeoNames | 42399 / 463147 |

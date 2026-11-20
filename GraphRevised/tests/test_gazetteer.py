@@ -13,6 +13,7 @@ from GraphRevised.gazetteer.geonames import build_tree, haversine_km, nearest_po
 from GraphRevised.gazetteer.load import build_rows, geonames_id, pleiades_id
 from GraphRevised.gazetteer.pleiades import name_lines, parse_place
 from GraphRevised.operations import RefusedWrite, load_operations, run_write
+from GraphRevised import localdb
 
 RULES = json.loads((Path(__file__).resolve().parents[1] / "curation" / "gazetteer.json").read_text(encoding="utf-8"))
 
@@ -145,7 +146,7 @@ class GazetteerOperationsLiveTests(unittest.TestCase):
     def setUpClass(cls):
         from neo4j import GraphDatabase
 
-        cls.driver = GraphDatabase.driver(os.environ.get("NEO4J_URI", "neo4j://127.0.0.1:7687"),
+        cls.driver = GraphDatabase.driver(localdb.uri(),
                                           auth=("neo4j", os.environ["NEO4J_PASSWORD"]), notifications_min_severity="OFF")
         cls.operations = load_operations()
 

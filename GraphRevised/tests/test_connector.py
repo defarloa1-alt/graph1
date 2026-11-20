@@ -29,6 +29,25 @@ class NameScoreTests(unittest.TestCase):
         self.assertEqual(name_score("Cleopatra", "Marcus Vipsanius Agrippa"), 0.0)
 
 
+class PhaseOrderTests(unittest.TestCase):
+    def test_phases_follow_the_curators_order_not_their_names(self):
+        import json
+        import tempfile
+        from pathlib import Path
+        from GraphRevised.connector.server import in_curator_order
+        event = "chr:entity:battle-of-actium"
+        with tempfile.TemporaryDirectory() as folder:
+            path = Path(folder) / "phases.json"
+            path.write_text(json.dumps({"events": {event: {"phases": [
+                {"key": "road-to-war"}, {"key": "isolation"}, {"key": "attrition"}]}}}), encoding="utf-8")
+            rows = [{"id": f"chr:entity:phase:battle-of-actium:{key}", "phase": name} for key, name in [
+                ("attrition", "Attrition and desertion"), ("unlisted", "A phase not in the file"),
+                ("isolation", "Antony's position isolated"), ("road-to-war", "The road to war")]]
+            ordered = [row["id"].rsplit(":", 1)[-1] for row in in_curator_order(event, rows, path)]
+            self.assertEqual(ordered, ["road-to-war", "isolation", "attrition", "unlisted"])
+            self.assertEqual(len(in_curator_order(event, rows, Path(folder) / "missing.json")), 4)
+
+
 class ToolBoundaryTests(unittest.TestCase):
     def test_only_the_typed_lookups_are_exposed(self):
         tools = asyncio.run(build_server(graph=None).list_tools())

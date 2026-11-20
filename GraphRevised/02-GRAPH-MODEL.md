@@ -124,22 +124,41 @@ An AuthorityRecord identifies the external record. It does not automatically
 assert that all data in the record is accepted locally.
 Its `description`, when present, preserves the authority's display wording;
 it is not a replacement for a locally adopted Entity description.
-`retrievedAt`, `contentHash`, and `rawPayloadUri` describe the fetched record
-and are absent until it is fetched: an LC neighbour heading (D-155) is stored
-before its record is read (D-161).
+`retrievedAt`, `sourceUri`, `sourceRevision`, `contentHash`, and `rawPayloadUri`
+describe the fetched record and are absent until it is fetched: an LC neighbour
+heading (D-155) is stored before its record is read (D-161). They always
+describe one payload: a re-fetch replaces all five together (D-168), so a
+record whose `sourceUri` is another system's payload (a crosswalk Wikidata
+states) says so, and one read at its own authority says that.
 
 ### External-system roles
 
 External systems are selected by workflow, not treated as interchangeable
-identity providers:
+identity providers. Grouped by the network each belongs to, in the order a
+card lists them (the federation profile, `curation/authorities.json`
+"networks", D-168, which also holds each system's link pattern and hosts):
 
-| System | Role | Durable key and storage |
-|---|---|---|
-| Wikidata | identity discovery and source statements | `AuthorityRecord(system, identifier)`; statement and identity-record `SourceObservation`s |
-| Pleiades | ancient-place gazetteer and location crosswalk | `Location(system, identifier)`; selected Place links may also carry a Pleiades `AuthorityRecord` |
-| GeoNames | modern gazetteer and administrative tree | `Location(system, identifier)` |
-| PeriodO | published period definitions, not local identity | `SourceObservation(sourceSystem, sourceEntityId)` with the PeriodO definition ID and ARK locator; the publication is a `Work` |
-| LCSH, FAST, LCNAF, VIAF, GND | bibliographic or name authority control | `AuthorityRecord(system, identifier)` when a local entity or subject is linked |
+| Network | System | Role | Durable key and storage | How a link is checked | Rights |
+|---|---|---|---|---|---|
+| People of the Republic | DPRR | prosopography of the Republican elite; crosswalk and quoted source (D-166) | `AuthorityRecord` (crosswalk); its records cited as a `Work` | Wikidata P6863 for now | CC BY-NC 4.0: behind the non-commercial switch, on for now (D-166) |
+| Coins | Nomisma | coin authorities, mints, denominations, persons on coins | `AuthorityRecord` (crosswalk) | Wikidata P2950, or Nomisma's own record (materials, D-160) | not yet recorded |
+| Coins | CRRO | coin types as evidence (D-151) | `SourceObservation` (`observationKind: record`) in the coinage `Work`, never identity | read at CRRO | ODbL 1.0 |
+| Ancient places | Pleiades | ancient-place gazetteer and location crosswalk | `Location(system, identifier)`; selected Place links may also carry a Pleiades `AuthorityRecord` | the gazetteer load (27) | not yet recorded |
+| Places | TGN | place names crosswalk | `AuthorityRecord` (crosswalk) | Wikidata P1667 | ODC-By 1.0 (Getty vocabularies) |
+| Places today | GeoNames | modern gazetteer and administrative tree | `Location(system, identifier)` | the gazetteer load (27) | not yet recorded |
+| Materials and things | Getty AAT | identity of materials and object types (D-160) | `AuthorityRecord` (entity_identity) | read at Getty | ODC-By 1.0 |
+| Living things | GBIF | taxa, on demand (D-160) | `AuthorityRecord` (entity_identity) | read at GBIF | not yet recorded |
+| Periods | PeriodO | published period definitions, not local identity | `SourceObservation(sourceSystem, sourceEntityId)` with the PeriodO definition ID and ARK locator; the publication is a `Work` | read at PeriodO | not yet recorded |
+| Ancient-world identifiers | Trismegistos | people (author IDs) and places | `AuthorityRecord` (crosswalk) | Wikidata P11252 | not yet recorded |
+| Libraries | LCSH, FAST, LCNAF | subject and name authority control | `AuthorityRecord`: crosswalk on an entity, subject_access on a Subject | read at LC or OCLC (D-164) | ODC-By 1.0 (FAST); LC not yet recorded |
+| Libraries | LCCN | a book's catalogue record (D-164) | `AuthorityRecord` (crosswalk, proposed until accepted) on a `Work` | read at LC | not yet recorded |
+| Libraries | VIAF, GND | name authority clusters | `AuthorityRecord` (crosswalk) | Wikidata P214, P227 | not yet recorded |
+| Open hub | Wikidata | identity discovery and source statements; the federation hub, not the local ontology (01 §3) | `AuthorityRecord(system, identifier)`; statement and identity-record `SourceObservation`s | read at Wikidata | CC0 |
+
+A crosswalk read from Wikidata's statement is shown as "per Wikidata" until
+the record is read at its own system. A reader follows accepted and proposed
+links only, a proposed one marked as proposed; a rejected link is kept as
+history with who decided and why, and shows only in the audit (D-168).
 
 An external identifier is a key to a preserved external record, not proof that
 the record's claims are accepted locally. A system that supplies evidence but
@@ -524,6 +543,7 @@ Examples of roles:
 
 ```text
 entity_identity
+crosswalk                       (the same thing in another system, read from a statement or the record)
 subject_access
 faceted_subject_access
 classification_correspondence   (reserved: LCC is not used for now, 25 §8)

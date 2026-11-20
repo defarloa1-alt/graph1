@@ -51,6 +51,7 @@ from GraphRevised.proposals.passage_reader import (CLAIM_OPTIONAL, DEFAULT_MODEL
 from GraphRevised.proposals.predicate_needs import load_queue, open_requests_text
 from GraphRevised.proposals.registry import load_registry
 from GraphRevised.spend_meter import ceiling
+from GraphRevised import localdb
 
 ROOT = Path(__file__).resolve().parents[2]
 
@@ -141,12 +142,12 @@ def main(argv: list[str] | None = None) -> int:
     operations = load_operations()
     client = anthropic_client() if args.read else None  # refuses here when no budget is named
 
-    driver = GraphDatabase.driver(os.environ.get("NEO4J_URI", "neo4j://127.0.0.1:7687"),
-                                  auth=(os.environ.get("NEO4J_USERNAME", "neo4j"), os.environ["NEO4J_PASSWORD"]),
+    driver = GraphDatabase.driver(localdb.uri(),
+                                  auth=localdb.auth(),
                                   notifications_min_severity="OFF")
     log = None
     try:
-        with driver.session(database=os.environ.get("NEO4J_DATABASE", "neo4j")) as session:
+        with driver.session(database=localdb.database()) as session:
             tx = session.begin_transaction()
             try:
                 inquiry = load_inquiries(args.inquiry, tx, briefs=None)[0]

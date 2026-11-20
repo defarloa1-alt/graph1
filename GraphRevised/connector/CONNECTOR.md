@@ -36,9 +36,11 @@ into this tool's results; use existing fact tools for details.
 
 Neo4j must be running locally (Neo4j Desktop, `neo4j://127.0.0.1:7687`). The connector reads the password from `NEO4J_PASSWORD` or, failing that, from `GraphRevised/Connections.txt`. Nothing has to be loaded into the shell first.
 
-## In Claude Code
+## In VS Code Copilot and Claude Code
 
-`.mcp.json` at the repository root registers the connector as `chrystallum`. Claude Code starts it by itself (stdio). The first time, it asks whether to trust the project's MCP server: approve it. Then ask, for example, "What does the graph say about Agrippa at Actium?"
+`.mcp.json` at the repository root registers the connector as `chrystallum` for Claude Code and Copilot. The workspace config explicitly selects stdio and lists the exposed tools. Copilot reads workspace-root `.mcp.json`; if workspace MCP discovery is disabled, enable `chat.mcp.workspaceRootConfig.enabled` or add the server from the MCP configuration UI. Claude Code starts it by itself. Approve the workspace server when prompted, then start or restart the MCP server in the client. Try: "What does the graph say about Agrippa at Actium?"
+
+The connector loads Neo4j URI, username and database from the process environment or the repository `.env` through `scripts.config_loader`; the password comes from the environment, `.env`, or `GraphRevised/Connections.txt`. These local files are git-ignored; credentials are not stored in `.mcp.json`.
 
 ## In claude.ai
 

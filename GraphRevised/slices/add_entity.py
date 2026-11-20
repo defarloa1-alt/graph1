@@ -27,6 +27,7 @@ from GraphRevised.operations import load_operations, run_write
 GRAPH_REVISED = Path(__file__).resolve().parents[1]
 SOURCE_DIRECTORY = GRAPH_REVISED / "phase-5-source"
 from GraphRevised.proposals.registry import load_registry
+from GraphRevised import localdb
 
 ENTITY_KINDS = load_registry().entity_kinds
 
@@ -145,11 +146,11 @@ def main(argv: list[str] | None = None) -> int:
 
     payload_path, metadata = preserved_identity_payload(args.qid)
     driver = GraphDatabase.driver(
-        os.environ.get("NEO4J_URI", "neo4j://127.0.0.1:7687"),
-        auth=(os.environ.get("NEO4J_USERNAME", "neo4j"), os.environ["NEO4J_PASSWORD"]),
+        localdb.uri(),
+        auth=localdb.auth(),
     )
     try:
-        with driver.session(database=os.environ.get("NEO4J_DATABASE", "neo4j")) as session:
+        with driver.session(database=localdb.database()) as session:
             session.execute_write(
                 persist_identity, load_operations(),
                 entity_id=args.entity_id, kind=args.kind, payload_path=payload_path, metadata=metadata,

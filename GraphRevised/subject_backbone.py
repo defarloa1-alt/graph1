@@ -14,7 +14,6 @@ import json
 import re
 import sys
 from pathlib import Path
-from urllib.parse import urlparse
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -80,11 +79,11 @@ def validate_manifest(manifest: object, *, apply: bool = False) -> dict:
 def local_config() -> dict:
     from scripts.config_loader import NEO4J_DATABASE, NEO4J_PASSWORD, NEO4J_URI, NEO4J_USERNAME
 
-    uri = urlparse(NEO4J_URI)
-    if uri.scheme not in {"bolt", "neo4j"} or uri.hostname not in {"127.0.0.1", "localhost", "::1"} or uri.username:
-        raise ValueError("Apply is restricted to a local bolt:// or neo4j:// URI.")
-    if NEO4J_DATABASE != "neo4j":
-        raise ValueError("Apply is restricted to the clean-start neo4j database.")
+    from GraphRevised import localdb
+
+    # .env values from the legacy loader, checked by the one guard (localdb, 47 §5.1)
+    localdb.check_uri(NEO4J_URI)
+    localdb.check_database(NEO4J_DATABASE)
     if not NEO4J_USERNAME or not NEO4J_PASSWORD:
         raise ValueError("Set the Neo4j username and password in .env or the environment.")
     return {"uri": NEO4J_URI, "user": NEO4J_USERNAME, "password": NEO4J_PASSWORD, "database": NEO4J_DATABASE}

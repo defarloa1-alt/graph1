@@ -55,6 +55,7 @@ from .entities import depicted_event_id, depicted_events, propose_depicted_event
 from .validator import normalize
 from .store import Neo4jReader, submit
 from .validator import validate
+from GraphRevised import localdb
 
 PROPOSER_ID = "passage-reader"
 DEFAULT_MODEL = "claude-sonnet-5-5"
@@ -1116,9 +1117,9 @@ def main(argv: list[str] | None = None) -> int:
         client = client.with_options(max_retries=0)
         uri, user, password, database = config["uri"], config["user"], config["password"], config["database"]
     else:
-        uri = os.environ.get("NEO4J_URI", "neo4j://127.0.0.1:7687")
-        user, password = os.environ.get("NEO4J_USERNAME", "neo4j"), os.environ["NEO4J_PASSWORD"]
-        database = os.environ.get("NEO4J_DATABASE", "neo4j")
+        uri = localdb.uri()
+        user, password = localdb.auth()
+        database = localdb.database()
     driver = GraphDatabase.driver(uri, auth=(user, password), notifications_min_severity="OFF")
     RUNS_DIRECTORY.mkdir(exist_ok=True)
     run_name = f"lens-reader-{lens.id}-{lens.scope}" if lens else "passage-reader"

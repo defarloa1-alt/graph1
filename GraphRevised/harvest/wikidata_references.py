@@ -41,6 +41,7 @@ from GraphRevised.proposals.store import Neo4jReader, submit
 from GraphRevised.proposals.validator import Outcome
 from GraphRevised.proposals.wikidata_proposer import drafts_from_observation
 from GraphRevised.slices.add_entity import persist_identity, preserved_identity_payload
+from GraphRevised import localdb
 
 GRAPH_REVISED = Path(__file__).resolve().parents[1]
 REPOSITORY = GRAPH_REVISED.parent
@@ -153,12 +154,12 @@ def main(argv: list[str] | None = None) -> int:
     args = parser.parse_args(argv)
     sys.stdout.reconfigure(encoding="utf-8")
     table = json.loads(WORKS.read_text(encoding="utf-8"))["works"]
-    driver = GraphDatabase.driver(os.environ.get("NEO4J_URI", "neo4j://127.0.0.1:7687"),
-                                  auth=(os.environ.get("NEO4J_USERNAME", "neo4j"), os.environ["NEO4J_PASSWORD"]),
+    driver = GraphDatabase.driver(localdb.uri(),
+                                  auth=localdb.auth(),
                                   notifications_min_severity="OFF")
     at = datetime.now(timezone.utc).isoformat(timespec="seconds")
     try:
-        with driver.session(database=os.environ.get("NEO4J_DATABASE", "neo4j")) as session:
+        with driver.session(database=localdb.database()) as session:
             tx = session.begin_transaction()
             try:
                 report = harvest(tx, load_operations(), load_registry(), table, at)

@@ -8,6 +8,7 @@ from GraphRevised.proposals.registry import load_registry
 from GraphRevised.proposals.schema import ProposalDraft, Quotation
 from GraphRevised.proposals.store import ReviewError, submit
 from GraphRevised.review_desk.app import claims, decide, detail, entity, find, parts, render_detail, render_entity, table
+from GraphRevised import localdb
 
 BATTLE = ("chr:entity:test-desk-battle", "Event", "Test desk battle")
 MOMENT = ("chr:entity:test-desk-moment", "Event", "Test desk moment")
@@ -24,10 +25,10 @@ class ReviewDeskLiveTests(unittest.TestCase):
 
         cls.operations, cls.registry = load_operations(), load_registry()
         cls.driver = GraphDatabase.driver(
-            os.environ.get("NEO4J_URI", "neo4j://127.0.0.1:7687"),
-            auth=(os.environ.get("NEO4J_USERNAME", "neo4j"), os.environ["NEO4J_PASSWORD"]),
+            localdb.uri(),
+            auth=localdb.auth(),
             notifications_min_severity="OFF")
-        cls.session = cls.driver.session(database=os.environ.get("NEO4J_DATABASE", "neo4j"))
+        cls.session = cls.driver.session(database=localdb.database())
 
     @classmethod
     def tearDownClass(cls):

@@ -34,6 +34,7 @@ from GraphRevised.operations import load_operations
 
 from .registry import load_registry
 from .store import accept
+from GraphRevised import localdb
 
 RULE = "rule: code-made extraction (D-145)"
 RULE_PROPOSERS = ("wikidata-statement-proposer-v1", "period-survey", "polity-span-proposer-v1",
@@ -82,11 +83,11 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--apply", action="store_true")
     args = parser.parse_args(argv)
     sys.stdout.reconfigure(encoding="utf-8")
-    driver = GraphDatabase.driver(os.environ.get("NEO4J_URI", "neo4j://127.0.0.1:7687"),
-                                  auth=(os.environ.get("NEO4J_USERNAME", "neo4j"), os.environ["NEO4J_PASSWORD"]),
+    driver = GraphDatabase.driver(localdb.uri(),
+                                  auth=localdb.auth(),
                                   notifications_min_severity="OFF")
     try:
-        with driver.session(database=os.environ.get("NEO4J_DATABASE", "neo4j")) as session:
+        with driver.session(database=localdb.database()) as session:
             tx = session.begin_transaction()
             try:
                 result = accept_by_rule(tx)

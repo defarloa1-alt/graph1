@@ -179,7 +179,7 @@ Represents an external identifier record, not accepted local truth.
 | Property | Type | Requirement | Meaning |
 |---|---|---|---|
 | `id` | String | Required, unique | `chr:authority:<system>:<identifier>` |
-| `system` | String/Enum | Required | Wikidata, Pleiades, GeoNames, LCSH, FAST, VIAF, GND, etc. |
+| `system` | String/Enum | Required | Wikidata, LCSH, LCNAF, FAST, LCCN, VIAF, GND, Getty AAT, Nomisma, DPRR, Trismegistos, Pleiades, GeoNames, TGN, GBIF; each system's network, link pattern and hosts are in the federation profile (`curation/authorities.json` "networks"; 02 §1, D-168) |
 | `identifier` | String | Required | External key; unique with `system` |
 | `label` | String | Required | External record caption |
 | `shortLabel` | String | Optional | Compact caption |
@@ -280,7 +280,7 @@ Relationship properties are listed after the arrow.
 | `PROPOSES` | Proposal → Assertion | — | Claim governed by the proposal |
 | `PROPOSES_EVIDENCE` | Proposal → SourceObservation | `quotation`, `qualifierQuotations`, `migratedBy` | Pending proposal evidence |
 | `IN_WORK` | SourceObservation → Entity/Work | — | Observation belongs to a Work |
-| `HAS_AUTHORITY_RECORD` | Entity/Subject → AuthorityRecord | `role`, `relation`, `status`, optional `statementRank`, `statementReferences` | External identity or crosswalk |
+| `HAS_AUTHORITY_RECORD` | Entity/Subject → AuthorityRecord | `role`, `relation`, `status`, optional `statementRank`, `statementReferences`; when decided, `decidedBy`, `decidedAt`, `decisionBasis` | External identity or crosswalk; a rejected link is kept as history and readers leave it out (D-168) |
 | `HAS_SUBJECT_FOCUS` | Subject → Entity | — | Entities covered by a Subject |
 | `HAS_SUBJECT_HEADING` | Work → AuthorityRecord (LCSH, LCNAF) | `status`, `heading` (as the record words it), `observationId`, `createdBy`, `createdAt`, `decisionBasis` | A subject heading the book's LC catalog record assigns (D-155) |
 | `BROADER_HEADING` | AuthorityRecord → AuthorityRecord | `status`, `createdBy`, `createdAt`, `sourceIdentifier` | A heading's broader heading, as its LCSH record states (skos broader, or narrower read in reverse; D-155) |

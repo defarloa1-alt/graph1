@@ -418,6 +418,22 @@ The README's review of 2026-11-13, item 3 (close the unfinished items):
   Pelling 1988, Murray and Petsas 1989, Zachos 2003, Orosius, Florus, Horace,
   Suetonius beyond *Julius* (held since 030); and the debate's modern works: Kromayer 1899 and 1933, Tarn 1931 and
   1938, Richardson 1937); AI synthesis as a Work (D-149), not built.
+- **Left open by the stage-design fixes** (D-162 to D-165, 2026-11-19; from the session
+  transcript archived in `chats/`, checked against the graph 2026-11-20):
+  - **Dates for phases and moments** (fix 4c): the sources give them, but drafting them is a
+    paid reading run. Until then the wireframe shows "date inherited from the battle".
+  - **Two near-duplicate Positions** under the merged aim Question: "Antony fought for
+    victory until Cleopatra fled" (provisional) and "Antonius was fighting to win"
+    (proposed). Merging is the curator's (D-152).
+  - **Hale's LC record** is the 1911 Methuen printing; LC does not hold the Boston printing
+    we read. Its headings ("Naval battles" only) are taken as the same text's.
+  - **The ancient texts' LC records** are per edition, and none was chosen: which edition
+    stands for each Work is the curator's.
+  - **Headings no entity holds** (listed by the LC record harvest): "Naval battles" was left
+    out as a catch-all (28); others may become subject buckets.
+  - **Four Places with no gazetteer Location**, so they sit in the wireframe's "Not on the
+    map" tray: İzmir and Farsala (proposed), Tyre and Octavian's camp at Actium
+    (provisional). None has an identifier Pleiades names.
 
 - **Pinned (2026-11-13): Velleius 2.84.1 is under-read.** Only its first
   sentence became claims; the comparison of the two sides went into one
@@ -432,7 +448,11 @@ The README's review of 2026-11-13, item 3 (close the unfinished items):
 From the review of 2026-11-13 ([README](README.md), "Address first"):
 
 - **Item 2, vetoes:** whether to track the curator's veto rate per agent
-  (to be decided).
+  (to be decided). The measurement for it is designed and not built: the Actium
+  evaluation set ([31](31-ONE-COMMAND.md) §5 item 1b, from
+  [docs/Source review perplexity.md](docs/Source%20review%20perplexity.md)). Also unbuilt
+  from 31 §3.8: `derivesFrom` (Work to Work) and attestation by traditions, so two ancient
+  authors drawing on one lost source still count as two lines of evidence.
 - **Item 4, backups:** where the second copy lives, and whether a weekly
   scheduled dump is acceptable (to be decided).
 - **Item 6, show the result:** Actium in the explorer from live data, in front
@@ -441,6 +461,14 @@ From the review of 2026-11-13 ([README](README.md), "Address first"):
 
 Raised and not yet settled:
 
+- **Kind colour in the explorer** (proposed 2026-10-19, never decided; the app is greyscale
+  until then): three families, blue for who (Person, Group, Office), aqua for what happened
+  (Event, Period), green for where (Place, Polity), with Work, Concept and Type in ink; kind
+  colour turns grey while a lens is on (the green and the economic gold look alike to red-blind
+  readers). Storybook page "Proposals/Kind palette". Also to answer: is a Polity "where" or "who"?
+  An Office "who"? Lighten the dark-mode green?
+- **Status words:** the app shows "accepted / proposed" (`explorer/app/src/words.ts`); 32 §11
+  asks for "APPROVED; PROPOSED — NOT REVIEWED". One file either way.
 - **`locatedAt`** (Object to Place): requested 2026-11-13. Once it is in the
   registry, the memorial is located at Octavian's camp at Actium, on Strauss's
   passage.
@@ -453,6 +481,10 @@ Raised and not yet settled:
 - **24 §10:** the period-or-not leads, and where a period applies.
 - **Set aside as trivial for now:** renaming the British Museum Work, and
   museum objects as a source (Roman Republican coins through CRRO and Nomisma).
+- **Kept for later, from the February period files** (chat of 2026-11-12/13, archived):
+  `Temporal/wikitime.json` (3,186 Wikidata periods, 1,758 with "part of": candidates for
+  `subperiodOf`) and `Temporal/Data/tgn_wikidata_mapping.csv` (7,090 Getty TGN ids with
+  QIDs, if the gazetteer ever needs TGN). Both date from February and are easy to re-query.
 - **Carried from 19 §5** (not blocking):
   - mentions on the passage or on each note's link;
   - identity for Farsala (Pharsalus) and İzmir (Smyrna);
@@ -480,6 +512,36 @@ the failures: a stopped Neo4j looked like 92 failures on 2026-11-15.
 ## 7. Next steps
 
 **Start here next session (handoff, 2026-11-19, late; D-167).**
+
+*Done 2026-11-20 (alignment review of the network-of-networks mock against 01, 02, 26, 30, 36, 42; D-168):*
+- **Scarpus unlinked from Q382127** (curator): migration 030 had left the identity link he was
+  created with; it is now rejected (`retire_entity_identity`, decidedBy, basis citing D-167),
+  kept as history. Neither Pinarius holds Q382127; Wikidata's merge stays a Position.
+- **Authority provenance:** `upsert_authority` now replaces a fetch's fields together
+  (retrievedAt, sourceUri, sourceRevision, contentHash, rawPayloadUri). Migration 032 repaired
+  17 LCNAF, LCSH and FAST records that had LC's words but Wikidata's hash and URI, from the
+  headings preserved in phase-5-source/ (no fetch).
+- **Link status in readers:** the export leaves out rejected authority links (audit shows them)
+  and marks proposed ones ("(proposed)": the 6 LCCN book records); the connector's search no
+  longer reads aliases through a rejected identity, and its event overview counts accepted
+  links only. The wireframe's Elsewhere block shows a proposed link as proposed and an identity
+  as a close match.
+- **Display words from the export:** Elsewhere and Kinds of evidence are display rules 7 and 8
+  in `export/display.py` (`elsewhere`, `gazetteer` on a node; `evidence` on a fact); the page
+  only draws them. The federation profile is `curation/authorities.json` "networks" (v2):
+  each system's network, link pattern, hosts (so "per Wikidata" versus "checked there" is read
+  from where the record was fetched), and the networks expected per kind ("none held"). A
+  Place's gazetteer Locations show as "its location"; every creative form counts as
+  imaginative, never as a kind of evidence. Wireframe v20.
+- **Docs:** 02's table of outside systems redrawn by network with role, storage, how a link
+  is checked and rights (licences not recorded in the repo say "not yet recorded"), and the
+  `crosswalk` role added to §4 (**curator to review: 02 governs**); 30 §2.6 counts and the
+  AuthoritySystem list, 36 and 26 §2, §4 brought up to date.
+- **Still open:** Tarentum's `AT_LOCATION` to Pleiades 890225769 was made because that record
+  names Wikidata Q3981110, the precinct the curator rejected on 2026-11-12; it is still
+  accepted and no operation rejects a location link (curator: retire it?). The held-back row
+  for Q382127 on Scarpus's card is still page mock (should a rejected identity with a Question
+  show on the card, or only in the audit?). 26 §4: does Elsewhere replace the quiet footer?
 
 *Done 2026-11-19, second session (Claude as dev and architect):*
 - **Clean baseline:** two stale tests fixed (a source name in `export/display.py` and
@@ -526,7 +588,9 @@ the failures: a stopped Neo4j looked like 92 failures on 2026-11-15.
 
 *Next to build:* alias proposals in the review desk; the Octavian adoption test of `ofGens`
 (two gentes, each sourced); name parts from Wikidata by rule for persons whose identity is
-settled; DPRR behind its switch.
+settled; DPRR behind its switch. After Actium: the Gracchus end-to-end test, with intent,
+the registry's missing families and the kinds the lenses asked for (39 §10, from the
+facets-and-lenses chat).
 
 *Remaining review buckets:* D Lange (153, best split by Question), E event phases
 (442), F passage readings (1,325, by source). Copilot's Scarpus summary was checked
@@ -553,7 +617,9 @@ under budget `actium`. Before it, optionally fetch the 12 passages Lange cites
 from Works we hold (free).
 
 Also open (offered, not chosen): the consistency checks (41 §3.4), the merge
-proposer (D-152), the lens run (ancient sources first), resolving the six
+proposer (D-152), the lens run (ancient sources first; 43 §7 adds its first
+test, rival `hadStrength` figures at Actium, and the open question of allied and
+client forces), resolving the six
 Wikidata encyclopedia entries, committing (only when asked).
 
 **Designed, waiting on the curator (2026-11-18): animals, plants, metals and materials**
@@ -600,7 +666,11 @@ Older items:
    the curator before building.
 3. **Rerun the entity review for Offices** after any Office change.
 4. **Objects in the reader are untested on a real source.** `objects` and
-   `involvedIn` drafts have offline tests only.
+   `involvedIn` drafts have offline tests only. Still true 2026-11-20 (from
+   [40](40-LENS-SESSION-HANDOFF.md), the lens-session handoff, checked against the graph):
+   2 Objects and 2 `involvedIn` claims, the Campsite Memorial (curator's decision) and one
+   curator capture of 2026-11-18; no reader has drafted an Object. The first real test is
+   45 §5.3's path (Cleopatra's ship and its sail, Pliny 19.22).
 5. The explorer UI's next steps (19 §5 to §7, now history): re-import the
    Figma screens, composite cards, the order of battle's data gaps, the image
    review, and the lens icon licence. Also rotate the MCP token.
@@ -609,6 +679,19 @@ Older items:
 
 - **The Augustus relabel has no decision record**: it predates `relabel_entity`
   (2026-11-19), which now gives every rename a trail. Its basis is still to be recorded.
+- **Octavian is "Augustus" in every period.** `chr:entity:augustus` has the one label
+  "Augustus", so events before 27 BC read anachronistically (the Actium lens run flagged
+  it). One display label (D-166) against a name in its time: to be decided.
+- **Explorer data gaps** (from the 2026-10-19 UI session): notes reach readers as formatted
+  strings (`note_line` in `export/cytoscape.py`), not the note records the notes stage needs
+  (26 §4a); the Cytoscape export may carry only time words, not the earliest and latest years
+  the time slider needs (the snapshot path, `subject_view` and `timelineModel.ts`, may already
+  cover it; unchecked); `get_fact` answers "No fact" for a unary fact's id (they come whole on
+  `get_entity` as `unaryFacts`). Fixed 2026-11-20: `event_overview` listed phases by name; it
+  now follows `curation/phases.json` (`in_curator_order`). Restart the connector to pick it up.
+  The FastAPI read API (D-101, shapes in 26) is not built: the app reads snapshot files.
+  Cytoscape Desktop's to-dos (a `--refresh` command; 704 nodes pushed against 702 entities)
+  are in [explorer/CYTOSCAPE-DESKTOP.md](explorer/CYTOSCAPE-DESKTOP.md) "To do".
 - **Alias proposals are not in the review desk** (`review_desk/app.py` reads only
   `PROPOSES`): review them with `python -m GraphRevised.proposals.aliases list|accept|reject`.
 - **Types made later get no category automatically.** `apply_curation` and
@@ -642,7 +725,7 @@ connector (`.mcp.json`) is unaffected.
 |---|---|
 | **Governing** | [02](02-GRAPH-MODEL.md) meaning and storage; [31](31-ONE-COMMAND.md) behaviour; [29](29-EVENT-CENTRED-INQUIRY.md), [32](32-RESEARCH-WORKSPACE.md), [26](26-UI-DATA-CONTRACT.md); [33](33-DECISIONS.md), the decision register |
 | **Descriptive** | [30](30-LOGICAL-MODEL.md) the model in UML; [36](36-DATA-DICTIONARY.md) the data dictionary; [37](37-CANONICAL-EXPORT-REQUIREMENTS.md) export requirements |
-| **Draft or decided plans** | [39](39-LENS-SPECIALISTS.md) lens specialists; [41](41-ENDGAME-PLAN.md) end game; [42](42-CORROBORATION-AND-CLAIM-KINDS.md) corroboration (built); [43](43-ACTIUM-MILITARY-FRAME.md) military frame; [44](44-HISTORIOGRAPHY-AND-DEBATES.md) historiography (built 2026-11-16); [45](45-NATURAL-KINDS-AND-MATERIALS.md) natural kinds (built in part); [46](46-ROMAN-NAMES-AND-GENS.md) Roman names and the gens (built 2026-11-19) |
+| **Draft or decided plans** | [39](39-LENS-SPECIALISTS.md) lens specialists; [41](41-ENDGAME-PLAN.md) end game; [42](42-CORROBORATION-AND-CLAIM-KINDS.md) corroboration (built); [43](43-ACTIUM-MILITARY-FRAME.md) military frame; [44](44-HISTORIOGRAPHY-AND-DEBATES.md) historiography (built 2026-11-16); [45](45-NATURAL-KINDS-AND-MATERIALS.md) natural kinds (built in part); [46](46-ROMAN-NAMES-AND-GENS.md) Roman names and the gens (built 2026-11-19); [47](47-REASONING-AND-SCRIPT-REVIEW.md) where reasoning belongs, and the script review (draft 2026-11-20) |
 | **Reference** (design reasoning that decisions cite) | 01, 03, 05 to 09, 16, 21 to 25, 27, 28 |
 | **Executable** | [10](10-PHASE-1-SCHEMA.cypher), [13](13-PHASE-3-DIRECT-OPERATIONS.cypher) (the operations), [34](34-ENTITY-SUBTYPE-MIGRATION.cypher) |
 | **History** (as of their date; do not act on them) | 00 (the Phase 0 snapshot), 04, 11, 12, 14, 15, 17, 18, [19](19-SESSION-HANDOFF.md), 20, 35, [38](38-REASONING-SESSION-HANDOFF.md), [40](40-LENS-SESSION-HANDOFF.md) |

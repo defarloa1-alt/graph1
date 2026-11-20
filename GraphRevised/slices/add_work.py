@@ -28,6 +28,7 @@ from GraphRevised.proposals.registry import load_registry
 from GraphRevised.proposals.store import Neo4jReader, submit
 from GraphRevised.proposals.wikidata_proposer import drafts_from_observation
 from GraphRevised.slices.add_entity import persist_identity, persist_local_entity, preserved_identity_payload
+from GraphRevised import localdb
 
 
 def apply_work(tx, operations, registry, item: dict) -> dict:
@@ -105,12 +106,12 @@ def main(argv: list[str] | None = None) -> int:
             "workId": args.work_id, "workLabel": args.work_label, "workShortLabel": args.work_short_label,
             "passagePrefix": args.passage_prefix}
     driver = GraphDatabase.driver(
-        os.environ.get("NEO4J_URI", "neo4j://127.0.0.1:7687"),
-        auth=(os.environ.get("NEO4J_USERNAME", "neo4j"), os.environ["NEO4J_PASSWORD"]),
+        localdb.uri(),
+        auth=localdb.auth(),
         notifications_min_severity="OFF",
     )
     try:
-        with driver.session(database=os.environ.get("NEO4J_DATABASE", "neo4j")) as session:
+        with driver.session(database=localdb.database()) as session:
             print(session.execute_write(apply_work, load_operations(), load_registry(), item))
     finally:
         driver.close()

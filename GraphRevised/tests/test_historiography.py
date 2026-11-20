@@ -8,6 +8,7 @@ import unittest
 from GraphRevised.export.confidence import position_history, position_link_wording
 from GraphRevised.export.cytoscape import projection
 from GraphRevised.export.fact_layer import plan
+from GraphRevised import localdb
 
 
 def link(verb, holder, name, time=None, start=None, ancient=False, reporter=None, status="proposed"):
@@ -105,10 +106,10 @@ class PositionProjectionTests(unittest.TestCase):
         from neo4j import GraphDatabase
 
         cls.driver = GraphDatabase.driver(
-            os.environ.get("NEO4J_URI", "neo4j://127.0.0.1:7687"),
-            auth=(os.environ.get("NEO4J_USERNAME", "neo4j"), os.environ["NEO4J_PASSWORD"]),
+            localdb.uri(),
+            auth=localdb.auth(),
             notifications_min_severity="OFF")
-        cls.session = cls.driver.session(database=os.environ.get("NEO4J_DATABASE", "neo4j"))
+        cls.session = cls.driver.session(database=localdb.database())
 
     @classmethod
     def tearDownClass(cls):

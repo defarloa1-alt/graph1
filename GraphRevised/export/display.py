@@ -20,6 +20,17 @@ the same projection. A view hides a line with a `fold` reason, and says how many
    FAST) is reached through the nearest whole it is part of that has one: a moment of a battle
    shows the battle's own heading via the battle. Derived here, never stored on the moment, so
    it follows the part-of chain if a moment moves. Imagined parts inherit nothing.
+7. Elsewhere (2026-11-20, D-168): where an entity sits in each outside network, grouped and ordered
+   by the federation profile (curation/authorities.json "networks"). Each record keeps its code
+   beside its label and a link to open it, and says how it is held: a proposed link as proposed,
+   an identity as a close match, a gazetteer location as its location, and a crosswalk as checked
+   at the system itself or as stated by the payload it was read from (by the hosts the profile
+   lists). A network the profile expects for the entity's kind, with no record, says "none held".
+8. Kinds of evidence (2026-11-20): which kinds of evidence each fact rests on, read from the forms
+   and standing of the Works its voices cite: ancient texts, coins, inscriptions. Modern studies,
+   reference works and imaginative works (any creative form, rule 11) are listed beside them but
+   are not a kind of their own (D-148; 42 §4). Interim: 41 §3.3 wants the kind on the evidence
+   itself, where coin catalogue records are still `observationKind: record` like any catalogue record.
 """
 
 from __future__ import annotations
@@ -171,7 +182,114 @@ def subject_access(edges: list[dict[str, Any]], nodes: dict[str, dict[str, Any]]
                 break
 
 
-def apply(elements: dict[str, Any], standing: dict[str, str]) -> dict[str, Any]:
+def _host(uri: str | None) -> str | None:
+    return uri.split("/")[2] if uri and "://" in uri else None
+
+
+def _held_words(record: dict[str, Any], systems: dict[str, dict[str, Any]]) -> tuple[str, str]:
+    """How a record is held, in words, and a sentence saying why (rule 7)."""
+    status = record.get("status") or "accepted"
+    if status != "accepted":
+        return status, f"This link is {status}, not accepted."
+    if record.get("gazetteer"):
+        return "its location", record.get("basis") or "Linked as where this place lies."
+    if record.get("role") == "entity_identity":
+        if record.get("relation") == "exactMatch":
+            return "its identity", "Linked as the same thing, by an exact match."
+        return "its identity · close match", "Linked as the same thing, by a close match, not an exact one."
+    system, host = record["system"], _host(record.get("sourceUri"))
+    if host is None:
+        return "", "Where this record was read is not recorded."
+    if host in systems.get(system, {}).get("hosts", ()):
+        return "checked there", f"Read from {system}'s own record."
+    owner = next((name for name, spec in systems.items() if host in spec.get("hosts", ())), host)
+    return f"per {owner}", f"{owner} states this link; not yet checked at {system} itself."
+
+
+def elsewhere(nodes: dict[str, dict[str, Any]], networks: dict[str, Any]) -> None:
+    """Rule 7: the entity's records in each outside network, in the profile's order and words."""
+    systems, order = networks.get("systems", {}), networks.get("order", [])
+    hub, expected = networks.get("hub"), networks.get("expected", {})
+    for data in nodes.values():
+        located = {(g["system"], g["identifier"]): g for g in data.get("gazetteer") or []}
+        # a crosswalk the gazetteer also holds was read at the source: it is the place's location
+        records = [{**a, "gazetteer": True, "status": located[(a["system"], a["identifier"])].get("status"),
+                    "basis": located[(a["system"], a["identifier"])].get("basis")}
+                   if (a["system"], a["identifier"]) in located else dict(a) for a in data.get("authority") or []]
+        held = {(r["system"], r["identifier"]) for r in records}
+        records += [{**g, "gazetteer": True, "label": f"{g.get('label') or g['identifier']} ({g['system']} {g['identifier']})"}
+                    for g in data.get("gazetteer") or [] if (g["system"], g["identifier"]) not in held]
+        missing = [s for s in expected.get(data["kind"], []) if s not in {r["system"] for r in records}]
+        if not records and not missing:
+            continue
+        groups: dict[str, list[dict[str, Any]]] = {}
+        per_hub = 0
+        for record in records:
+            spec = systems.get(record["system"], {})
+            link = spec.get("linkByKind", {}).get(data["kind"]) or spec.get("link")
+            words, why = _held_words(record, systems)
+            per_hub += words == f"per {hub}"
+            groups.setdefault(spec.get("network", "Other"), []).append({
+                "system": record["system"], "identifier": record["identifier"], "label": record["label"],
+                "url": link.format(id=record["identifier"]) if link else None,
+                "note": spec.get("noteByKind", {}).get(data["kind"]), "others": record.get("others") or 0,
+                "status": record.get("status") or "accepted", "words": words, "why": why})
+        for system in missing:
+            groups.setdefault(systems.get(system, {}).get("network", "Other"), []).append(
+                {"system": system, "missing": True, "words": "none held", "why": "No record held here yet."})
+        count, nets = len(records), len({systems.get(r["system"], {}).get("network", "Other") for r in records})
+        summary = (f"{count} record{'' if count == 1 else 's'} in {nets} network{'' if nets == 1 else 's'}"
+                   + (f", {per_hub} per {hub} only" if per_hub else "") + ".") if records else "No records held."
+        data["elsewhere"] = {"summary": summary, "networks": [
+            {"network": name, "rows": groups[name]} for name in [*order, *sorted(set(groups) - set(order))]
+            if name in groups]}
+
+
+EVIDENCE_KINDS = (("text", "ancient text"), ("coin", "coin"), ("inscription", "inscription"))
+EVIDENCE_ALSO = (("modern", "modern study", "modern studies"), ("reference", "reference work", "reference works"),
+                 ("imagined", "imaginative work", "imaginative works"))
+FORM_KINDS = {"coinage": "coin", "inscription": "inscription"}
+STANDING_KINDS = {"primary": "text", "secondary": "modern"}
+
+
+def _evidence_kind(work: dict[str, Any] | None, creative_forms: frozenset[str]) -> str:
+    if work is None:
+        return "reference"
+    if work.get("form") in creative_forms:
+        return "imagined"  # imaginative by its form: never evidence for a fact (rule 11)
+    return FORM_KINDS.get(work.get("form")) or STANDING_KINDS.get(work.get("standing"), "reference")
+
+
+def evidence_of(fact: dict[str, Any], works: dict[str, dict[str, Any]], creative_forms: frozenset[str]) -> dict[str, Any]:
+    """Rule 8: the fact's kinds of evidence, the later works beside them, and a sentence."""
+    by: dict[str, set[str]] = {}
+    for voice in fact.get("voices") or []:
+        for name in {voice.get("accordingTo"), *(q.get("source") for q in voice.get("quotes") or [])} - {None}:
+            by.setdefault(_evidence_kind(works.get(name), creative_forms), set()).add(name)
+    kinds = [{"kind": k, "words": w, "count": len(by[k]), "sources": sorted(by[k])} for k, w in EVIDENCE_KINDS if k in by]
+    if not kinds:
+        sentence = "No ancient evidence held: only later writers say it."
+    elif len(kinds) == 1:
+        sentence = f"One kind of evidence: {kinds[0]['words']}."
+    else:
+        sentence = f"{len(kinds)} independent kinds of evidence: {' and '.join(k['words'] for k in kinds)}."
+    also = [f"{len(by[k])} {one if len(by[k]) == 1 else many}" for k, one, many in EVIDENCE_ALSO if k in by]
+    return {"kinds": kinds, "missing": [w for k, w in EVIDENCE_KINDS if k not in by], "also": also,
+            "sentence": sentence}
+
+
+def evidence_kinds(edges: list[dict[str, Any]], nodes: dict[str, dict[str, Any]], creative_forms: frozenset[str]) -> None:
+    works: dict[str, dict[str, Any]] = {}
+    for data in nodes.values():
+        if data["kind"] == "Work":
+            works.setdefault(data["fullLabel"], data)
+            works.setdefault(data["label"], data)
+    for fact in [*edges, *(f for data in nodes.values() for f in data.get("facts") or [])]:
+        fact["evidence"] = evidence_of(fact, works, creative_forms)
+
+
+def apply(elements: dict[str, Any], standing: dict[str, str], networks: dict[str, Any] | None = None,
+          creative_forms: frozenset[str] = frozenset()) -> dict[str, Any]:
     """Mark the projection's elements in place with every display rule, and return them."""
     nodes = {n["data"]["id"]: n["data"] for n in elements["nodes"]}
     edges = [e["data"] for e in elements["edges"]]
@@ -187,6 +305,9 @@ def apply(elements: dict[str, Any], standing: dict[str, str]) -> dict[str, Any]:
     count_lines(edges, nodes)
     name_hints(nodes)
     subject_access(edges, nodes)
+    if networks:
+        elsewhere(nodes, networks)
+    evidence_kinds(edges, nodes, creative_forms)
     for edge in edges:  # each end says how many of its lines a view folds, and why
         if edge.get("fold"):
             for end in {edge["source"], edge["target"]}:

@@ -45,8 +45,10 @@ from GraphRevised.export.confidence import (LIVE, POSITION_LINKS, claim_lines, c
 from GraphRevised.proposals.registry import load_registry
 from GraphRevised.proposals.temporal import display_edtf
 from GraphRevised.proposals.validator import quantity_key
+from GraphRevised import localdb
 
 GRAPH_REVISED = Path(__file__).resolve().parents[1]
+AUTHORITIES_PATH = GRAPH_REVISED / "curation" / "authorities.json"  # its "networks": the federation profile
 
 VISIBLE = ["accepted", "proposed"]
 AUDIT = VISIBLE + ["rejected", "superseded"]
@@ -67,14 +69,26 @@ RETURN e {ENTITY_E} AS entity,
        }} AS notes,
        COLLECT {{
          // where a Place lies, from its gazetteer Location (27): Pleiades first, then GeoNames
-         MATCH (e)-[:AT_LOCATION]->(l:Location) WHERE l.location IS NOT NULL
+         MATCH (e)-[at:AT_LOCATION]->(l:Location)
+         WHERE l.location IS NOT NULL AND coalesce(at.status, "accepted") <> "rejected"
          RETURN {{lat: l.location.y, lon: l.location.x, source: l.system + " " + l.identifier}}
          ORDER BY l.system = "Pleiades" DESC, l.identifier
        }}[0] AS coordinates,
        COLLECT {{
+         // the gazetteer records a Place is linked to, for the card's Elsewhere block (display rule 7)
+         MATCH (e)-[at:AT_LOCATION]->(l:Location)
+         WHERE $audit OR coalesce(at.status, "accepted") <> "rejected"
+         RETURN {{system: l.system, identifier: l.identifier, label: l.label,
+                 status: coalesce(at.status, "accepted"), basis: at.basis}}
+         ORDER BY l.system, l.identifier
+       }} AS gazetteer,
+       COLLECT {{
+         // a rejected link is history (retire_entity_identity): readers follow the rest; the audit shows it
          MATCH (e)-[link:HAS_AUTHORITY_RECORD]->(a:AuthorityRecord)
+         WHERE $audit OR coalesce(link.status, "accepted") <> "rejected"
          RETURN {{system: a.system, identifier: a.identifier, label: a.label, role: link.role,
-                 rank: link.statementRank, references: link.statementReferences}}
+                 status: coalesce(link.status, "accepted"), relation: link.relation,
+                 rank: link.statementRank, references: link.statementReferences, sourceUri: a.sourceUri}}
        }} AS authority
 """
 
@@ -114,7 +128,7 @@ RETURN a {{.id, .label, .shortLabel, .predicate, .status, .mode, .category, .bas
 
 WORKS = """
 MATCH (w:Work)
-RETURN w.id AS id, w.label AS label, w.shortLabel AS shortLabel, w.standing AS standing
+RETURN w.id AS id, w.label AS label, w.shortLabel AS shortLabel, w.standing AS standing, w.form AS form
 """
 
 AUTHORS = """
@@ -169,26 +183,34 @@ def note_line(note: dict[str, Any]) -> str:
 
 
 RANK_ORDER = {"preferred": 0, "normal": 1}
+LINK_ORDER = {"accepted": 0, "proposed": 1, "rejected": 2}
 
 
 def authority_footer(records: list[dict[str, Any]]) -> list[dict[str, Any]]:
     """The card's quiet footer: one record per system, the identity first, then by system name.
-    Within a system the best-supported statement wins (preferred rank, then most references,
-    then identifier); the rest are counted, not listed, and stay in the graph."""
+    Within a system an accepted link wins over a proposed one, then the best-supported statement
+    (preferred rank, then most references, then identifier); the rest are counted, not listed,
+    and stay in the graph. A proposed or rejected (audit only) link keeps its status (rule 3)."""
     systems: dict[str, list[dict[str, Any]]] = {}
     for record in records:
         systems.setdefault(record["system"], []).append(record)
     footer = []
     for system, group in systems.items():
-        best = min(group, key=lambda r: (r.get("role") != "entity_identity", RANK_ORDER.get(r.get("rank"), 2),
+        best = min(group, key=lambda r: (LINK_ORDER.get(r.get("status") or "accepted", 3),
+                                         r.get("role") != "entity_identity", RANK_ORDER.get(r.get("rank"), 2),
                                          -(r.get("references") or 0), r["identifier"]))
         footer.append({"system": system, "identifier": best["identifier"], "label": best["label"],
-                       "role": best.get("role"), "others": len(group) - 1})
+                       "role": best.get("role"), "others": len(group) - 1,
+                       "status": best.get("status") or "accepted", "relation": best.get("relation"),
+                       # where the record was fetched from; display rule 7 says whose payload that was
+                       "sourceUri": best.get("sourceUri")})
     return sorted(footer, key=lambda f: (f["role"] != "entity_identity", f["system"]))
 
 
 def authority_line(entry: dict[str, Any]) -> str:
-    return entry["label"] + (f" and {entry['others']} more" if entry["others"] else "")
+    status = entry.get("status") or "accepted"
+    return (entry["label"] + (f" and {entry['others']} more" if entry["others"] else "")
+            + (f" ({status})" if status != "accepted" else ""))
 
 
 OUR_OWN = "our own statement"
@@ -252,7 +274,7 @@ def projection(tx: Any, audit: bool = False) -> dict[str, Any]:
     nodes: dict[str, dict[str, Any]] = {}
 
     def node(entity: dict[str, Any], notes: list[dict[str, Any]] = (), authority: list[dict[str, Any]] = (),
-             coordinates: dict[str, Any] | None = None) -> None:
+             coordinates: dict[str, Any] | None = None, gazetteer: list[dict[str, Any]] = ()) -> None:
         footer = authority_footer(list(authority))
         nodes.setdefault(entity["id"], {"data": {
             "id": entity["id"], "label": entity.get("shortLabel") or entity["label"], "fullLabel": entity["label"],
@@ -260,10 +282,11 @@ def projection(tx: Any, audit: bool = False) -> dict[str, Any]:
             "notes": [note_line(n) for n in notes], "facts": [], "factLines": [],
             "authority": footer, "authorityLines": [authority_line(entry) for entry in footer],
             **({"coordinates": coordinates} if coordinates else {}),
+            **({"gazetteer": list(gazetteer)} if gazetteer else {}),
         }})
 
     for row in tx.run(ENTITIES, audit=audit):
-        node(row["entity"], row["notes"], row["authority"], row["coordinates"])
+        node(row["entity"], row["notes"], row["authority"], row["coordinates"], row["gazetteer"])
     author_of = dict(tx.run(AUTHORS, live=list(LIVE)).values("work", "author"))
     works = list(tx.run(WORKS))
     standing = {w["id"]: w["standing"] for w in works if w["standing"]}
@@ -359,7 +382,12 @@ def projection(tx: Any, audit: bool = False) -> dict[str, Any]:
             key=lambda link: (not link["ancient"], link["start"] is None, link["start"] or 0, link["name"]))
         data["receptions"] = received
     # What each view shows is decided here, once: folds and hints that mark, never remove (export/display.py).
-    return {"elements": display_rules.apply({"nodes": list(nodes.values()), "edges": edges}, standing)}
+    for work in works:  # a Work's form (history, coinage, inscription...) says what kind of evidence it is
+        if work["form"] and work["id"] in nodes:
+            nodes[work["id"]]["data"]["form"] = work["form"]
+    profile = json.loads(AUTHORITIES_PATH.read_text(encoding="utf-8")).get("networks")
+    return {"elements": display_rules.apply({"nodes": list(nodes.values()), "edges": edges}, standing,
+                                            networks=profile, creative_forms=registry.creative_forms)}
 
 
 HTML = """<!doctype html>
@@ -411,12 +439,12 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--out", type=Path, default=GRAPH_REVISED / "exports" / "graph")
     args = parser.parse_args(argv)
     driver = GraphDatabase.driver(
-        os.environ.get("NEO4J_URI", "neo4j://127.0.0.1:7687"),
-        auth=(os.environ.get("NEO4J_USERNAME", "neo4j"), os.environ["NEO4J_PASSWORD"]),
+        localdb.uri(),
+        auth=localdb.auth(),
         notifications_min_severity="OFF",
     )
     try:
-        with driver.session(database=os.environ.get("NEO4J_DATABASE", "neo4j")) as session:
+        with driver.session(database=localdb.database()) as session:
             graph = session.execute_read(projection, args.audit)
     finally:
         driver.close()

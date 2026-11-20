@@ -37,6 +37,7 @@ from GraphRevised.adapters.wikidata_statements import assemble_time
 from GraphRevised.proposals.registry import PredicateRegistry, load_registry
 from GraphRevised.proposals.temporal import TimeValueError, display_edtf, parse_edtf, year_links
 from GraphRevised.slices.add_entity import preserved_identity_payload
+from GraphRevised import localdb
 
 GRAPH_REVISED = Path(__file__).resolve().parents[1]
 RULES_PATH = Path(__file__).resolve().parent / "wikidata_rules.v1.json"
@@ -267,11 +268,11 @@ def local_matches(qids: list[str]) -> dict[str, list[str]] | None:
 
     from GraphRevised.proposals.store import Neo4jReader
 
-    driver = GraphDatabase.driver(os.environ.get("NEO4J_URI", "neo4j://127.0.0.1:7687"),
-                                  auth=(os.environ.get("NEO4J_USERNAME", "neo4j"), os.environ["NEO4J_PASSWORD"]),
+    driver = GraphDatabase.driver(localdb.uri(),
+                                  auth=localdb.auth(),
                                   notifications_min_severity="OFF")
     try:
-        with driver.session(database=os.environ.get("NEO4J_DATABASE", "neo4j")) as session:
+        with driver.session(database=localdb.database()) as session:
             return session.execute_read(lambda tx: {q: Neo4jReader(tx).entity_ids_for_wikidata(q) for q in qids})
     finally:
         driver.close()

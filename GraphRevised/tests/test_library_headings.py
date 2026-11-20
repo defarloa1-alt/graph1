@@ -7,6 +7,7 @@ from GraphRevised.adapters.library_headings import (
     SOURCE_DIRECTORY, HeadingError, display, fast_label, lcsh_label, preserved_heading,
 )
 from GraphRevised.operations import RefusedWrite, load_operations, run_write
+from GraphRevised import localdb
 
 LCSH_PAYLOAD = SOURCE_DIRECTORY / "lcsh-sh85000736.json"
 FAST_PAYLOAD = SOURCE_DIRECTORY / "fast-796265.rdf.xml"
@@ -44,10 +45,10 @@ class SubjectAuthorityLiveTests(unittest.TestCase):
 
         cls.operations = load_operations()
         cls.driver = GraphDatabase.driver(
-            os.environ.get("NEO4J_URI", "neo4j://127.0.0.1:7687"),
-            auth=(os.environ.get("NEO4J_USERNAME", "neo4j"), os.environ["NEO4J_PASSWORD"]),
+            localdb.uri(),
+            auth=localdb.auth(),
             notifications_min_severity="OFF")
-        cls.session = cls.driver.session(database=os.environ.get("NEO4J_DATABASE", "neo4j"))
+        cls.session = cls.driver.session(database=localdb.database())
 
     @classmethod
     def tearDownClass(cls):

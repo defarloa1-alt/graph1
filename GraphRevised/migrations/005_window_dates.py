@@ -39,6 +39,7 @@ from GraphRevised.proposals.registry import load_registry
 from GraphRevised.proposals.store import Neo4jReader, reject, submit, supersede
 from GraphRevised.proposals.validator import Outcome
 from GraphRevised.proposals.wikidata_proposer import drafts_from_observation
+from GraphRevised import localdb
 
 REPOSITORY = Path(__file__).resolve().parents[2]
 BY = "migration-005 (curator-approved model change, 2026-10-13)"
@@ -105,11 +106,11 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--apply", action="store_true")
     args = parser.parse_args(argv)
     sys.stdout.reconfigure(encoding="utf-8")
-    driver = GraphDatabase.driver(os.environ.get("NEO4J_URI", "neo4j://127.0.0.1:7687"),
-                                  auth=(os.environ.get("NEO4J_USERNAME", "neo4j"), os.environ["NEO4J_PASSWORD"]),
+    driver = GraphDatabase.driver(localdb.uri(),
+                                  auth=localdb.auth(),
                                   notifications_min_severity="OFF")
     try:
-        with driver.session(database=os.environ.get("NEO4J_DATABASE", "neo4j")) as session:
+        with driver.session(database=localdb.database()) as session:
             tx = session.begin_transaction()
             try:
                 lines = migrate(tx, datetime.now(timezone.utc).isoformat(timespec="seconds"))

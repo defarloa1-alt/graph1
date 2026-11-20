@@ -33,6 +33,7 @@ from GraphRevised.harvest.lc_identities import REPOSITORY, record_params
 from GraphRevised.operations import load_operations, run_write
 from GraphRevised.proposals.entities import propose_entity
 from GraphRevised.subject_backbone import apply_manifest
+from GraphRevised import localdb
 
 BY = "Tony DeFarlo (curator), entered by Claude 2026-11-19"
 MANIFEST = Path(__file__).resolve().parents[1] / "plans" / "lc-heading-buckets.json"
@@ -94,12 +95,12 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--apply", action="store_true")
     args = parser.parse_args(argv)
     driver = GraphDatabase.driver(
-        os.environ.get("NEO4J_URI", "neo4j://127.0.0.1:7687"),
-        auth=(os.environ.get("NEO4J_USERNAME", "neo4j"), os.environ["NEO4J_PASSWORD"]),
+        localdb.uri(),
+        auth=localdb.auth(),
         notifications_min_severity="OFF",
     )
     try:
-        with driver.session(database=os.environ.get("NEO4J_DATABASE", "neo4j")) as session:
+        with driver.session(database=localdb.database()) as session:
             tx = session.begin_transaction()
             try:
                 report = migrate(tx, load_operations())

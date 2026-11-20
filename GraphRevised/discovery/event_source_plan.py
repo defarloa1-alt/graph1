@@ -47,6 +47,7 @@ from GraphRevised.discovery.source_plan import CITATION_PATTERNS, RELATION_ORDER
 from GraphRevised.proposals.passage_reader import Inquiry, anthropic_client, load_inquiries
 from GraphRevised.proposals.prompt_version import prompt_version
 from GraphRevised.proposals.registry import load_registry
+from GraphRevised import localdb
 
 GRAPH_REVISED = Path(__file__).resolve().parents[1]
 PLANS_DIRECTORY = GRAPH_REVISED / "plans"
@@ -302,12 +303,12 @@ def main(argv: list[str] | None = None) -> int:
         raise FileExistsError(f"Plan already exists: {args.output}")
 
     driver = GraphDatabase.driver(
-        os.environ.get("NEO4J_URI", "neo4j://127.0.0.1:7687"),
-        auth=(os.environ.get("NEO4J_USERNAME", "neo4j"), os.environ["NEO4J_PASSWORD"]),
+        localdb.uri(),
+        auth=localdb.auth(),
         notifications_min_severity="OFF",
     )
     try:
-        with driver.session(database=os.environ.get("NEO4J_DATABASE", "neo4j")) as session:
+        with driver.session(database=localdb.database()) as session:
             inquiries: list[Inquiry] = session.execute_read(lambda tx: load_inquiries(args.inquiry, tx))
             event_id = inquiries[0].narrative_event_id
             if not event_id:

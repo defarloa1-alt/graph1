@@ -26,6 +26,7 @@ from __future__ import annotations
 
 import argparse
 import atexit
+import json
 import os
 import re
 import secrets
@@ -40,6 +41,7 @@ from typing import Any, Literal
 
 from neo4j import READ_ACCESS, GraphDatabase
 
+from GraphRevised import localdb
 from GraphRevised.adapters.wikidata_context import entity_context
 from GraphRevised.connector import ontology
 from GraphRevised.export.cytoscape import projection
@@ -47,6 +49,7 @@ from GraphRevised.identity.local_candidates import tokens
 
 GRAPH_REVISED = Path(__file__).resolve().parents[1]
 CONNECTIONS = GRAPH_REVISED / "Connections.txt"
+PHASES = GRAPH_REVISED / "curation" / "phases.json"
 DEAD = ["rejected", "superseded"]
 PROJECTION_SECONDS = 60
 MAX_FACTS = 100
@@ -92,11 +95,11 @@ class Graph:
         from scripts import config_loader
 
         self.driver = GraphDatabase.driver(
-            os.environ.get("NEO4J_URI", config_loader.NEO4J_URI),
+            localdb.uri(config_loader.NEO4J_URI),
             auth=(os.environ.get("NEO4J_USERNAME", config_loader.NEO4J_USERNAME), neo4j_password()),
             notifications_min_severity="OFF",
         )
-        self.database = os.environ.get("NEO4J_DATABASE", config_loader.NEO4J_DATABASE)
+        self.database = localdb.database(config_loader.NEO4J_DATABASE)
         self._lock = threading.Lock()
         self._built = 0.0
         self._index: dict[str, Any] = {}
@@ -191,7 +194,7 @@ def build_server(graph: Graph, **settings) -> "FastMCP":
             WHERE e.status <> 'deprecated'
               AND ($kind IS NULL OR $kind IN labels(e))
             OPTIONAL MATCH (e)-[l:HAS_AUTHORITY_RECORD]->(r:AuthorityRecord {system: 'Wikidata'})
-            WHERE l.role = 'entity_identity'
+            WHERE l.role = 'entity_identity' AND coalesce(l.status, 'accepted') <> 'rejected'
             RETURN e.id AS id, e.label AS label, e.shortLabel AS shortLabel,
                    coalesce(e.alternativeNames, []) AS alternativeNames,
                    head([label IN labels(e) WHERE label <> 'Entity']) AS kind,
@@ -312,7 +315,7 @@ def build_server(graph: Graph, **settings) -> "FastMCP":
         if not event:
             return {"error": f"No entity {event_id}. Use find_entities with kind Event."}
         summary = graph.rows(EVENT_SUMMARY, event=event_id, dead=DEAD)
-        phases = graph.rows(EVENT_PHASES, event=event_id, dead=DEAD)
+        phases = in_curator_order(event_id, graph.rows(EVENT_PHASES, event=event_id, dead=DEAD))
         sources = graph.rows(EVENT_SOURCES, event=event_id, dead=DEAD)
         queue = graph.rows(EVENT_QUEUE, event=event_id)
         return {"event": {"id": event_id, **event[0]}, "summary": summary, "phases": phases,
@@ -372,11 +375,23 @@ CALL (ev) {
   RETURN 'notes and passages of note on it' AS what, count(n) AS total,
          sum(CASE n.status WHEN 'endorsed' THEN 1 ELSE 0 END) AS accepted
   UNION ALL
-  MATCH (ev)-[:HAS_AUTHORITY_RECORD]->(r:AuthorityRecord)
-  RETURN 'authority records' AS what, count(r) AS total, count(r) AS accepted
+  MATCH (ev)-[link:HAS_AUTHORITY_RECORD]->(r:AuthorityRecord)
+  RETURN 'authority records' AS what, count(r) AS total,
+         sum(CASE coalesce(link.status, 'accepted') WHEN 'accepted' THEN 1 ELSE 0 END) AS accepted
 }
 RETURN what, total, accepted
 """
+
+def in_curator_order(event_id: str, phases: list[dict[str, Any]], path: Path = PHASES) -> list[dict[str, Any]]:
+    """An event's phases in the curator's order (curation/phases.json, D-091), not by name. A phase's
+    id ends in its key (chr:entity:phase:<event>:<key>); one the file does not list comes after, by name."""
+    try:
+        spec = json.loads(path.read_text(encoding="utf-8")).get("events", {}).get(event_id, {})
+    except (OSError, ValueError):
+        spec = {}
+    order = {phase["key"]: n for n, phase in enumerate(spec.get("phases", []))}
+    return sorted(phases, key=lambda p: (order.get(p["id"].rsplit(":", 1)[-1], len(order)), p.get("phase") or ""))
+
 
 EVENT_PHASES = """
 MATCH (ph:Entity)<-[:ASSERTION_SUBJECT]-(a:Assertion {predicate: 'partOf'})-[:ASSERTION_OBJECT]->(:Entity {id: $event})
