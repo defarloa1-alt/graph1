@@ -179,6 +179,7 @@ RELATIONSHIPS: list[tuple[str, str, str, dict[str, tuple[str, bool]]]] = [
     ("IN_SUBJECT", "Entity", "Subject", {"status": (S, REQ)}),
     ("HAS_SUBJECT_HEADING", "Work", "AuthorityRecord", {"status": (S, REQ)}),
     ("BROADER_HEADING", "AuthorityRecord", "AuthorityRecord", {"status": (S, REQ)}),
+    ("RELATED_HEADING", "AuthorityRecord", "AuthorityRecord", {"status": (S, REQ)}),  # LC "see also", harvest/lc_subjects.py
     ("ANNOTATES", "Annotation", "SourceObservation", {"quotation": (S, False)}),
     ("AT_LOCATION", "Place", "Location", {"status": (S, REQ), "basis": (S, REQ)}),
     ("WITHIN", "Location", "Location", {"tree": (S, REQ), "relation": (S, REQ), "periods": (LS, False)}),

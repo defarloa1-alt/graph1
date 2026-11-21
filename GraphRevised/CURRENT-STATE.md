@@ -3,7 +3,7 @@ status: informational
 authority: none; the one current-state page. Decisions are in 33-DECISIONS.md; meaning and storage in 02
 depends_on: [33-DECISIONS.md, 02-GRAPH-MODEL.md]
 supersedes: [19-SESSION-HANDOFF.md, 38-REASONING-SESSION-HANDOFF.md, 40-LENS-SESSION-HANDOFF.md]
-last_reviewed: 2026-11-19
+last_reviewed: 2026-11-21
 ---
 
 # Current state
@@ -15,16 +15,27 @@ storage, 31 for behaviour, then 29, 32, 26. This page governs nothing.
 
 ## 1. Start here
 
+**Baseline, 2026-11-21.** Every session closed; the branch is pushed and the
+working tree is clean; 665 tests pass with the live graph; a checked backup of
+2026-11-20 exists (§5 item 4). Read §5 for what waits on the curator, §7 for
+the next steps, and [47](47-REASONING-AND-SCRIPT-REVIEW.md) §6 for the open
+choices on where reasoning replaces code.
+
 ```bash
 cd C:/Projects/Graph1
 export NEO4J_PASSWORD=$(python -c 'from GraphRevised.connector.server import neo4j_password as p; print(p())' 2>/dev/null)
-python -m pytest GraphRevised/tests -q   # about 7 minutes; see §6 for the expected result
+python -m pytest GraphRevised/tests -q   # 13 to 18 minutes; see §6 for the expected result
 ```
 
 - **Local Neo4j only:** `neo4j://127.0.0.1:7687`, database `neo4j`. Never the
   legacy Aura instance (deleted), and never legacy scripts against this database.
-- **Do not load the repo `.env` wholesale.** It holds the legacy Aura
-  `NEO4J_URI`. Code reads only `ANTHROPIC_API_KEY` from it.
+  Every connection goes through `GraphRevised/localdb.py`, which refuses any other
+  address or database (47 §5.1); a new script uses it too (`tests/test_localdb.py`
+  fails otherwise).
+- **The repo `.env`** now names the local database (checked 2026-11-21: the
+  address is 127.0.0.1, the database `neo4j`) and holds `ANTHROPIC_API_KEY`.
+  The legacy loader `scripts.config_loader` reads it; values from it still pass
+  the guard. Never print it.
 - `Connections.txt` holds the local password and the MCP token. It is
   git-ignored: never print it or commit it.
 - **The graph is a sandbox** (curator, 2026-11-13): its purpose now is to check
@@ -34,8 +45,8 @@ python -m pytest GraphRevised/tests -q   # about 7 minutes; see §6 for the expe
   own Obsidian edits to the `.md` files out of commits. Push only with the
   curator's go-ahead.
 - **Data is not in git** (25 §13). Harvest payloads are git-ignored, so the
-  local disk holds the only copy of the graph and its payloads. There is no
-  scheduled backup yet (§5).
+  local disk holds the only copy of the graph and its payloads. A full backup was
+  taken 2026-11-20 (§5 item 4); there is no scheduled one.
 
 ## 2. Graph state (counted 2026-11-19)
 
@@ -453,8 +464,12 @@ From the review of 2026-11-13 ([README](README.md), "Address first"):
   [docs/Source review perplexity.md](docs/Source%20review%20perplexity.md)). Also unbuilt
   from 31 §3.8: `derivesFrom` (Work to Work) and attestation by traditions, so two ancient
   authors drawing on one lost source still count as two lines of evidence.
-- **Item 4, backups:** where the second copy lives, and whether a weekly
-  scheduled dump is acceptable (to be decided).
+- **Item 4, backups:** a full online backup was taken 2026-11-20
+  (`neo4j-admin database backup`, 46 MB, consistency-checked) into
+  `GraphRevised/backup/`, which is git-ignored; the curator moves it to the
+  second copy's place. Whether to schedule a weekly one is to be decided. To
+  restore: stop the database, then `neo4j-admin database restore
+  --from-path=<file> --overwrite-destination=true neo4j`.
 - **Item 6, show the result:** Actium in the explorer from live data, in front
   of one real reader (to be decided).
 - **Item 7:** 483 events against 97 people (the curator is reviewing it).
@@ -502,8 +517,9 @@ deleted (its password in pushed history is dead).
 
 ## 6. Tests
 
-Last full run, 2026-11-19, after registry v20, rename, restore and aliases: **638 passed**
-(12 minutes). A live test that counts the whole graph fails if a migration is applied while
+Last full run, 2026-11-21, after D-168, the local-only guard and `RELATED_HEADING`
+in the graph type: **665 passed** (13 to 18 minutes), live tests included. The live tests skip without
+`NEO4J_PASSWORD`, and a run with 100 or so skips proves little. A live test that counts the whole graph fails if a migration is applied while
 the suite runs: never write to the graph during a run.
 
 If many live tests fail at once, check that Neo4j is running before reading

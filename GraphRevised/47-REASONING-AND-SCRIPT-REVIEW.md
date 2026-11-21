@@ -220,12 +220,13 @@ from the environment.
   what it does. Keep what 018 cannot check (one subtype per Entity, no year zero,
   an unbroken Year chain), or move those into 018's preflight so there is one
   check.
-- **018** hard-codes `SUBTYPES`. It matches the registry today; add a test against
-  the registry's entity kinds. Add `RELATED_HEADING` to it (from the first review).
-- **019's** docstring says the rationale comes from `decisionBasis`; the code
-  hard-codes it. Fix the docstring.
-- **Migrations 004 to 032** are one-shot records and stay. 032 has run but is not
-  committed (baseline item 1a). Gaps in the numbering (008, 022) are expected.
+- **018** hard-codes `SUBTYPES`; a test now holds it to the registry's entity
+  kinds (`tests/test_registry_graph.py`). `RELATED_HEADING` is now pinned like
+  `BROADER_HEADING` (done 2026-11-21, graph type re-applied).
+- **019's** docstring said the rationale came from `decisionBasis`; it is
+  written in the migration, spelling that basis out. Docstring fixed 2026-11-21.
+- **Migrations 004 to 032** are one-shot records and stay; 032 is committed.
+  Gaps in the numbering (008, 022) are expected.
 - **`discovery/source_plan.py`, `discovery/inquiry_builder.py`** are October work, still in use.
 
 ## 6. The curator's choices

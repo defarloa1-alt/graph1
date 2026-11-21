@@ -564,7 +564,7 @@ described in [30](30-LOGICAL-MODEL.md) §7.2:
 - each Entity subtype label implies `Entity`;
 - each core label's required properties are present, and its properties are
   typed;
-- 19 relationship types are pinned to one source label and one target label
+- 23 relationship types are pinned to one source label and one target label
   (`ATTRIBUTED_TO` and `IN_WORK` reach a Work, `AT_LOCATION` starts at a Place,
   and so on), with their required properties;
 - the fact layer's edge types (D-144): one whose predicate joins one kind to

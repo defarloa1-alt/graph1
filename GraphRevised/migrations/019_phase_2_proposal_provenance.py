@@ -11,8 +11,11 @@ so the graph type (018) could not require them (30 §8 item 8; curator,
 2026-11-18).
 
 The values say what happened, not what a later Proposal would hold: the
-creator is the Assertion's own `assertedBy`; the rationale is the Phase 2
-basis already in `decisionBasis`; the two versions name the absence. The
+creator is the Assertion's own `assertedBy` (checked: the run refuses if they
+differ); the rationale, written here, spells out the Phase 2 basis the Proposal
+already holds in `decisionBasis` ("One preserved Wikidata P710 participant
+statement") and names the plan it came from; the two versions name the
+absence. The
 back-fill is marked (`provenanceBackfilledAt`, `…By`, `…Basis`) so it is
 never read as written at creation. Only properties that are missing are
 set. Without --apply it reports and rolls back. Retry-safe.

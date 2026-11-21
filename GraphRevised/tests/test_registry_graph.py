@@ -80,5 +80,12 @@ class FactLayerPinTests(unittest.TestCase):
         self.assertIn("CONSTRAINT participated_in_derived_exists", statement)
 
 
+class GraphTypeKindTests(unittest.TestCase):
+    def test_subtypes_are_the_registry_kinds(self):
+        """018 lists the Entity subtypes by hand; they must be the registry's kinds (47 §5.3)."""
+        self.assertEqual(sorted(graph_type.SUBTYPES), sorted(load_registry().entity_kinds))
+        self.assertEqual(len(graph_type.SUBTYPES), len(set(graph_type.SUBTYPES)))
+
+
 if __name__ == "__main__":
     unittest.main()
