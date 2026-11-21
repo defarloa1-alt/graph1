@@ -55,6 +55,14 @@ Ranked by what a wrong answer from the code costs.
 
 ### 3.1 Wikipedia footnotes to passages
 
+**Built and run 2026-11-21 (D-169).** `proposals/rests_on_check.py`: one call per claim with every
+passage its footnote linked it to; the words that carry a verdict are verified verbatim in code.
+22 live claims, 145 links, $0.43 in all (claude-sonnet-5-5): 17 links state the claim, 17 in part,
+111 do not, mostly because a cited range (Plutarch, Antony 65-66) links every section in it. Taken
+together, the cited passages state 14 claims and 8 in part. A first prompt judged the stored claim
+against Wikipedia's fuller words; its 22 checks were superseded by the corrected ones. All 22 wait
+for the curator (CURRENT-STATE §5); no link has changed yet.
+
 **Now.** For each claim attributed to a Wikipedia article, the footnote right
 after the claim's quotation is followed to our passage at that locator, and the
 claim gets `RESTS_ON` with basis `reports`. The module calls this extraction:

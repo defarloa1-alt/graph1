@@ -394,6 +394,14 @@ The README's review of 2026-11-13, item 3 (close the unfinished items):
 
 ## 5. Waiting for the curator
 
+- **The rests-on checks (D-169, 2026-11-21):** 22 checks, one per claim, of the 145 links code made
+  from Wikipedia's footnotes. Each names the passages that state the claim, in their own words, and
+  those that do not (mostly the other sections of a cited range). Accepting a check rejects its
+  "does not say it" links (kept as history) and marks partial ones; rejecting it changes nothing.
+  Eight claims are stated only in part, among them Arruntius commanding Octavian's centre (Plutarch
+  names him but not his command) and Sosius launching the first attack. Read them with
+  `python -m GraphRevised.proposals.rests_on_check list`; decide with `... decide <id> accept|reject
+  --by "<name>"`. Not yet in the review desk.
 - **In the review desk:** the 442 phase placements on the Battle of Actium. (The 24
   coin units were accepted 2026-11-18 on the curator's instruction; legion 12's RRC 544/9
   evidence link had lost its time quotation in migration 013 and was repaired from the
@@ -527,7 +535,31 @@ the failures: a stopped Neo4j looked like 92 failures on 2026-11-15.
 
 ## 7. Next steps
 
-**Start here next session (handoff, 2026-11-19, late; D-167).**
+**Start here next session (handoff, 2026-11-21; D-169).**
+
+*Done 2026-11-21:*
+- **Baseline:** every session closed; branch pushed; 665 tests then; backup taken 2026-11-20 (§5
+  item 4). The local-only guard (`localdb.py`, 47 §5.1); `RELATED_HEADING` in the graph type;
+  `docs/Launching the UIs.md`.
+- **Doc 47** reviews the scripts for where reasoning should replace or check code; the curator
+  chose its order (D-169): the footnote check (3.1), then same-event matching (3.3), duplicates
+  (3.5), identity (3.4), unknown kinds (3.6), citations (3.7).
+- **The footnote check is built and run** (`proposals/rests_on_check.py`, `checkRestsOn`
+  Proposals, operations `upsert_rests_on_check` and `decide_rests_on_check`, graph type
+  `CHECKS_CLAIM`, `CHECKS_PASSAGE`). 22 checks wait for the curator (§5): 13 where the right
+  passage states the claim, 9 stated only in part. $0.43 spent on budget `actium`.
+
+*Next:*
+1. **The curator decides the 22 checks** (§5), one by one or as a batch instruction; each accept
+   rebuilds the fact layer. Then check that attestation on those facts reads as expected.
+2. **The checks in the review desk**, so they need no command line (not built).
+3. **Same-event matching and disputes (47 §3.3):** a reasoning pass per phase that proposes
+   `depictsSameAs` and flags disputes. Paid: needs the curator's authorization for scope,
+   provider and budget before any run.
+4. Small: the spend ledger names a run after `sys.argv[0]`, so calls started with `python -c`
+   are logged as run "-c"; pass a run name to `anthropic_client`.
+
+**Earlier handoff (2026-11-19, late; D-167).**
 
 *Done 2026-11-20 (alignment review of the network-of-networks mock against 01, 02, 26, 30, 36, 42; D-168):*
 - **Scarpus unlinked from Q382127** (curator): migration 030 had left the identity link he was

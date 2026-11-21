@@ -76,6 +76,8 @@ OPERATION_NAMES = (
     "set_name_parts",
     "upsert_alias_proposal",
     "decide_alias_proposal",
+    "upsert_rests_on_check",
+    "decide_rests_on_check",
 )
 
 

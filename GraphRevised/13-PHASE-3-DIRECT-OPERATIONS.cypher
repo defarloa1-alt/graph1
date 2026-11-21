@@ -1347,3 +1347,65 @@ FOREACH (_ IN CASE WHEN $status = "accepted" AND NOT proposal.alias IN coalesce(
                    THEN [1] ELSE [] END |
   SET entity.alternativeNames = coalesce(entity.alternativeNames, []) + [proposal.alias])
 RETURN proposal, entity;
+
+// upsert_rests_on_check (2026-11-21, D-169): a reasoning check of the RESTS_ON links code made from
+// a footnote (wikipedia_footnotes). One Proposal per claim, citing the claim (CHECKS_CLAIM) and each
+// passage it was linked to (CHECKS_PASSAGE: the verdict states, partly or absent, the passage's own
+// words that carry it, the reason, and whether those words were found verbatim). The status is
+// given: accepted by rule when every link is confirmed in verified words (the links keep their
+// acceptance), else submitted for the curator (decide_rests_on_check). Each link records the check.
+// A newer check (another prompt version) supersedes the claim's open checks: rejected,
+// superseded-by-model, kept as history, and the links take the newer verdicts. Refused unless every
+// passage named is one the claim RESTS_ON. A retry keeps the first check.
+MATCH (assertion:Assertion {id: $assertionId})
+WHERE size($checks) > 0 AND $status IN ["accepted", "submitted"]
+  AND all(c IN $checks WHERE EXISTS { MATCH (assertion)-[:RESTS_ON]->(:SourceObservation {id: c.observationId}) })
+CALL (assertion) {
+  MATCH (older:Proposal {operation: "checkRestsOn", status: "submitted"})-[:CHECKS_CLAIM]->(assertion)
+  WHERE older.id <> $id
+  SET older.status = "rejected", older.decisionReason = "superseded-by-model", older.decidedAt = $createdAt,
+      older.decidedBy = $createdBy, older.decisionBasis = "Superseded by a newer check: " + $id
+  RETURN count(older) AS superseded
+}
+MERGE (proposal:Proposal {id: $id})
+ON CREATE SET proposal.operation = "checkRestsOn", proposal.label = $label, proposal.shortLabel = $shortLabel,
+              proposal.status = $status, proposal.checkVerdict = $verdict, proposal.createdBy = $createdBy,
+              proposal.createdAt = $createdAt, proposal.rationale = $rationale, proposal.modelId = $modelId,
+              proposal.promptVersion = $promptVersion, proposal.draftSchemaVersion = $draftSchemaVersion,
+              proposal.predicateRegistryVersion = $predicateRegistryVersion, proposal.decidedAt = $decidedAt,
+              proposal.decidedBy = $decidedBy, proposal.decisionBasis = $decisionBasis
+MERGE (proposal)-[:CHECKS_CLAIM]->(assertion)
+WITH proposal, assertion
+UNWIND $checks AS c
+MATCH (assertion)-[link:RESTS_ON]->(observation:SourceObservation {id: c.observationId})
+MERGE (proposal)-[checked:CHECKS_PASSAGE]->(observation)
+ON CREATE SET checked.verdict = c.verdict, checked.words = c.words, checked.reason = c.reason,
+              checked.verified = c.verified
+SET link.check = checked.verdict, link.checkProposal = proposal.id, link.checkedAt = proposal.createdAt
+RETURN proposal.id AS id, proposal.status AS status, count(checked) AS passages;
+
+// decide_rests_on_check (2026-11-21, D-169): the curator accepts a check, and its verdicts apply (a
+// link whose passage does not state the claim is rejected and kept as history, one that states it
+// in part is marked partial), or rejects it with a reason code, and every link stays as it was.
+// Refused for anything but an open check, or a rejection without a known reason. Rebuild the fact
+// layer afterwards. A retry with the same decision is a no-op.
+MATCH (proposal:Proposal {id: $proposalId, operation: "checkRestsOn"})-[:CHECKS_CLAIM]->(assertion:Assertion)
+WHERE $status IN ["accepted", "rejected"]
+  AND (proposal.status = "submitted" OR proposal.status = $status)
+  AND ($status = "accepted" OR $reason IN ["false", "unsupported", "malformed", "underspecified", "superseded-by-model"])
+WITH proposal, assertion, proposal.status = $status AS isRetry
+SET proposal.decidedAt = CASE WHEN isRetry THEN proposal.decidedAt ELSE $decidedAt END,
+    proposal.decidedBy = CASE WHEN isRetry THEN proposal.decidedBy ELSE $decidedBy END,
+    proposal.decisionBasis = CASE WHEN isRetry THEN proposal.decisionBasis ELSE $decisionBasis END,
+    proposal.decisionReason = CASE WHEN isRetry THEN proposal.decisionReason ELSE $reason END,
+    proposal.status = $status
+WITH proposal, assertion, isRetry
+CALL (proposal, assertion, isRetry) {
+  MATCH (proposal)-[checked:CHECKS_PASSAGE]->(:SourceObservation)<-[link:RESTS_ON]-(assertion)
+  WHERE $status = "accepted" AND NOT isRetry AND checked.verdict IN ["absent", "partly"]
+  SET link.status = CASE WHEN checked.verdict = "absent" THEN "rejected" ELSE link.status END,
+      link.support = CASE WHEN checked.verdict = "partly" THEN "partial" ELSE link.support END,
+      link.statusChangedAt = $decidedAt, link.statusChangedBy = $decidedBy
+  RETURN count(link) AS applied
+}
+RETURN proposal.id AS id, proposal.status AS status, applied;

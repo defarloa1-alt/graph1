@@ -106,6 +106,7 @@ NODES: dict[str, dict[str, tuple[str, bool]]] = {
         "relevance": (S, False), "ambiguities": (LS, False), "decisionReason": (S, False),
         "rejectedClaim": (B, False),
         "alias": (S, False), "aliasKind": (S, False), "sharedWith": (LS, False),  # addAlias (46 §4.5)
+        "checkVerdict": (S, False),  # checkRestsOn (D-169)
     },
     "SourceObservation": {
         "id": (S, REQ), "label": (S, REQ), "status": (S, REQ), "sourceSystem": (S, REQ),
@@ -171,6 +172,9 @@ RELATIONSHIPS: list[tuple[str, str, str, dict[str, tuple[str, bool]]]] = [
      {"quotation": (S, False), "qualifierQuotations": (LS, False), "addedByProposal": (S, False)}),
     ("PROPOSES", "Proposal", "Assertion", {}),
     ("PROPOSES_ALIAS", "Proposal", "Entity", {}),  # an addAlias Proposal (46 §4.5)
+    ("CHECKS_CLAIM", "Proposal", "Assertion", {}),  # a checkRestsOn Proposal (D-169)
+    ("CHECKS_PASSAGE", "Proposal", "SourceObservation",
+     {"verdict": (S, REQ), "reason": (S, REQ), "verified": (B, REQ), "words": (S, False)}),
     ("PROPOSES_EVIDENCE", "Proposal", "SourceObservation",
      {"quotation": (S, False), "qualifierQuotations": (LS, False), "migratedBy": (S, False)}),
     ("IN_WORK", "SourceObservation", "Work", {}),
@@ -226,7 +230,9 @@ REL_PROPERTIES: dict[str, dict[str, tuple[str, bool]]] = {
     "HAS_AUTHORITY_RECORD": {"role": (S, REQ), "relation": (S, REQ), "status": (S, REQ),
                              "statementRank": (S, False), "statementReferences": (I, False)},
     "RESTS_ON": {"status": (S, REQ), "createdBy": (S, REQ), "createdAt": (S, REQ),
-                 "quotation": (S, False), "citation": (S, False)},
+                 "quotation": (S, False), "citation": (S, False),
+                 "check": (S, False), "checkProposal": (S, False), "checkedAt": (S, False),  # D-169
+                 "support": (S, False), "statusChangedAt": (S, False), "statusChangedBy": (S, False)},
     "IN_YEAR": {"as": (S, False)},
     **_FACT_UNPINNED,
 }
