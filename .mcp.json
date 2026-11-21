@@ -1,8 +1,22 @@
 {
   "mcpServers": {
     "chrystallum": {
+      "type": "stdio",
       "command": "python",
-      "args": ["-m", "GraphRevised.connector.server"]
+      "args": ["-m", "GraphRevised.connector.server"],
+      "tools": [
+        "get_subject",
+        "find_entities",
+        "lookup_authority",
+        "get_entity",
+        "get_fact",
+        "event_overview",
+        "review_queue",
+        "graph_status",
+        "describe_schema",
+        "get_predicate",
+        "get_subgraph"
+      ]
     }
   }
 }
