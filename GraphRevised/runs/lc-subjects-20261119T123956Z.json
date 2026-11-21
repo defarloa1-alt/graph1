@@ -1,0 +1,84 @@
+{
+  "books": [
+    {
+      "work": "chr:entity:broughton-magistrates-of-the-roman-republic",
+      "lccn": "84023590",
+      "subjects": [
+        "Magistrates, Roman (LCSH sh85079637)",
+        "Rome--Officials and employees (LCSH sh85115176)",
+        "Rome--History--Republic, 510-30 B.C. (LCSH sh85115114)"
+      ]
+    },
+    {
+      "work": "chr:entity:hale-famous-sea-fights",
+      "lccn": "12004926",
+      "subjects": [
+        "Naval battles (LCSH sh85090368)"
+      ]
+    },
+    {
+      "work": "chr:entity:roller-world-of-juba-ii-and-kleopatra-selene",
+      "lccn": "2002037175",
+      "subjects": [
+        "Juba II, King of Mauretania, approximately 50 B.C.-approximately 24 A.D. (LCNAF n98080275)",
+        "Cleopatra, Queen, consort of Juba II, King of Mauretania, 40 B.C.- (LCNAF n85216104)"
+      ]
+    },
+    {
+      "work": "chr:entity:strauss-war-that-made-the-roman-empire",
+      "lccn": "2021007113",
+      "subjects": [
+        "Cleopatra, Queen of Egypt, -30 B.C. (LCNAF n80067160)",
+        "Antonius, Marcus, 83 B.C.?-30 B.C. (LCNAF n50051933)",
+        "Augustus, Emperor of Rome, 63 B.C.-14 A.D. (LCNAF n79033006)",
+        "Actium, Battle of, 31 B.C. (LCSH sh85000736)",
+        "Rome--History--Civil War, 43-31 B.C. (LCSH sh85115124)"
+      ]
+    },
+    {
+      "work": "chr:entity:syme-augustan-aristocracy",
+      "lccn": "88033679",
+      "subjects": [
+        "Nobility--Rome (LCSH sh2010103103)",
+        "Rome--History--Augustus, 30 B.C.-14 A.D. (LCSH sh85115125)"
+      ]
+    },
+    {
+      "work": "chr:entity:weigall-life-and-times-of-cleopatra",
+      "lccn": "14012567",
+      "subjects": [
+        "Cleopatra, Queen of Egypt, -30 B.C. (LCNAF n80067160)",
+        "Egypt--History--332-30 B.C. (LCSH sh85041288)"
+      ]
+    }
+  ],
+  "unresolved": [
+    {
+      "work": "chr:entity:roller-world-of-juba-ii-and-kleopatra-selene",
+      "heading": "Juba II, King of Mauretania, approximately 50 B.C.-approximately 24 A.D.--Knowledge and learning"
+    },
+    {
+      "work": "chr:entity:roller-world-of-juba-ii-and-kleopatra-selene",
+      "heading": "Mauretania (Kingdom)--Civilization"
+    },
+    {
+      "work": "chr:entity:roller-world-of-juba-ii-and-kleopatra-selene",
+      "heading": "Mauretania (Kingdom)--Kings and rulers--Biography"
+    },
+    {
+      "work": "chr:entity:weigall-life-and-times-of-cleopatra",
+      "heading": "Caesar, Julius--Relations with women"
+    },
+    {
+      "work": "chr:entity:weigall-life-and-times-of-cleopatra",
+      "heading": "Antonius, Marcus, 83 B.C.?-30 B.C.--Relations with women"
+    }
+  ],
+  "neighbours": {
+    "broader": 37,
+    "narrower": 62,
+    "related": 2
+  },
+  "leads": [],
+  "applied": true
+}

@@ -72,6 +72,20 @@ For documentary evidence, Papyri.info should be treated as a major corpus even w
 - **Social agents:** emphasize epitaphs, manumission records, household documents, names, status terminology, occupations, and associations.
 - **Guardrail:** PHI Greek Inscriptions is a high-value search and discovery source, but its stated terms support personal study rather than bulk reuse. Agents may consult and cite it; it should not be mirrored or used as an unlicensed training corpus. [inscriptions.packhum](https://inscriptions.packhum.org/)
 
+### Candidates from a chat suggestion (added 2026-11-20; licences not yet checked)
+
+From another AI's list of Roman sources (`chats/archive/romanfederations.md`). Sources it named that are already held or planned (DPRR, the Fasti through DPRR, CRRO, Nomisma, Perseus, Trismegistos, Pelagios, Open Greek and Latin) are left out. **Check each licence at the source before any harvest** (public domain first, D-166); none below has been verified.
+
+| Source | Principal material | Why it matters here | Rights class |
+|---|---|---|---|
+| [Epigraphik-Datenbank Clauss-Slaby (EDCS)](https://db.edcs.eu) | Latin inscriptions: persons, units, offices, places, dates | Soldiers, units, careers and stations that literary texts omit; thin for the late Republic, but each inscription would be a record observation, as the coins are | to check |
+| [Epigraphic Database Heidelberg (EDH)](https://edh.ub.uni-heidelberg.de) | Latin inscriptions, strongest for the imperial period: careers, provincial government, the army | Used so far only for its PeriodO period definitions, not its inscriptions | to check |
+| [EAGLE network](https://www.eagle-network.eu/) | Crosswalks between epigraphic collections | A reconciliation layer if EDCS and EDH are both used | to check |
+| *The Fragments of the Roman Historians* (FRHist, ed. Cornell, 2013) | The lost Republican historians, edited with commentary | The lost Works now proposed as holders (Livy's lost books, Augustus's autobiography); a modern print edition under copyright, so cited by page, as Lange is | likely **C** |
+| [Livius.org](https://www.livius.org) | Curated articles on commanders, legions, provinces, sources | A reference (tertiary) voice for reconciliation, never evidence | to check |
+
+The same list also named a forum ("Roman Army Talk"), which is not a source.
+
 ## Rome: Principate
 
 ### Core literary and documentary layer

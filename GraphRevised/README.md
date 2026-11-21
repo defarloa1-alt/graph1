@@ -81,6 +81,11 @@ the consolidation of item 5, on 2026-11-13), §5 for what is open.
 current-state page (it replaces the handoffs 19, 38, and 40, now history, and
 classifies every numbered document in §10).
 
+**For a reader who doesn't know databases:** [the plain-language
+guide](docs/Chrystallum%20Graph%20—%20A%20Plain-Language%20Guide.md) explains every
+kind of node, line and detail in the graph, with a worked example. Refresh it when the
+registry or the model changes.
+
 0. [00-NEO4J-SCHEMA-SNAPSHOT.md](00-NEO4J-SCHEMA-SNAPSHOT.md) — read-only baseline of the active local database
 1. [01-ARCHITECTURE.md](01-ARCHITECTURE.md) — the small conceptual model
 2. [02-GRAPH-MODEL.md](02-GRAPH-MODEL.md) — the initial node and relationship contract

@@ -170,3 +170,9 @@ GraphRevised/crro/nomisma.rdf
 
 # Licensed downloads (JSTOR and the like): copyright, and each page carries the downloader's IP; never commit
 GraphRevised/docs/actium/*.pdf
+
+# Pasted chat transcripts and exports from other sessions: working material, not docs; distil into CURRENT-STATE or 33 instead
+GraphRevised/chats/
+
+# Database backups: data, possibly licensed text; the curator moves them elsewhere
+GraphRevised/backup/

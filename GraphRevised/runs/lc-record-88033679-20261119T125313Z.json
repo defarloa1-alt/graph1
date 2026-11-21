@@ -1,0 +1,41 @@
+{
+  "lccn": "88033679",
+  "work": "chr:entity:syme-augustan-aristocracy",
+  "version": "lc-record-v1",
+  "applied": true,
+  "createdAt": "2026-11-19T12:53:13.512920+00:00",
+  "outcomes": [
+    {
+      "for": "authorOf",
+      "subject": "chr:entity:proposed-person-ronald-syme",
+      "predicate": "authorOf",
+      "outcome": "valid",
+      "stored": true,
+      "reasons": []
+    }
+  ],
+  "forCurator": [
+    {
+      "heading": "Nobility--Rome",
+      "resolves to": {
+        "system": "LCSH",
+        "identifier": "sh2010103103",
+        "label": "Nobility--Rome",
+        "uri": "http://id.loc.gov/authorities/subjects/sh2010103103"
+      },
+      "holders": [],
+      "why": "no Entity holds this record"
+    },
+    {
+      "heading": "Rome--History--Augustus, 30 B.C.-14 A.D.",
+      "resolves to": {
+        "system": "LCSH",
+        "identifier": "sh85115125",
+        "label": "Rome--History--Augustus, 30 B.C.-14 A.D.",
+        "uri": "http://id.loc.gov/authorities/subjects/sh85115125"
+      },
+      "holders": [],
+      "why": "no Entity holds this record"
+    }
+  ]
+}

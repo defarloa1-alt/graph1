@@ -1,0 +1,47 @@
+{
+  "lccn": "14012567",
+  "work": "chr:entity:weigall-life-and-times-of-cleopatra",
+  "version": "lc-record-v1",
+  "applied": true,
+  "createdAt": "2026-11-19T12:39:49.818931+00:00",
+  "outcomes": [
+    {
+      "for": "authorOf",
+      "subject": "chr:entity:arthur-weigall",
+      "predicate": "authorOf",
+      "outcome": "valid",
+      "stored": true,
+      "reasons": []
+    },
+    {
+      "for": "Cleopatra, Queen of Egypt, -30 B.C.",
+      "subject": "chr:entity:cleopatra",
+      "predicate": "describedBy",
+      "outcome": "valid",
+      "stored": true,
+      "reasons": []
+    },
+    {
+      "for": "Egypt--History--332-30 B.C.",
+      "subject": "chr:entity:ptolemaic-kingdom",
+      "predicate": "describedBy",
+      "outcome": "valid",
+      "stored": true,
+      "reasons": []
+    }
+  ],
+  "forCurator": [
+    {
+      "heading": "Caesar, Julius--Relations with women",
+      "resolves to": null,
+      "holders": [],
+      "why": "LC has no record of exactly this heading"
+    },
+    {
+      "heading": "Antonius, Marcus, 83 B.C.?-30 B.C.--Relations with women",
+      "resolves to": null,
+      "holders": [],
+      "why": "LC has no record of exactly this heading"
+    }
+  ]
+}

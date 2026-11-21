@@ -1,0 +1,32 @@
+{
+  "types": 15,
+  "units": 1,
+  "skipped": [
+    "RRC 546/2",
+    "RRC 546/2a",
+    "RRC 546/2b",
+    "RRC 546/2c",
+    "RRC 546/2d",
+    "RRC 546/3",
+    "RRC 546/3a",
+    "RRC 546/3b",
+    "RRC 546/3c",
+    "RRC 546/4",
+    "RRC 546/5",
+    "RRC 546/6",
+    "RRC 546/7",
+    "RRC 546/8"
+  ],
+  "outcomes": [
+    {
+      "unit": "chr:entity:antony-legion-8",
+      "types": [
+        "RRC 546/1"
+      ],
+      "outcome": "valid",
+      "stored": true,
+      "reasons": []
+    }
+  ],
+  "applied": false
+}

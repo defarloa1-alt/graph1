@@ -18,7 +18,7 @@ types, although the design for them was decided on 2026-10-13 (registry v9:
 kind Type, `instanceOf`, `partOf` between Types with a quantity) and never
 filled.
 
-Prompted by a chat draft (chats/Roman Military Subgraph Schema Draft.md, an
+Prompted by a chat draft (chats/archive/Roman Military Subgraph Schema Draft.md, an
 agent that did not know the schema). Its content is taken; its labels are not.
 
 ## 2. Curator decisions (2026-11-15)
@@ -128,3 +128,15 @@ line of evidence. Its known faults are the reason for both rules: periods mixed
 4. The first consistency checks (41 §3.4) over people, the Years, and these
    Types.
 5. Then the lens run (41 phase 1), ancient sources first.
+
+Open, from the chat draft (added 2026-11-20; the chat is archived in
+`chats/archive/`):
+
+- **The worked example.** The two sides at Actium as Groups carrying rival
+  `hadStrength` claims, Plutarch's and Dio's figures side by side, as the first
+  test of the frame. The lens run's first job, or a small pilot before it. On
+  2026-11-20 no claim used `hadStrength`, `captured`, `surrenderedTo`, or
+  `defectedTo` yet.
+- **Allied and client forces.** Egyptian, client-king, and allied contingents
+  were organised differently from legions, and likely need unit Types of their
+  own rather than the legion model. Not yet decided.

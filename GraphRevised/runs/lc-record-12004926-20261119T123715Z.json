@@ -1,0 +1,40 @@
+{
+  "lccn": "12004926",
+  "work": "chr:entity:hale-famous-sea-fights",
+  "version": "lc-record-v1",
+  "applied": false,
+  "createdAt": "2026-11-19T12:37:15.413452+00:00",
+  "outcomes": [
+    {
+      "for": "authorOf",
+      "subject": "chr:entity:john-richard-hale",
+      "predicate": "authorOf",
+      "outcome": "valid",
+      "stored": true,
+      "reasons": []
+    }
+  ],
+  "forCurator": [
+    {
+      "identity candidate": "chr:entity:john-richard-hale",
+      "LCNAF": {
+        "system": "LCNAF",
+        "identifier": "no2010057455",
+        "label": "Hale, John Richard",
+        "uri": "http://id.loc.gov/authorities/names/no2010057455"
+      },
+      "why": "the author's LC name record; linking it is the curator's"
+    },
+    {
+      "heading": "Naval battles",
+      "resolves to": {
+        "system": "LCSH",
+        "identifier": "sh85090368",
+        "label": "Naval battles",
+        "uri": "http://id.loc.gov/authorities/subjects/sh85090368"
+      },
+      "holders": [],
+      "why": "no Entity holds this record"
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "lccn": "84023590",
+  "work": "chr:entity:broughton-magistrates-of-the-roman-republic",
+  "version": "lc-record-v1",
+  "applied": true,
+  "createdAt": "2026-11-19T12:53:14.386385+00:00",
+  "outcomes": [
+    {
+      "for": "authorOf",
+      "subject": "chr:entity:proposed-person-t-robert-s-broughton",
+      "predicate": "authorOf",
+      "outcome": "valid",
+      "stored": true,
+      "reasons": []
+    },
+    {
+      "for": "Rome--History--Republic, 510-30 B.C.",
+      "subject": "chr:entity:roman-republic",
+      "predicate": "describedBy",
+      "outcome": "duplicate",
+      "stored": false,
+      "reasons": [
+        "this evidence for chr:assertion:roman-republic:described-by:broughton-magistrates-of-the-roman-republic is already proposed and awaiting review"
+      ]
+    }
+  ],
+  "forCurator": [
+    {
+      "heading": "Magistrates, Roman",
+      "resolves to": {
+        "system": "LCSH",
+        "identifier": "sh85079637",
+        "label": "Magistrates, Roman",
+        "uri": "http://id.loc.gov/authorities/subjects/sh85079637"
+      },
+      "holders": [],
+      "why": "no Entity holds this record"
+    },
+    {
+      "heading": "Rome--Officials and employees",
+      "resolves to": {
+        "system": "LCSH",
+        "identifier": "sh85115176",
+        "label": "Rome--Officials and employees",
+        "uri": "http://id.loc.gov/authorities/subjects/sh85115176"
+      },
+      "holders": [],
+      "why": "no Entity holds this record"
+    }
+  ]
+}

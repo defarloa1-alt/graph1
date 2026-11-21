@@ -312,3 +312,57 @@ question is not paid for twice.
   legacy registry, or a fixed list.
 - **Lens notes.** Whether users see them, as "our reading" on the card.
 - **Budgets.** Per specialist, per scope, and per run.
+
+From the facets-and-lenses chat (about 2026-10-21, archived 2026-11-20 in
+`chats/archive/facetslenses.md`), put to the curator then and not yet decided:
+
+- **Actor intent (IGAR: input, goal, action, result).** The legacy design's
+  first motivation, and the spine of the curator's Gracchus narrative. Proposed:
+  intent as attributed interpretive claims (goal, motive, input, each "according
+  to" a source), never our own statement. 25 has motives parked (`sought`,
+  `influenced`, §6); 44's Questions and Positions cover a debated aim (Antony at
+  Actium) but not intent as a claim type.
+- **Growing the registry family by family.** Registry v20 has 51 predicates; the
+  legacy registry had 603 in 45 families, almost none with data. Missing families
+  the lens run and the Gracchus narrative ask for: patron and client, mentor and
+  teacher, `amicitia` and `inimicitia`, legal acts (charged, convicted,
+  proscribed, declared *hostis*), diplomatic acts (envoys, *deditio*), honours,
+  exile and flight, priesthoods. Acts become Events with roles (D-138); states
+  become predicates. Legacy assets to mine: the "reify as event" list with CIDOC
+  classes and roles, the role-qualifier registry (about 527 lines), and per-type
+  rules for which relationships need dates. Its Wikidata mappings must be
+  re-verified (some are plainly wrong). "Implemented" means it has data.
+- **Kinds the lenses asked for:** Deity, Festival or Ritual, and Law (the *lex
+  Sempronia agraria* is the centre of Tiberius Gracchus's life). None exists.
+- **Theory domain.** Legacy grounded each facet in history and in theory that
+  holds across eras (envelopment as a tactic). Proposed then: an optional theory
+  layer in a grounding pack, with claims still pointing at historical entities.
+  No decision either way is recorded.
+- **The Actian campaign as its own event.** The road to war, blockade,
+  attrition, and surrender are folded into the battle (the general lens's
+  finding). The phases cover part of it; no campaign Event exists.
+- **The Gracchus test.** Proposed then as the end-to-end test Actium could not
+  give: harvest, Plutarch's *Tiberius Gracchus*, the lenses, intent. The late
+  Republic (41 §1) starts in 133 BC, so it is the natural first slice after
+  Actium.
+
+From the seeding-approach chat (2026-11-13, archived 2026-11-20 in
+`chats/Approach.md`), agreed there by the curator and not yet built. Neither is
+in `curation/lenses.json` (which holds purpose, questions, predicates and
+relevance), the dossier (§3), or the reader's prompt:
+
+- **Each lens states its boundary:** what it does not cover, and which lens
+  takes it instead (supply and ship-building go to technological or economic,
+  not military; a commander's reasons are a reported motive, not a military
+  fact). Without it two lenses tag the same fact for different reasons, or each
+  leaves it to the other.
+- **"Nothing attested" is a valid result.** A lens with no evidence for a
+  question records that, and never fills it: no "economic significance of the
+  battle" written from general knowledge. The empty answer is coverage
+  information (41 §4), and the gap points to the next source to read.
+- **A contradiction between an event and the structure is flagged, not
+  resolved.** When a claim drawn from an event conflicts with a structural
+  claim of its period (a Type's dated claims, such as a legion's nominal
+  strength in 31 BC, 43), both go to review and neither overrides the other.
+  It is often where the history is, or where one of them is wrong. Belongs with
+  the consistency checks (41 §3.4).

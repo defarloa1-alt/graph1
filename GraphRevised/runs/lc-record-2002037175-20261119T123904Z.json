@@ -1,0 +1,56 @@
+{
+  "lccn": "2002037175",
+  "work": "chr:entity:roller-world-of-juba-ii-and-kleopatra-selene",
+  "version": "lc-record-v1",
+  "applied": false,
+  "createdAt": "2026-11-19T12:39:04.653216+00:00",
+  "outcomes": [
+    {
+      "for": "Juba II, King of Mauretania, approximately 50 B.C.-approximately 24 A.D.",
+      "subject": "chr:entity:juba-ii",
+      "predicate": "describedBy",
+      "outcome": "valid",
+      "stored": true,
+      "reasons": []
+    },
+    {
+      "for": "Cleopatra, Queen, consort of Juba II, King of Mauretania, 40 B.C.-",
+      "subject": "chr:entity:cleopatra-selene-ii",
+      "predicate": "describedBy",
+      "outcome": "valid",
+      "stored": true,
+      "reasons": []
+    }
+  ],
+  "forCurator": [
+    {
+      "author heading": "Roller, Duane W.",
+      "resolves to": {
+        "system": "LCNAF",
+        "identifier": "nr89016976",
+        "label": "Roller, Duane W.",
+        "uri": "http://id.loc.gov/authorities/names/nr89016976"
+      },
+      "local persons": [],
+      "why": "not exactly one Person"
+    },
+    {
+      "heading": "Juba II, King of Mauretania, approximately 50 B.C.-approximately 24 A.D.--Knowledge and learning",
+      "resolves to": null,
+      "holders": [],
+      "why": "LC has no record of exactly this heading"
+    },
+    {
+      "heading": "Mauretania (Kingdom)--Civilization",
+      "resolves to": null,
+      "holders": [],
+      "why": "LC has no record of exactly this heading"
+    },
+    {
+      "heading": "Mauretania (Kingdom)--Kings and rulers--Biography",
+      "resolves to": null,
+      "holders": [],
+      "why": "LC has no record of exactly this heading"
+    }
+  ]
+}
