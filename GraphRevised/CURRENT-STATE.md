@@ -399,9 +399,10 @@ The README's review of 2026-11-13, item 3 (close the unfinished items):
   those that do not (mostly the other sections of a cited range). Accepting a check rejects its
   "does not say it" links (kept as history) and marks partial ones; rejecting it changes nothing.
   Eight claims are stated only in part, among them Arruntius commanding Octavian's centre (Plutarch
-  names him but not his command) and Sosius launching the first attack. Read them with
-  `python -m GraphRevised.proposals.rests_on_check list`; decide with `... decide <id> accept|reject
-  --by "<name>"`. Not yet in the review desk.
+  names him but not his command) and Sosius launching the first attack. **In the review desk**
+  (2026-11-21), tab "Footnote checks": claims no passage fully states are listed first, then each
+  passage under its verdict with the words relied on. The command line still works:
+  `python -m GraphRevised.proposals.rests_on_check list`, `... decide <id> accept|reject --by "<name>"`.
 - **In the review desk:** the 442 phase placements on the Battle of Actium. (The 24
   coin units were accepted 2026-11-18 on the curator's instruction; legion 12's RRC 544/9
   evidence link had lost its time quotation in migration 013 and was repaired from the
@@ -552,12 +553,24 @@ the failures: a stopped Neo4j looked like 92 failures on 2026-11-15.
 *Next:*
 1. **The curator decides the 22 checks** (§5), one by one or as a batch instruction; each accept
    rebuilds the fact layer. Then check that attestation on those facts reads as expected.
-2. **The checks in the review desk**, so they need no command line (not built).
+2. ~~The checks in the review desk~~ **done 2026-11-21**: tab "Footnote checks"
+   (`review_desk/app.py`: `checks`, `check_detail`, `render_check`, `decide_check`, which calls
+   `rests_on_check.decide`); the model's P1..Pn tags are shown as the passages' references.
 3. **Same-event matching and disputes (47 §3.3):** a reasoning pass per phase that proposes
    `depictsSameAs` and flags disputes. Paid: needs the curator's authorization for scope,
    provider and budget before any run.
-4. Small: the spend ledger names a run after `sys.argv[0]`, so calls started with `python -c`
-   are logged as run "-c"; pass a run name to `anthropic_client`.
+4. ~~Run names in the spend ledger~~ **done 2026-11-21**: `anthropic_client(run=...)`, else
+   `CHRYSTALLUM_RUN`, else the script's name; a bare `python -c` is filed as "unnamed", not "-c"
+   (`spend_meter.run_name`).
+5. **The person-expert (D-170):** the Lives reader, from the Perplexity design in
+   `chats/Person-Expert Agent  Recommended Best Practice.md` with the review's changes. First build,
+   no model cost: (a) the rests-on check takes any harvester's links, not only Wikipedia's; (b)
+   registry v21 (`adoptedBy` with its form as a role; `heldPosition` role and context; `hadStatus`
+   if wanted); (c) the person inquiry format and the dossier; (d) the DPRR office seed, by rule
+   only where the person's DPRR crosswalk is accepted and no identity Question is open. Then open
+   the `lives` budget ($25, not yet in `curation/budgets.json`) and measure one small and one
+   large life. To verify before the design leaves `chats/`: its arXiv and ACM citations, the RE
+   example (Domitius 65, Q95598037), and whether the DPRR switch exists in code.
 
 **Earlier handoff (2026-11-19, late; D-167).**
 

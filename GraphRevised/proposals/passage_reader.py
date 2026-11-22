@@ -571,8 +571,9 @@ def load_inquiries(path: Path, tx: Any, *, briefs: Path | None = BRIEFS_DIRECTOR
     ]
 
 
-def anthropic_client():
+def anthropic_client(run: str | None = None):
     """A metered client: use ANTHROPIC_API_KEY from the environment, else only that key from .env.
+    `run` names the run in the spend ledger (else CHRYSTALLUM_RUN, else the script's name).
 
     The rest of .env is deliberately not loaded: it holds legacy Neo4j
     settings that must not redirect the clean-start database connection.
@@ -580,7 +581,7 @@ def anthropic_client():
     with no budget named, this refuses before any client is made.
     """
     from GraphRevised.spend_meter import Meter, MeteredClient
-    meter = Meter.from_environment()
+    meter = Meter.from_environment(run)
     key = os.environ.get("ANTHROPIC_API_KEY") or dotenv_values(GRAPH_REVISED.parent / ".env").get("ANTHROPIC_API_KEY")
     return MeteredClient(anthropic.Anthropic(api_key=key) if key else anthropic.Anthropic(), meter)
 

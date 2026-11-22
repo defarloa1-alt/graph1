@@ -8,7 +8,8 @@ reported usage and appends one line to the ledger.
 
 A model call needs a named budget: set CHRYSTALLUM_BUDGET to a name in
 curation/budgets.json (the curator's). With no budget named, or a model with no
-known price, no call is made.
+known price, no call is made. Each ledger line names its run: the name passed to
+`anthropic_client(run=...)`, else CHRYSTALLUM_RUN, else the script's name.
 
     python -m GraphRevised.spend_meter            # spend by budget, run and model
     python -m GraphRevised.spend_meter --budget actium
@@ -34,6 +35,7 @@ ROOT = Path(__file__).resolve().parent
 BUDGETS = ROOT / "curation" / "budgets.json"
 LEDGER = ROOT / "runs" / "spend-ledger.jsonl"
 ENV = "CHRYSTALLUM_BUDGET"
+RUN_ENV = "CHRYSTALLUM_RUN"  # optional: names the run in the ledger (else the script's name)
 
 # (input, output, cache read or None for 0.1x input)
 PRICES: dict[str, tuple[str, str, str | None]] = {
@@ -112,6 +114,18 @@ def spent(budget: str, path: Path = LEDGER) -> Decimal:
     return sum((Decimal(e["costUSD"]) for e in read_ledger(path) if e.get("budget") == budget), Decimal(0))
 
 
+def run_name(run: str | None = None, argv0: str | None = None) -> str:
+    """The run a ledger line is filed under: the caller's name, else CHRYSTALLUM_RUN, else the script's
+    name. `python -c` and the interactive prompt have no script, so they are filed as "unnamed"
+    rather than "-c"."""
+    if run:
+        return run
+    if os.environ.get(RUN_ENV):
+        return os.environ[RUN_ENV]
+    stem = Path(sys.argv[0] if argv0 is None else argv0).stem
+    return stem if stem and stem != "-c" else "unnamed"
+
+
 class Meter:
     """One budget, its cap, and the ledger it writes to."""
 
@@ -131,7 +145,7 @@ class Meter:
             raise BudgetRefused(f"Budget {name!r} is not in {budgets.name}.")
         if entry.get("closed"):
             raise BudgetRefused(f"Budget {name!r} is closed.")
-        return cls(name, Decimal(str(entry["capUSD"])), run or Path(sys.argv[0]).stem or "python", ledger)
+        return cls(name, Decimal(str(entry["capUSD"])), run_name(run), ledger)
 
     def reserve(self, request: dict[str, Any]) -> Decimal:
         top = ceiling(request["model"], request)

@@ -91,5 +91,93 @@ class ReviewDeskLiveTests(unittest.TestCase):
             decide(self.tx, self.part.proposal_id, "reject", by="test-curator", basis="test", reason="nope")
 
 
+@unittest.skipUnless(os.environ.get("NEO4J_PASSWORD"), "NEO4J_PASSWORD not set")
+class FootnoteCheckTabTests(unittest.TestCase):
+    """The Footnote checks tab reads a stored check and decides it as the command line does."""
+
+    @classmethod
+    def setUpClass(cls):
+        from neo4j import GraphDatabase
+
+        cls.operations = load_operations()
+        cls.driver = GraphDatabase.driver(localdb.uri(), auth=localdb.auth(), notifications_min_severity="OFF")
+        cls.session = cls.driver.session(database=localdb.database())
+
+    @classmethod
+    def tearDownClass(cls):
+        cls.session.close()
+        cls.driver.close()
+
+    def setUp(self):
+        from GraphRevised.proposals.rests_on_check import (HARVEST, ClaimCheck, PassageVerdict, checked, proposal_for,
+                                                           store)
+        from GraphRevised.proposals import rests_on_check
+
+        self.tx = self.session.begin_transaction()
+        self.addCleanup(self.tx.rollback)
+        claim, p1, p2 = "chr:assertion:test-desk-check", "chr:observation:test-desk-check-1", "chr:observation:test-desk-check-2"
+        self.claim, self.p1, self.p2 = claim, p1, p2
+        for id_, label in (("chr:entity:test-desk-check-work", "Test Life"), ("chr:entity:test-desk-check-wiki", "Test wiki")):
+            run_write(self.tx, self.operations, "upsert_entity", {"id": id_, "kind": "Work", "label": label,
+                                                                  "description": None, "status": "proposed",
+                                                                  "shortLabel": None})
+        self.tx.run("""MATCH (w:Entity {id: 'chr:entity:test-desk-check-work'}), (s:Entity {id: 'chr:entity:test-desk-check-wiki'})
+                       CREATE (a:Assertion {id: $claim, predicate: 'commanded', label: 'Test desk check claim',
+                               status: 'proposed', category: 'factual', assertedBy: 'test'})-[:ATTRIBUTED_TO]->(s)
+                       WITH a, w
+                       UNWIND [[$p1, 'Desk 65.2', 'Then Caesar posted Agrippa on the left.'],
+                               [$p2, 'Desk 65.3', 'The ships were heavy and slow.']] AS p
+                       CREATE (o:SourceObservation {id: p[0], label: p[1], shortLabel: p[1], status: 'observed',
+                               sourceSystem: 'test', retrievedAt: '2026-11-21T00:00:00Z', contentHash: 'x',
+                               passageText: p[2]})-[:IN_WORK]->(w)
+                       CREATE (a)-[:RESTS_ON {status: 'accepted', createdBy: $by, createdAt: '2026-11-21T00:00:00Z',
+                               citation: 'Desk 65', quotation: 'Agrippa, commanding the left wing'}]->(o)""",
+                    claim=claim, p1=p1, p2=p2, by=HARVEST)
+        row = rests_on_check.claims(self.tx, claim)[0]
+        out = ClaimCheck(passages=[PassageVerdict(passage="P1", verdict="states", words="Caesar posted Agrippa on the left",
+                                                  reason="It says so."),
+                                   PassageVerdict(passage="P2", verdict="absent", reason="It is about ships.")],
+                         together="states", reason="P1 states it; P2 is about the ships.")
+        rows, _ = checked(out, row)
+        self.proposal_id = store(self.tx, self.operations, proposal_for(
+            row, rows, out, model_id="m", at="2026-11-21T00:00:00Z", registry_version="v20"))["id"]
+
+    def link_status(self, observation):
+        return self.tx.run("MATCH (:Assertion {id: $c})-[l:RESTS_ON]->(:SourceObservation {id: $o}) RETURN l.status AS s",
+                           c=self.claim, o=observation).single()["s"]
+
+    def test_lists_and_shows_a_check_by_verdict(self):
+        from GraphRevised.review_desk.app import check_detail, check_table, checks, render_check
+
+        listed = [r for r in checks(self.tx) if r["id"] == self.proposal_id]
+        self.assertEqual([(r["states"], r["partly"], r["absent"]) for r in listed], [(1, 0, 1)])
+        self.assertEqual(check_table(listed)[0][1:], ["Test desk check claim", 1, 0, 1, "submitted"])
+        shown = render_check(check_detail(self.tx, self.proposal_id))
+        self.assertLess(shown.index("**States the claim** (1)"), shown.index("**Does not say it** (1)"))
+        self.assertIn("“Caesar posted Agrippa on the left”", shown)
+        self.assertIn("> Taken together, the cited passages: states. Desk 65.2 states it; Desk 65.3 is about the ships.\n", shown)
+        self.assertIn("1 link(s) rejected (kept as history)", shown)
+        self.assertIn("footnote cites **Desk 65**", shown)
+
+    def test_accept_applies_the_verdicts_and_reject_needs_a_reason(self):
+        from GraphRevised.review_desk.app import check_detail, decide_check, render_check
+
+        with self.assertRaises(ReviewError):
+            decide_check(self.tx, self.proposal_id, "accept", by="", basis="test")
+        with self.assertRaises(ReviewError):
+            decide_check(self.tx, self.proposal_id, "reject", by="test-curator", basis="test", reason="nope")
+        row = decide_check(self.tx, self.proposal_id, "accept", by="test-curator", basis="test")
+        self.assertEqual((row["status"], row["applied"]), ("accepted", 1))
+        self.assertEqual((self.link_status(self.p1), self.link_status(self.p2)), ("accepted", "rejected"))
+        self.assertIn("**Decided:** accepted by test-curator", render_check(check_detail(self.tx, self.proposal_id)))
+
+    def test_reject_leaves_every_link(self):
+        from GraphRevised.review_desk.app import decide_check
+
+        row = decide_check(self.tx, self.proposal_id, "reject", by="test-curator", basis="test", reason="false")
+        self.assertEqual((row["status"], row["applied"]), ("rejected", 0))
+        self.assertEqual((self.link_status(self.p1), self.link_status(self.p2)), ("accepted", "accepted"))
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -123,6 +123,20 @@ class SpendMeterTests(unittest.TestCase):
                     with self.assertRaises(BudgetRefused):
                         Meter.from_environment("unit", self.budgets, self.ledger)
 
+    def test_the_run_is_named_by_the_caller_the_environment_or_the_script(self):
+        from GraphRevised.spend_meter import RUN_ENV, run_name
+        with mock.patch.dict(os.environ, {}, clear=False):
+            os.environ.pop(RUN_ENV, None)
+            self.assertEqual(run_name("lange-read", "-c"), "lange-read")
+            self.assertEqual(run_name(None, "C:/x/rests_on_check.py"), "rests_on_check")
+            self.assertEqual(run_name(None, "-c"), "unnamed")
+            self.assertEqual(run_name(None, ""), "unnamed")
+            os.environ[RUN_ENV] = "adhoc-probe"
+            os.environ[ENV] = "test"
+            self.assertEqual(run_name(None, "-c"), "adhoc-probe")
+            self.assertEqual(Meter.from_environment(None, self.budgets, self.ledger).run, "adhoc-probe")
+            self.assertEqual(Meter.from_environment("named", self.budgets, self.ledger).run, "named")
+
     def test_client_factory_refuses_without_a_budget(self):
         from GraphRevised.proposals.passage_reader import anthropic_client
         with mock.patch.dict(os.environ, {}, clear=False):

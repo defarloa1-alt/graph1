@@ -15,6 +15,13 @@ A local Gradio page on http://127.0.0.1:7860, against the local Neo4j only:
 4. Go to the claim's other entity, or to the next part of the entity that
    still has open proposals.
 
+A second tab, **Footnote checks** (D-169, 2026-11-21), lists the rests-on checks
+(`proposals/rests_on_check.py`): for each claim, the model's reading of every
+passage its Wikipedia footnote was linked to, grouped as states it, in part, or
+does not say it, with the words it relied on (verified verbatim by code). Accept
+applies the verdicts to the links and rebuilds the fact layer; reject changes no
+link. Both run `rests_on_check.decide`, as the command line does.
+
 Reads NEO4J_PASSWORD (and optional NEO4J_URI, NEO4J_USERNAME, NEO4J_DATABASE).
 """
 
@@ -22,6 +29,7 @@ from __future__ import annotations
 
 import argparse
 import os
+import re
 from datetime import datetime, timezone
 from typing import Any
 
@@ -99,6 +107,35 @@ ORDER BY part.label
 """
 
 
+CHECKS = """
+MATCH (p:Proposal {operation: 'checkRestsOn'})-[:CHECKS_CLAIM]->(a:Assertion)
+WHERE $status IS NULL OR p.status = $status
+RETURN p.id AS id, p.status AS status, p.checkVerdict AS verdict, a.label AS claim,
+       COUNT { (p)-[c:CHECKS_PASSAGE]->() WHERE c.verdict = 'states' } AS states,
+       COUNT { (p)-[c:CHECKS_PASSAGE]->() WHERE c.verdict = 'partly' } AS partly,
+       COUNT { (p)-[c:CHECKS_PASSAGE]->() WHERE c.verdict = 'absent' } AS absent
+ORDER BY states = 0 DESC, claim
+"""
+
+CHECK = """
+MATCH (p:Proposal {id: $id, operation: 'checkRestsOn'})-[:CHECKS_CLAIM]->(a:Assertion)
+RETURN p.id AS id, p.status AS status, p.checkVerdict AS verdict, p.rationale AS rationale,
+       p.modelId AS model, p.promptVersion AS promptVersion, p.createdAt AS createdAt,
+       p.decidedBy AS decidedBy, p.decidedAt AS decidedAt, p.decisionBasis AS basis, p.decisionReason AS reason,
+       a.id AS claimId, a.label AS claim, a.status AS claimStatus,
+       COLLECT { MATCH (p)-[c:CHECKS_PASSAGE]->(o:SourceObservation)<-[l:RESTS_ON]-(a)
+                 OPTIONAL MATCH (o)-[:IN_WORK]->(w:Entity)
+                 RETURN {ref: coalesce(o.shortLabel, o.id), href: o.locator, work: w.label, passage: o.passageText,
+                         verdict: c.verdict, words: c.words, reason: c.reason, verified: c.verified,
+                         citation: l.citation, quotation: l.quotation, linkStatus: coalesce(l.status, 'accepted'),
+                         support: l.support} } AS passages
+"""
+
+CHECK_HEADERS = ["#", "claim", "state it", "in part", "do not", "status"]
+VERDICT_ORDER = {"states": 0, "partly": 1, "absent": 2}
+VERDICT_WORDS = {"states": "States the claim", "partly": "States it in part", "absent": "Does not say it"}
+
+
 def find(tx: Any, text: str) -> list[dict[str, Any]]:
     return tx.run(FIND, text=text.strip()).data() if text.strip() else []
 
@@ -152,6 +189,36 @@ def decide(tx: Any, proposal_id: str, action: str, *, by: str, basis: str, reaso
     else:
         raise ReviewError(f"unknown action {action!r}")
     return decided, rebuild(tx)
+
+
+def checks(tx: Any, status: str | None = "submitted") -> list[dict[str, Any]]:
+    """The footnote checks (D-169), open ones by default: claims no cited passage states first."""
+    return tx.run(CHECKS, status=status).data()
+
+
+def check_detail(tx: Any, proposal_id: str) -> dict[str, Any] | None:
+    record = tx.run(CHECK, id=proposal_id).single()
+    if not record:
+        return None
+    info = record.data()
+    from GraphRevised.proposals.rests_on_check import _order
+    info["passages"].sort(key=lambda p: (VERDICT_ORDER.get(p["verdict"], 3), _order(p["ref"])))
+    return info
+
+
+def decide_check(tx: Any, proposal_id: str, action: str, *, by: str, basis: str,
+                 reason: str | None = None) -> dict[str, Any]:
+    """Accept (the verdicts apply to the links) or reject a footnote check; the fact layer is rebuilt."""
+    from GraphRevised.proposals.rests_on_check import decide as decide_rests_on
+
+    if not by.strip() or not basis.strip():
+        raise ReviewError("a decision needs who decided and why")
+    if action not in ("accept", "reject"):
+        raise ReviewError(f"unknown action {action!r}")
+    at = datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
+    return decide_rests_on(tx, load_operations(), proposal_id, "accepted" if action == "accept" else "rejected",
+                           decided_by=by, decision_basis=basis, decided_at=at,
+                           reason=reason if action == "reject" else None)
 
 
 # --- rendering -------------------------------------------------------------------------------------------
@@ -219,6 +286,69 @@ def render_detail(info: dict[str, Any] | None) -> str:
     return "\n".join(lines)
 
 
+def render_check(info: dict[str, Any] | None) -> str:
+    """The model's reading first (what to check), then each passage by verdict with the words it relied
+    on, then what accepting would change. Rejecting changes no link."""
+    if not info:
+        return "*Pick a check in the table.*"
+    # The rationale is "<preamble> Taken together, <overall reason> <first passage line> | <next> | ...".
+    summary = (info.get("rationale") or "").split(" | ")[0]
+    summary = summary.split("Taken together, ", 1)[-1] if "Taken together, " in summary else summary
+    cuts = [summary.find(f" {p['ref']}: ") for p in info["passages"]]
+    summary = summary[:min(c for c in cuts if c >= 0)] if any(c >= 0 for c in cuts) else summary
+    # The model saw the passages tagged P1..Pn in reference order (rests_on_check.check_request).
+    from GraphRevised.proposals.rests_on_check import _order
+    tags = {f"P{n}": ref for n, ref in enumerate(sorted((p["ref"] for p in info["passages"]), key=_order), 1)}
+    summary = re.sub(r"\bP\d+\b", lambda m: tags.get(m.group(0), m.group(0)), summary)
+    lines = [f"### {info['claim']}",
+             f"check {info['status']} · claim {info['claimStatus']} · {info.get('verdict') or ''}",
+             "", "**What to check: the model's reading of each cited passage**",
+             f"> Taken together, {summary}" if summary else "> *(no overall reason given)*",
+             f"<sub>{info.get('model') or '?'} · prompt {info.get('promptVersion') or '?'} · "
+             f"{(info.get('createdAt') or '')[:10]}</sub>"]
+    quotation = next((p["quotation"] for p in info["passages"] if p.get("quotation")), None)
+    citation = next((p["citation"] for p in info["passages"] if p.get("citation")), None)
+    if quotation or citation:
+        lines += ["", f"*The modern words the claim was drawn from:* “{quotation or '?'}”"
+                  + (f" · footnote cites **{citation}**" if citation else "")]
+    for verdict in ("states", "partly", "absent"):
+        group = [p for p in info["passages"] if p["verdict"] == verdict]
+        if not group:
+            continue
+        lines += ["", f"**{VERDICT_WORDS[verdict]}** ({len(group)})"]
+        for p in group:
+            url = passage_url(p.get("href"))
+            where = f"[{p['ref']}]({url})" if url else p["ref"]
+            words = ""
+            if p.get("words"):
+                words = f": “{p['words']}”" + ("" if p.get("verified") else " **[words not found verbatim]**")
+            state = "" if p["linkStatus"] == "accepted" and not p.get("support") else \
+                f" *(link {p['linkStatus']}{', ' + p['support'] if p.get('support') else ''})*"
+            lines.append(f"- **{where}**{words}{state} — {p.get('reason') or ''}")
+            if p.get("passage"):
+                passage = " ".join(p["passage"].split())
+                lines.append(f"  <details><summary>passage</summary>\n\n  {passage[:1500]}"
+                             f"{'…' if len(passage) > 1500 else ''}\n\n  </details>")
+    if info["status"] == "submitted":
+        absent = sum(p["verdict"] == "absent" for p in info["passages"])
+        partly = sum(p["verdict"] == "partly" for p in info["passages"])
+        lines += ["", "**If you accept:** "
+                  + ", ".join(x for x in (f"{absent} link(s) rejected (kept as history)" if absent else "",
+                                          f"{partly} marked partial" if partly else "") if x)
+                  + ("" if absent or partly else "no link changes")
+                  + "; the fact layer is rebuilt. **If you reject:** every link stays as it is."]
+    else:
+        lines += ["", f"**Decided:** {info['status']} by {info.get('decidedBy') or '?'} "
+                  f"{(info.get('decidedAt') or '')[:10]}" + (f" ({info['reason']})" if info.get("reason") else "")
+                  + (f": {info['basis']}" if info.get("basis") else "")]
+    lines.append(f"<sub>`{info['id']}`</sub>")
+    return "\n".join(lines)
+
+
+def check_table(rows: list[dict[str, Any]]) -> list[list[Any]]:
+    return [[i + 1, r["claim"], r["states"], r["partly"], r["absent"], r["status"]] for i, r in enumerate(rows)]
+
+
 def table(rows: list[dict[str, Any]]) -> list[list[Any]]:
     return [[i + 1, r["relation"], r["other"], r["status"], r["accordingTo"], r["time"] or "", len(r["open"]) or ""]
             for i, r in enumerate(rows)]
@@ -284,32 +414,77 @@ def build(driver: Any, database: str, start: str | None, by: str):
         what = "accepted" if action == "accept" else "rejected" + (" with its claim" if reject_claim else "")
         return (f"**{what}** `{proposal_id}` · fact layer rebuilt ({counts['factEdges']} edges)", *load(entity_id))
 
+    def load_checks(status: str):
+        rows = read(checks, None if status == "all" else status)
+        return rows, check_table(rows), None, "*Pick a check in the table.*"
+
+    def pick_check(rows: list[dict[str, Any]], evt: gr.SelectData):
+        row = rows[evt.index[0]] if rows and evt.index is not None else None
+        if not row:
+            return None, "*Pick a check in the table.*"
+        return row["id"], render_check(read(check_detail, row["id"]))
+
+    def run_check_decision(proposal_id, action, reason, who, basis, status):
+        if not proposal_id:
+            return "**Pick a check first.**", *load_checks(status)
+        try:
+            with driver.session(database=database) as session:
+                row = session.execute_write(
+                    lambda tx: decide_check(tx, proposal_id, action, by=who, basis=basis, reason=reason))
+        except Exception as error:  # shown on the page; nothing was written
+            return f"**Not recorded:** {error}", *load_checks(status)
+        rows, grid_rows, _, _ = load_checks(status)
+        return (f"**{row['status']}** `{row['id']}` · {row['applied']} link(s) changed · fact layer rebuilt",
+                rows, grid_rows, proposal_id, render_check(read(check_detail, proposal_id)))
+
     with gr.Blocks(title="Review Desk") as page:
         current = gr.State(None)
         rows_state = gr.State([])
         row_state = gr.State(None)
         gr.Markdown("## Review desk\nLocal Neo4j. Decisions run the same checks as the review CLI and rebuild the fact layer.")
-        with gr.Row():
-            query = gr.Textbox(label="Find an entity", placeholder="name or id", scale=3)
-            results = gr.Dropdown(label="Matches", choices=[], scale=4)
-        with gr.Row():
-            with gr.Column(scale=5):
-                summary = gr.Markdown()
-                with gr.Row():
-                    part_pick = gr.Dropdown(label="Parts (open proposals)", choices=[], scale=4)
-                    next_btn = gr.Button("Next part with open proposals", scale=2)
-                grid = gr.Dataframe(headers=HEADERS, interactive=False, wrap=True)
-            with gr.Column(scale=4):
-                claim = gr.Markdown("*Pick a claim in the table.*")
-                other_btn = gr.Button("Go to the other end")
-                proposal = gr.Dropdown(label="Open proposal to decide", choices=[])
-                action = gr.Radio(["accept", "reject"], value="accept", label="Decision")
-                reason = gr.Dropdown(list(REASON_CODES), value="unsupported", label="Reason (reject only)")
-                reject_claim = gr.Checkbox(label="Also reject the claim itself (reject only)")
-                who = gr.Textbox(value=by, label="Decided by")
-                basis = gr.Textbox(label="Why", lines=2)
-                decide_btn = gr.Button("Record decision", variant="primary")
-                outcome = gr.Markdown()
+        with gr.Tab("Claims"):
+            with gr.Row():
+                query = gr.Textbox(label="Find an entity", placeholder="name or id", scale=3)
+                results = gr.Dropdown(label="Matches", choices=[], scale=4)
+            with gr.Row():
+                with gr.Column(scale=5):
+                    summary = gr.Markdown()
+                    with gr.Row():
+                        part_pick = gr.Dropdown(label="Parts (open proposals)", choices=[], scale=4)
+                        next_btn = gr.Button("Next part with open proposals", scale=2)
+                    grid = gr.Dataframe(headers=HEADERS, interactive=False, wrap=True)
+                with gr.Column(scale=4):
+                    claim = gr.Markdown("*Pick a claim in the table.*")
+                    other_btn = gr.Button("Go to the other end")
+                    proposal = gr.Dropdown(label="Open proposal to decide", choices=[])
+                    action = gr.Radio(["accept", "reject"], value="accept", label="Decision")
+                    reason = gr.Dropdown(list(REASON_CODES), value="unsupported", label="Reason (reject only)")
+                    reject_claim = gr.Checkbox(label="Also reject the claim itself (reject only)")
+                    who = gr.Textbox(value=by, label="Decided by")
+                    basis = gr.Textbox(label="Why", lines=2)
+                    decide_btn = gr.Button("Record decision", variant="primary")
+                    outcome = gr.Markdown()
+
+        with gr.Tab("Footnote checks"):
+            gr.Markdown("A model read each claim beside every passage its Wikipedia footnote was linked to "
+                        "(D-169). Accepting a check applies its verdicts to the links; rejecting it changes none.")
+            check_rows = gr.State([])
+            check_id = gr.State(None)
+            with gr.Row():
+                check_status = gr.Radio(["submitted", "accepted", "rejected", "all"], value="submitted",
+                                        label="Show checks", scale=4)
+                refresh = gr.Button("Refresh", scale=1)
+            with gr.Row():
+                with gr.Column(scale=5):
+                    check_grid = gr.Dataframe(headers=CHECK_HEADERS, interactive=False, wrap=True)
+                with gr.Column(scale=5):
+                    check_view = gr.Markdown("*Pick a check in the table.*")
+                    check_action = gr.Radio(["accept", "reject"], value="accept", label="Decision")
+                    check_reason = gr.Dropdown(list(REASON_CODES), value="false", label="Reason (reject only)")
+                    check_who = gr.Textbox(value=by, label="Decided by")
+                    check_basis = gr.Textbox(label="Why", lines=2)
+                    check_btn = gr.Button("Record decision", variant="primary")
+                    check_outcome = gr.Markdown()
 
         loaded = [current, rows_state, summary, grid, part_pick, claim, row_state]
         query.submit(search, query, results)
@@ -322,6 +497,15 @@ def build(driver: Any, database: str, start: str | None, by: str):
                          [outcome, *loaded])
         if start:
             page.load(lambda: goto(start), None, results)
+
+        listed = [check_rows, check_grid, check_id, check_view]
+        check_status.change(load_checks, check_status, listed)
+        refresh.click(load_checks, check_status, listed)
+        check_grid.select(pick_check, check_rows, [check_id, check_view])
+        check_btn.click(run_check_decision,
+                        [check_id, check_action, check_reason, check_who, check_basis, check_status],
+                        [check_outcome, *listed])
+        page.load(load_checks, check_status, listed)
     return page
 
 

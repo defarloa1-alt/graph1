@@ -21,7 +21,7 @@ Checked 2026-11-21. Every command runs from `C:\Projects\Graph1` (the repo root)
 
 | UI | What it is for | Start it | Opens at |
 | --- | --- | --- | --- |
-| Review desk | Accept or reject claims, entity by entity | `python -m GraphRevised.review_desk.app --by "Your name"` | <http://127.0.0.1:7860> |
+| Review desk | Accept or reject claims, entity by entity; decide the footnote checks | `python -m GraphRevised.review_desk.app --by "Your name"` | <http://127.0.0.1:7860> |
 | Graph page (Cytoscape.js) | See the whole graph in a browser | `python -m GraphRevised.export.cytoscape`, then open the page | `GraphRevised\exports\graph.html` |
 | Wireframe | The greyscale explorer screen, on live data | export first, then `python GraphRevised/explorer/wireframes/build.py` | `GraphRevised\exports\wireframe.html` |
 | Cytoscape Desktop | Look and check, with tables and styles | export first, then `python GraphRevised/explorer/cytoscape_desktop.py --push` | Cytoscape 3.10.4 window |
@@ -42,6 +42,11 @@ python -m GraphRevised.review_desk.app --by "Your name" --entity chr:entity:<id>
 
 - Opens at <http://127.0.0.1:7860>. `--port` changes the port.
 - Decisions are signed with the `--by` name. An accept or a reject rebuilds the fact lines in the same step.
+- Two tabs. **Claims**: find an entity, pick a claim, decide its proposal. **Footnote checks**
+  (D-169): pick a claim's check to see how the model read each passage its footnote cited (states
+  it, in part, does not say it, with the words relied on). Accept applies those verdicts to the
+  links (a "does not say it" link is rejected and kept as history; "in part" is marked partial);
+  reject leaves every link as it is.
 - Stop it with Ctrl+C.
 
 ### Graph page in the browser *(needs password; read-only)*
