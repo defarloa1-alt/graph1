@@ -155,6 +155,10 @@ GraphRevised/phase-5-source/lc-*
 GraphRevised/explorer/images/commons/
 GraphRevised/explorer/images/images.json
 GraphRevised/explorer/images/images-review.json
+# the Wikipedia article gallery (same adapter) and generated illustrations (data, kept locally)
+GraphRevised/explorer/images/gallery.json
+GraphRevised/explorer/images/gallery-review.json
+GraphRevised/explorer/images/generated/
 GraphRevised/explorer/images/lenses/*.png
 
 # Old Aura credentials (instance deleted 2026-11-13); never track credential files

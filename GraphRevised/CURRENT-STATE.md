@@ -85,6 +85,31 @@ python -m pytest GraphRevised/tests -q   # 13 to 18 minutes; see §6 for the exp
   difference is depicted events, one set per source. The curator is reviewing
   whether this is intended (2026-11-13).
 
+## 3c. What changed on 2026-11-23: the order of battle, pictures, covers (D-172, D-173)
+
+A UI review session with the curator; the explorer work is in the wireframe
+(`explorer/wireframes/template.html`), which the curator named the view to build from.
+
+- **The order of battle** (Graph › Participants on a battle) is a tree under the battle:
+  a war-galley icon for each fleet, wing, centre and squadron; commanders as portraits on
+  the unit they commanded (one portrait per `commanded` fact; a click opens it); a click on
+  a side brings it forward; people with a side but no command sit under their side.
+  Canvas text 10.5px (`--fs-canvas`); the Key opens by itself on a group.
+- **Eurycles:** migration 033 filed `opposed` (Eurycles, Mark Antony) according to Plutarch
+  67.2, **proposed**, for the curator's review; it puts him on Octavian's side.
+- **Article pictures:** `adapters/commons_images.py` also reads the pictures of a Wikipedia
+  revision we hold (`ARTICLES`; Battle of Actium, oldid 1378178531), links each to the entity
+  its caption links (by QID), and writes `explorer/images/gallery.json`; a new class
+  `reconstruction`. The card shows them as "Pictures".
+- **D-172, Generalized Abstraction:** an uncited position on a map is not a fact.
+- **D-173, covers:** the Participants group's cover is its poster, the order of battle over
+  a generated backdrop (`explorer/images/generated/`, each with a provenance record: model,
+  full brief, facts it drew on, review state) with real images of the two leaders. Links:
+  `wireframe.html#poster`, `#participants`.
+- **Waiting for the curator:** the Eurycles claim; the two generated backdrops (review
+  "awaiting the curator"); names over time by reasoning (Octavian, not Augustus, in 31 BC),
+  a direction with no D-number yet.
+
 ## 3b. What changed later on 2026-11-16: historiography built (D-156)
 
 Doc 44 steps 1 to 4, from the curator's go-ahead; details in [44](44-HISTORIOGRAPHY-AND-DEBATES.md) §7.

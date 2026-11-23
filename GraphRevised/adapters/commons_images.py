@@ -16,7 +16,15 @@ outside version control, and the file is classed by rules a reader can check:
 - ``unclassed``: none of the rules applied.
 
 No new harvest: the QIDs and file names come from the preserved Wikidata
-records (phase-*-source). Images never go into Neo4j (D-096); this writes
+records (phase-*-source).
+
+**Article images** (curator, 2026-11-23). The pictures in a Wikipedia article we hold a fixed
+revision of (``ARTICLES``) are Commons files too. That revision's figures and infobox image are
+read with their captions (one cached parse); a figure is linked to the entity its caption links
+to, matched by Wikidata QID (the caption's links resolved through Wikipedia's page properties),
+else to the article's own entity. Each file then goes through the same Commons description,
+classes and licence as above. They are a gallery, written to ``explorer/images/gallery.json``
+(``gallery-review.json`` for the rest), and never replace an entity's own image. Images never go into Neo4j (D-096); this writes
 ``explorer/images/images.json`` and shrunken copies for the wireframe, both
 git-ignored. Graph records come later, through proposals.
 
@@ -40,6 +48,14 @@ EXPORT = ROOT / "exports" / "graph.cyjs"
 CACHE = ROOT / "cache" / "commons"
 IMAGES = ROOT / "explorer" / "images"
 API = "https://commons.wikimedia.org/w/api.php"
+WIKI_API = "https://en.wikipedia.org/w/api.php"
+WIKI_CACHE = ROOT / "cache" / "wikipedia"
+# The Wikipedia articles we hold a fixed revision of (their passages are in the graph), and the entity each is about.
+ARTICLES = [("Battle of Actium", 1378178531, "chr:entity:battle-of-actium")]
+# interface pictures, not content: locator maps, icons, logos, markers
+NOT_CONTENT = re.compile(r"(location[_ ]map|icon|logo|Symbol[_ ]|Red[_ ]pog|OOjs[_ ]UI|Codex[_ ])", re.I)
+FREE = re.compile(r"^(Public domain|PD\b|CC0|CC BY)", re.I)
+KIND_ORDER = ("Person", "Object", "Place", "Group", "Event", "Polity", "Work")
 THUMB_WIDTH = 320
 
 ANCIENT = re.compile(r"\b(bust|busts|portrait head|statue|statues|coin|coins|denarius|denarii|aureus|aurei|"
@@ -53,6 +69,7 @@ PLACE = re.compile(r"\b(view|panorama|aerial|landscape|photograph|beach|coast|ha
 MAP = re.compile(r"\b(map|maps|campaigns?|plan of|\.svg$|\.png$)", re.I)
 MUSEUM = re.compile(r"\b(Louvre Ma\d+|Glyptothek|Musei Capitolini|Altes Museum|Musei Vaticani|Museo|Mus[ée]e|Museum|"
                     r"British Museum|Ny Carlsberg)\b", re.I)
+RECONSTRUCTION = re.compile(r"\b(reconstruct\w*|replica|plaster cast|cast of|modern copy)\b", re.I)
 DOUBT = re.compile(r"\b(possibly|perhaps|probably|presumed|so-called|identified as|unidentified|or uncle|"
                    r"or father|traditionally|generic|wearing lunula)\b", re.I)
 
@@ -131,16 +148,21 @@ def fetch_metadata(files: list[str]) -> dict[str, dict]:
     return out
 
 
-def classify(entity: dict, wikidata_label: str, file: str, prop: str, info: dict) -> tuple[str, str]:
-    """(class, the rule that decided it), from the file's own Commons description."""
+def classify(entity: dict, wikidata_label: str, file: str, prop: str, info: dict,
+             named: bool = False, caption: str = "") -> tuple[str, str]:
+    """(class, the rule that decided it), from the file's own Commons description.
+
+    ``named``: a caption already links the file to this entity, so the file's own words need not name it."""
     meta = info.get("extmetadata") or {}
     words = " ".join(_text((meta.get(k) or {}).get("value")) for k in ("ObjectName", "ImageDescription", "Categories"))
-    words = f"{file} {words}"
+    words = f"{file} {words} {caption}"
     if prop == "P242":
         return "place-today", "a locator map (P242)"
+    if RECONSTRUCTION.search(words):  # a reconstruction is labelled as one (32 §2.1b)
+        return "reconstruction", f"it is called '{RECONSTRUCTION.search(words).group(0)}'"
     if DOUBT.search(words):
         return "doubtful", f"Commons says '{DOUBT.search(words).group(0)}'"
-    if entity["kind"] == "Person":
+    if entity["kind"] == "Person" and not named:
         names = [w for w in re.findall(r"[A-Za-z]{4,}", f"{entity['label']} {wikidata_label}")
                  if w.lower() not in {"marcus", "gaius", "lucius", "publius", "gnaeus", "quintus", "titus", "the"}]
         if names and not any(re.search(rf"\b{re.escape(w)}", words, re.I) for w in names):
@@ -153,6 +175,8 @@ def classify(entity: dict, wikidata_label: str, file: str, prop: str, info: dict
         return "map", "a map or diagram file"
     if entity["kind"] == "Work":
         return "edition", "an image of a work is an edition of it"
+    if entity["kind"] in ("Place", "Object") and info.get("mime", "").startswith("image/jpeg"):
+        return "place-today", "a photograph of a place or monument as it is now"
     if entity["kind"] == "Place":
         return "place-today", "an image of a place, not a painting or map"
     if entity["kind"] == "Person" and MUSEUM.search(words):
@@ -160,12 +184,13 @@ def classify(entity: dict, wikidata_label: str, file: str, prop: str, info: dict
     return "unclassed", "no rule applied"
 
 
-CAPTION = {
+CAPTION_WORDS = {
     "of-the-time": "From their time",
     "later-imagining": "A later imagining",
     "place-today": "The place today",
     "edition": "An edition",
     "map": "A modern map",
+    "reconstruction": "A modern reconstruction",
     "unclassed": "An image from Wikimedia Commons, not yet classed",
 }
 
@@ -197,7 +222,7 @@ def run() -> dict:
         target = IMAGES / "commons" / name
         if not target.exists():
             target.write_bytes(polite_get(info.get("thumburl") or info["url"], timeout=60).content)
-        caption = CAPTION[klass]
+        caption = CAPTION_WORDS[klass]
         if klass == "later-imagining" and row["author"]:
             caption += f": {row['author']}" + (f", {row['date']}" if row["date"] else "")
         elif row["object"]:
@@ -214,5 +239,126 @@ def run() -> dict:
             "to review": len(review), "classes": counts}
 
 
+def _wiki(name: str, params: dict) -> dict:
+    """A Wikipedia API answer, cached as fetched under cache/wikipedia (git-ignored)."""
+    WIKI_CACHE.mkdir(parents=True, exist_ok=True)
+    path = WIKI_CACHE / f"{name}.json"
+    if path.exists():
+        return json.loads(path.read_text(encoding="utf-8"))["response"]
+    response = polite_get(WIKI_API, params={**params, "format": "json", "formatversion": "2"}).json()
+    path.write_text(json.dumps({"retrieved": datetime.now(timezone.utc).isoformat(), "params": params,
+                                "response": response}, ensure_ascii=False), encoding="utf-8")
+    return response
+
+
+FIGURE = re.compile(r"<figure\b[^>]*>(.*?)</figure>", re.S)
+INFOBOX = re.compile(r'<table class="infobox[^"]*"[^>]*>(.*?)</table>', re.S)
+CELL = re.compile(r"<t[dh]\b[^>]*>(.*?)</t[dh]>", re.S)
+FILE_LINK = re.compile(r'href="/wiki/File:([^"]+)"')
+FIGCAPTION = re.compile(r"<figcaption>(.*?)</figcaption>", re.S)
+TITLE_LINK = re.compile(r'<a href="/wiki/([^":#?]+)(?:#[^"]*)?"')
+
+
+def article_figures(revision: int) -> list[dict]:
+    """The revision's content pictures in reading order: {file, caption, links} (the caption's article links)."""
+    from urllib.parse import unquote
+
+    text = _wiki(f"parse-{revision}", {"action": "parse", "oldid": str(revision), "prop": "text|images"})["parse"]["text"]
+    blocks = []
+    box = INFOBOX.search(text)
+    if box:  # the infobox's picture: the first cell holding a file that is not a locator map
+        for cell in CELL.findall(box.group(1)):
+            m = FILE_LINK.search(cell)
+            if m and not NOT_CONTENT.search(unquote(m.group(1))):
+                blocks.append((m.group(1), re.sub(r"<a\b[^>]*>\s*<img\b[^>]*>\s*</a>", "", cell)))
+                break
+    for figure in FIGURE.findall(text):
+        m = FILE_LINK.search(figure)
+        if m:
+            c = FIGCAPTION.search(figure)
+            blocks.append((m.group(1), c.group(1) if c else ""))
+    out, seen = [], set()
+    for raw, caption_html in blocks:
+        file = unquote(raw).replace("_", " ")
+        if file in seen or NOT_CONTENT.search(file):
+            continue
+        seen.add(file)
+        out.append({"file": file, "caption": _text(caption_html),
+                    "links": [unquote(x).replace("_", " ") for x in TITLE_LINK.findall(caption_html)]})
+    return out
+
+
+def qids_for_titles(titles: list[str]) -> dict[str, str]:
+    """Wikipedia title -> its Wikidata QID, redirects followed (Octavian -> Augustus)."""
+    out: dict[str, str] = {}
+    titles = sorted(set(titles))
+    for i in range(0, len(titles), 50):
+        batch = titles[i:i + 50]
+        key = hashlib.sha256("|".join(batch).encode()).hexdigest()[:16]
+        q = _wiki(f"pageprops-{key}", {"action": "query", "prop": "pageprops", "ppprop": "wikibase_item",
+                                       "redirects": "1", "titles": "|".join(batch)})["query"]
+        hop = {n["from"]: n["to"] for n in q.get("normalized", []) + q.get("redirects", [])}
+        found = {pg["title"]: (pg.get("pageprops") or {}).get("wikibase_item") for pg in q.get("pages", [])}
+        for title in batch:
+            end = title
+            for _ in range(3):
+                end = hop.get(end, end)
+            if found.get(end):
+                out[title] = found[end]
+    return out
+
+
+def run_articles() -> dict:
+    entities = entities_by_qid()
+    by_id = {e["id"]: e for e in entities.values()}
+    (IMAGES / "commons").mkdir(parents=True, exist_ok=True)
+    gallery, review = [], []
+    for title, revision, about in ARTICLES:
+        figures = article_figures(revision)
+        qids = qids_for_titles([x for f in figures for x in f["links"]])
+        metadata = fetch_metadata(sorted({f["file"] for f in figures}))
+        article = by_id.get(about) or {"id": about, "label": title, "kind": "Event"}
+        for f in figures:
+            linked = [entities[qids[x]] for x in f["links"] if qids.get(x) in entities]
+            linked.sort(key=lambda e: KIND_ORDER.index(e["kind"]) if e["kind"] in KIND_ORDER else len(KIND_ORDER))
+            entity = linked[0] if linked else article
+            linked_by = (f"its caption links {entity['label']}" if linked
+                         else f"in the article on {title}; its caption links no entity we hold")
+            info = metadata.get(f["file"])
+            base = {"entity": entity["id"], "label": entity["label"], "article": about, "commonsFile": f["file"],
+                    "caption": f["caption"], "linkedBy": linked_by}
+            if not info:
+                review.append({**base, "why": "not on Commons (a local, possibly non-free, file)"})
+                continue
+            meta = info.get("extmetadata") or {}
+            get = lambda k: _text((meta.get(k) or {}).get("value")) or None  # noqa: E731
+            klass, rule = classify(entity, entity["label"], f["file"], "article", info, named=bool(linked), caption=f["caption"])
+            row = {**base, "class": klass, "rule": rule, "object": get("ObjectName"),
+                   "date": _date(get("DateTimeOriginal")), "author": get("Artist"), "licence": get("LicenseShortName"),
+                   "attributionRequired": get("AttributionRequired") == "true", "page": info.get("descriptionurl")}
+            if klass == "doubtful":
+                review.append({**row, "why": rule})
+                continue
+            if not FREE.search(row["licence"] or ""):
+                review.append({**row, "why": f"licence not free: {row['licence']}"})
+                continue
+            name = hashlib.sha256(f["file"].encode()).hexdigest()[:16] + ".jpg"
+            target = IMAGES / "commons" / name
+            if not target.exists():
+                target.write_bytes(polite_get(info.get("thumburl") or info["url"], timeout=60).content)
+            gallery.append({**row, "file": f"commons/{name}", "depicts": CAPTION_WORDS[klass],
+                            "publicDomain": bool(re.match(r"(Public domain|PD\b|CC0)", row["licence"] or "", re.I)),
+                            "source": f"Wikimedia Commons, {f['file']} (in Wikipedia, {title}, revision {revision})"})
+    (IMAGES / "gallery.json").write_text(json.dumps(gallery, ensure_ascii=False, indent=1), encoding="utf-8")
+    (IMAGES / "gallery-review.json").write_text(json.dumps(review, ensure_ascii=False, indent=1), encoding="utf-8")
+    counts: dict[str, int] = {}
+    for row in gallery:
+        counts[row["class"]] = counts.get(row["class"], 0) + 1
+    return {"articles": len(ARTICLES), "pictures": len(gallery), "to review": len(review), "classes": counts}
+
+
 if __name__ == "__main__":
-    print(json.dumps(run(), indent=1))
+    import sys
+
+    sys.stdout.reconfigure(encoding="utf-8")
+    print(json.dumps({"entity images": run(), "article images": run_articles()}, indent=1))

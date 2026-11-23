@@ -98,6 +98,65 @@ def load_images() -> dict:
     return out
 
 
+def load_gallery() -> dict:
+    """Pictures from the Wikipedia articles we hold (explorer/images/gallery.json, adapters/commons_images.py):
+    entity id -> [{src, caption, depicts, credit, page}]. A picture is listed on the entity its caption
+    links and on the article's own entity; shrunk and embedded like the entity images."""
+    manifest = IMAGES / "gallery.json"
+    if not manifest.exists():
+        return {}
+    import base64
+    import io
+
+    from PIL import Image
+
+    out: dict = {}
+    for entry in json.loads(manifest.read_text(encoding="utf-8")):
+        image = Image.open(IMAGES / entry["file"]).convert("RGB")
+        image.thumbnail((320, 240))
+        buffer = io.BytesIO()
+        image.save(buffer, "JPEG", quality=80)
+        item = {
+            "src": "data:image/jpeg;base64," + base64.b64encode(buffer.getvalue()).decode(),
+            "file": entry["commonsFile"], "caption": entry.get("caption") or "", "depicts": entry.get("depicts"),
+            "class": entry.get("class"), "page": entry.get("page"),
+            "credit": " · ".join(x for x in (entry.get("author"), entry.get("date"), entry.get("licence")) if x),
+        }
+        for key in dict.fromkeys((entry["entity"], entry.get("article"))):
+            if key:
+                out.setdefault(key, []).append(item)
+    return out
+
+
+def load_backdrops() -> dict:
+    """Generated illustrations for poster backdrops (explorer/images/generated/*.json, each beside its
+    picture): entity id -> {src, caption}. One replaced by a newer record ("supersedes") is skipped.
+    Never a picture of the event: the caption says it is generated (D-172)."""
+    folder = IMAGES / "generated"
+    records = [json.loads(p.read_text(encoding="utf-8")) for p in sorted(folder.glob("*.json"))] if folder.exists() else []
+    replaced = {r.get("supersedes") for r in records}
+    out = {}
+    import base64
+    import io
+
+    from PIL import Image
+
+    for r in records:
+        if r["file"] in replaced or not (folder / r["file"]).exists():
+            continue
+        image = Image.open(folder / r["file"]).convert("RGB")
+        image.thumbnail((1600, 1600))
+        buffer = io.BytesIO()
+        image.save(buffer, "JPEG", quality=78)
+        model = r.get("model", "").split(" (")[0]
+        out[r["for"]] = {
+            "src": "data:image/jpeg;base64," + base64.b64encode(buffer.getvalue()).decode(),
+            "caption": f"Illustration, generated ({model}, {r.get('made')}): not a picture of the battle"
+                       + ("; awaiting the curator's review" if r.get("review", "").startswith("awaiting") else ""),
+        }
+    return out
+
+
 def load_phases() -> dict:
     """Each event's phase keys in the curator's order (curation/phases.json, D-091)."""
     path = ROOT / "curation" / "phases.json"
@@ -129,7 +188,7 @@ def build() -> Path:
         })
     edges = [trim_fact(e["data"]) for e in export["elements"]["edges"]]
     data = {"generatedBy": export.get("generated_by"), "nodes": nodes, "edges": edges,
-            "images": load_images(), "phases": load_phases()}
+            "images": load_images(), "gallery": load_gallery(), "backdrops": load_backdrops(), "phases": load_phases()}
     payload = json.dumps(data, ensure_ascii=False).replace("</", "<\\/")
     page = TEMPLATE.read_text(encoding="utf-8").replace("__GRAPH_DATA__", payload)
     OUTPUT.write_text(page, encoding="utf-8")
