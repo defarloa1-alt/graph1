@@ -41,7 +41,7 @@ BATCH = 12
 MAX_CLAIMS = 12
 MAX_MENTIONS = 5
 KINDS = ("Person", "Place", "Event", "Group", "Work", "Object", "Period", "Office", "Concept", "Polity", "Type",
-         "Question", "Position", "Other")
+         "Question", "Position", "Law", "Decree", "Other")
 VERDICTS = ("ok", "wrong-identity", "wrong-kind", "duplicate", "unsure")
 
 PROMPT = """\
@@ -59,7 +59,8 @@ For every entity in the packet give exactly one finding:
 - wrong-kind: it is filed under the wrong kind. Kinds: Person; Place; Event; Group (a body of
   people acting together, a force or unit); Work; Object (a physical thing); Period; Office (a
   position or post that is held); Concept (an analytical idea or frame); Polity (a state); Type
-  (unit types, organizational patterns, roles, powers, social statuses); Other. Give
+  (unit types, organizational patterns, roles, powers, social statuses); Law (a lex or plebiscitum, an
+  enactment); Decree (a senatus consultum, the Senate's decree); Other. Give
   suggested_kind. A title the sources treat as held (Wikidata "position held") may stay an Office.
 - unsure: the packet does not settle it. Say what would.
 

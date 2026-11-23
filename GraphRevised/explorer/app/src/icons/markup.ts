@@ -15,6 +15,9 @@ export const KIND_SVG: Record<Kind, string> = {
   // Placeholders until the Figma pass (doc 44): a question mark; a speech bubble for one answer.
   Question: '<path d="M5.8 5.8a2.2 2.2 0 1 1 3.2 2c-.7.4-1 .9-1 1.6v.6M8 12.3h.01"/><circle cx="8" cy="8" r="6"/>',
   Position: '<path d="M2.5 3.5h11v7h-6l-3 2.5v-2.5h-2zM5 6.2h6M5 8.2h4"/>',
+  // Placeholders until the Figma pass (48 §4): a tablet with lines for a law; a sealed sheet for a decree.
+  Law: '<rect x="3.5" y="2" width="9" height="12" rx="1.5"/><path d="M5.5 5h5M5.5 7.5h5M5.5 10h3"/>',
+  Decree: '<path d="M3.5 2h9v8.5H3.5zM5.5 4.5h5M5.5 6.5h5"/><circle cx="8" cy="12.3" r="1.7"/>',
 };
 
 export const LENS_SVG: Record<Lens, string> = {

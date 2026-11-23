@@ -59,7 +59,7 @@ from GraphRevised.proposals.registry import load_registry
 from GraphRevised import localdb
 
 SUBTYPES = ["Person", "Place", "Event", "Group", "Work", "Object", "Period", "Office",
-            "Concept", "Polity", "Type", "Question", "Position", "Other"]
+            "Concept", "Polity", "Type", "Question", "Position", "Law", "Decree", "Other"]
 
 S, I, F, B, P = "STRING", "INTEGER", "FLOAT", "BOOLEAN", "POINT"
 LS = "LIST<STRING NOT NULL>"

@@ -27,7 +27,7 @@ class FakeReader:
 
 class RegistryV20Tests(unittest.TestCase):
     def setUp(self):
-        self.registry = load_registry()
+        self.registry = load_registry(REGISTRY_PATH.with_name("predicates.v20.json"))
         self.old = load_registry(REGISTRY_PATH.with_name("predicates.v19.json"))
 
     def test_the_gens(self):

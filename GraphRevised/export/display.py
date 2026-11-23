@@ -49,7 +49,8 @@ STANDING_WORDS = {"primary": "ancient", "secondary": "modern", "tertiary": "refe
 
 KIND_WORDS = {"Person": "person", "Event": "event", "Place": "place", "Group": "group", "Office": "office",
               "Work": "work", "Concept": "idea", "Period": "period", "Polity": "state", "Type": "type",
-              "Question": "question", "Position": "position"}
+              "Question": "question", "Position": "position",
+              "Law": "law", "Decree": "decree"}
 
 ONLY_A_LINK = re.compile(r"\s*https?://\S+\s*")
 YEAR = re.compile(r"\b(\d{1,4})\s*(BCE|BC|CE|AD)\b")

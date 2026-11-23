@@ -25,7 +25,8 @@ STYLE = "Chrystallum"
 SHAPES = {"Person": "ELLIPSE", "Event": "DIAMOND", "Place": "TRIANGLE", "Group": "ROUND_RECTANGLE",
           "Office": "HEXAGON", "Work": "RECTANGLE", "Concept": "OCTAGON", "Period": "PARALLELOGRAM",
           "Polity": "PARALLELOGRAM", "Type": "VEE",
-          "Question": "STAR", "Position": "ROUND_DIAMOND"}
+          "Question": "STAR", "Position": "ROUND_DIAMOND",
+          "Law": "RECTANGLE", "Decree": "RECTANGLE"}
 
 
 def flat(data: dict) -> dict:

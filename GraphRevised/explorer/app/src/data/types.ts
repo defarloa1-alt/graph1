@@ -3,7 +3,7 @@
 
 export const KINDS = [
   "Person", "Event", "Place", "Group", "Office", "Work", "Concept", "Period", "Polity", "Type",
-  "Question", "Position",
+  "Question", "Position", "Law", "Decree",
 ] as const;
 export type Kind = (typeof KINDS)[number];
 

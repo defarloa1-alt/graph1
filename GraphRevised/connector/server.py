@@ -56,7 +56,7 @@ MAX_FACTS = 100
 MAX_NOTES = 30
 
 Kind = Literal["Person", "Event", "Place", "Group", "Office", "Work", "Concept", "Period", "Polity", "Type",
-              "Question", "Position"]
+              "Question", "Position", "Law", "Decree"]
 
 INSTRUCTIONS = """\
 Chrystallum is a graph for exploring historical relations, read here without changing anything.

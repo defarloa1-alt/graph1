@@ -81,7 +81,7 @@ OPTIONAL MATCH (existing:Entity {id: $id})
 WITH existing
 WHERE $kind IN [
   "Person", "Place", "Event", "Group", "Work", "Object", "Period",
-  "Office", "Concept", "Polity", "Type", "Question", "Position", "Other"
+  "Office", "Concept", "Polity", "Type", "Question", "Position", "Law", "Decree", "Other"
 ]
 AND (existing IS NULL OR $kind IN labels(existing))
 MERGE (node:Entity {id: $id})
@@ -108,6 +108,8 @@ FOREACH (_ IN CASE WHEN $kind = "Polity" THEN [1] ELSE [] END | SET node:Polity)
 FOREACH (_ IN CASE WHEN $kind = "Type" THEN [1] ELSE [] END | SET node:Type)
 FOREACH (_ IN CASE WHEN $kind = "Question" THEN [1] ELSE [] END | SET node:Question)
 FOREACH (_ IN CASE WHEN $kind = "Position" THEN [1] ELSE [] END | SET node:Position)
+FOREACH (_ IN CASE WHEN $kind = "Law" THEN [1] ELSE [] END | SET node:Law)
+FOREACH (_ IN CASE WHEN $kind = "Decree" THEN [1] ELSE [] END | SET node:Decree)
 FOREACH (_ IN CASE WHEN $kind = "Other" THEN [1] ELSE [] END | SET node:Other)
 RETURN node;
 
@@ -1022,7 +1024,7 @@ RETURN image;
 // Work (moving to Work is allowed). Records the previous kind and who
 // decided, with the basis. A retry with the same target kind changes nothing.
 MATCH (entity:Entity {id: $id})
-WHERE $kind IN ["Person", "Place", "Event", "Group", "Work", "Object", "Period", "Office", "Concept", "Polity", "Type", "Question", "Position", "Other"] AND $from IN ["Person", "Place", "Event", "Group", "Work", "Object", "Period", "Office", "Concept", "Polity", "Type", "Question", "Position", "Other"] AND $kind <> $from
+WHERE $kind IN ["Person", "Place", "Event", "Group", "Work", "Object", "Period", "Office", "Concept", "Polity", "Type", "Question", "Position", "Law", "Decree", "Other"] AND $from IN ["Person", "Place", "Event", "Group", "Work", "Object", "Period", "Office", "Concept", "Polity", "Type", "Question", "Position", "Law", "Decree", "Other"] AND $kind <> $from
   AND ($from IN labels(entity) OR ($kind IN labels(entity) AND entity.previousKind = $from))
   AND NOT EXISTS {
     MATCH (claim:Assertion)-[:ASSERTION_SUBJECT|ASSERTION_OBJECT|ASSERTION_ROLE|ASSERTION_CONTEXT]->(entity)
@@ -1051,6 +1053,8 @@ FOREACH (_ IN CASE WHEN NOT isRetry AND $from = "Polity" THEN [1] ELSE [] END | 
 FOREACH (_ IN CASE WHEN NOT isRetry AND $from = "Type" THEN [1] ELSE [] END | REMOVE entity:Type)
 FOREACH (_ IN CASE WHEN NOT isRetry AND $from = "Question" THEN [1] ELSE [] END | REMOVE entity:Question)
 FOREACH (_ IN CASE WHEN NOT isRetry AND $from = "Position" THEN [1] ELSE [] END | REMOVE entity:Position)
+FOREACH (_ IN CASE WHEN NOT isRetry AND $from = "Law" THEN [1] ELSE [] END | REMOVE entity:Law)
+FOREACH (_ IN CASE WHEN NOT isRetry AND $from = "Decree" THEN [1] ELSE [] END | REMOVE entity:Decree)
 FOREACH (_ IN CASE WHEN NOT isRetry AND $from = "Other" THEN [1] ELSE [] END | REMOVE entity:Other)
 FOREACH (_ IN CASE WHEN $kind = "Person" THEN [1] ELSE [] END | SET entity:Person)
 FOREACH (_ IN CASE WHEN $kind = "Place" THEN [1] ELSE [] END | SET entity:Place)
@@ -1065,6 +1069,8 @@ FOREACH (_ IN CASE WHEN $kind = "Polity" THEN [1] ELSE [] END | SET entity:Polit
 FOREACH (_ IN CASE WHEN $kind = "Type" THEN [1] ELSE [] END | SET entity:Type)
 FOREACH (_ IN CASE WHEN $kind = "Question" THEN [1] ELSE [] END | SET entity:Question)
 FOREACH (_ IN CASE WHEN $kind = "Position" THEN [1] ELSE [] END | SET entity:Position)
+FOREACH (_ IN CASE WHEN $kind = "Law" THEN [1] ELSE [] END | SET entity:Law)
+FOREACH (_ IN CASE WHEN $kind = "Decree" THEN [1] ELSE [] END | SET entity:Decree)
 FOREACH (_ IN CASE WHEN $kind = "Other" THEN [1] ELSE [] END | SET entity:Other)
 RETURN entity;
 

@@ -60,7 +60,8 @@ class RunMode(str, Enum):
 # What a command or an inquiry may be about: any Entity kind in the registry but Other, or a
 # constellation of narrower inquiries (a test keeps this in step with the registry's entityKinds).
 SubjectKind = Literal["Person", "Event", "Place", "Object", "Polity", "Group", "Office", "Type", "Concept",
-                      "Period", "Work", "Question", "Position", "Constellation"]
+                      "Period", "Work", "Question", "Position", "Law", "Decree",
+                      "Constellation"]
 
 
 class ScopeDecision(_Contract):

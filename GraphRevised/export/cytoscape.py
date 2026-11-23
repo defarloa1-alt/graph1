@@ -152,6 +152,8 @@ STYLE = [
     {"selector": "node[kind = 'Type']", "style": {"background-color": "#5c6b7a", "shape": "tag"}},
     {"selector": "node[kind = 'Question']", "style": {"background-color": "#6a5acd", "shape": "star", "width": 28, "height": 28}},
     {"selector": "node[kind = 'Position']", "style": {"background-color": "#8f7fe0", "shape": "round-diamond"}},
+    {"selector": "node[kind = 'Law']", "style": {"background-color": "#9a6b2f", "shape": "cut-rectangle"}},
+    {"selector": "node[kind = 'Decree']", "style": {"background-color": "#b58a52", "shape": "cut-rectangle"}},
     {"selector": "node[status = 'proposed']", "style": {"background-opacity": 0.35, "border-width": 2,
                                                          "border-style": "dashed", "border-color": "#777"}},
     {"selector": "node[status = 'deprecated']", "style": {"opacity": 0.35}},

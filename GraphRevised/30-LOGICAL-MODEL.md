@@ -41,7 +41,7 @@ the predicate registry `proposals/predicates.v19.json`; the graph type
 - **Dashed** associations are designed but not yet in the graph.
 - `Entity` is the shared label and `Person`, `Place`, `Event`, `Group`, `Work`,
   `Object`, `Period`, `Office`, `Concept`, `Polity`, `Type`, `Question`,
-  `Position`, or `Other` is the subtype label. The subtype is the graph's
+  `Position`, `Law`, `Decree`, or `Other` is the subtype label. The subtype is the graph's
   discriminator; it is not stored as a `kind` property.
 - `Assertion` is a **reified association**: a claim between Entities that
   carries its own identity, status, qualifiers, and evidence. The predicate
@@ -473,6 +473,8 @@ flowchart LR
     Entity --> Type["Type<br/>typeCategory"]
     Entity --> Question
     Entity --> Position
+    Entity --> Law
+    Entity --> Decree
     Entity --> Object
     Entity --> Other
     Event -.-> DepictedEvent["depicted event<br/>(our unit, §3.1)"]
@@ -498,6 +500,8 @@ their id (§3.1).
 | Period | 3 | |
 | Polity | 3 | states |
 | Object | 1 | a thing taken, dedicated, or destroyed (`involvedIn`, registry v14) |
+| Law | 0 | an enactment: a lex, a plebiscitum (registry v21, D-171) |
+| Decree | 0 | a senatus consultum, the Senate's decree; not a Law (registry v21, D-171) |
 | Other | 0 | |
 
 Subtype restrictions that hold in the stored graph:
@@ -775,20 +779,20 @@ Modes: A = asserted, T = attributed.
 | participatedIn | Person, Group, Polity → Event | F | A T | none | opt | opt | 737 |
 | partOf | Event, Group, Type, Work → Event, Group, Type, Work (paired) | F | A T | none | none | opt (+ quantity opt) | 649 |
 | describedBy | any kind → Work | F | A T | none | none | none | 193 |
-| occurred | Event, Period, Polity → (unary) | F | A T | opt | none | req | 146 |
+| occurred | Event, Period, Polity, Law, Decree → (unary) | F | A T | opt | none | req | 146 |
 | childOf | Person → Person | F | A T | none | none | none | 144 |
 | siblingOf | Person → Person | F | A T | none | none | none | 131 |
 | happenedBefore | Event → Event | F | A T | none | none | none | 126 |
 | triggeredBy | Event → Event | F | A T | none | none | none | 89 |
 | commanded | Person → Group | F | A T | opt | opt | withRole | 63 |
 | occurredAt | Event → Place | F | A T | none | none | none | 62 |
-| heldPosition | Person → Office | F | A T | none | none | req | 62 |
+| heldPosition | Person → Office | F | A T | opt (Place, Polity; v21) | opt (Type; v21) | req | 62 |
 | born | Person → (unary) | F | A T | none | none | req | 62 |
 | spouseOf | Person → Person | F | A T | none | none | req | 57 |
-| about | Question → Event, Group, Period, Person, Polity | I | A T | none | none | none | 43 |
+| about | Question → Event, Group, Period, Person, Polity, Type, Law, Decree | I | A T | none | none | none | 43 |
 | answers | Position → Question | I | A T | none | none | none | 41 |
 | died | Person → (unary) | F | A T | none | none | req | 40 |
-| instanceOf | Group → Type | F | A T | none | none | opt | 26 |
+| instanceOf | Group, Decree → Type | F | A T | none | none | opt | 26 |
 | holds | Work → Position | I | T | none | none | opt (+ stance opt) | 26 |
 | bornAt | Person → Place | F | A T | none | none | none | 20 |
 | diedAt | Person → Place | F | A T | none | none | none | 18 |
@@ -801,15 +805,17 @@ Modes: A = asserted, T = attributed.
 | ledTo | Event → Concept, Event, Group, Period, Place, Polity | I | T | none | none | none | 5 |
 | hadReception | Position → (unary) | I | T | none | none | req (+ reception req) | 4 |
 | authorOf | Person → Work | F | A T | none | none | opt | 3 |
-| resultedIn | Event → Event | F | A T | none | none | none | 3 |
+| resultedIn | Event → Event, Law, Decree | F | A T | none | none | none | 3 |
 | alliedWith | Person, Group, Polity → Person, Group, Polity | F | A T | none | none | req | 3 |
-| involvedIn | Object → Event | F | A T | none | req | opt | 1 |
+| involvedIn | Object, Law, Decree → Event | F | A T | none | req | opt | 1 |
 | subperiodOf | Period → Period | F | A T | none | none | none | 0 |
 | followedBy | Period → Period | F | A T | none | none | none | 0 |
 | precedes | Office → Office | F | A T | none | none | req | 0 |
 | electedBy | Office → Group | F | A T | none | none | req (+ quantity opt) | 0 |
 | exercisedPower | Office → Type | F | A T | none | none | req | 0 |
 | heldPower | Person → Type | F | A T | opt | opt | req | 0 |
+| patronOf | Person → Person, Group, Polity | F | A T | none | none | req | 0 |
+| adoptedBy | Person → Person | F | A T | none | opt (Type: the form) | req | 0 |
 | servedUnder | Person → Person | F | A T | opt | opt | req | 0 |
 | memberOf | Person → Group | F | A T | none | opt | req | 0 |
 | hadStrength | Group → (unary) | F | A T | opt | opt | req (+ quantity req) | 0 |
@@ -839,13 +845,14 @@ proposed, 1 accepted).
 
 | Enumeration | Values | Live |
 |---|---|---|
-| EntityKind | Person, Event, Place, Group, Object, Work, Period, Office, Concept, Polity, Type, Question, Position, Other | 13 in use, all but Other |
+| EntityKind | Person, Event, Place, Group, Object, Work, Period, Office, Concept, Polity, Type, Question, Position, Law, Decree, Other | 13 in use, all but Law, Decree and Other |
 | EntityStatus | proposed, provisional, resolved, deprecated | proposed 746, provisional 99, deprecated 2, resolved 1 |
 | SubjectStatus | candidate, provisional, validated, deprecated, merged | candidate 19, provisional 1 |
 | AssertionStatus | proposed, accepted, rejected, contested (reserved, E8), superseded | proposed 1865, accepted 573, superseded 362, rejected 3 |
 | ClaimCategory | factual, interpretive, imaginative | 2645 / 139 / 19 |
 | ClaimMode | asserted, attributed | 90 / 1953 (760 unset) |
 | ClaimBasis (D-148) | reports, reconstructs, unknown | reports 23, unknown 1157 |
+| GroupCategory (registry v20, v21) | gens, assembly | *see the live graph* |
 | Stance (registry v17) | originates, adopts, modifies | *designed* |
 | Reception (registry v17) | dominant, contested, minority, abandoned | dominant 4 |
 | ProposalOperation | create, addEvidence | 2803 / 361 |

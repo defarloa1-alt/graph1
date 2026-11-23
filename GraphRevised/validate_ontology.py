@@ -32,6 +32,8 @@ SUBTYPES = (
     "Type",
     "Question",
     "Position",
+    "Law",
+    "Decree",
     "Other",
 )
 

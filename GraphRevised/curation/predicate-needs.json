@@ -138,7 +138,7 @@
             "reifyAs": "EVENT",
             "cidoc": "E7_Activity",
             "status": "implemented",
-            "score": 0.68
+            "score": 0.63
           },
           {
             "name": "COMMANDED_BY",
@@ -170,15 +170,148 @@
         "cidoc": []
       },
       "similarRequests": [
-        "defectedTo",
-        "delegatedCommandTo",
-        "surrenderedTo"
+        "delegatedCommandTo"
       ],
       "shape": {
         "value": "event",
         "basis": "Leaving a force mid-battle is an act (already depicted: Antony follows Cleopatra).",
         "by": "Claude (proposed under D-138, 2026-11-12; for the curator to confirm)",
         "at": "2026-11-12T12:44:44+00:00"
+      }
+    },
+    {
+      "name": "adoptedBy",
+      "status": "adopted",
+      "definitions": [
+        "An act: an adoption, in which one person took another as son, at a date (or by will, as Caesar's of Octavian); adopter and adoptee are roles. The new gens is an ofGens claim of its own (46)."
+      ],
+      "subjectKinds": [
+        "Person"
+      ],
+      "objectKinds": [
+        "Person"
+      ],
+      "requestedBy": [
+        "curator (with Claude, 2026-11-22; 48-POLITICAL-LENS-AND-PATHS.md)"
+      ],
+      "evidence": [
+        {
+          "observationId": null,
+          "quotation": null,
+          "ref": "chats/Agents and Exploration.yml (ChatGPT review of the architecture, 2026-11-21); 39 §10, the families the lens run and the Gracchus narrative ask for. Octavian, a Julius by adoption, is the case doc 46 names."
+        }
+      ],
+      "firstRequested": "2026-11-22T11:14:31+00:00",
+      "lastRequested": "2026-11-22T11:14:31+00:00",
+      "precedents": {
+        "registry": [],
+        "legacy": [
+          {
+            "name": "ADOPTED",
+            "description": "Adopter legally adopted person",
+            "category": "Familial",
+            "direction": "forward",
+            "wikidata": null,
+            "wikidataSuggested": null,
+            "reifyAs": null,
+            "cidoc": null,
+            "status": "candidate",
+            "score": 0.93
+          },
+          {
+            "name": "ADOPTED_BY",
+            "description": "Person was legally adopted by adopter",
+            "category": "Familial",
+            "direction": "inverse",
+            "wikidata": null,
+            "wikidataSuggested": null,
+            "reifyAs": null,
+            "cidoc": null,
+            "status": "candidate",
+            "score": 0.93
+          }
+        ],
+        "cidoc": [
+          {
+            "code": "I7_Belief_Adoption",
+            "wikidata": null,
+            "mapping": "Custom",
+            "note": "**CRMinf: Accepting claim after validation**",
+            "score": 0.56
+          }
+        ]
+      },
+      "similarRequests": [],
+      "shape": {
+        "value": "state",
+        "basis": "D-170: a lasting bond of parent and child in law, like childOf, with its form (adoptio, adrogatio, by will) as a role Type. Overrides the event shape proposed 2026-11-22 (48 §3).",
+        "by": "curator, 2026-11-22 (D-170, confirmed in chat)",
+        "at": "2026-11-22T11:28:03+00:00"
+      },
+      "adoptedIn": "predicates-v21",
+      "adoptedAt": "2026-11-22",
+      "adoptedBy": "curator (D-170)"
+    },
+    {
+      "name": "amicusOf",
+      "status": "open",
+      "definitions": [
+        "Two people were bound in amicitia, the Roman political friendship with its duties of support, over a time. Narrower than alliedWith (any alliance, of persons, groups or states)."
+      ],
+      "subjectKinds": [
+        "Person"
+      ],
+      "objectKinds": [
+        "Person"
+      ],
+      "requestedBy": [
+        "curator (with Claude, 2026-11-22; 48-POLITICAL-LENS-AND-PATHS.md)"
+      ],
+      "evidence": [
+        {
+          "observationId": null,
+          "quotation": null,
+          "ref": "chats/Agents and Exploration.yml (ChatGPT review of the architecture, 2026-11-21); 39 §10, the families the lens run and the Gracchus narrative ask for. Whether amicitia needs its own predicate or alliedWith with a basis is the curator's choice (48 §3)."
+        }
+      ],
+      "firstRequested": "2026-11-22T11:14:31+00:00",
+      "lastRequested": "2026-11-22T11:14:31+00:00",
+      "precedents": {
+        "registry": [],
+        "legacy": [
+          {
+            "name": "ALLIED_VIA_MARRIAGE",
+            "description": "Political alliance via marriage",
+            "category": "Political",
+            "direction": "forward",
+            "wikidata": null,
+            "wikidataSuggested": null,
+            "reifyAs": "EVENT",
+            "cidoc": "E7_Activity",
+            "status": "implemented",
+            "score": 0.55
+          },
+          {
+            "name": "ALLIED_WITH",
+            "description": "Maintained formal/strategic alliance",
+            "category": "Political",
+            "direction": "forward",
+            "wikidata": null,
+            "wikidataSuggested": null,
+            "reifyAs": "EVENT",
+            "cidoc": "E7_Activity",
+            "status": "implemented",
+            "score": 0.51
+          }
+        ],
+        "cidoc": []
+      },
+      "similarRequests": [],
+      "shape": {
+        "value": "state",
+        "basis": "A bond held over time between two people, not an act.",
+        "by": "curator, 2026-11-22 (48 §3, confirmed in chat)",
+        "at": "2026-11-22T11:28:03+00:00"
       }
     },
     {
@@ -250,12 +383,25 @@
       "firstRequested": "2026-11-12T12:23:27+00:00",
       "lastRequested": "2026-11-12T12:23:27+00:00",
       "precedents": {
-        "registry": [],
+        "registry": [
+          {
+            "id": "captured",
+            "display": "captured",
+            "subjectKinds": [
+              "Group",
+              "Person"
+            ],
+            "objectKinds": [
+              "Group",
+              "Object"
+            ],
+            "score": 0.81
+          }
+        ],
         "legacy": [],
         "cidoc": []
       },
       "similarRequests": [
-        "captured",
         "dedicatedSpoils"
       ],
       "shape": {
@@ -418,18 +564,6 @@
         "registry": [],
         "legacy": [
           {
-            "name": "OUTLAWED",
-            "description": "Declared person an outlaw/enemy",
-            "category": "Political",
-            "direction": "forward",
-            "wikidata": null,
-            "wikidataSuggested": null,
-            "reifyAs": "EVENT",
-            "cidoc": "E13_Attribute_Assignment",
-            "status": "implemented",
-            "score": 0.61
-          },
-          {
             "name": "DECLARED_FOR",
             "description": "Publicly declared support for",
             "category": "Political",
@@ -452,6 +586,18 @@
             "cidoc": "E7_Activity",
             "status": "implemented",
             "score": 0.6
+          },
+          {
+            "name": "OUTLAWED",
+            "description": "Declared person an outlaw/enemy",
+            "category": "Political",
+            "direction": "forward",
+            "wikidata": null,
+            "wikidataSuggested": null,
+            "reifyAs": "EVENT",
+            "cidoc": "E13_Attribute_Assignment",
+            "status": "implemented",
+            "score": 0.59
           }
         ],
         "cidoc": []
@@ -597,7 +743,6 @@
         "cidoc": []
       },
       "similarRequests": [
-        "captured",
         "capturedAsBooty",
         "dedicatedTo"
       ],
@@ -745,7 +890,7 @@
             "objectKinds": [
               "Office"
             ],
-            "score": 0.6
+            "score": 0.57
           }
         ],
         "legacy": [
@@ -759,7 +904,7 @@
             "reifyAs": null,
             "cidoc": null,
             "status": "candidate",
-            "score": 0.85
+            "score": 0.82
           }
         ],
         "cidoc": []
@@ -877,15 +1022,7 @@
             "score": 0.65
           }
         ],
-        "cidoc": [
-          {
-            "code": "E55_Type",
-            "wikidata": "P31",
-            "mapping": "Direct",
-            "note": "Classification types - use P31 instance of NOT P279",
-            "score": 0.5
-          }
-        ]
+        "cidoc": []
       },
       "similarRequests": [],
       "shape": {
@@ -1196,6 +1333,196 @@
       }
     },
     {
+      "name": "patronOf",
+      "status": "adopted",
+      "definitions": [
+        "A person stood as patron to a client (a person, a town, or a community) over a time: the Roman bond of patrocinium and clientela, with obligations both ways. The client's side is the same claim read from the object."
+      ],
+      "subjectKinds": [
+        "Person"
+      ],
+      "objectKinds": [
+        "Group",
+        "Person",
+        "Polity"
+      ],
+      "requestedBy": [
+        "curator (with Claude, 2026-11-22; 48-POLITICAL-LENS-AND-PATHS.md)"
+      ],
+      "evidence": [
+        {
+          "observationId": null,
+          "quotation": null,
+          "ref": "chats/Agents and Exploration.yml (ChatGPT review of the architecture, 2026-11-21); 39 §10, the families the lens run and the Gracchus narrative ask for. Patronage is the bond historians use to explain votes and support; no predicate holds it."
+        }
+      ],
+      "firstRequested": "2026-11-22T11:14:31+00:00",
+      "lastRequested": "2026-11-22T11:14:31+00:00",
+      "precedents": {
+        "registry": [],
+        "legacy": [
+          {
+            "name": "PATRON_OF",
+            "description": "Patron-client relationship",
+            "category": "Social",
+            "direction": "forward",
+            "wikidata": null,
+            "wikidataSuggested": null,
+            "reifyAs": null,
+            "cidoc": null,
+            "status": "candidate",
+            "score": 0.94
+          },
+          {
+            "name": "CLIENT_OF",
+            "description": "Client to patron",
+            "category": "Social",
+            "direction": "inverse",
+            "wikidata": null,
+            "wikidataSuggested": null,
+            "reifyAs": null,
+            "cidoc": null,
+            "status": "candidate",
+            "score": 0.79
+          },
+          {
+            "name": "HAS_PATRON_DEITY",
+            "description": "Group has patron/tutelary deity",
+            "category": "Religious",
+            "direction": "inverse",
+            "wikidata": null,
+            "wikidataSuggested": null,
+            "reifyAs": null,
+            "cidoc": null,
+            "status": "candidate",
+            "score": 0.56
+          }
+        ],
+        "cidoc": []
+      },
+      "similarRequests": [],
+      "shape": {
+        "value": "state",
+        "basis": "A bond held over time between two parties, not an act.",
+        "by": "curator, 2026-11-22 (48 §3, confirmed in chat)",
+        "at": "2026-11-22T11:28:03+00:00"
+      },
+      "adoptedIn": "predicates-v21",
+      "adoptedAt": "2026-11-22",
+      "adoptedBy": "curator (D-171; 48 §3)"
+    },
+    {
+      "name": "proposedLaw",
+      "status": "open",
+      "definitions": [
+        "An act: a magistrate brought a law before an assembly (rogatio), at a date; proposer, assembly and the law are roles, and the law's passage or rejection is the outcome (resultedIn)."
+      ],
+      "subjectKinds": [
+        "Person"
+      ],
+      "objectKinds": [
+        "Law"
+      ],
+      "requestedBy": [
+        "curator (with Claude, 2026-11-22; 48-POLITICAL-LENS-AND-PATHS.md)"
+      ],
+      "evidence": [
+        {
+          "observationId": null,
+          "quotation": null,
+          "ref": "chats/Agents and Exploration.yml (ChatGPT review of the architecture, 2026-11-21); 39 §10, the families the lens run and the Gracchus narrative ask for. The objectKind Law waits on the Law kind (48 §4)."
+        }
+      ],
+      "firstRequested": "2026-11-22T11:14:31+00:00",
+      "lastRequested": "2026-11-22T11:14:31+00:00",
+      "precedents": {
+        "registry": [],
+        "legacy": [
+          {
+            "name": "PROPOSED_BY",
+            "description": "Node was proposed by this facet agent",
+            "category": "Agent",
+            "direction": "forward",
+            "wikidata": null,
+            "wikidataSuggested": null,
+            "reifyAs": "EDGE",
+            "cidoc": null,
+            "status": "implemented",
+            "score": 0.56
+          },
+          {
+            "name": "BROTHER_IN_LAW",
+            "description": "Person is brother-in-law",
+            "category": "Familial",
+            "direction": "inverse",
+            "wikidata": null,
+            "wikidataSuggested": null,
+            "reifyAs": null,
+            "cidoc": null,
+            "status": "candidate",
+            "score": 0.55
+          },
+          {
+            "name": "BROTHER_IN_LAW_OF",
+            "description": "Brother-in-law of person",
+            "category": "Familial",
+            "direction": "forward",
+            "wikidata": null,
+            "wikidataSuggested": null,
+            "reifyAs": null,
+            "cidoc": null,
+            "status": "candidate",
+            "score": 0.55
+          }
+        ],
+        "cidoc": []
+      },
+      "similarRequests": [],
+      "shape": {
+        "value": "event",
+        "basis": "A proposal is an act before an assembly with proposer and law as roles; passage is its outcome (D-138).",
+        "by": "curator, 2026-11-22 (48 §3, confirmed in chat)",
+        "at": "2026-11-22T11:28:03+00:00"
+      }
+    },
+    {
+      "name": "prosecuted",
+      "status": "open",
+      "definitions": [
+        "An act: a trial, in which one person charged another before a court, at a date; the accuser, defendant, presiding magistrate and verdict are roles and outcomes of the Event."
+      ],
+      "subjectKinds": [
+        "Person"
+      ],
+      "objectKinds": [
+        "Person"
+      ],
+      "requestedBy": [
+        "curator (with Claude, 2026-11-22; 48-POLITICAL-LENS-AND-PATHS.md)"
+      ],
+      "evidence": [
+        {
+          "observationId": null,
+          "quotation": null,
+          "ref": "chats/Agents and Exploration.yml (ChatGPT review of the architecture, 2026-11-21); 39 §10, the families the lens run and the Gracchus narrative ask for. Legal acts (charged, convicted, exiled, declared hostis) are a family 39 §10 lists."
+        }
+      ],
+      "firstRequested": "2026-11-22T11:14:31+00:00",
+      "lastRequested": "2026-11-22T11:14:31+00:00",
+      "precedents": {
+        "registry": [],
+        "legacy": [],
+        "cidoc": []
+      },
+      "similarRequests": [],
+      "shape": {
+        "value": "event",
+        "basis": "A trial happens at a date with accuser, defendant and court: an Event with roles (D-138).",
+        "by": "curator, 2026-11-22 (48 §3, confirmed in chat)",
+        "at": "2026-11-22T11:28:03+00:00"
+      }
+    },
+    {
       "name": "reportsOmen",
       "status": "open",
       "definitions": [
@@ -1299,8 +1626,7 @@
         "cidoc": []
       },
       "similarRequests": [
-        "settledOn",
-        "surrenderedTo"
+        "settledOn"
       ],
       "shape": {
         "value": "event",
@@ -1409,7 +1735,19 @@
       "firstRequested": "2026-11-12T12:23:27+00:00",
       "lastRequested": "2026-11-12T12:23:27+00:00",
       "precedents": {
-        "registry": [],
+        "registry": [
+          {
+            "id": "struckIn",
+            "display": "was struck in",
+            "subjectKinds": [
+              "Work"
+            ],
+            "objectKinds": [
+              "Type"
+            ],
+            "score": 0.81
+          }
+        ],
         "legacy": [],
         "cidoc": []
       },
@@ -1543,6 +1881,58 @@
       }
     },
     {
+      "name": "vetoed",
+      "status": "open",
+      "definitions": [
+        "An act: a tribune (or a colleague) blocked a proposal, a decree or an act of a magistrate by intercessio, at a date; the vetoer and the measure are roles."
+      ],
+      "subjectKinds": [
+        "Person"
+      ],
+      "objectKinds": [
+        "Decree",
+        "Event",
+        "Law"
+      ],
+      "requestedBy": [
+        "curator (with Claude, 2026-11-22; 48-POLITICAL-LENS-AND-PATHS.md)"
+      ],
+      "evidence": [
+        {
+          "observationId": null,
+          "quotation": null,
+          "ref": "chats/Agents and Exploration.yml (ChatGPT review of the architecture, 2026-11-21); 39 §10, the families the lens run and the Gracchus narrative ask for. The objectKinds Law and Decree wait on registry v21 (D-171; 48 §4). A vetoed Senate motion is recorded as a senatus auctoritas, the vote's outcome."
+        }
+      ],
+      "firstRequested": "2026-11-22T11:14:31+00:00",
+      "lastRequested": "2026-11-22T11:14:31+00:00",
+      "precedents": {
+        "registry": [],
+        "legacy": [
+          {
+            "name": "VETOED",
+            "description": "Person blocked another's action",
+            "category": "Political",
+            "direction": "forward",
+            "wikidata": null,
+            "wikidataSuggested": null,
+            "reifyAs": null,
+            "cidoc": null,
+            "status": "candidate",
+            "score": 1.0
+          }
+        ],
+        "cidoc": []
+      },
+      "similarRequests": [],
+      "shape": {
+        "value": "event",
+        "basis": "A veto is an act at a moment against a named measure: an Event with roles (D-138).",
+        "by": "curator, 2026-11-22 (48 §3, confirmed in chat)",
+        "at": "2026-11-22T11:28:03+00:00"
+      }
+    },
+    {
       "name": "wentOverTo",
       "status": "open",
       "definitions": [
@@ -1582,14 +1972,38 @@
       "firstRequested": "2026-11-12T12:23:27+00:00",
       "lastRequested": "2026-11-12T12:44:43+00:00",
       "precedents": {
-        "registry": [],
+        "registry": [
+          {
+            "id": "surrenderedTo",
+            "display": "surrendered to",
+            "subjectKinds": [
+              "Group",
+              "Person"
+            ],
+            "objectKinds": [
+              "Group",
+              "Person"
+            ],
+            "score": 0.66
+          },
+          {
+            "id": "defectedTo",
+            "display": "defected to",
+            "subjectKinds": [
+              "Group",
+              "Person"
+            ],
+            "objectKinds": [
+              "Group",
+              "Person"
+            ],
+            "score": 0.63
+          }
+        ],
         "legacy": [],
         "cidoc": []
       },
-      "similarRequests": [
-        "defectedTo",
-        "surrenderedTo"
-      ],
+      "similarRequests": [],
       "shape": {
         "value": "event",
         "basis": "The same act as defectedTo: a desertion is an event.",

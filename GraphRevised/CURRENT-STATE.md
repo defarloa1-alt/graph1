@@ -3,7 +3,7 @@ status: informational
 authority: none; the one current-state page. Decisions are in 33-DECISIONS.md; meaning and storage in 02
 depends_on: [33-DECISIONS.md, 02-GRAPH-MODEL.md]
 supersedes: [19-SESSION-HANDOFF.md, 38-REASONING-SESSION-HANDOFF.md, 40-LENS-SESSION-HANDOFF.md]
-last_reviewed: 2026-11-21
+last_reviewed: 2026-11-22
 ---
 
 # Current state
@@ -76,10 +76,11 @@ python -m pytest GraphRevised/tests -q   # 13 to 18 minutes; see §6 for the exp
   **After a registry bump:** `python -m GraphRevised.proposals.registry_graph --apply`,
   then `python -m GraphRevised.migrations.018_graph_type --apply`, then
   `python -m GraphRevised.export.fact_layer --apply`.
-- **Predicate registry v20**
-  ([proposals/predicates.v20.json](proposals/predicates.v20.json), 2026-11-19: the gens as a
-  Group category, `ofGens`, and `objectCategories`, a predicate requiring its object's
-  category); draft schema v8.
+- **Predicate registry v21**
+  ([proposals/predicates.v21.json](proposals/predicates.v21.json), 2026-11-22: kinds `Law` and
+  `Decree`, groupCategory `assembly`, `patronOf` (D-171, 48 §4); `adoptedBy` and `heldPosition`'s
+  role and context (D-170)). v20 (2026-11-19): the gens as a Group category, `ofGens`, and
+  `objectCategories`; draft schema v8.
 - 483 events against 97 people, though D-030 says people first: most of the
   difference is depicted events, one set per source. The curator is reviewing
   whether this is intended (2026-11-13).
@@ -526,8 +527,8 @@ deleted (its password in pushed history is dead).
 
 ## 6. Tests
 
-Last full run, 2026-11-21, after D-168, the local-only guard and `RELATED_HEADING`
-in the graph type: **665 passed** (13 to 18 minutes), live tests included. The live tests skip without
+Last full run, 2026-11-22, after registry v21 (D-171) and the review desk's footnote-check
+tab: **686 passed** (13 to 18 minutes), live tests included. The live tests skip without
 `NEO4J_PASSWORD`, and a run with 100 or so skips proves little. A live test that counts the whole graph fails if a migration is applied while
 the suite runs: never write to the graph during a run.
 
@@ -536,7 +537,17 @@ the failures: a stopped Neo4j looked like 92 failures on 2026-11-15.
 
 ## 7. Next steps
 
-**Start here next session (handoff, 2026-11-21; D-169).**
+**Start here next session (handoff, 2026-11-21, updated 2026-11-22; D-169 to D-171).**
+
+*Done 2026-11-22:*
+- **Doc 48** (political lens, laws and assemblies, paths across domains), from the ChatGPT review
+  in `chats/Agents and Exploration.yml`, checked against the repo. Six political requests are in
+  the predicate-needs queue with confirmed shapes (48 §3).
+- **Registry v21 built and applied** (D-171, with D-170's items): kinds `Law` and `Decree`,
+  groupCategory `assembly` (the comitia, the concilium plebis, the Senate), `patronOf`,
+  `adoptedBy`, `heldPosition` role and context. Registry graph, graph type and fact layer
+  re-run; no Law or Decree entities exist yet. The explorer's Law and Decree icons are
+  placeholders.
 
 *Done 2026-11-21:*
 - **Baseline:** every session closed; branch pushed; 665 tests then; backup taken 2026-11-20 (§5
@@ -565,12 +576,17 @@ the failures: a stopped Neo4j looked like 92 failures on 2026-11-15.
 5. **The person-expert (D-170):** the Lives reader, from the Perplexity design in
    `chats/Person-Expert Agent  Recommended Best Practice.md` with the review's changes. First build,
    no model cost: (a) the rests-on check takes any harvester's links, not only Wikipedia's; (b)
-   registry v21 (`adoptedBy` with its form as a role; `heldPosition` role and context; `hadStatus`
-   if wanted); (c) the person inquiry format and the dossier; (d) the DPRR office seed, by rule
+   ~~registry v21~~ **done 2026-11-22** (`adoptedBy` with its form as a role; `heldPosition` role
+   and context; built with D-171's laws, decrees and assemblies; `hadStatus` not added, still a
+   request); (c) the person inquiry format and the dossier; (d) the DPRR office seed, by rule
    only where the person's DPRR crosswalk is accepted and no identity Question is open. Then open
    the `lives` budget ($25, not yet in `curation/budgets.json`) and measure one small and one
    large life. To verify before the design leaves `chats/`: its arXiv and ACM citations, the RE
    example (Domitius 65, Q95598037), and whether the DPRR switch exists in code.
+6. **Doc 48's open choices (48 §7), for the curator:** amicitia (`amicusOf` as its own state,
+   or under `alliedWith`); how bridge leads across domains are recorded; the political lens
+   dossier. Then the first Laws and Decrees (e.g. the SC de Bacchanalibus, 186 BCE; the SC
+   ultimum of 121 BCE as a Type and its first use).
 
 **Earlier handoff (2026-11-19, late; D-167).**
 
@@ -786,7 +802,7 @@ connector (`.mcp.json`) is unaffected.
 |---|---|
 | **Governing** | [02](02-GRAPH-MODEL.md) meaning and storage; [31](31-ONE-COMMAND.md) behaviour; [29](29-EVENT-CENTRED-INQUIRY.md), [32](32-RESEARCH-WORKSPACE.md), [26](26-UI-DATA-CONTRACT.md); [33](33-DECISIONS.md), the decision register |
 | **Descriptive** | [30](30-LOGICAL-MODEL.md) the model in UML; [36](36-DATA-DICTIONARY.md) the data dictionary; [37](37-CANONICAL-EXPORT-REQUIREMENTS.md) export requirements |
-| **Draft or decided plans** | [39](39-LENS-SPECIALISTS.md) lens specialists; [41](41-ENDGAME-PLAN.md) end game; [42](42-CORROBORATION-AND-CLAIM-KINDS.md) corroboration (built); [43](43-ACTIUM-MILITARY-FRAME.md) military frame; [44](44-HISTORIOGRAPHY-AND-DEBATES.md) historiography (built 2026-11-16); [45](45-NATURAL-KINDS-AND-MATERIALS.md) natural kinds (built in part); [46](46-ROMAN-NAMES-AND-GENS.md) Roman names and the gens (built 2026-11-19); [47](47-REASONING-AND-SCRIPT-REVIEW.md) where reasoning belongs, and the script review (draft 2026-11-20) |
+| **Draft or decided plans** | [39](39-LENS-SPECIALISTS.md) lens specialists; [41](41-ENDGAME-PLAN.md) end game; [42](42-CORROBORATION-AND-CLAIM-KINDS.md) corroboration (built); [43](43-ACTIUM-MILITARY-FRAME.md) military frame; [44](44-HISTORIOGRAPHY-AND-DEBATES.md) historiography (built 2026-11-16); [45](45-NATURAL-KINDS-AND-MATERIALS.md) natural kinds (built in part); [46](46-ROMAN-NAMES-AND-GENS.md) Roman names and the gens (built 2026-11-19); [47](47-REASONING-AND-SCRIPT-REVIEW.md) where reasoning belongs, and the script review (draft 2026-11-20); [48](48-POLITICAL-LENS-AND-PATHS.md) political lens, laws and assemblies, paths across domains (draft 2026-11-22) |
 | **Reference** (design reasoning that decisions cite) | 01, 03, 05 to 09, 16, 21 to 25, 27, 28 |
 | **Executable** | [10](10-PHASE-1-SCHEMA.cypher), [13](13-PHASE-3-DIRECT-OPERATIONS.cypher) (the operations), [34](34-ENTITY-SUBTYPE-MIGRATION.cypher) |
 | **History** (as of their date; do not act on them) | 00 (the Phase 0 snapshot), 04, 11, 12, 14, 15, 17, 18, [19](19-SESSION-HANDOFF.md), 20, 35, [38](38-REASONING-SESSION-HANDOFF.md), [40](40-LENS-SESSION-HANDOFF.md) |
