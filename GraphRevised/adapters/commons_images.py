@@ -19,7 +19,7 @@ No new harvest: the QIDs and file names come from the preserved Wikidata
 records (phase-*-source).
 
 **Article images** (curator, 2026-11-23). The pictures in a Wikipedia article we hold a fixed
-revision of (``ARTICLES``) are Commons files too. That revision's figures and infobox image are
+revision of (``curation/wikipedia-articles.json``) are Commons files too. That revision's figures and infobox image are
 read with their captions (one cached parse); a figure is linked to the entity its caption links
 to, matched by Wikidata QID (the caption's links resolved through Wikipedia's page properties),
 else to the article's own entity. Each file then goes through the same Commons description,
@@ -50,8 +50,16 @@ IMAGES = ROOT / "explorer" / "images"
 API = "https://commons.wikimedia.org/w/api.php"
 WIKI_API = "https://en.wikipedia.org/w/api.php"
 WIKI_CACHE = ROOT / "cache" / "wikipedia"
-# The Wikipedia articles we hold a fixed revision of (their passages are in the graph), and the entity each is about.
-ARTICLES = [("Battle of Actium", 1378178531, "chr:entity:battle-of-actium")]
+# The Wikipedia articles we hold a fixed revision of (their passages are in the graph), and the entity each is
+# about: curation/wikipedia-articles.json (a reusable adapter names no particular subject).
+ARTICLES_FILE = ROOT / "curation" / "wikipedia-articles.json"
+
+
+def articles() -> list[tuple[str, int, str]]:
+    if not ARTICLES_FILE.exists():
+        return []
+    spec = json.loads(ARTICLES_FILE.read_text(encoding="utf-8"))
+    return [(a["title"], a["revision"], a["entity"]) for a in spec.get("articles", [])]
 # interface pictures, not content: locator maps, icons, logos, markers
 NOT_CONTENT = re.compile(r"(location[_ ]map|icon|logo|Symbol[_ ]|Red[_ ]pog|OOjs[_ ]UI|Codex[_ ])", re.I)
 FREE = re.compile(r"^(Public domain|PD\b|CC0|CC BY)", re.I)
@@ -289,7 +297,7 @@ def article_figures(revision: int) -> list[dict]:
 
 
 def qids_for_titles(titles: list[str]) -> dict[str, str]:
-    """Wikipedia title -> its Wikidata QID, redirects followed (Octavian -> Augustus)."""
+    """Wikipedia title -> its Wikidata QID, redirects followed (a former name -> the page it now redirects to)."""
     out: dict[str, str] = {}
     titles = sorted(set(titles))
     for i in range(0, len(titles), 50):
@@ -313,7 +321,8 @@ def run_articles() -> dict:
     by_id = {e["id"]: e for e in entities.values()}
     (IMAGES / "commons").mkdir(parents=True, exist_ok=True)
     gallery, review = [], []
-    for title, revision, about in ARTICLES:
+    held = articles()
+    for title, revision, about in held:
         figures = article_figures(revision)
         qids = qids_for_titles([x for f in figures for x in f["links"]])
         metadata = fetch_metadata(sorted({f["file"] for f in figures}))
@@ -354,7 +363,7 @@ def run_articles() -> dict:
     counts: dict[str, int] = {}
     for row in gallery:
         counts[row["class"]] = counts.get(row["class"], 0) + 1
-    return {"articles": len(ARTICLES), "pictures": len(gallery), "to review": len(review), "classes": counts}
+    return {"articles": len(held), "pictures": len(gallery), "to review": len(review), "classes": counts}
 
 
 if __name__ == "__main__":

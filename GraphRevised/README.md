@@ -115,6 +115,7 @@ registry or the model changes.
 26. [24-PERIODS-AND-TRANSFORMATION.md](24-PERIODS-AND-TRANSFORMATION.md) — periods and transformation
 27. [25-LIVES-AND-PLAYGROUND.md](25-LIVES-AND-PLAYGROUND.md) — lives first, and a playground for exploration
 28. [26-UI-DATA-CONTRACT.md](26-UI-DATA-CONTRACT.md) — **governing:** what the explorer receives, and the screen (§1)
+    - [26a-UI-DATA-CONTRACT-SCENES.md](26a-UI-DATA-CONTRACT-SCENES.md) — addendum (draft, D-176): movement, flybys, pictures found and made
 29. [27-GAZETTEER.md](27-GAZETTEER.md) — the gazetteer, a geographic backbone
 30. [28-SUBJECT-BUCKETS.md](28-SUBJECT-BUCKETS.md) — subject buckets
 31. [29-EVENT-CENTRED-INQUIRY.md](29-EVENT-CENTRED-INQUIRY.md) — **governing:** event-centred inquiry and Chrystallum's account

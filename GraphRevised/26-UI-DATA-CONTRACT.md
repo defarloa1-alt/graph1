@@ -12,6 +12,8 @@ last_reviewed: 2026-10-19
 **Date:** 2026-10-13. **For:** the curator designing the explorer in Figma, and
 whoever builds the read API. **Status:** shapes 2 and 3 are built (the export
 emits them today); shapes 1, 4, 4a, 5, and 6 are specified here and not built.
+Shapes 7 to 9 (movement and flyby scenes, pictures found and made, generation
+steps) are in the addendum [26a](26a-UI-DATA-CONTRACT-SCENES.md) (D-176).
 
 The explorer never shows storage. Claims, Proposals, passages, and authority
 records stay behind the read API; the UI receives a few plain shapes. This

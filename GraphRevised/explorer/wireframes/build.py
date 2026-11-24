@@ -157,6 +157,108 @@ def load_backdrops() -> dict:
     return out
 
 
+ENTITY_ID = re.compile(r"chr:entity:[\w.-]+")
+LEFT_OUT = re.compile(r"READ (\w+) (.+?) \(\$([\d.]+)\)")
+
+
+def load_reach() -> dict:
+    """Where the system can look: the source registry (curation/sources.json, D-177), every source with
+    what it gives, its status (read, registered, candidate), its rights class and its marks."""
+    registry = json.loads((ROOT / "curation" / "sources.json").read_text(encoding="utf-8"))
+    gives = {k: v for k, v in (registry.get("gives") or {}).items() if not k.startswith("_")}
+    out = []
+    for s in registry["sources"]:
+        rights = s.get("rights") or {}
+        out.append({"system_id": s["id"], "name": s["label"], "status": s["status"], "gives": s.get("gives") or [],
+                    "rights_class": rights.get("class"), "unverified": bool(rights.get("unverified")),
+                    "non_commercial": bool(s.get("nonCommercial")), "homepage": s.get("homepage"),
+                    "lenses": s.get("lenses") or [], "about": (s.get("coverage") or {}).get("description", "")})
+    return {"gives": gives, "sources": out}
+
+
+def load_plans() -> dict:
+    """The newest front-door run per focus (runs/front-door-*.json, D-174): entity id -> the run, trimmed
+    for the Plan view. Each source row of the coverage matrix gets its state per lens: an item of the
+    plan, left out for the budget, or read already."""
+    runs = sorted((ROOT / "runs").glob("front-door-*.json"), key=lambda p: p.name)
+    out = {}
+    for path in runs:
+        if path.name.endswith(".calls.json"):
+            continue
+        run = json.loads(path.read_text(encoding="utf-8"))
+        o, plan = run.get("orientation") or {}, run.get("plan") or {}
+        focus = (o.get("focus") or {}).get("chosen") or {}
+        key = focus.get("local_entity_id")
+        if not key or not plan:
+            continue
+        calls_path = path.with_name(path.stem + ".calls.json")
+        calls = json.loads(calls_path.read_text(encoding="utf-8")).get("calls", {}) if calls_path.exists() else {}
+        lenses = [l["name"].lower() for l in o.get("lenses", []) if l["name"].lower() != "general"]
+        # the sources and their "not read by" gaps come in the same order (orchestration/front_door.py)
+        source_gaps = [g for g in plan["coverage"]["gaps"] if g["kind"] == "source"]
+        rows, by_short, by_entity = [], {}, {}
+        for i, s in enumerate(o.get("sources", [])):
+            m = ENTITY_ID.search(s.get("why") or "")
+            gap = source_gaps[i]["description"] if i < len(source_gaps) else ""
+            short, _, missing = gap.partition(": not read by ")
+            row = {"work": s["work"], "entity": m.group(0) if m else None, "kind": s.get("kind"),
+                   "short": short or s["work"].split(",")[0],
+                   "cells": {l: ("unread" if l in missing.split(", ") else "read") for l in lenses}}
+            rows.append(row)
+            by_short[row["short"]] = row
+            if row["entity"]:
+                by_entity[row["entity"]] = row
+        for item in plan.get("items", []):
+            row = by_entity.get(item.get("target"))
+            if row and item.get("lens") in row["cells"]:
+                row["cells"][item["lens"]] = {"item": item["item_id"], "usd": item.get("budget_usd")}
+        not_built, left_out, notes = [], [], []
+        for q in plan.get("unresolved_questions", []):
+            if q.startswith("Left out for the budget"):
+                for lens, short, usd in LEFT_OUT.findall(q):
+                    left_out.append({"lens": lens, "short": short, "usd": float(usd)})
+                    row = by_short.get(short)
+                    if row and row["cells"].get(lens) == "unread":
+                        row["cells"][lens] = {"left": True, "usd": float(usd)}
+            elif " is not built yet" in q:
+                not_built.append(q)
+            else:
+                notes.append(q)
+        # what the orchestrator did (D-175): each item's attempts, newest last; a retried failure is set aside
+        results = {r["assignment_id"]: r for r in run.get("results") or []}
+        set_aside = set(run.get("set_aside") or [])
+        attempts: dict = {}
+        for a in run.get("assignments") or []:
+            r = results.get(a["assignment_id"])
+            state = "set_aside" if a["assignment_id"] in set_aside else (r["status"] if r else "running")
+            attempts.setdefault(a["item_id"], []).append({
+                "state": state, "started": a.get("started_at"), "finished": r.get("finished_at") if r else None,
+                "cost": r.get("cost_usd") if r else None, "proposals": len(r.get("proposal_ids") or []) if r else 0,
+                "error": (r.get("error") or None) if r else None})
+        interrupts = [{k: i.get(k) for k in ("item_id", "reason", "question", "options", "answer", "answered_by")}
+                      for i in run.get("interrupts") or []]
+        earlier = out.get(key)  # the runs are read oldest first, so a run already held is an earlier plan
+        out[key] = {
+            "attempts": attempts, "interrupts": interrupts, "stoppedBecause": run.get("stopping_explanation"),
+            "earlier": ([{"runId": earlier["runId"], "status": earlier["status"], "spent": earlier["spent"]}] + earlier.get("earlier", []))
+                       if earlier else [],
+            "runId": run["run_id"], "command": run.get("command"), "mode": run.get("mode"), "status": run.get("status"),
+            "createdAt": run.get("created_at"), "planVersion": plan.get("version"), "dossierVersion": run.get("dossier_version"),
+            "focus": o.get("focus"), "years": [o.get("earliest_year"), o.get("latest_year")], "places": o.get("places", []),
+            "statements": o.get("statements", []), "controversies": o.get("controversies", []),
+            "traps": o.get("identity_traps", []), "federations": o.get("federations", []),
+            "lenses": lenses, "scope": plan.get("scope"),
+            "federations": [f for f in o.get("federations", []) if f.get("system_id")], "subject": plan.get("subject"),
+            "coverage": {k: plan["coverage"].get(k) for k in ("claims_by_status", "open_proposals", "read_at")}
+                        | {"entities": len(plan["coverage"].get("reused_entity_ids", [])),
+                           "otherGaps": [g for g in plan["coverage"]["gaps"] if g["kind"] != "source"]},
+            "matrix": rows, "items": plan.get("items", []), "calls": calls, "leftOut": left_out,
+            "notBuilt": not_built, "notes": notes, "stopping": plan.get("stopping_rules", []),
+            "budget": plan.get("budget_usd"), "spent": run.get("spent_usd", 0), "scopeApproved": plan.get("scope_approved"),
+        }
+    return out
+
+
 def load_phases() -> dict:
     """Each event's phase keys in the curator's order (curation/phases.json, D-091)."""
     path = ROOT / "curation" / "phases.json"
@@ -188,7 +290,7 @@ def build() -> Path:
         })
     edges = [trim_fact(e["data"]) for e in export["elements"]["edges"]]
     data = {"generatedBy": export.get("generated_by"), "nodes": nodes, "edges": edges,
-            "images": load_images(), "gallery": load_gallery(), "backdrops": load_backdrops(), "phases": load_phases()}
+            "images": load_images(), "gallery": load_gallery(), "backdrops": load_backdrops(), "plans": load_plans(), "reach": load_reach(), "phases": load_phases()}
     payload = json.dumps(data, ensure_ascii=False).replace("</", "<\\/")
     page = TEMPLATE.read_text(encoding="utf-8").replace("__GRAPH_DATA__", payload)
     OUTPUT.write_text(page, encoding="utf-8")

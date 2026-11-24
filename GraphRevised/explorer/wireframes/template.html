@@ -18,8 +18,8 @@
   --font-mono: "IBM Plex Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
   --s1: 4px; --s2: 8px; --s3: 12px; --s4: 16px; --s5: 24px;
   --r: 6px; --pad: 10px;
-  /* type: the chrome small and quiet, long reading text kept comfortable (curator, 2026-10-19) */
-  --fs-body: 10px; --fs-chrome: 9.5px; --fs-small: 10px; --fs-label: 9px; --fs-mono: 8.5px; --fs-title: 12px; --fs-read: 13px;
+  /* type: the chrome quiet, long reading text comfortable (curator, 2026-10-19); raised for legibility (curator, 2026-11-24) */
+  --fs-body: 12px; --fs-chrome: 11.5px; --fs-small: 11.5px; --fs-label: 10.5px; --fs-mono: 10px; --fs-title: 14px; --fs-read: 14px;
   /* lenses: colours from the icons' materials, shown only for the active lens (curator, 2026-10-19) */
   --lens-military: #9B2C24; --lens-social: #B5653A; --lens-political: #6B2D5C; --lens-economic: #9C7A1E; --lens-religious: #C77A12;
   --shadow: rgba(28, 31, 35, .14);
@@ -75,7 +75,7 @@ h1, h2, h3 { text-wrap: balance; margin: 0; }
 .app {
   flex: 1; min-height: 0;
   display: grid; gap: 4px;
-  grid-template-columns: minmax(0, 1fr) 260px;
+  grid-template-columns: minmax(0, 1fr) 33.333vw;
   grid-template-rows: minmax(0, 1fr) auto;
   grid-template-areas: "stage right" "drawer drawer";
 }
@@ -83,7 +83,7 @@ h1, h2, h3 { text-wrap: balance; margin: 0; }
 /* sidebars: docked in a column, floating over the stage, or hidden behind an edge tab */
 .side.float { grid-area: stage; align-self: start; max-height: calc(100% - var(--headH, 78px) - 8px); margin: var(--headH, 78px) 8px 8px; z-index: 6; box-shadow: 0 4px 18px var(--shadow); }
 .left.float { justify-self: start; width: 210px; }
-.right.float { justify-self: end; width: 260px; }
+.right.float { justify-self: end; width: 33.333vw; }
 .side-head { display: flex; align-items: center; gap: 2px; position: sticky; top: calc(-1 * var(--pad)); margin: calc(-1 * var(--pad)) calc(-1 * var(--pad)) 0; padding: 4px 6px 4px var(--pad); background: var(--surface); border-bottom: 1px solid var(--line); z-index: 1; }
 .side-head .label { margin-right: auto; }
 .icon { border: 1px solid transparent; background: transparent; border-radius: 4px; width: 22px; height: 22px; display: inline-grid; place-items: center; padding: 0; font-size: var(--fs-small); color: var(--ink-2); }
@@ -147,7 +147,7 @@ h1, h2, h3 { text-wrap: balance; margin: 0; }
 .backdrop-credit { position: absolute; right: 64px; bottom: 10px; z-index: 3; max-width: 46%; font-size: var(--fs-label); color: #f4ecd8; background: rgba(8, 12, 16, .7); border: 1px solid #d4b36a; border-radius: var(--r); padding: 3px 8px; }
 .stage.poster .foot { background: rgba(13, 19, 24, .85); color: #f4ecd8; border-color: #d4b36a; }
 .stage.poster .foot .label { color: #d4b36a; }
-.stage-head .legend { position: absolute; right: 0; top: 30px; } /* floats, so opening it never moves the chips or the canvas */
+.stage-head .legend { position: absolute; right: 0; top: calc(100% + 6px); } /* floats, so opening it never moves the chips or the canvas */
 .legend .portrait-key { width: 10px; height: 10px; border-radius: 50%; border: 1.5px solid var(--ink-2); background: var(--fill); justify-self: center; }
 .legend .hollow { display: inline-flex; align-items: center; gap: 0; }
 .legend .hollow::before { content: ""; width: 7px; height: 7px; border: 1.5px solid var(--ink-2); border-radius: 50%; }
@@ -164,7 +164,7 @@ h1, h2, h3 { text-wrap: balance; margin: 0; }
 .factinline { margin: 2px 0 8px 14px; padding-left: 10px; border-left: 2px solid var(--line); display: flex; flex-direction: column; gap: 8px; }
 .cardhint { color: var(--ink-3); font-size: var(--fs-chrome); }
 /* the navigator: a small live hub beside the card */
-#navCy { height: 200px; margin: 0 calc(-1 * var(--pad)) 6px; border-bottom: 1px solid var(--line); }
+#navCy { height: 240px; margin: 0 calc(-1 * var(--pad)) 6px; border-bottom: 1px solid var(--line); }
 /* the home menu: start from a life, or where you have been */
 .home-pop { position: absolute; left: 8px; bottom: 8px; width: min(520px, calc(100% - 16px)); z-index: 8; background: var(--surface); border: 1px solid var(--ink-3); border-radius: var(--r); box-shadow: 0 6px 24px var(--shadow); padding: 10px 12px; display: flex; flex-direction: column; gap: 10px; }
 .loghead { display: flex; align-items: center; justify-content: space-between; }
@@ -210,6 +210,9 @@ a.ext::after { content: " ↗"; font-size: .85em; }
 .map .placeholder { position: absolute; left: 50%; top: var(--s3); transform: translateX(-50%); background: var(--surface); border: 1px dashed var(--ink-3); border-radius: var(--r); padding: 4px 10px; font-family: var(--font-mono); font-size: var(--fs-label); color: var(--ink-2); z-index: 2; text-align: center; max-width: 80%; }
 
 /* right card */
+/* the details sidebar reads at book size (curator, 2026-11-23): its own type scale, the rest of the screen unchanged */
+.right { --fs-body: 13px; --fs-chrome: 12.5px; --fs-small: 12.5px; --fs-label: 11px; --fs-mono: 11px; --fs-title: 17px; --fs-read: 14.5px; line-height: 1.5; }
+.right .label { letter-spacing: .05em; }
 .right { grid-area: right; overflow: auto; padding: var(--pad); display: flex; flex-direction: column; gap: 10px; font-size: var(--fs-chrome); color: var(--ink-2); }
 #cardBody { display: flex; flex-direction: column; gap: 10px; }
 .right h2 { color: var(--ink); }
@@ -316,6 +319,86 @@ a.ext::after { content: " ↗"; font-size: .85em; }
 .cmd .prompt { font-family: var(--font-mono); color: var(--ink-2); font-size: var(--fs-label); white-space: nowrap; }
 .home { border: 1px solid var(--line); background: transparent; border-radius: var(--r); padding: 2px 7px; font-size: var(--fs-small); }
 
+/* ---------- the Plan view: a front-door run (D-174), what it found and what it would do ---------- */
+.plan { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr); gap: 28px; max-width: 1240px; margin: 0 auto; }
+.plan h3 { font-size: var(--fs-title); margin: 0 0 4px; }
+.plan section { display: flex; flex-direction: column; gap: 8px; margin-bottom: 22px; }
+.plan-head { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: baseline; border-bottom: 1px solid var(--line); padding-bottom: 10px; }
+.plan code { font-family: var(--font-mono); background: var(--fill); border-radius: 4px; padding: 1px 6px; color: var(--ink); }
+.plan-head > code { font-size: var(--fs-read); padding: 2px 8px; }
+.plan-head .meta { font-size: var(--fs-chrome); color: var(--ink-2); display: flex; flex-wrap: wrap; gap: 4px 14px; }
+.status-wait { font-weight: 700; color: var(--ink); border: 1.5px solid var(--ink); border-radius: 999px; padding: 0 9px; font-size: var(--fs-chrome); }
+.who-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 8px; }
+.who-card { border: 1px solid var(--line); border-radius: var(--r); padding: 8px 10px; display: flex; flex-direction: column; gap: 4px; background: var(--surface); }
+.who-card.chosen { border: 2px solid var(--ink); }
+.who-card .lbl { font-weight: 700; color: var(--ink); font-size: var(--fs-body); display: flex; gap: 6px; align-items: center; }
+.who-card .desc { font-size: var(--fs-read); color: var(--ink); }
+.who-card .ids { font-size: var(--fs-chrome); color: var(--ink-2); display: flex; justify-content: space-between; gap: 8px; align-items: center; flex-wrap: wrap; }
+.budget { display: flex; flex-direction: column; gap: 4px; }
+.budget .bar { position: relative; height: 12px; border-radius: 999px; background: var(--fill); overflow: hidden; border: 1px solid var(--line); }
+.budget .bar span { position: absolute; top: 0; bottom: 0; left: 0; }
+.budget .bar .planned { background: repeating-linear-gradient(135deg, var(--ink-3) 0 3px, transparent 3px 6px); }
+.budget .bar .approved { background: var(--ink); }
+.budget .nums { display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: var(--fs-label); color: var(--ink-2); font-variant-numeric: tabular-nums; }
+.plan-tools { display: flex; gap: 6px; }
+.pitem { border: 1px solid var(--line); border-left: 4px solid var(--lens-c, var(--ink-3)); border-radius: var(--r); padding: 10px 12px; display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 4px 12px; background: var(--surface); }
+.pitem .pid { font-family: var(--font-mono); font-weight: 700; color: var(--ink); font-size: var(--fs-body); }
+.pitem .what { font-size: var(--fs-read); color: var(--ink); line-height: 1.4; }
+.pitem .what .linkish { font-size: var(--fs-read); color: var(--ink); }
+.pitem .usd { font-family: var(--font-mono); font-size: var(--fs-body); color: var(--ink); text-align: right; font-variant-numeric: tabular-nums; }
+.pitem .why, .pitem .outs, .pitem .runs, .pitem .act { grid-column: 2 / -1; }
+.pitem .why, .pitem .outs { font-size: var(--fs-chrome); color: var(--ink-2); }
+.pitem .runs { font-family: var(--font-mono); font-size: var(--fs-mono); color: var(--ink-3); }
+.pitem .act { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; margin-top: 4px; }
+.pitem .act button[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.pitem.rejected { opacity: .55; }
+.pitem.rejected .what { text-decoration: line-through; }
+.pitem.has-run .pid::after { content: " ✓"; }
+.pitem.st-running .pid::after { content: " ●"; }
+.pitem.st-failed .pid::after, .pitem.st-set_aside .pid::after { content: " ✕"; }
+.ran { font-size: var(--fs-chrome); color: var(--ink); font-weight: 600; }
+.ran-failed, .ran-set_aside { color: var(--lens-military); }
+.ran-running { font-style: italic; }
+.status-wait.st-running { border-style: dashed; }
+.status-wait.st-done { background: var(--ink); color: var(--bg); }
+.plan-head .stopped { flex-basis: 100%; color: var(--ink-2); }
+.ask { border: 2px solid var(--ink); border-radius: var(--r); padding: 10px 12px; background: var(--fill); }
+.reach dl { margin: 0; display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 6px 12px; }
+.reach dt { font-family: var(--font-mono); font-size: var(--fs-label); color: var(--ink-3); text-transform: uppercase; letter-spacing: .04em; padding-top: 3px; }
+.reach dd { margin: 0; display: flex; flex-direction: column; gap: 2px; }
+.reach .rs { font-size: var(--fs-read); color: var(--ink); }
+.reach .label { margin-top: 6px; }
+.reach .cands { list-style: none; padding: 0; gap: 10px; }
+.reach .cands li { border: 1px dashed var(--ink-3); border-radius: var(--r); padding: 8px 10px; display: flex; flex-direction: column; gap: 4px; align-items: flex-start; }
+.reach .cands .why { font-size: var(--fs-chrome); color: var(--ink-2); }
+.reach .cands a { color: var(--ink); }
+.pill.dashed { border-style: dashed; }
+.pitem.flash { outline: 3px solid var(--ink); outline-offset: 2px; }
+.lens-tag { font-family: var(--font-mono); font-size: var(--fs-mono); text-transform: uppercase; letter-spacing: .05em; color: var(--lens-c, var(--ink-2)); border: 1px solid var(--lens-c, var(--ink-3)); border-radius: 3px; padding: 0 5px; }
+.matrix { border-collapse: collapse; font-size: var(--fs-chrome); width: 100%; }
+.matrix th, .matrix td { border-bottom: 1px solid var(--line); padding: 4px 6px; text-align: center; }
+.matrix th { font-family: var(--font-mono); font-size: var(--fs-label); text-transform: uppercase; letter-spacing: .04em; color: var(--lens-c, var(--ink-3)); font-weight: 700; }
+.matrix td.work { text-align: left; color: var(--ink); }
+.matrix td.work .linkish { font-size: var(--fs-chrome); color: var(--ink); text-align: left; }
+.matrix td.work .k { font-family: var(--font-mono); font-size: var(--fs-mono); color: var(--ink-3); margin-left: 6px; }
+.cell { display: inline-grid; place-items: center; min-width: 48px; height: 22px; padding: 0 4px; border-radius: 4px; font-family: var(--font-mono); font-size: var(--fs-label); }
+.cell.item { background: var(--ink); color: var(--bg); font-weight: 700; border: 0; cursor: pointer; }
+.cell.item.ok { outline: 2px solid var(--ink); outline-offset: 2px; }
+.cell.item.no { background: transparent; color: var(--ink-3); border: 1px dashed var(--ink-3); text-decoration: line-through; }
+.cell.left { border: 1px dashed var(--ink-3); color: var(--ink-3); }
+.cell.read { color: var(--ink-2); }
+.cell.unread { border: 1px solid var(--line); color: var(--ink-3); }
+.mkey { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: var(--fs-label); color: var(--ink-2); align-items: center; }
+.brief ul { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 6px; }
+.brief li { font-size: var(--fs-read); line-height: 1.45; color: var(--ink); }
+.brief .src { display: block; font-family: var(--font-mono); font-size: var(--fs-mono); color: var(--ink-3); }
+.brief .linkish { text-align: left; font-size: var(--fs-read); color: var(--ink); }
+.counts { display: grid; grid-template-columns: repeat(auto-fit, minmax(96px, 1fr)); gap: 6px; }
+.counts div { border: 1px solid var(--line); border-radius: var(--r); padding: 6px 8px; display: flex; flex-direction: column; }
+.counts b { font-size: var(--fs-title); color: var(--ink); font-variant-numeric: tabular-nums; }
+.counts span { font-size: var(--fs-label); color: var(--ink-3); }
+.plan ul.small { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 4px; color: var(--ink-2); }
+@media (max-width: 900px) { .plan { grid-template-columns: minmax(0, 1fr); } }
 /* stage modes, path bar, reading panes */
 .pathbar { flex-basis: 100%; display: flex; flex-wrap: wrap; align-items: center; gap: 4px; font-size: var(--fs-body); background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 3px 8px; }
 .pathbar .step { border: 0; background: transparent; padding: 0 2px; color: var(--ink-2); text-decoration: underline; text-underline-offset: 2px; }
@@ -464,6 +547,7 @@ body.fs #fsBtn { margin-left: auto; }
     <div class="map" id="map" hidden></div>
     <div class="reading cardstage" id="cardStage" hidden></div>
     <div class="reading" id="account" hidden></div>
+    <div class="reading" id="planStage" hidden></div>
     <div class="reading" id="notes" hidden></div>
     <div class="reading" id="timelineStage" hidden></div>
     <div class="reading" id="chartStage" hidden></div>
@@ -687,11 +771,14 @@ const ACTORS = [ // 25 §13, in order; the graph name where one exists
 
 /* ---------- layout (per user, remembered) ---------- */
 /* the stage gets the screen (curator, 2026-11-18): both panels rest as edge tabs and open over the stage */
-const LAYOUT_DEFAULT = { left: "hide", right: "hide", rightWidth: 260, timeline: true, theme: "system" };
-const LAYOUT_KEY = "chr-layout-v2"; // a new key, so the new defaults reach readers who saved the old layout
+/* the details sidebar is a third of the screen, for reading (curator, 2026-11-23) */
+const LAYOUT_DEFAULT = { left: "hide", right: "hide", rightWidth: "33.333vw", timeline: true, theme: "system" };
+const LAYOUT_KEY = "chr-layout-v4"; // a new key, so the new defaults reach readers who saved the old layout
+const sideWidth = w => typeof w === "number" ? `${w}px` : w; // an older saved width is pixels
 let L = { ...LAYOUT_DEFAULT };
 try { Object.assign(L, JSON.parse(localStorage.getItem(LAYOUT_KEY) || "{}")); } catch (e) {}
-const lastShown = { left: L.left === "hide" ? "float" : L.left, right: L.right === "hide" ? "float" : L.right };
+// the details open docked, so the stage shrinks beside them rather than being covered (curator, 2026-11-24)
+const lastShown = { left: L.left === "hide" ? "float" : L.left, right: L.right === "hide" ? "dock" : L.right };
 const narrow = window.matchMedia("(max-width: 860px)");
 function saveLayout() { try { localStorage.setItem(LAYOUT_KEY, JSON.stringify(L)); } catch (e) {} }
 function applyTheme(theme) { // system follows the device; light and dark are the reader's choice
@@ -706,13 +793,13 @@ function applyLayout() {
     el.classList.toggle("float", L[side] === "float");
     $(side === "left" ? "#tabLeft" : "#tabRight").hidden = L[side] !== "hide";
   }
-  right.style.width = L.right === "float" ? `${L.rightWidth}px` : "";
+  right.style.width = L.right === "float" ? sideWidth(L.rightWidth) : "";
   if (narrow.matches) { app.style.gridTemplateColumns = ""; app.style.gridTemplateAreas = ""; }
   else {
     const cols = [], mid = [];
     if (L.left === "dock") { cols.push("200px"); mid.push("left"); }
     cols.push("minmax(0, 1fr)"); mid.push("stage");
-    if (L.right === "dock") { cols.push(`${L.rightWidth}px`); mid.push("right"); }
+    if (L.right === "dock") { cols.push(sideWidth(L.rightWidth)); mid.push("right"); }
     const span = name => Array(cols.length).fill(name).join(" ");
     app.style.gridTemplateColumns = cols.join(" ");
     app.style.gridTemplateAreas = `"${mid.join(" ")}" "${span("drawer")}"`;
@@ -730,7 +817,7 @@ function renderLayoutPop() {
   $("#layoutPop").innerHTML = `
     <span>Filters</span>${seg("left", [["dock", "Docked"], ["float", "Floating"], ["hide", "Hidden"]])}
     <span>Details</span>${seg("right", [["dock", "Docked"], ["float", "Floating"], ["hide", "Hidden"]])}
-    <span>Details width</span>${seg("rightWidth", [[220, "Narrow"], [260, "Normal"], [340, "Wide"]])}
+    <span>Details width</span>${seg("rightWidth", [["25vw", "A quarter"], ["33.333vw", "A third"], ["45vw", "Wide"]])}
     <span>Time slider</span>${seg("timeline", [[true, "Shown"], [false, "Hidden"]])}
     <span>Theme</span>${seg("theme", [["system", "System"], ["light", "Light"], ["dark", "Dark"]])}
     <span class="hint">Floating panels sit over the stage and leave it full width. Hidden panels wait behind a tab on the stage edge ([ and ] toggle them; t changes the theme). Your layout is remembered on this device.</span>
@@ -791,6 +878,7 @@ const S = {
   cats: new Set(["factual", "interpretive"]), att: new Set(ATT.map(a => a[0])), // fiction off by default (fix 2, curator 2026-11-18)
   voice: "", from: -100, to: 20, drawerOpen: false, log: [], cites: [], myNotes: {}, mapZoom: 1,
   fs: false, anim: { i: 0, playing: false },
+  planDec: {}, planAllQ: false, // the curator's approve / reject / defer per plan item, in this page only (the real write is InquiryPlan.decide)
 };
 
 /* ---------- helpers ---------- */
@@ -889,7 +977,7 @@ function cyStyle() {
     { selector: "edge.tree", style: { "curve-style": "taxi", "taxi-direction": "vertical", "taxi-turn": "100%" } },
     { selector: "node.cmdr", style: { width: 26, height: 26, "font-size": 9.5, "text-max-width": 60 } },
     { selector: "node.group.cover", style: { width: 176, height: 99, padding: 0, "background-image": "data(img)", "background-fit": "cover", "background-opacity": 1, "border-width": 2, "border-color": "#d4b36a", color: "#f4ecd8", "text-valign": "bottom", "text-margin-y": -8, "text-background-color": "#0d1318", "text-background-opacity": .75, "text-background-padding": 3, "text-background-shape": "roundrectangle", "font-family": "Cinzel, Georgia, serif", "font-size": 10, "text-max-width": 240 } },
-    { selector: "node.ship", style: { shape: "round-rectangle", width: 58, height: 33, "background-image": "data(img)", "background-fit": "contain", "background-clip": "node", "background-color": surface, "background-opacity": 1, "border-width": 1, "border-color": ink3 } },
+    { selector: "node.ship", style: { shape: "round-rectangle", width: 68, height: 36, "background-image": "data(img)", "background-width": "92%", "background-height": "92%", "background-clip": "node", "background-color": surface, "background-opacity": 1, "border-width": 1, "border-color": ink3 } },
     { selector: "node.ship.proposed", style: { "border-style": "dashed", "border-color": ink2, "background-image-opacity": .75 } },
     { selector: "node.cmdr.attributed", style: { "border-style": "double", "border-width": 3 } },
     { selector: "node.sidehead.on", style: { "border-width": 3, "border-color": ink } },
@@ -1141,25 +1229,25 @@ function orderModel(ev) {
    curl. A generic oared warship, not a trireme: Actium's lines were quinqueremes and larger (Antony's)
    against lighter ships and liburnians (Octavian's). Mid tones, so it reads on light and dark. */
 const SHIP_SVG = (() => {
-  const oars = Array.from({ length: 9 }, (_, i) => { const x = 17 + i * 4; return `<path d="M${x} 21.5 L${x - 5} 31.5"/>`; }).join("");
-  const shields = Array.from({ length: 6 }, (_, i) => `<circle cx="${18 + i * 5.6}" cy="12.4" r="2.2"/>`).join("");
-  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 36">
-    <path d="M1 30.5q3.5-1.6 7 0t7 0 7 0 7 0 7 0 7 0 7 0 7 0 7 0" fill="none" stroke="#8a9299" stroke-width="1" opacity=".7"/>
-    <g stroke="#7d746a" stroke-width="1.1" stroke-linecap="round">${oars}</g>
-    <path d="M12 20.6 H51" stroke="#4e4033" stroke-width="1.4"/>
-    <path d="M9 14 H54 C55.4 16.6 55.2 19.4 53 21.4 L17 22.4 C12.6 21.8 9.6 18.6 9 14 Z" fill="#6e5a45" stroke="#3f3328" stroke-width="1"/>
-    <path d="M9.4 15.2 C5.6 13.8 3 10.6 4 6.6 C4.8 3.6 8.8 3.6 8.6 6.6 C8.5 8.2 6.8 8.6 6.2 7.6" fill="none" stroke="#3f3328" stroke-width="1.6" stroke-linecap="round"/>
-    <path d="M53.6 14.4 C55.8 12.4 57 10 56.2 7.4 C55.6 5.6 53.6 6 54 7.8" fill="none" stroke="#3f3328" stroke-width="1.6" stroke-linecap="round"/>
-    <path d="M52.6 18.6 L62.6 20.2 L52.6 22.4 Z" fill="#b08035" stroke="#6b4b1c" stroke-width=".8"/>
-    <path d="M55 19.2 V21.8 M58 19.7 V21.3" stroke="#6b4b1c" stroke-width=".7"/>
-    <g fill="#d8c79f" stroke="#5a4630" stroke-width=".8">${shields}</g>
-    <circle cx="49.6" cy="17.2" r="1.6" fill="#f2ede2" stroke="#2b241d" stroke-width=".7"/><circle cx="50" cy="17.2" r=".7" fill="#2b241d"/>
+  // drawn to read at node size (about 60 px wide): few, heavy strokes, high contrast, a tight frame
+  const oars = Array.from({ length: 6 }, (_, i) => { const x = 18 + i * 6; return `<path d="M${x} 22 L${x - 6} 31"/>`; }).join("");
+  const shields = Array.from({ length: 4 }, (_, i) => `<circle cx="${20 + i * 8.5}" cy="12.2" r="3.3"/>`).join("");
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="1 3 63 30">
+    <g stroke="#3d342b" stroke-width="2.2" stroke-linecap="round">${oars}</g>
+    <path d="M8 14 H54 C55.8 17 55.4 20 53 22.4 L17 23.2 C12 22.6 8.6 19 8 14 Z" fill="#5c4733" stroke="#241b12" stroke-width="1.8" stroke-linejoin="round"/>
+    <path d="M11 19.6 H51" stroke="#c9a86a" stroke-width="1.4"/>
+    <path d="M8.6 15.4 C4.4 13.6 2.6 9.8 4 6.2 C5.2 3.4 9.6 4 9 7.2 C8.7 8.8 6.8 9 6.2 7.8" fill="none" stroke="#241b12" stroke-width="2.6" stroke-linecap="round"/>
+    <path d="M53.4 14.6 C56.4 12.2 57.6 9.2 56.4 6.4 C55.6 4.8 53.2 5.6 54 7.6" fill="none" stroke="#241b12" stroke-width="2.6" stroke-linecap="round"/>
+    <path d="M52 17.8 L63.5 20.2 L52 23.4 Z" fill="#c68a2e" stroke="#5e3f12" stroke-width="1.3" stroke-linejoin="round"/>
+    <g fill="#ecd9a6" stroke="#241b12" stroke-width="1.4">${shields}</g>
+    <circle cx="48.6" cy="17.2" r="2.4" fill="#fbf6ea" stroke="#241b12" stroke-width="1.2"/><circle cx="49.2" cy="17.2" r="1.1" fill="#241b12"/>
   </svg>`;
   return "data:image/svg+xml;utf8," + encodeURIComponent(svg);
 })();
 /* poster (curator, 2026-11-23): the order of battle over a generated backdrop. Light labels on dark
    plates, gold lines and frames, Cinzel on the sides; the backdrop darkened at the edges so the tree reads */
 const BACKDROPS = DATA.backdrops || {};
+const PLANS = DATA.plans || {}; // front-door runs, newest per focus (D-174)
 // the poster is the Participants group's cover (curator, 2026-11-23): on unless the reader turned it off
 const posterOn = () => !!(S.poster !== false && S.orderEv && BACKDROPS[S.orderEv]);
 const GOLD = "#d4b36a", CREAM = "#f4ecd8", NIGHT = "#0d1318";
@@ -1201,6 +1289,7 @@ function applyPoster() {
   $("#posterBg").innerHTML = b ? (S.orderLeaders || []).map((l, i) => `<figure class="bust ${i ? "r" : "l"}"><img src="${l.src}" alt="${esc(l.name)}"><figcaption>${esc(l.name)} · ${esc(l.what)}</figcaption></figure>`).join("") : "";
   $("#backdropCredit").hidden = !b;
   if (b) $("#backdropCredit").textContent = b.caption;
+  if (b && !S.keyByHand) { $("#legend").hidden = true; $("#keyBtn").setAttribute("aria-expanded", "false"); } // keep the leader's bust clear
   $("#posterBtn").hidden = !(S.orderEv && BACKDROPS[S.orderEv]) || S.view !== "graph";
   $("#posterBtn").setAttribute("aria-pressed", String(!!b));
   if (cy) cy.style(cyStyle());
@@ -1372,11 +1461,12 @@ function stand(id, { crumb = true } = {}) {
   if (S.view === "graph") S.view = "card"; // standing on something opens its card; the graph is one click away
   if (S.view === "family" && nodeById.get(id).kind !== "Person") S.view = "graph";
   if (S.view === "account" && !ACCOUNT[id]) S.view = "graph";
+  if (S.view === "plan" && !PLANS[id]) S.view = "card";
   S.sel = { type: "node", id };
   if (crumb) { const at = S.crumbs.indexOf(id); if (at >= 0) S.crumbs = S.crumbs.slice(0, at + 1); else S.crumbs.push(id); } // back to a place already on the trail cuts the trail to it
   render();
 }
-function select(sel) { S.sel = sel; if (sel && L.right === "hide") setSide("right", "float"); renderCard(); if (cy && !sel) cy.elements().unselect(); }
+function select(sel) { S.sel = sel; if (sel && L.right === "hide") setSide("right", "last"); renderCard(); if (cy && !sel) cy.elements().unselect(); }
 function setPersona(p) { S.persona = p; renderAll(); }
 function setView(v) { S.view = v; if (v === "notes") S.notesPage = 0; renderAll(); }
 function addLog(q, html) { S.log.push({ q, html }); S.drawerOpen = true; renderDrawer(); const l = $("#log"); if (l) l.scrollTop = l.scrollHeight; }
@@ -1424,7 +1514,7 @@ function runCommand(raw) {
   const v = verb.toLowerCase();
   if (v === "help") return addLog(text, `<ul><li><b>jump</b> <i>name</i> — stand on something</li><li><b>why</b> <i>A</i> and <i>B</i> — trace how two things connect</li><li><b>elsewhere</b> <i>31 BC</i> — what else was happening in the world</li><li><b>note</b> <i>text</i> — keep a private note on where you stand</li><li><b>card</b>, <b>graph</b>, <b>timeline</b>, <b>map</b>, <b>chart</b>, <b>animation</b>, <b>account</b>, <b>notes</b> — change what the stage shows</li><li><b>cite</b> — show the citations you have collected</li><li><b>as</b> scholar | student | browsing</li></ul>`);
   if (v === "family" && nodeById.get(S.focus).kind !== "Person") return addLog(text, "Family trees are for people. Stand on a person first.");
-  if (["map", "graph", "facts", "notes", "account", "family", "card", "timeline", "chart", "animation"].includes(v)) { const m = v === "facts" ? "graph" : v; setView(m); return addLog(text, `The stage shows ${m === "graph" ? "the facts" : "the " + m}.`); }
+  if (["map", "graph", "facts", "notes", "account", "family", "card", "timeline", "chart", "animation", "plan"].includes(v)) { const m = v === "facts" ? "graph" : v; setView(m); return addLog(text, `The stage shows ${m === "graph" ? "the facts" : "the " + m}.`); }
   if (v === "as") { const p = { scholar: "scholar", student: "student", browsing: "browser", browser: "browser" }[arg.toLowerCase()]; if (p) { setPersona(p); return addLog(text, `Now exploring as ${arg}. The facts stay the same; the telling changes.`); } }
   if (v === "cite") return addLog(text, S.cites.length ? `<ol>${S.cites.map(c => `<li>${esc(c)}</li>`).join("")}</ol><div><button class="btn" data-copy-cites>Copy all</button> <span class="muted small">Style: plain locator <span class="mock">mock</span>. A real citation style (Chicago, MLA) comes from each Work's edition record.</span></div>` : "No citations yet. Use the Cite buttons on a card (Student persona).");
   if (v === "note") {
@@ -1721,7 +1811,7 @@ function renderDrawer() {
 }
 
 /* ---------- render: front door ---------- */
-const VERBS = ["why", "path", "elsewhere", "note", "map", "graph", "card", "facts", "notes", "account", "family", "timeline", "chart", "animation", "cite", "help", "as", "jump", "go"];
+const VERBS = ["why", "path", "elsewhere", "note", "map", "graph", "card", "facts", "notes", "account", "family", "timeline", "chart", "animation", "plan", "cite", "help", "as", "jump", "go"];
 function answersFor(q, big) {
   const hits = findNodes(q).slice(0, big ? 8 : 5);
   const row = big ? "answer" : "row";
@@ -1840,8 +1930,8 @@ let ncy;
 function navStyle() {
   const ink = cssVar("--ink"), ink3 = cssVar("--ink-3"), surface = cssVar("--surface"), strong = cssVar("--strong"), onStrong = cssVar("--on-strong");
   return [
-    { selector: "node", style: { shape: "round-rectangle", label: "data(label)", "font-size": 7.5, "font-family": "Atkinson Hyperlegible, sans-serif", color: ink, "text-valign": "center", "text-halign": "center", "text-wrap": "wrap", "text-max-width": 104, width: "label", height: "label", padding: 4, "background-color": surface, "border-width": 1, "border-color": ink3 } },
-    { selector: "node.centre", style: { "background-color": strong, "border-color": strong, color: onStrong, "font-weight": "bold", "font-size": 8 } },
+    { selector: "node", style: { shape: "round-rectangle", label: "data(label)", "font-size": 10.5, "font-family": "Atkinson Hyperlegible, sans-serif", color: ink, "text-valign": "center", "text-halign": "center", "text-wrap": "wrap", "text-max-width": 150, width: "label", height: "label", padding: 4, "background-color": surface, "border-width": 1, "border-color": ink3 } },
+    { selector: "node.centre", style: { "background-color": strong, "border-color": strong, color: onStrong, "font-weight": "bold", "font-size": 11.5 } },
     { selector: "node.on", style: { "border-width": 2, "border-color": ink, "font-weight": "bold" } },
     { selector: "edge", style: { width: 1, "line-color": ink3, "curve-style": "straight" } },
   ];
@@ -1906,6 +1996,205 @@ function renderAccount() {
     </article></div>`;
 }
 
+/* ---------- render: the Plan view, a front-door run (D-174, 31 §5) ---------- */
+// ids are the system's: the page shows names. An id we hold becomes its label; one we don't is dropped.
+const idLabel = id => nodeById.get(id)?.fullLabel || null;
+// an id becomes a name the text does not already give: a candidate's description (to tell same-named things
+// apart), else its label, else nothing; a subject id becomes its heading
+function unId(t, cands = []) {
+  const text = String(t || "");
+  return text.replace(/(,\s*)?chr:(entity|subject|inquiry):[\w.-]+/g, (m, comma) => {
+    const id = m.replace(/^,\s*/, ""), c = cands.find(x => x.local_entity_id === id);
+    const name = c?.description || idLabel(id) || (id.startsWith("chr:subject:") ? "the Subject" : "");
+    return name && !text.includes(name) ? (comma || " ") + name : "";
+  }).replace(/\(\s*,\s*/g, "(").replace(/,\s*\)/g, ")").replace(/\(\s*\)/g, "").replace(/\s+\)/g, ")").replace(/:\s*$/, "").replace(/\s{2,}/g, " ").trim();
+}
+const usd = n => "$" + Number(n || 0).toFixed(2);
+const lensVar = l => `--lens-c: var(--lens-${l})`;
+const planDecision = (r, it) => S.planDec[r.runId + ":" + it.item_id] || it.decision?.status || "awaiting";
+const DEC_WORD = { approved: "Approve", rejected: "Reject", deferred: "Defer" };
+const RUN_WORD = { awaiting_user: "awaiting you", running: "running", done: "done", stopped: "stopped" };
+// one line for what the orchestrator did with an item: the last attempt, and any set aside before it
+function ranWords(tries) {
+  const last = tries[tries.length - 1], before = tries.slice(0, -1), cost = tries.reduce((a, t) => a + (t.cost || 0), 0);
+  const now = { running: "Running now", ok: "Done", failed: "Failed", set_aside: "Set aside" }[last.state] || last.state;
+  const bits = [now];
+  if (last.state !== "running") bits.push(`${last.proposals} proposal${last.proposals === 1 ? "" : "s"} stored`);
+  if (last.cost != null) bits.push(usd(last.cost));
+  if (before.length) bits.push(`after ${before.length} attempt${before.length > 1 ? "s" : ""} set aside (${usd(cost - (last.cost || 0))})`);
+  if (last.error) bits.push(String(last.error).slice(0, 140));
+  return esc(bits.join(" · "));
+}
+/* where the inquiry can look (D-177): every source in the registry by what it gives, with its status and
+   rights; the candidates as the front door ranked them for this focus, with its reasons and REGISTER items.
+   A run made before D-177 has no ranking: the page then ranks by its own crude guess, marked so. */
+const REACH = DATA.reach || { gives: {}, sources: [] };
+const STOP = new Set("with from that this were their have into also over under between about which than more most each other such only including through against during before after where what when there whose being".split(" "));
+const stems = t => new Set(String(t).toLowerCase().match(/[a-z]{4,}/g)?.filter(w => !STOP.has(w)).map(w => w.slice(0, 5)) || []);
+function guessCandidates(r) {
+  const qs = r.controversies.map(q => { const text = String(q).replace(/\s*\((accepted|proposed) Question,.*\)$/, ""); return { text, st: stems(text) }; });
+  return REACH.sources.filter(c => c.status === "candidate").map(c => {
+    const st = stems(c.about + " " + c.name);
+    const hit = qs.map(q => ({ q, n: [...st].filter(w => q.st.has(w)).length })).sort((a, b) => b.n - a.n)[0];
+    const lenses = c.lenses.filter(l => r.lenses.includes(l));
+    const score = (hit && hit.n ? 3 * hit.n : 0) + lenses.length - (c.non_commercial ? 1 : 0);
+    const why = hit && hit.n ? `bears on: ${hit.q.text}` : lenses.length ? `for the ${lenses.join(", ")} lens${lenses.length > 1 ? "es" : ""}` : "";
+    return { ...c, score, why, item_id: null };
+  }).filter(c => c.why).sort((a, b) => b.score - a.score);
+}
+function rightsTag(x) {
+  if (x.rights_class) return `<span class="pill" title="rights class, read at the source">${esc(x.rights_class)}</span>`;
+  return `<span class="pill dashed" title="${x.unverified ? "rights not yet confirmed at the source" : "rights not yet read at the source"}">${x.unverified ? "rights unverified" : "rights to check"}</span>`;
+}
+const ncTag = x => x.non_commercial ? ` <span class="pill" title="non-commercial terms: behind a switch (public domain first)">NC</span>` : "";
+function reachBlock(r) {
+  const fromRun = r.federations?.length > 0;
+  const byId = new Map(REACH.sources.map(s => [s.system_id, s]));
+  const fed = fromRun ? r.federations.map(f => ({ ...byId.get(f.system_id), ...f })) : null;
+  const all = fed || REACH.sources;
+  const now = all.filter(s => s.status === "read"), reg = all.filter(s => s.status === "registered");
+  const stated = w => String(w || "").replace(/^a candidate: its rights are not yet read at the source; stated, unverified: /, "Stated terms, not yet read at the source: ");
+  const cands = fed ? fed.filter(s => s.status === "candidate").map(c => ({ ...c, why: stated(c.why) })).sort((a, b) => (a.item_id ? 0 : 1) - (b.item_id ? 0 : 1) || String(a.item_id).localeCompare(String(b.item_id))) : guessCandidates(r);
+  const ranked = fed ? cands.filter(c => c.item_id).length : 6;
+  const order = Object.keys(REACH.gives);
+  const byGives = new Map();
+  now.forEach(s => (s.gives.length ? s.gives : ["other"]).forEach(g => { if (!byGives.has(g)) byGives.set(g, []); byGives.get(g).push(s); }));
+  const groups = [...byGives].sort((a, b) => order.indexOf(a[0]) - order.indexOf(b[0]));
+  const unverified = now.filter(s => s.unverified);
+  const shown = S.reachAll ? cands : cands.slice(0, ranked);
+  const name = x => x.homepage ? `<a href="${esc(x.homepage)}" target="_blank" rel="noopener">${esc(x.name)}</a>` : esc(x.name);
+  return `<section class="reach"><h3>Where it can look</h3>
+    <span class="label">Reads now (${now.length})</span>
+    <dl>${groups.map(([g, xs]) => `<dt title="${esc(REACH.gives[g] || "")}">${esc(g.replace("-", " and "))}</dt><dd>${xs.map(x => `<span class="rs">${esc(x.name)} ${rightsTag(x)}${ncTag(x)}</span>`).join("")}</dd>`).join("")}</dl>
+    ${unverified.length ? `<span class="small muted">Read, but the rights are not yet confirmed at the source: ${unverified.map(x => esc(x.name)).join(", ")}. One open question for the curator, not plan items.</span>` : ""}
+    <span class="label">Registered, no reader yet (${reg.length})</span>
+    <ul class="small">${reg.map(x => `<li>${esc(x.name)} ${rightsTag(x)}<span class="src">gives ${esc(x.gives.join(", "))} once a reader is built</span></li>`).join("")}</ul>
+    <span class="label">Candidates for this inquiry ${fromRun ? `(${ranked} ranked of ${cands.length})` : `<span class="mock">this run predates the ranking (D-177): the page's guess</span>`}</span>
+    <ul class="cands">${shown.map(c => `<li><span class="rs">${name(c)} ${rightsTag(c)}${ncTag(c)}</span>
+      ${(() => { const it = c.item_id && r.items.find(x => x.item_id === c.item_id); const m = it && String(it.rationale).match(/(bears on .*)$/); return m ? `<span class="why"><b>${esc(m[1].charAt(0).toUpperCase() + m[1].slice(1))}</b></span>` : ""; })()}
+      <span class="why">${esc(c.why || "")}</span>
+      <span class="small muted">gives ${esc(c.gives.map(g => g.replace("-", " and ")).join(", "))}</span>
+      ${c.item_id ? `<button class="btn" data-plan-jump="${esc(c.item_id)}">${esc(c.item_id)}: register (by hand)</button>` : `<button class="btn" data-plan-register="${esc(c.name)}">Plan: check the rights and register</button>`}</li>`).join("")}</ul>
+    ${cands.length > ranked ? `<button class="linkish" data-reach-all="1">${S.reachAll ? "Only the ranked ones" : `All ${cands.length} candidates`}</button>` : ""}
+    <span class="small muted">From the source registry (curation/sources.json). A candidate is never read until its rights are read at the source and it is registered: a free REGISTER item, done by hand.</span>
+  </section>`;
+}
+function renderPlan() {
+  const el = $("#planStage");
+  el.hidden = S.view !== "plan";
+  if (el.hidden) return;
+  const r = PLANS[S.focus], here = nodeById.get(S.focus).fullLabel;
+  if (!r) { el.innerHTML = `<p class="muted">No front-door run for ${esc(here)} yet. <code>graph "${esc(here)}"</code> makes one: it reads the graph and plans, and runs nothing.</p>`; return; }
+  const dec = it => planDecision(r, it);
+  const total = r.items.reduce((a, it) => a + (it.budget_usd || 0), 0);
+  const approved = r.items.filter(it => dec(it) === "approved").reduce((a, it) => a + (it.budget_usd || 0), 0);
+  const pct = x => Math.min(100, 100 * x / (r.budget || 1)).toFixed(1);
+  const f = r.focus || {}, chosen = f.chosen || {}, cands = f.candidates || [];
+  const when = (r.createdAt || "").slice(0, 16).replace("T", " ");
+
+  // 1. who: the identity question, answered or open
+  const who = cands.map(c => {
+    const on = c.local_entity_id === chosen.local_entity_id && c.qid === chosen.qid;
+    return `<div class="who-card ${on ? "chosen" : ""}">
+      <span class="lbl">${esc(c.label)} ${on ? `<span class="pill">chosen</span>` : ""}</span>
+      <span class="desc">${esc(c.description || "no description")}</span>
+      <span class="ids"><span>${esc(c.kind || "")}${c.qid ? ` · Wikidata ${esc(c.qid)}, ${esc(c.label)}` : ""}</span>
+        ${on ? `<span class="muted">${esc(f.decided_by ? "chosen by the " + f.decided_by : c.why || "")}</span>` : `<button class="btn" data-plan-focus="${esc(c.local_entity_id || c.qid || "")}">Choose this one</button>`}</span>
+    </div>`;
+  }).join("");
+  const identity = f.status === "resolved"
+    ? `<section><h3>Which ${esc(chosen.label)}</h3><span class="small muted">${cands.length > 1 ? `The name matched ${cands.length} things. The run stopped and asked which; the plan below is for the one chosen.` : "One exact match, so no question was needed."}</span><div class="who-cards">${who}</div></section>`
+    : `<section><h3>Which do you mean?</h3><span class="small">The name matched more than one thing. Nothing is planned until you choose.</span><div class="who-cards">${who}</div></section>`;
+
+  // 2. what is missing: sources against lenses
+  const cell = (row, l) => {
+    const c = row.cells[l];
+    if (c === "read") return `<span class="cell read" title="read through this lens">✓</span>`;
+    if (c === "unread") return `<span class="cell unread" title="not read, and not in the plan">·</span>`;
+    if (c.item) { const it = r.items.find(x => x.item_id === c.item), st = it ? dec(it) : ""; return `<button class="cell item ${st === "approved" ? "ok" : st === "rejected" ? "no" : ""}" data-plan-jump="${esc(c.item)}" title="${esc(c.item)}: ${usd(c.usd)}, ${esc(st)}">${esc(c.item)}</button>`; }
+    if (c.left) return `<span class="cell left" title="left out for the budget">${usd(c.usd)}</span>`;
+    return "";
+  };
+  const workName = row => row.entity && idLabel(row.entity) ? `<button class="linkish" data-stand="${esc(row.entity)}">${esc(row.work)}</button>` : esc(row.work);
+  const matrix = `<table class="matrix"><thead><tr><th style="text-align:left">Source</th>${r.lenses.map(l => `<th style="${lensVar(l)}">${esc(l)}</th>`).join("")}</tr></thead>
+    <tbody>${r.matrix.map(row => `<tr><td class="work">${workName(row)}<span class="k">${esc(row.kind || "")}</span></td>${r.lenses.map(l => `<td>${cell(row, l)}</td>`).join("")}</tr>`).join("")}</tbody></table>
+    <div class="mkey"><span><span class="cell item">P01</span> in the plan</span><span><span class="cell left">$2.46</span> left out for the budget</span><span><span class="cell read">✓</span> read already</span></div>`;
+
+  // 3. the plan, item by item
+  const items = r.items.map(it => {
+    const d = dec(it), call = r.calls?.[it.item_id], src = REACH.sources.find(x => x.system_id === it.target);
+    const name = idLabel(it.target) || src?.name;
+    const tries = r.attempts?.[it.item_id] || [], last = tries[tries.length - 1];
+    const ran = last ? ranWords(tries) : "";
+    const buttons = last ? "" : Object.keys(DEC_WORD).map(v => `<button class="btn" data-plan-item="${esc(it.item_id)}" data-plan-dec="${v}" aria-pressed="${d === v}">${DEC_WORD[v]}</button>`).join("");
+    return `<div class="pitem ${d} ${last ? "has-run st-" + esc(last.state) : ""}" style="${it.lens ? lensVar(it.lens) : "--lens-c: var(--ink-3)"}" id="pi-${esc(it.item_id)}">
+      <span class="pid">${esc(it.item_id)}</span>
+      <span class="what"><b>${{ READ: "Read", REGISTER: "Check the rights of, and register" }[it.action] || esc(it.action)}</b> ${name && idLabel(it.target) ? `<button class="linkish" data-stand="${esc(it.target)}">${esc(name)}</button>` : esc(name || unId(it.target) || "a source")}${it.lens ? ` through the <span class="lens-tag">${esc(it.lens)}</span> lens` : ""}</span>
+      <span class="usd">${it.budget_usd ? usd(it.budget_usd) : "free"}</span>
+      <span class="why">Why: ${esc(unId(it.rationale))}</span>
+      <span class="outs">Gives: ${esc((it.expected_outputs || []).join("; "))}${it.depends_on?.length ? ` · after ${esc(it.depends_on.join(", "))}` : ""}</span>
+      ${call?.worker === "manual" ? `<span class="outs"><b>By hand:</b> ${esc(call.instructions || "")}</span>`
+        : S.persona === "scholar" && call ? `<span class="runs">runs ${esc(call.worker.replace(/^GraphRevised\./, ""))} ${esc((call.arguments || []).filter(a => a.startsWith("--")).join(" "))}</span>` : ""}
+      <span class="act">${buttons}${last ? `<span class="ran ran-${esc(last.state)}">${ran}</span>` : `<span class="small muted">${d === "awaiting" ? "awaiting you" : d === "approved" ? "approved: the orchestrator runs it next" : d === "rejected" ? "will not run" : "kept for a later plan"}</span>`}</span>
+    </div>`;
+  }).join("");
+  const leftTotal = r.leftOut.reduce((a, x) => a + x.usd, 0);
+
+  // the brief, read from the graph
+  const cbs = r.coverage.claims_by_status || {};
+  const counts = [["accepted claims", cbs.accepted], ["proposed claims", cbs.proposed], ["open proposals", r.coverage.open_proposals], ["entities linked", r.coverage.entities], ["superseded", cbs.superseded], ["rejected", cbs.rejected]]
+    .filter(([, n]) => n != null).map(([t, n]) => `<div><b>${n}</b><span>${esc(t)}</span></div>`).join("");
+  const question = t => {
+    const m = String(t).match(/chr:entity:[\w.-]+/), id = m && nodeById.has(m[0]) ? m[0] : null;
+    const st = (String(t).match(/\((accepted|proposed) Question/) || [])[1], text = String(t).replace(/\s*\((accepted|proposed) Question,.*\)$/, "");
+    return `<li>${id ? `<button class="linkish" data-stand="${esc(id)}">${esc(text)}</button>` : esc(text)}${st ? ` <span class="pill">${esc(st)}</span>` : ""}</li>`;
+  };
+  const qs = S.planAllQ ? r.controversies : r.controversies.slice(0, 5);
+  const subj = r.subject || {};
+  const subjName = (r.statements.map(x => (x.text.match(/Subject is “(.+?)”/) || [])[1]).find(Boolean)) || (subj.subject_id ? idLabel(subj.subject_id) || subj.subject_id.replace(/^chr:subject:/, "").replace(/-/g, " ").replace(/^./, c => c.toUpperCase()) : subj.proposed_label || "");
+
+  el.innerHTML = `<div class="plan">
+    <div class="plan-head">
+      <code>${esc(r.command)}</code>
+      <span class="status-wait st-${esc(r.status)}">${esc(RUN_WORD[r.status] || r.status)}</span>
+      <span class="meta"><span>${esc(r.mode)}: nothing runs until you approve it</span><span>plan v${r.planVersion} · brief v${r.dossierVersion}</span><span>made ${esc(when)} UTC</span><span>${r.scope?.decision === "IN_SCOPE" ? "in scope" : esc(r.scope?.decision || "")}${r.scopeApproved ? "" : " (not yet approved)"}</span></span>
+      ${r.stoppedBecause ? `<span class="small stopped">Finished: ${esc(r.stoppedBecause)}</span>` : ""}
+      ${r.earlier?.length ? `<span class="small muted">Earlier plans for this: ${r.earlier.map(e => `${esc(RUN_WORD[e.status] || e.status)}, ${usd(e.spent)} spent`).join("; ")}</span>` : ""}
+      <span class="anno"><b>Plan on the stage.</b> One command, <code>graph "name"</code>, becomes a plan; nothing runs and nothing is written (D-174). Left: who it is, what is missing, and what it would do, item by item, for you to approve. Right: the brief it read from the graph, each statement with its source. Decisions here stay in the page (mock); the real one writes a new plan version.</span>
+    </div>
+    <div>
+      ${(r.interrupts || []).filter(i => !i.answer).map(i => `<section class="ask"><h3>The run is waiting for you</h3><span>${esc(i.question)}</span>
+        <div class="plan-tools">${(i.options?.length ? i.options : ["retry", "modify", "reject"]).map(o => `<button class="btn" data-plan-answer="${esc(o)}">${esc(o[0].toUpperCase() + o.slice(1))}</button>`).join("")}</div></section>`).join("")}
+      ${identity}
+      <section><h3>What is missing</h3>
+        <span class="small muted">Each source the inquiry holds, against each lens: read already, in this plan, or left out for the budget.</span>
+        ${matrix}
+        ${r.coverage.otherGaps.map(g => `<span class="small">Also open: ${esc(g.description)}</span>`).join("")}
+      </section>
+      <section><h3>The plan <span class="mock">mock decisions</span></h3>
+        <div class="budget"><div class="bar" role="img" aria-label="${usd(approved)} approved of ${usd(total)} planned, budget ${usd(r.budget)}"><span class="planned" style="width:${pct(total)}%"></span><span class="approved" style="width:${pct(approved)}%"></span></div>
+          <div class="nums"><span>approved ${usd(approved)}</span><span>planned ${usd(total)}</span><span>budget ${usd(r.budget)} · spent ${usd(r.spent || Object.values(r.attempts || {}).flat().reduce((a, t) => a + (t.cost || 0), 0))}</span></div></div>
+        <div class="plan-tools"><button class="btn" data-plan-all="approved">Approve all</button><button class="btn" data-plan-all="awaiting">Clear</button></div>
+        ${items}
+        <details><summary class="small">Left out for the budget: ${r.leftOut.length} readings, ${usd(leftTotal)}</summary>
+          <ul class="small">${r.leftOut.map(x => `<li><span class="lens-tag" style="${lensVar(x.lens)}">${esc(x.lens)}</span> ${esc(x.short)} · ${usd(x.usd)}</li>`).join("")}</ul></details>
+      </section>
+      <section><h3>Not built yet</h3><ul class="small">${[...r.notBuilt, ...r.notes].map(q => `<li>${esc(unId(q))}</li>`).join("")}</ul></section>
+      <section><h3>It stops when</h3><ul class="small">${r.stopping.map(q => `<li>${esc(q)}</li>`).join("")}</ul></section>
+    </div>
+    <div class="brief">
+      <section><h3>Brief</h3><ul>${r.statements.map(st => `<li>${esc(unId(st.text))}<span class="src">${esc(unId(st.source))}</span></li>`).join("")}</ul></section>
+      <section><h3>Subject</h3><span>${esc(subjName)}${subj.provisional ? ` <span class="pill">provisional</span>` : ""}</span>
+        <ul>${(subj.matches || []).map(m => `<li>${esc(m.label)}<span class="src">${esc(m.match_type)} match</span></li>`).join("")}</ul></section>
+      <section><h3>What the graph holds</h3><div class="counts">${counts}</div></section>
+      <section><h3>Debated (${r.controversies.length})</h3><ul>${qs.map(question).join("")}</ul>
+        ${r.controversies.length > 5 ? `<button class="linkish" data-plan-allq="1">${S.planAllQ ? "Fewer" : `All ${r.controversies.length} questions`}</button>` : ""}</section>
+      <section><h3>Easy to confuse</h3><ul>${r.traps.map(t => `<li>${esc(unId(t, cands))}</li>`).join("")}</ul></section>
+      ${reachBlock(r)}
+    </div>
+  </div>`;
+}
+
 /* ---------- render: notes on the stage (26 §4a) ---------- */
 function renderNotes() {
   const el = $("#notes");
@@ -1959,7 +2248,8 @@ function renderMap() {
   $("#posterBtn").hidden = !(S.view === "graph" && S.orderEv && BACKDROPS[S.orderEv]);
   if (S.view !== "graph" && $("#stage").classList.contains("poster")) { $("#stage").classList.remove("poster"); $("#posterBg").hidden = true; $("#backdropCredit").hidden = true; }
   if (S.view !== "graph") $("#legend").hidden = true;
-  else if (S.group && !S.keyClosed) { $("#legend").hidden = false; $("#keyBtn").setAttribute("aria-expanded", "true"); } // an opened group explains its lines unasked
+  // an opened group explains its lines unasked; not on the poster, where it would cover a leader's bust (Key still opens it)
+  else if (S.group && !S.keyClosed && !posterOn()) { $("#legend").hidden = false; $("#keyBtn").setAttribute("aria-expanded", "true"); }
   $("#stageAnno").hidden = !["graph", "map", "family"].includes(S.view);
   $("#stageAnno").innerHTML = S.view === "family"
     ? "<b>Family on the stage.</b> A family tree, top down: grandparents, parents, then the person with siblings to the left and spouses to the right, then children under their known parents. Every line is still a fact with its voices."
@@ -1987,12 +2277,12 @@ function renderMap() {
 }
 
 /* ---------- the view switch and the filter chips (stage design, 18 Nov) ---------- */
-const VIEWS = [["card", "Card"], ["graph", "Graph"], ["timeline", "Timeline"], ["map", "Map"], ["chart", "Chart"], ["animation", "Animation"], ["account", "Account"]];
+const VIEWS = [["card", "Card"], ["graph", "Graph"], ["timeline", "Timeline"], ["map", "Map"], ["chart", "Chart"], ["animation", "Animation"], ["account", "Account"], ["plan", "Plan"]];
 function renderViewSeg() {
   $("#viewSeg").innerHTML = VIEWS.map(([v, t]) => {
-    const off = v === "account" && !ACCOUNT[S.focus];
+    const off = (v === "account" && !ACCOUNT[S.focus]) || (v === "plan" && !PLANS[S.focus]);
     const on = S.view === v || (v === "graph" && S.view === "family");
-    return `<button data-view="${v}" aria-pressed="${on}" ${off ? 'disabled title="No account written for this yet"' : ""}>${t}</button>`;
+    return `<button data-view="${v}" aria-pressed="${on}" ${off ? `disabled title="${v === "plan" ? "No front-door run for this yet" : "No account written for this yet"}"` : ""}>${t}</button>`;
   }).join("");
 }
 function renderChips() {
@@ -2186,7 +2476,7 @@ function renderStanding() {
     : `Standing on <b>${esc(n.fullLabel)}</b> · ${projection().nodes.length - 1} nearby${S.group ? ` · showing ${esc(famLabel(S.group, S.focus))} <button class="linkish" data-family="${esc(S.group)}">show all</button>` : ""}${S.lens ? ` · lens: ${esc(S.lens)}` : ""}`;
 }
 function render() {
-  renderFilters(); renderCard(); renderDrawer(); renderSuggest(); renderPath(); renderRoutes(); renderFlow(); renderMap(); renderCardStage(); renderAccount(); renderNotes(); renderStanding();
+  renderFilters(); renderCard(); renderDrawer(); renderSuggest(); renderPath(); renderRoutes(); renderFlow(); renderMap(); renderCardStage(); renderAccount(); renderPlan(); renderNotes(); renderStanding();
   renderViewSeg(); renderChips(); renderStageViews();
   if (cy) { cy.style(cyStyle()); drawCanvas(); }
   renderNav();
@@ -2289,6 +2579,14 @@ document.addEventListener("click", ev => {
   if (t.id === "tourPrev") return showScreen(Math.max(0, S.screen - 1));
   if (t.id === "tourNext") return showScreen(Math.min(TOUR_CAPTION.length - 1, S.screen + 1));
   if (d.side) return setSide(d.side, d.mode);
+  if (d.planItem) { const r = PLANS[S.focus], k = r.runId + ":" + d.planItem; S.planDec[k] = S.planDec[k] === d.planDec ? "awaiting" : d.planDec; return renderPlan(); }
+  if (d.planAll) { const r = PLANS[S.focus]; r.items.forEach(it => { S.planDec[r.runId + ":" + it.item_id] = d.planAll; }); return renderPlan(); }
+  if (d.planJump) { const x = document.getElementById("pi-" + d.planJump); if (x) { x.scrollIntoView({ behavior: "smooth", block: "center" }); x.classList.add("flash"); setTimeout(() => x.classList.remove("flash"), 1200); } return; }
+  if (d.planAnswer) return addLog(`orchestrator answer ${d.planAnswer}`, "The orchestrator records your answer and carries on (D-175). In this wireframe the run is fixed.");
+  if (d.reachAll) { S.reachAll = !S.reachAll; return renderPlan(); }
+  if (d.planRegister) return addLog(`plan: register ${d.planRegister}`, "The front door would add a free item to the plan: read the rights at the source, then register it (curation/sources.json). Nothing is read before that.");
+  if (d.planAllq) { S.planAllQ = !S.planAllQ; return renderPlan(); }
+  if (d.planFocus) return addLog("graph --focus", "The front door would run again for the one you chose, and plan for it. In this wireframe the run is fixed.");
   if (t.id === "fsBtn") return setFs(!S.fs);
   if (d.chip) return openFilterAt(d.chip === "time" ? "cats" : d.chip);
   if (d.selNode) { select({ type: "node", id: d.selNode }); return; }
@@ -2301,7 +2599,7 @@ document.addEventListener("click", ev => {
     return renderAnim();
   }
   if (d.layout) {
-    if (d.layout === "reset") { L = { ...LAYOUT_DEFAULT }; lastShown.left = "float"; lastShown.right = "float"; }
+    if (d.layout === "reset") { L = { ...LAYOUT_DEFAULT }; lastShown.left = "float"; lastShown.right = "dock"; }
     else {
       const v = d.value;
       L[d.layout] = v === "true" ? true : v === "false" ? false : /^\d+$/.test(v) ? +v : v;
@@ -2321,7 +2619,7 @@ document.addEventListener("click", ev => {
   if (t.id === "pgPrev") return turnPage(-1);
   if (t.id === "pgNext") return turnPage(1);
   if (t.id === "posterBtn") { S.poster = !posterOn(); applyPoster(); fitStage(30); return; }
-  if (t.id === "keyBtn") { const lg = $("#legend"); lg.hidden = !lg.hidden; S.keyClosed = lg.hidden; t.setAttribute("aria-expanded", String(!lg.hidden)); return; }
+  if (t.id === "keyBtn") { const lg = $("#legend"); lg.hidden = !lg.hidden; S.keyClosed = lg.hidden; S.keyByHand = !lg.hidden; t.setAttribute("aria-expanded", String(!lg.hidden)); return; }
   if (d.persona) return setPersona(d.persona);
   if (d.view) return setView(d.view);
   if (d.lens) { if (d.lens !== "none") addLog(`lens ${d.lens}`, `Lenses are facet filters on the same graph (25 §12). Designed, not built. <span class="mock">mock</span>`); return; }
