@@ -409,7 +409,9 @@ and an account for at least one battle.
    Event recipe is complete.
 3. **The front door on Actium**: accept `graph "Battle of Actium"`, resolve,
    anchor, read coverage, write the orientation brief and a line-item plan;
-   execute nothing.
+   execute nothing. **Built 2026-11-24, code first (D-174):**
+   `orchestration/front_door.py` with the Event recipe in `curation/recipes.json`;
+   the model stage (scope, controversies, traps, lenses) is still to come.
 4. **Guided orchestration**: run the approved items with the existing modules,
    one resumable run file.
 5. **Reconciler and critic** (§3.5, §3.6).

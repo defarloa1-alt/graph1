@@ -612,6 +612,14 @@ the failures: a stopped Neo4j looked like 92 failures on 2026-11-15.
    or under `alliedWith`); how bridge leads across domains are recorded; the political lens
    dossier. Then the first Laws and Decrees (e.g. the SC de Bacchanalibus, 186 BCE; the SC
    ultimum of 121 BCE as a Type and its first use).
+7. **The front door (D-174), built 2026-11-24, code first:**
+   `python -m GraphRevised.orchestration.front_door 'graph "<name>"' [--focus <id or QID>] [--save]`.
+   It resolves the focus, anchors the Subject, reads coverage, writes a brief and a line-item plan
+   from `curation/recipes.json`, and runs nothing. Saved for Actium:
+   `runs/front-door-battle-of-actium-20261124T112641Z.json` and `dossiers/battle-of-actium.v1.json`.
+   Next: the guided orchestrator (31 §5 step 4), which runs the approved items from the run file;
+   then the metered model stage of the front door. Test it on the Battle of Philippi (it has no
+   inquiry yet; the front door drafts one).
 
 **Earlier handoff (2026-11-19, late; D-167).**
 

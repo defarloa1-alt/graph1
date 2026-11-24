@@ -1,0 +1,213 @@
+{
+  "schema_version": "orientation-dossier-v1",
+  "dossier_id": "chr:dossier:battle-of-actium",
+  "version": 1,
+  "previous_version": null,
+  "focus_ids": [
+    "chr:entity:battle-of-actium"
+  ],
+  "subject_id": "chr:subject:history-of-battle-of-actium",
+  "brief": {
+    "focus": {
+      "status": "resolved",
+      "chosen": {
+        "label": "Battle of Actium",
+        "description": "31 BCE decisive confrontation of the Final War of the Roman Republic",
+        "kind": "Event",
+        "qid": "Q160387",
+        "local_entity_id": "chr:entity:battle-of-actium",
+        "why": "chosen by curator"
+      },
+      "candidates": [
+        {
+          "label": "Battle of Actium",
+          "description": "31 BCE decisive confrontation of the Final War of the Roman Republic",
+          "kind": "Event",
+          "qid": "Q160387",
+          "local_entity_id": "chr:entity:battle-of-actium",
+          "why": "a local entity with the same words"
+        },
+        {
+          "label": "Battle of Actium",
+          "description": "435 BC naval battle",
+          "kind": "Event",
+          "qid": "Q9173813",
+          "local_entity_id": "chr:entity:battle-of-actium-q9173813",
+          "why": "a local entity with the same words"
+        }
+      ],
+      "decided_by": "curator"
+    },
+    "kind": "Event",
+    "earliest_year": -31,
+    "latest_year": -31,
+    "places": [
+      "Actium promontory",
+      "Ionian Sea"
+    ],
+    "candidates": [],
+    "relationship_needs": [],
+    "federations": [
+      {
+        "name": "Perseus Digital Library (Scaife Viewer)",
+        "why": "the source registry reads it (status read, perseus)"
+      },
+      {
+        "name": "LacusCurtius (Bill Thayer)",
+        "why": "the source registry reads it (status read, lacuscurtius)"
+      },
+      {
+        "name": "Project Gutenberg",
+        "why": "the source registry reads it (status read, gutenberg)"
+      },
+      {
+        "name": "Wikipedia",
+        "why": "the source registry reads it (status read, wikipedia)"
+      }
+    ],
+    "sources": [
+      {
+        "author": null,
+        "work": "Plutarch, Life of Antony",
+        "kind": "primary",
+        "perspective": null,
+        "why": "already a source of the inquiry (chr:entity:plutarch-life-of-antony, standing primary)"
+      },
+      {
+        "author": null,
+        "work": "Cassius Dio, Roman History",
+        "kind": "primary",
+        "perspective": null,
+        "why": "already a source of the inquiry (chr:entity:cassius-dio-roman-history, standing primary)"
+      },
+      {
+        "author": null,
+        "work": "Hale, Famous Sea Fights",
+        "kind": "modern",
+        "perspective": null,
+        "why": "already a source of the inquiry (chr:entity:hale-famous-sea-fights, standing secondary)"
+      },
+      {
+        "author": null,
+        "work": "Weigall, The Life and Times of Cleopatra",
+        "kind": "modern",
+        "perspective": null,
+        "why": "already a source of the inquiry (chr:entity:weigall-life-and-times-of-cleopatra, standing secondary)"
+      },
+      {
+        "author": null,
+        "work": "Wikipedia, Battle of Actium",
+        "kind": "reference",
+        "perspective": null,
+        "why": "already a source of the inquiry (chr:entity:wikipedia-en-battle-of-actium, standing tertiary)"
+      },
+      {
+        "author": null,
+        "work": "Virgil, Aeneid",
+        "kind": "primary",
+        "perspective": null,
+        "why": "already a source of the inquiry (chr:entity:proposed-work-virgil-aeneid, standing primary)"
+      },
+      {
+        "author": null,
+        "work": "Strabo, Geography",
+        "kind": "primary",
+        "perspective": null,
+        "why": "already a source of the inquiry (chr:entity:proposed-work-strabo-geography, standing primary)"
+      },
+      {
+        "author": null,
+        "work": "Velleius Paterculus, Historiae Romanae",
+        "kind": "primary",
+        "perspective": null,
+        "why": "already a source of the inquiry (chr:entity:proposed-work-velleius-paterculus-historiae-romanae, standing primary)"
+      },
+      {
+        "author": null,
+        "work": "Augustus, Res Gestae Divi Augusti",
+        "kind": "primary",
+        "perspective": null,
+        "why": "already a source of the inquiry (chr:entity:proposed-work-augustus-res-gestae-divi-augusti, standing primary)"
+      }
+    ],
+    "lenses": [
+      {
+        "name": "General",
+        "why": "a lens in use (curation/lenses.json: general)"
+      },
+      {
+        "name": "Military",
+        "why": "a lens in use (curation/lenses.json: military)"
+      },
+      {
+        "name": "Political",
+        "why": "a lens in use (curation/lenses.json: political)"
+      },
+      {
+        "name": "Economic",
+        "why": "a lens in use (curation/lenses.json: economic)"
+      },
+      {
+        "name": "Social",
+        "why": "a lens in use (curation/lenses.json: social)"
+      },
+      {
+        "name": "Religious",
+        "why": "a lens in use (curation/lenses.json: religious)"
+      }
+    ],
+    "controversies": [
+      "Do Antony's legionary coin issues give reliable evidence of the forces he had in the Actium campaign? (accepted Question, chr:entity:proposed-question-do-antony-s-legionary-coin-issues-give-reliable-evidence-of-the-forces-he-had-in-the-actium-campaign)",
+      "Was Antony's abandonment of Corcyra the key moment that shifted the balance of the war? (accepted Question, chr:entity:proposed-question-was-antony-s-abandonment-of-corcyra-the-key-moment-that-shifted-the-balance-of-the-war)",
+      "Were Antony's Praetorian cohorts with him at Actium on September 2? (accepted Question, chr:entity:proposed-question-were-antony-s-praetorian-cohorts-with-him-at-actium-on-september-2)",
+      "What forces did Scarpus command in 32-31 BCE, and where? (accepted Question, chr:entity:proposed-question-what-forces-did-scarpus-command-in-32-31-bce-and-where)",
+      "Why was Scarpus sent to Cyrenaica in 31 BCE? (accepted Question, chr:entity:proposed-question-why-was-scarpus-sent-to-cyrenaica-in-31-bce)",
+      "Did Cleopatra take the decisive initiative in the flight from Actium? (proposed Question, chr:entity:proposed-question-did-cleopatra-take-the-decisive-initiative-in-the-flight-from-actium)",
+      "Did Cleopatra's squadron escape from the battle through a gap in the fleets' line? (proposed Question, chr:entity:proposed-question-did-cleopatra-s-squadron-escape-from-the-battle-through-a-gap-in-the-fleets-line)",
+      "Did Cleopatra, and perhaps Antonius too, secretly plan the flight before the battle began? (proposed Question, chr:entity:proposed-question-did-cleopatra-and-perhaps-antonius-too-secretly-plan-the-flight-before-the-battle-began)",
+      "Did Octavian's forces keep the bases Agrippa captured and use them to blockade Antonius by sea? (proposed Question, chr:entity:proposed-question-did-octavian-s-forces-keep-the-bases-agrippa-captured-and-use-them-to-blockade-antonius-by-sea)",
+      "How many casualties did Antonius' side suffer at Actium? (proposed Question, chr:entity:proposed-question-how-many-casualties-did-antonius-side-suffer-at-actium)",
+      "How many ships did Octavian and Antonius bring into the battle of Actium? (proposed Question, chr:entity:proposed-question-how-many-ships-did-octavian-and-antonius-bring-into-the-battle-of-actium)",
+      "To which victory did Antony's fourth imperial salutation (Imp IIII) in 31 BCE relate? (proposed Question, chr:entity:proposed-question-to-which-victory-did-antony-s-fourth-imperial-salutation-imp-iiii-in-31-bce-relate)",
+      "Was the battle of Actium a hard-fought contest between well-matched sides, or a lame one? (proposed Question, chr:entity:proposed-question-was-the-battle-of-actium-a-hard-fought-contest-between-well-matched-sides-or-a-lame-one)",
+      "Was the naval battle at Actium only part of an intended larger battle including Antonius' land army? (proposed Question, chr:entity:proposed-question-was-the-naval-battle-at-actium-only-part-of-an-intended-larger-battle-including-antonius-land-army)",
+      "What was Antonius' aim in the battle: to win it, or to break out and withdraw? (proposed Question, chr:entity:proposed-question-what-was-antonius-aim-in-the-battle-to-win-it-or-to-break-out-and-withdraw)",
+      "What was the turning point of the battle: Cleopatra's flight or the defection of part of Antonius' fleet? (proposed Question, chr:entity:proposed-question-what-was-the-turning-point-of-the-battle-cleopatra-s-flight-or-the-defection-of-part-of-antonius-fleet)",
+      "Why did Antonius draw up his fleet in the narrows? (proposed Question, chr:entity:proposed-question-why-did-antonius-draw-up-his-fleet-in-the-narrows)",
+      "Why did Augustus claim no more than 5,000 enemy dead at Actium? (proposed Question, chr:entity:proposed-question-why-did-augustus-claim-no-more-than-5-000-enemy-dead-at-actium)"
+    ],
+    "identity_traps": [
+      "Battle of Actium (Event, chr:entity:battle-of-actium-q9173813) shares words with the focus (matched “Battle of Actium”); already recorded as distinct (accepted distinctFrom)",
+      "Actium promontory (Place, chr:entity:actium-promontory) shares words with the focus (matched “Actium”)"
+    ],
+    "statements": [
+      {
+        "text": "curator chose the focus: Battle of Actium (Event, Wikidata Q160387, chr:entity:battle-of-actium).",
+        "source": "the command line (--focus chr:entity:battle-of-actium)"
+      },
+      {
+        "text": "The Subject is “History of the Battle of Actium” (provisional).",
+        "source": "graph: chr:subject:history-of-battle-of-actium"
+      },
+      {
+        "text": "The graph dates it to 31 BCE.",
+        "source": "graph: chr:entity:battle-of-actium (Year links)"
+      },
+      {
+        "text": "It took place at Actium promontory (accepted).",
+        "source": "graph: chr:entity:actium-promontory"
+      },
+      {
+        "text": "It took place at Ionian Sea (accepted).",
+        "source": "graph: chr:entity:ionian-sea"
+      }
+    ],
+    "stopping_rule": "the plan's budget is spent; a batch of reading adds no new independent evidence (31 §3.8); every item of the coverage checklist is met (41 §4)"
+  },
+  "open_questions": [],
+  "used_by_inquiries": [
+    "chr:inquiry:actium-battle"
+  ],
+  "updated_at": "2026-11-24T11:27:00.923300+00:00",
+  "updated_by_run": "front-door-battle-of-actium-20261124T112641Z"
+}
