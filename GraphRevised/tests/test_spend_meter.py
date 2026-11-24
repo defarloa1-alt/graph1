@@ -53,6 +53,18 @@ class SpendMeterTests(unittest.TestCase):
         fast, _ = priced("claude-opus-5-5", usage(1_000_000, 0, speed="fast"))
         self.assertEqual(fast, Decimal("8"))
 
+    def test_a_run_cap_refuses_a_call_that_could_pass_it_inside_the_budget(self):
+        client = FakeClient()
+        capped = Meter("test", Decimal("1"), "unit", self.ledger, run_cap=Decimal("0.03"))
+        MeteredClient(client, capped).messages.create(**REQUEST)  # ceiling about $0.025: allowed
+        with self.assertRaises(BudgetRefused):
+            MeteredClient(client, capped).messages.create(**REQUEST)  # $0.014 spent + the ceiling > $0.03
+        self.assertEqual(client.calls, 1)
+        again = Meter("test", Decimal("1"), "unit", self.ledger, run_cap=Decimal("0.03"))
+        self.assertEqual(again.run_spent, Decimal("0.014"))  # the run's spend is read from the ledger
+        with mock.patch.dict(os.environ, {ENV: "test", "CHRYSTALLUM_RUN": "unit", "CHRYSTALLUM_RUN_CAP": "0.5"}):
+            self.assertEqual(Meter.from_environment(budgets=self.budgets, ledger=self.ledger).run_cap, Decimal("0.5"))
+
     def test_ceiling_covers_all_of_max_tokens(self):
         self.assertGreaterEqual(ceiling("claude-opus-5-5", REQUEST), Decimal(1000) * 20 / 1_000_000)
 

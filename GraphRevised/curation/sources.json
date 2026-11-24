@@ -7,7 +7,7 @@
     "C": "consultative: free to read; the agent may cite and record identifiers, but copying or automated reuse is restricted or unclear"
   },
   "statuses": {
-    "read": "an adapter exists and passages from it are in the graph",
+    "read": "an adapter exists and its passages or records are in the graph",
     "registered": "rights checked at the source; no passage-reading adapter yet (catalogue and metadata adapters may exist)",
     "candidate": "named in docs/Agent resources.md; rights not yet checked at the source"
   },
@@ -19,9 +19,15 @@
       "status": "read",
       "kind": "text library",
       "coverage": {
-        "languages": ["grc", "lat", "eng"],
+        "languages": [
+          "grc",
+          "lat",
+          "eng"
+        ],
         "description": "Greek and Latin literature in TEI editions, with English translations (many Loeb translations of the 1910s-1920s). The Scaife Viewer draws its texts from public GitHub repositories, among them PerseusDL/canonical-greekLit, PerseusDL/canonical-latinLit, and OpenGreekAndLatin/First1KGreek.",
-        "evidence": ["literary text"]
+        "evidence": [
+          "literary text"
+        ]
       },
       "discover": {
         "method": "catalogue",
@@ -44,14 +50,25 @@
         "alsoStated": "Tufts University holds the overall copyright to the Perseus Digital Library; materials within it have varying copyright status (the same README). Scaife's about page: the viewer's code is open source under an MIT licence; texts come from the repositories listed.",
         "checkedAt": "2026-10-15",
         "perItem": "Each repository's README and the edition's TEI header; the translation's own publication date decides its public-domain status (Perrin, 1920: public domain in the US).",
-        "obligations": ["attribution (Perseus Digital Library, Tufts University)", "share-alike for the TEI markup"]
+        "obligations": [
+          "attribution (Perseus Digital Library, Tufts University)",
+          "share-alike for the TEI markup"
+        ]
       },
       "limitations": [
         "Scaife's web pages are behind bot protection (Anubis, 2026-10-15); the catalogue JSON and GitHub raw files are reachable.",
         "Repositories other than PerseusDL's carry their own licences; check each before preserving.",
         "Translations are mostly a century old; the translation is a voice of its own (the translator is recorded)."
       ],
-      "adapter": {"type": "perseus-tei", "module": "adapters/perseus_passages.py", "catalogue": "adapters/scaife_catalog.py"}
+      "adapter": {
+        "type": "perseus-tei",
+        "module": "adapters/perseus_passages.py",
+        "catalogue": "adapters/scaife_catalog.py"
+      },
+      "gives": [
+        "passages"
+      ],
+      "nonCommercial": false
     },
     {
       "id": "lacuscurtius",
@@ -60,9 +77,16 @@
       "status": "read",
       "kind": "text library",
       "coverage": {
-        "languages": ["eng", "lat", "grc"],
+        "languages": [
+          "eng",
+          "lat",
+          "grc"
+        ],
         "description": "Greek and Roman authors in English (Loeb and other public-domain translations), some with the original text, proofread or marked unproofread page by page; also topography and inscriptions of Rome and Italy.",
-        "evidence": ["literary text", "inscription"]
+        "evidence": [
+          "literary text",
+          "inscription"
+        ]
       },
       "discover": {
         "method": "browse",
@@ -92,7 +116,14 @@
         "Thayer's notes and commentary (no asterisk) are his copyright: never preserved as a source's words (handoff rule 4).",
         "Many pages are marked unproofread; the state is kept on the preserved record."
       ],
-      "adapter": {"type": "lacuscurtius-html", "module": "adapters/lacuscurtius_passages.py"}
+      "adapter": {
+        "type": "lacuscurtius-html",
+        "module": "adapters/lacuscurtius_passages.py"
+      },
+      "gives": [
+        "passages"
+      ],
+      "nonCommercial": false
     },
     {
       "id": "gutenberg",
@@ -101,9 +132,15 @@
       "status": "read",
       "kind": "text library",
       "coverage": {
-        "languages": ["eng", "and others"],
+        "languages": [
+          "eng",
+          "and others"
+        ],
         "description": "Books in the public domain in the US: modern histories and biographies of the 19th and early 20th centuries, older translations of ancient authors, and literature (plays and poems about Actium).",
-        "evidence": ["literary text", "modern scholarship"]
+        "evidence": [
+          "literary text",
+          "modern scholarship"
+        ]
       },
       "discover": {
         "method": "catalogue",
@@ -127,14 +164,23 @@
         "checkedAt": "2026-10-15",
         "rule": "The book's catalogue page must read 'Public domain in the USA.'; that status and the book's licence header are preserved with it.",
         "perItem": "The catalogue page's copyright status and the book's header.",
-        "obligations": ["the trademark's terms, if the Project Gutenberg name is kept on a redistributed copy"]
+        "obligations": [
+          "the trademark's terms, if the Project Gutenberg name is kept on a redistributed copy"
+        ]
       },
       "limitations": [
         "Robot access policy (https://www.gutenberg.org/policy/robot_access.html): 'The Project Gutenberg website is intended for human users only'; automated access can lead to an IP block. A single book and its catalogue page at a time is how the adapter reads it; any bulk use goes through the robot harvest endpoint or a private mirror, as the policy recommends.",
         "Catalogue authors can be wrong (Hale's Famous Sea Fights is catalogued under Atteridge; the adapter records the disagreement).",
         "Public-domain status is for the US only."
       ],
-      "adapter": {"type": "gutenberg-html", "module": "adapters/gutenberg_passages.py"}
+      "adapter": {
+        "type": "gutenberg-html",
+        "module": "adapters/gutenberg_passages.py"
+      },
+      "gives": [
+        "passages"
+      ],
+      "nonCommercial": false
     },
     {
       "id": "wikipedia",
@@ -143,9 +189,14 @@
       "status": "read",
       "kind": "encyclopedia",
       "coverage": {
-        "languages": ["eng", "and others"],
+        "languages": [
+          "eng",
+          "and others"
+        ],
         "description": "A tertiary voice (29 §5): orientation and discovery first; as evidence, 'according to Wikipedia' at a fixed revision. Its links surface entities; its references are candidate sources.",
-        "evidence": ["reference work"]
+        "evidence": [
+          "reference work"
+        ]
       },
       "discover": {
         "method": "Wikidata sitelink",
@@ -166,13 +217,25 @@
         "statementUri": "https://en.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=rightsinfo",
         "checkedAt": "2026-10-15",
         "perItem": "The wiki's rightsinfo, recorded on each preserved article.",
-        "obligations": ["attribution (the article and its revision)", "share-alike"]
+        "obligations": [
+          "attribution (the article and its revision)",
+          "share-alike"
+        ]
       },
       "limitations": [
         "Wikimedia's User-Agent policy asks bots to identify themselves with contact details (https://foundation.wikimedia.org/wiki/Policy:Wikimedia_Foundation_User-Agent_Policy); the project's User-Agent (adapters/wikidata_identity.py) names the operator and a contact address, and the word bot, from 2026-10-15.",
         "Never a substitute for the sources it cites; counts as one author in attestation."
       ],
-      "adapter": {"type": "wikipedia-html", "module": "adapters/wikipedia_passages.py", "firstContact": "harvest/wikipedia_contact.py"}
+      "adapter": {
+        "type": "wikipedia-html",
+        "module": "adapters/wikipedia_passages.py",
+        "firstContact": "harvest/wikipedia_contact.py"
+      },
+      "gives": [
+        "passages",
+        "identities"
+      ],
+      "nonCommercial": false
     },
     {
       "id": "wikisource",
@@ -181,9 +244,16 @@
       "status": "registered",
       "kind": "text library",
       "coverage": {
-        "languages": ["eng", "lat", "grc", "and others"],
+        "languages": [
+          "eng",
+          "lat",
+          "grc",
+          "and others"
+        ],
         "description": "Transcribed public-domain texts and translations, often proofread against page scans; one wiki per language (la.wikisource.org for Latin texts, en.wikisource.org for English translations).",
-        "evidence": ["literary text"]
+        "evidence": [
+          "literary text"
+        ]
       },
       "discover": {
         "method": "Wikidata and the MediaWiki search",
@@ -205,13 +275,20 @@
         "checkedAt": "2026-10-15",
         "rule": "Read the page's licence template; a public-domain source text or a CC BY-SA translation may be preserved, with the translator (a contributor's translation is the wiki's own voice and is labelled so).",
         "perItem": "The licence template on each work's page.",
-        "obligations": ["attribution", "share-alike for contributors' translations"]
+        "obligations": [
+          "attribution",
+          "share-alike for contributors' translations"
+        ]
       },
       "limitations": [
         "Quality varies; the proofreading state of each page is shown on the wiki and should be kept.",
         "No adapter yet: the Wikipedia adapter's parser is the starting point."
       ],
-      "adapter": null
+      "adapter": null,
+      "gives": [
+        "passages"
+      ],
+      "nonCommercial": false
     },
     {
       "id": "internet-archive",
@@ -220,9 +297,14 @@
       "status": "registered",
       "kind": "scanned library",
       "coverage": {
-        "languages": ["many"],
+        "languages": [
+          "many"
+        ],
         "description": "Scanned books with OCR text: editions and translations not transcribed elsewhere, and modern histories out of copyright. Also copies of Gutenberg books uploaded by others.",
-        "evidence": ["literary text", "modern scholarship"]
+        "evidence": [
+          "literary text",
+          "modern scholarship"
+        ]
       },
       "discover": {
         "method": "search API",
@@ -254,7 +336,11 @@
         "Automated access (https://archive.org/developers/bots.html): a descriptive User-Agent with the tool, its version, and for AI agents the model (the adapter, when built, adds the model to the project's User-Agent); delays between requests; honour 429 and Retry-After.",
         "The current Terms of Use are still to be read and quoted before the first preserved item."
       ],
-      "adapter": null
+      "adapter": null,
+      "gives": [
+        "passages"
+      ],
+      "nonCommercial": false
     },
     {
       "id": "loc-catalog",
@@ -309,7 +395,724 @@
       "adapter": {
         "type": "lc-catalog-marcxml",
         "module": "adapters/lc_catalog.py"
+      },
+      "gives": [
+        "works"
+      ],
+      "nonCommercial": false
+    },
+    {
+      "id": "wikidata",
+      "label": "Wikidata",
+      "homepage": "https://www.wikidata.org/",
+      "status": "read",
+      "kind": "knowledge base",
+      "gives": [
+        "identities",
+        "statements"
+      ],
+      "lenses": [
+        "general"
+      ],
+      "terms": [
+        "identity",
+        "family"
+      ],
+      "coverage": {
+        "description": "Identities, aliases and first-contact statements; each statement kept as an observation at its revision."
+      },
+      "rights": {
+        "class": "A",
+        "statement": "All structured data (i.e. the main, Property, Lexeme, and EntitySchema namespaces) is released into the public domain under Creative Commons Zero.",
+        "statementUri": "https://www.wikidata.org/wiki/Wikidata:Licensing",
+        "checkedAt": "2026-11-24",
+        "obligations": []
+      },
+      "nonCommercial": false,
+      "adapter": {
+        "module": "adapters/wikidata_identity.py"
       }
+    },
+    {
+      "id": "pleiades",
+      "label": "Pleiades",
+      "homepage": "https://pleiades.stoa.org/",
+      "status": "read",
+      "kind": "gazetteer",
+      "gives": [
+        "places"
+      ],
+      "lenses": [
+        "geographic",
+        "military"
+      ],
+      "terms": [
+        "place",
+        "site",
+        "coast",
+        "harbour",
+        "harbor"
+      ],
+      "coverage": {
+        "description": "Ancient places, names and locations: the gazetteer's ancient layer (27)."
+      },
+      "rights": {
+        "class": "A",
+        "statement": "permitted under terms of the Creative Commons Attribution 3.0 License (cc-by)",
+        "statementUri": "https://pleiades.stoa.org/credits",
+        "checkedAt": "2026-11-24",
+        "obligations": [
+          "attribution"
+        ]
+      },
+      "nonCommercial": false,
+      "adapter": {
+        "module": "gazetteer/pleiades.py"
+      }
+    },
+    {
+      "id": "geonames",
+      "label": "GeoNames",
+      "homepage": "https://www.geonames.org/",
+      "status": "read",
+      "kind": "gazetteer",
+      "gives": [
+        "places"
+      ],
+      "lenses": [
+        "geographic"
+      ],
+      "terms": [
+        "place"
+      ],
+      "coverage": {
+        "description": "Modern places: the gazetteer's modern tree (27)."
+      },
+      "rights": {
+        "class": "A",
+        "statement": "This work is licensed under a Creative Commons Attribution 4.0 License.",
+        "statementUri": "https://www.geonames.org/about.html",
+        "checkedAt": "2026-11-24",
+        "obligations": [
+          "attribution: credit GeoNames with a link or reference (https://www.geonames.org/export/)",
+          "some third-party content carries its own terms (about.html)"
+        ]
+      },
+      "nonCommercial": false,
+      "adapter": {
+        "module": "gazetteer/geonames.py"
+      }
+    },
+    {
+      "id": "periodo",
+      "label": "PeriodO",
+      "homepage": "https://perio.do/",
+      "status": "read",
+      "kind": "period gazetteer",
+      "gives": [
+        "periods"
+      ],
+      "lenses": [
+        "general"
+      ],
+      "terms": [
+        "period",
+        "era"
+      ],
+      "coverage": {
+        "description": "Named periods with their bounds, as each authority defines them."
+      },
+      "rights": {
+        "class": "A",
+        "statement": "the contributors have dedicated the PeriodO dataset to the public domain by waiving all of their rights (CC0 1.0)",
+        "statementUri": "https://perio.do/license/",
+        "checkedAt": "2026-11-24",
+        "obligations": [
+          "none required; the project asks that use be attributed and shared in kind"
+        ]
+      },
+      "nonCommercial": false,
+      "adapter": {
+        "module": "adapters/periodo.py"
+      }
+    },
+    {
+      "id": "crro",
+      "label": "Coinage of the Roman Republic Online (CRRO)",
+      "homepage": "https://numismatics.org/crro/",
+      "status": "read",
+      "kind": "numismatic database",
+      "gives": [
+        "coins"
+      ],
+      "lenses": [
+        "economic",
+        "political",
+        "military"
+      ],
+      "terms": [
+        "coin",
+        "coinage",
+        "denarius",
+        "legionary",
+        "issue",
+        "mint"
+      ],
+      "coverage": {
+        "description": "Republican coin types, read from the CRRO dump as record observations."
+      },
+      "rights": {
+        "class": null,
+        "unverified": "the site refused the request (HTTP 403) on 2026-11-24; harvest/crro_coins.py records the dump's licence as Open Database License 1.0, not yet read at the source"
+      },
+      "nonCommercial": false,
+      "adapter": {
+        "module": "harvest/crro_coins.py"
+      }
+    },
+    {
+      "id": "lc-authorities",
+      "label": "Library of Congress authorities (LCSH, LCNAF)",
+      "homepage": "https://id.loc.gov/",
+      "status": "read",
+      "kind": "subject and name headings",
+      "gives": [
+        "headings"
+      ],
+      "lenses": [
+        "general"
+      ],
+      "terms": [
+        "heading"
+      ],
+      "coverage": {
+        "description": "Subject and name headings, labels read from the record."
+      },
+      "rights": {
+        "class": null,
+        "unverified": "id.loc.gov/about refused the request (HTTP 403) on 2026-11-24, and loc.gov/legal names no licence for the authority data"
+      },
+      "nonCommercial": false,
+      "adapter": {
+        "module": "adapters/library_headings.py"
+      }
+    },
+    {
+      "id": "fast",
+      "label": "FAST (OCLC)",
+      "homepage": "https://fast.oclc.org/",
+      "status": "read",
+      "kind": "subject headings",
+      "gives": [
+        "headings"
+      ],
+      "lenses": [
+        "general"
+      ],
+      "terms": [
+        "heading"
+      ],
+      "coverage": {
+        "description": "Faceted subject headings derived from LCSH."
+      },
+      "rights": {
+        "class": null,
+        "unverified": "OCLC's FAST page names no licence for the data (read 2026-11-24); adapters/library_headings.py records ODC-By 1.0, not yet read at the source; the copyright policy is at https://policies.oclc.org/en/copyright.html"
+      },
+      "nonCommercial": false,
+      "adapter": {
+        "module": "adapters/library_headings.py"
+      }
+    },
+    {
+      "id": "commons",
+      "label": "Wikimedia Commons",
+      "homepage": "https://commons.wikimedia.org/",
+      "status": "read",
+      "kind": "media repository",
+      "gives": [
+        "pictures"
+      ],
+      "lenses": [
+        "artistic"
+      ],
+      "terms": [
+        "picture",
+        "image"
+      ],
+      "coverage": {
+        "description": "Pictures of a held Wikipedia revision, each with its own licence; only free licences are shown."
+      },
+      "rights": {
+        "class": null,
+        "unverified": "rights vary by file: adapters/commons_images.py reads each file's licence from Commons and keeps only public domain, CC0 and CC BY; no site-level statement is recorded"
+      },
+      "nonCommercial": false,
+      "adapter": {
+        "module": "adapters/commons_images.py"
+      }
+    },
+    {
+      "id": "dprr",
+      "label": "Digital Prosopography of the Roman Republic (DPRR)",
+      "homepage": "https://romanrepublic.ac.uk/",
+      "status": "candidate",
+      "kind": "prosopography",
+      "gives": [
+        "people-offices"
+      ],
+      "lenses": [
+        "political",
+        "military",
+        "social"
+      ],
+      "terms": [
+        "office",
+        "consul",
+        "praetor",
+        "career",
+        "magistrate",
+        "senator",
+        "legate"
+      ],
+      "coverage": {
+        "description": "Persons of the Republic, their offices and relationships, with sources."
+      },
+      "rights": {
+        "class": null,
+        "stated": "non-commercial (the curator's switch, D-166: on for now)",
+        "statedBy": "docs/Agent resources.md (unverified)"
+      },
+      "nonCommercial": true
+    },
+    {
+      "id": "nomisma",
+      "label": "Nomisma.org",
+      "homepage": "https://nomisma.org/",
+      "status": "candidate",
+      "kind": "linked data",
+      "gives": [
+        "coins",
+        "identities"
+      ],
+      "lenses": [
+        "economic",
+        "political",
+        "artistic",
+        "religious"
+      ],
+      "terms": [
+        "coin",
+        "coinage",
+        "legionary",
+        "mint",
+        "denomination"
+      ],
+      "coverage": {
+        "description": "Numismatic concepts: rulers, mints, denominations, coin types."
+      },
+      "rights": {
+        "class": null,
+        "stated": "CC BY for concepts; specimen records and images vary",
+        "statedBy": "docs/Agent resources.md (unverified)"
+      },
+      "nonCommercial": false
+    },
+    {
+      "id": "ocre",
+      "label": "Online Coins of the Roman Empire (OCRE)",
+      "homepage": "https://numismatics.org/ocre/",
+      "status": "candidate",
+      "kind": "numismatic database",
+      "gives": [
+        "coins"
+      ],
+      "lenses": [
+        "economic",
+        "political",
+        "artistic",
+        "religious"
+      ],
+      "terms": [
+        "coin",
+        "coinage",
+        "mint"
+      ],
+      "coverage": {
+        "description": "Imperial coin types, for continuity from late Republican issues."
+      },
+      "rights": {
+        "class": null,
+        "stated": "Open Database License for the database; images item by item",
+        "statedBy": "docs/Agent resources.md (unverified)"
+      },
+      "nonCommercial": false
+    },
+    {
+      "id": "whg",
+      "label": "World Historical Gazetteer",
+      "homepage": "https://whgazetteer.org/",
+      "status": "candidate",
+      "kind": "gazetteer",
+      "gives": [
+        "places"
+      ],
+      "lenses": [
+        "geographic",
+        "political",
+        "economic",
+        "military"
+      ],
+      "terms": [
+        "place",
+        "coast",
+        "coastline",
+        "harbour",
+        "harbor",
+        "site",
+        "promontory",
+        "gulf"
+      ],
+      "coverage": {
+        "description": "Historical places with temporal bounds and geometries."
+      },
+      "rights": {
+        "class": null,
+        "stated": "software BSD-3-Clause; contributed datasets keep their own rights",
+        "statedBy": "docs/Agent resources.md (unverified)"
+      },
+      "nonCommercial": false
+    },
+    {
+      "id": "orbis",
+      "label": "ORBIS",
+      "homepage": "https://orbis.stanford.edu/",
+      "status": "candidate",
+      "kind": "network model",
+      "gives": [
+        "places"
+      ],
+      "lenses": [
+        "economic",
+        "military",
+        "geographic"
+      ],
+      "terms": [
+        "route",
+        "voyage",
+        "sail",
+        "march",
+        "supply",
+        "travel",
+        "fleet",
+        "blockade",
+        "logistics",
+        "bases"
+      ],
+      "coverage": {
+        "description": "Roman transport routes, travel time and cost."
+      },
+      "rights": {
+        "class": null,
+        "stated": "confirm at each download location",
+        "statedBy": "docs/Agent resources.md (unverified)"
+      },
+      "nonCommercial": false
+    },
+    {
+      "id": "maps",
+      "label": "Mapping Past Societies (MAPS)",
+      "homepage": "https://darmc.harvard.edu/",
+      "status": "candidate",
+      "kind": "GIS layers",
+      "gives": [
+        "places"
+      ],
+      "lenses": [
+        "geographic",
+        "economic",
+        "military",
+        "environmental"
+      ],
+      "terms": [
+        "coast",
+        "coastline",
+        "harbour",
+        "harbor",
+        "road",
+        "port",
+        "settlement",
+        "narrows"
+      ],
+      "coverage": {
+        "description": "GIS layers: ports, roads, settlements, ancient coastlines."
+      },
+      "rights": {
+        "class": null,
+        "stated": "commonly CC BY-NC-SA 4.0, layer by layer",
+        "statedBy": "docs/Agent resources.md (unverified)"
+      },
+      "nonCommercial": true
+    },
+    {
+      "id": "papyri-info",
+      "label": "Papyri.info",
+      "homepage": "https://papyri.info/",
+      "status": "candidate",
+      "kind": "documentary texts",
+      "gives": [
+        "passages"
+      ],
+      "lenses": [
+        "economic",
+        "social",
+        "legal",
+        "religious"
+      ],
+      "terms": [
+        "grain",
+        "tax",
+        "price",
+        "supply",
+        "egypt",
+        "alexandria"
+      ],
+      "coverage": {
+        "description": "Documentary papyri: contracts, receipts, accounts, letters."
+      },
+      "rights": {
+        "class": null,
+        "stated": "DDbDP editions commonly CC BY 3.0; images by institution",
+        "statedBy": "docs/Agent resources.md (unverified)"
+      },
+      "nonCommercial": false
+    },
+    {
+      "id": "edcs",
+      "label": "Epigraphik-Datenbank Clauss-Slaby (EDCS)",
+      "homepage": "https://db.edcs.eu/",
+      "status": "candidate",
+      "kind": "inscriptions",
+      "gives": [
+        "passages",
+        "people-offices"
+      ],
+      "lenses": [
+        "military",
+        "social",
+        "political"
+      ],
+      "terms": [
+        "legion",
+        "legionary",
+        "cohort",
+        "cohorts",
+        "unit",
+        "soldier",
+        "veteran",
+        "praetorian",
+        "career"
+      ],
+      "coverage": {
+        "description": "Latin inscriptions: persons, units, offices, places, dates."
+      },
+      "rights": {
+        "class": null,
+        "stated": "to check",
+        "statedBy": "docs/Agent resources.md (unverified)"
+      },
+      "nonCommercial": false
+    },
+    {
+      "id": "edh",
+      "label": "Epigraphic Database Heidelberg (EDH)",
+      "homepage": "https://edh.ub.uni-heidelberg.de/",
+      "status": "candidate",
+      "kind": "inscriptions",
+      "gives": [
+        "passages",
+        "people-offices"
+      ],
+      "lenses": [
+        "military",
+        "social",
+        "political"
+      ],
+      "terms": [
+        "legion",
+        "cohort",
+        "career",
+        "province"
+      ],
+      "coverage": {
+        "description": "Latin inscriptions, strongest for the imperial period."
+      },
+      "rights": {
+        "class": null,
+        "stated": "to check",
+        "statedBy": "docs/Agent resources.md (unverified)"
+      },
+      "nonCommercial": false
+    },
+    {
+      "id": "phi-greek",
+      "label": "PHI Greek Inscriptions",
+      "homepage": "https://inscriptions.packhum.org/",
+      "status": "candidate",
+      "kind": "inscriptions",
+      "gives": [
+        "passages"
+      ],
+      "lenses": [
+        "political",
+        "religious",
+        "social",
+        "military"
+      ],
+      "terms": [
+        "decree",
+        "dedication",
+        "treaty",
+        "honour",
+        "honor"
+      ],
+      "coverage": {
+        "description": "Greek inscriptions: decrees, treaties, dedications."
+      },
+      "rights": {
+        "class": null,
+        "stated": "consultative: personal study and fair use, no corpus copying (class C as stated)",
+        "statedBy": "docs/Agent resources.md (unverified)"
+      },
+      "nonCommercial": false
+    },
+    {
+      "id": "seshat",
+      "label": "Seshat",
+      "homepage": "https://seshatdatabank.info/",
+      "status": "candidate",
+      "kind": "coded dataset",
+      "gives": [
+        "statements"
+      ],
+      "lenses": [
+        "political",
+        "military",
+        "religious"
+      ],
+      "terms": [
+        "warfare",
+        "polity",
+        "army"
+      ],
+      "coverage": {
+        "description": "Coded descriptions of polities: organisation, warfare, religion."
+      },
+      "rights": {
+        "class": null,
+        "stated": "commonly CC BY-NC-SA; pin each release",
+        "statedBy": "docs/Agent resources.md (unverified)"
+      },
+      "nonCommercial": true
+    },
+    {
+      "id": "ogl",
+      "label": "Open Greek and Latin",
+      "homepage": "https://opengreekandlatin.org/",
+      "status": "candidate",
+      "kind": "text library",
+      "gives": [
+        "passages"
+      ],
+      "lenses": [
+        "general",
+        "political",
+        "religious"
+      ],
+      "terms": [
+        "edition"
+      ],
+      "coverage": {
+        "description": "Greek and Latin editions and translations."
+      },
+      "rights": {
+        "class": null,
+        "stated": "by repository and edition",
+        "statedBy": "docs/Agent resources.md (unverified)"
+      },
+      "nonCommercial": false
+    },
+    {
+      "id": "musisque-deoque",
+      "label": "Musisque Deoque",
+      "homepage": "https://www.mqdq.it/",
+      "status": "candidate",
+      "kind": "text library",
+      "gives": [
+        "passages"
+      ],
+      "lenses": [
+        "artistic",
+        "religious",
+        "political"
+      ],
+      "terms": [
+        "poem",
+        "poet",
+        "verse",
+        "praise"
+      ],
+      "coverage": {
+        "description": "Latin poetry with critical and metrical information."
+      },
+      "rights": {
+        "class": null,
+        "stated": "CC BY-SA 4.0 for the CLARIN-IT deposit",
+        "statedBy": "docs/Agent resources.md (unverified)"
+      },
+      "nonCommercial": false
+    },
+    {
+      "id": "livius",
+      "label": "Livius.org",
+      "homepage": "https://www.livius.org/",
+      "status": "candidate",
+      "kind": "reference articles",
+      "gives": [
+        "passages"
+      ],
+      "lenses": [
+        "general",
+        "military"
+      ],
+      "terms": [
+        "legion",
+        "commander",
+        "province"
+      ],
+      "coverage": {
+        "description": "Curated articles on commanders, legions, provinces and sources: a reference voice, never evidence."
+      },
+      "rights": {
+        "class": null,
+        "stated": "to check",
+        "statedBy": "docs/Agent resources.md (unverified)"
+      },
+      "nonCommercial": false
     }
-  ]
+  ],
+  "gives": {
+    "_about": "What a source gives the graph (D-177): the front door groups the brief's sources by it.",
+    "passages": "texts read for claims",
+    "identities": "who or what a thing is: authority identities and crosswalks",
+    "statements": "structured claims about entities",
+    "places": "places, names, coordinates, routes",
+    "people-offices": "persons, careers and offices",
+    "coins": "coin types and specimens",
+    "periods": "named periods and their bounds",
+    "headings": "subject and name headings",
+    "pictures": "images with their licences",
+    "works": "bibliographic records of books and editions"
+  },
+  "rightsUnverified": "A source read or registered whose rights could not yet be read at the source carries rights.unverified with the reason, never an assumed class; the front door plans a REGISTER item to check them (D-177)."
 }

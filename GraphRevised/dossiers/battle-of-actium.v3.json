@@ -1,0 +1,550 @@
+{
+  "schema_version": "orientation-dossier-v1",
+  "dossier_id": "chr:dossier:battle-of-actium",
+  "version": 3,
+  "previous_version": 2,
+  "focus_ids": [
+    "chr:entity:battle-of-actium"
+  ],
+  "subject_id": "chr:subject:history-of-battle-of-actium",
+  "brief": {
+    "focus": {
+      "status": "resolved",
+      "chosen": {
+        "label": "Battle of Actium",
+        "description": "31 BCE decisive confrontation of the Final War of the Roman Republic",
+        "kind": "Event",
+        "qid": "Q160387",
+        "local_entity_id": "chr:entity:battle-of-actium",
+        "why": "chosen by curator"
+      },
+      "candidates": [
+        {
+          "label": "Battle of Actium",
+          "description": "31 BCE decisive confrontation of the Final War of the Roman Republic",
+          "kind": "Event",
+          "qid": "Q160387",
+          "local_entity_id": "chr:entity:battle-of-actium",
+          "why": "a local entity with the same words"
+        },
+        {
+          "label": "Battle of Actium",
+          "description": "435 BC naval battle",
+          "kind": "Event",
+          "qid": "Q9173813",
+          "local_entity_id": "chr:entity:battle-of-actium-q9173813",
+          "why": "a local entity with the same words"
+        }
+      ],
+      "decided_by": "curator"
+    },
+    "kind": "Event",
+    "earliest_year": -31,
+    "latest_year": -31,
+    "places": [
+      "Actium promontory",
+      "Ionian Sea"
+    ],
+    "candidates": [],
+    "relationship_needs": [],
+    "federations": [
+      {
+        "name": "Perseus Digital Library (Scaife Viewer)",
+        "why": "a reader exists and its passages or records are in the graph",
+        "system_id": "perseus",
+        "gives": [
+          "passages"
+        ],
+        "status": "read",
+        "rights_class": "A/B",
+        "non_commercial": false,
+        "item_id": null
+      },
+      {
+        "name": "LacusCurtius (Bill Thayer)",
+        "why": "a reader exists and its passages or records are in the graph",
+        "system_id": "lacuscurtius",
+        "gives": [
+          "passages"
+        ],
+        "status": "read",
+        "rights_class": "B",
+        "non_commercial": false,
+        "item_id": null
+      },
+      {
+        "name": "Project Gutenberg",
+        "why": "a reader exists and its passages or records are in the graph",
+        "system_id": "gutenberg",
+        "gives": [
+          "passages"
+        ],
+        "status": "read",
+        "rights_class": "A",
+        "non_commercial": false,
+        "item_id": null
+      },
+      {
+        "name": "Wikipedia",
+        "why": "a reader exists and its passages or records are in the graph",
+        "system_id": "wikipedia",
+        "gives": [
+          "passages",
+          "identities"
+        ],
+        "status": "read",
+        "rights_class": "A",
+        "non_commercial": false,
+        "item_id": null
+      },
+      {
+        "name": "Wikisource",
+        "why": "registered, its rights checked at the source; no reader yet",
+        "system_id": "wikisource",
+        "gives": [
+          "passages"
+        ],
+        "status": "registered",
+        "rights_class": "B",
+        "non_commercial": false,
+        "item_id": null
+      },
+      {
+        "name": "Internet Archive",
+        "why": "registered, its rights checked at the source; no reader yet",
+        "system_id": "internet-archive",
+        "gives": [
+          "passages"
+        ],
+        "status": "registered",
+        "rights_class": "B",
+        "non_commercial": false,
+        "item_id": null
+      },
+      {
+        "name": "Library of Congress catalog",
+        "why": "registered, its rights checked at the source; no reader yet",
+        "system_id": "loc-catalog",
+        "gives": [
+          "works"
+        ],
+        "status": "registered",
+        "rights_class": "C",
+        "non_commercial": false,
+        "item_id": null
+      },
+      {
+        "name": "Wikidata",
+        "why": "a reader exists and its passages or records are in the graph",
+        "system_id": "wikidata",
+        "gives": [
+          "identities",
+          "statements"
+        ],
+        "status": "read",
+        "rights_class": "A",
+        "non_commercial": false,
+        "item_id": null
+      },
+      {
+        "name": "Pleiades",
+        "why": "a reader exists and its passages or records are in the graph",
+        "system_id": "pleiades",
+        "gives": [
+          "places"
+        ],
+        "status": "read",
+        "rights_class": "A",
+        "non_commercial": false,
+        "item_id": null
+      },
+      {
+        "name": "GeoNames",
+        "why": "a reader exists and its passages or records are in the graph",
+        "system_id": "geonames",
+        "gives": [
+          "places"
+        ],
+        "status": "read",
+        "rights_class": "A",
+        "non_commercial": false,
+        "item_id": null
+      },
+      {
+        "name": "PeriodO",
+        "why": "a reader exists and its passages or records are in the graph",
+        "system_id": "periodo",
+        "gives": [
+          "periods"
+        ],
+        "status": "read",
+        "rights_class": "A",
+        "non_commercial": false,
+        "item_id": null
+      },
+      {
+        "name": "Coinage of the Roman Republic Online (CRRO)",
+        "why": "a reader exists and its passages or records are in the graph; rights not yet read at the source (the site refused the request (HTTP 403) on 2026-11-24; harvest/crro_coins.py records the dump's licence as Open Database License 1.0, not yet read at the source)",
+        "system_id": "crro",
+        "gives": [
+          "coins"
+        ],
+        "status": "read",
+        "rights_class": null,
+        "non_commercial": false,
+        "item_id": null
+      },
+      {
+        "name": "Library of Congress authorities (LCSH, LCNAF)",
+        "why": "a reader exists and its passages or records are in the graph; rights not yet read at the source (id.loc.gov/about refused the request (HTTP 403) on 2026-11-24, and loc.gov/legal names no licence for the authority data)",
+        "system_id": "lc-authorities",
+        "gives": [
+          "headings"
+        ],
+        "status": "read",
+        "rights_class": null,
+        "non_commercial": false,
+        "item_id": null
+      },
+      {
+        "name": "FAST (OCLC)",
+        "why": "a reader exists and its passages or records are in the graph; rights not yet read at the source (OCLC's FAST page names no licence for the data (read 2026-11-24); adapters/library_headings.py records ODC-By 1.0, not yet read at the source; the copyright policy is at https://policies.oclc.org/en/copyright.html)",
+        "system_id": "fast",
+        "gives": [
+          "headings"
+        ],
+        "status": "read",
+        "rights_class": null,
+        "non_commercial": false,
+        "item_id": null
+      },
+      {
+        "name": "Wikimedia Commons",
+        "why": "a reader exists and its passages or records are in the graph; rights not yet read at the source (rights vary by file: adapters/commons_images.py reads each file's licence from Commons and keeps only public domain, CC0 and CC BY; no site-level statement is recorded)",
+        "system_id": "commons",
+        "gives": [
+          "pictures"
+        ],
+        "status": "read",
+        "rights_class": null,
+        "non_commercial": false,
+        "item_id": null
+      },
+      {
+        "name": "Digital Prosopography of the Roman Republic (DPRR)",
+        "why": "a candidate: its rights are not yet read at the source; stated, unverified: non-commercial (the curator's switch, D-166: on for now)",
+        "system_id": "dprr",
+        "gives": [
+          "people-offices"
+        ],
+        "status": "candidate",
+        "rights_class": null,
+        "non_commercial": true,
+        "item_id": null
+      },
+      {
+        "name": "Nomisma.org",
+        "why": "a candidate: its rights are not yet read at the source; stated, unverified: CC BY for concepts; specimen records and images vary",
+        "system_id": "nomisma",
+        "gives": [
+          "coins",
+          "identities"
+        ],
+        "status": "candidate",
+        "rights_class": null,
+        "non_commercial": false,
+        "item_id": "P03"
+      },
+      {
+        "name": "Online Coins of the Roman Empire (OCRE)",
+        "why": "a candidate: its rights are not yet read at the source; stated, unverified: Open Database License for the database; images item by item",
+        "system_id": "ocre",
+        "gives": [
+          "coins"
+        ],
+        "status": "candidate",
+        "rights_class": null,
+        "non_commercial": false,
+        "item_id": "P04"
+      },
+      {
+        "name": "World Historical Gazetteer",
+        "why": "a candidate: its rights are not yet read at the source; stated, unverified: software BSD-3-Clause; contributed datasets keep their own rights",
+        "system_id": "whg",
+        "gives": [
+          "places"
+        ],
+        "status": "candidate",
+        "rights_class": null,
+        "non_commercial": false,
+        "item_id": null
+      },
+      {
+        "name": "ORBIS",
+        "why": "a candidate: its rights are not yet read at the source; stated, unverified: confirm at each download location",
+        "system_id": "orbis",
+        "gives": [
+          "places"
+        ],
+        "status": "candidate",
+        "rights_class": null,
+        "non_commercial": false,
+        "item_id": "P01"
+      },
+      {
+        "name": "Mapping Past Societies (MAPS)",
+        "why": "a candidate: its rights are not yet read at the source; stated, unverified: commonly CC BY-NC-SA 4.0, layer by layer",
+        "system_id": "maps",
+        "gives": [
+          "places"
+        ],
+        "status": "candidate",
+        "rights_class": null,
+        "non_commercial": true,
+        "item_id": null
+      },
+      {
+        "name": "Papyri.info",
+        "why": "a candidate: its rights are not yet read at the source; stated, unverified: DDbDP editions commonly CC BY 3.0; images by institution",
+        "system_id": "papyri-info",
+        "gives": [
+          "passages"
+        ],
+        "status": "candidate",
+        "rights_class": null,
+        "non_commercial": false,
+        "item_id": null
+      },
+      {
+        "name": "Epigraphik-Datenbank Clauss-Slaby (EDCS)",
+        "why": "a candidate: its rights are not yet read at the source; stated, unverified: to check",
+        "system_id": "edcs",
+        "gives": [
+          "passages",
+          "people-offices"
+        ],
+        "status": "candidate",
+        "rights_class": null,
+        "non_commercial": false,
+        "item_id": "P02"
+      },
+      {
+        "name": "Epigraphic Database Heidelberg (EDH)",
+        "why": "a candidate: its rights are not yet read at the source; stated, unverified: to check",
+        "system_id": "edh",
+        "gives": [
+          "passages",
+          "people-offices"
+        ],
+        "status": "candidate",
+        "rights_class": null,
+        "non_commercial": false,
+        "item_id": null
+      },
+      {
+        "name": "PHI Greek Inscriptions",
+        "why": "a candidate: its rights are not yet read at the source; stated, unverified: consultative: personal study and fair use, no corpus copying (class C as stated)",
+        "system_id": "phi-greek",
+        "gives": [
+          "passages"
+        ],
+        "status": "candidate",
+        "rights_class": null,
+        "non_commercial": false,
+        "item_id": null
+      },
+      {
+        "name": "Seshat",
+        "why": "a candidate: its rights are not yet read at the source; stated, unverified: commonly CC BY-NC-SA; pin each release",
+        "system_id": "seshat",
+        "gives": [
+          "statements"
+        ],
+        "status": "candidate",
+        "rights_class": null,
+        "non_commercial": true,
+        "item_id": "P05"
+      },
+      {
+        "name": "Open Greek and Latin",
+        "why": "a candidate: its rights are not yet read at the source; stated, unverified: by repository and edition",
+        "system_id": "ogl",
+        "gives": [
+          "passages"
+        ],
+        "status": "candidate",
+        "rights_class": null,
+        "non_commercial": false,
+        "item_id": null
+      },
+      {
+        "name": "Musisque Deoque",
+        "why": "a candidate: its rights are not yet read at the source; stated, unverified: CC BY-SA 4.0 for the CLARIN-IT deposit",
+        "system_id": "musisque-deoque",
+        "gives": [
+          "passages"
+        ],
+        "status": "candidate",
+        "rights_class": null,
+        "non_commercial": false,
+        "item_id": null
+      },
+      {
+        "name": "Livius.org",
+        "why": "a candidate: its rights are not yet read at the source; stated, unverified: to check",
+        "system_id": "livius",
+        "gives": [
+          "passages"
+        ],
+        "status": "candidate",
+        "rights_class": null,
+        "non_commercial": false,
+        "item_id": null
+      }
+    ],
+    "sources": [
+      {
+        "author": null,
+        "work": "Plutarch, Life of Antony",
+        "kind": "primary",
+        "perspective": null,
+        "why": "already a source of the inquiry (chr:entity:plutarch-life-of-antony, standing primary)"
+      },
+      {
+        "author": null,
+        "work": "Cassius Dio, Roman History",
+        "kind": "primary",
+        "perspective": null,
+        "why": "already a source of the inquiry (chr:entity:cassius-dio-roman-history, standing primary)"
+      },
+      {
+        "author": null,
+        "work": "Hale, Famous Sea Fights",
+        "kind": "modern",
+        "perspective": null,
+        "why": "already a source of the inquiry (chr:entity:hale-famous-sea-fights, standing secondary)"
+      },
+      {
+        "author": null,
+        "work": "Weigall, The Life and Times of Cleopatra",
+        "kind": "modern",
+        "perspective": null,
+        "why": "already a source of the inquiry (chr:entity:weigall-life-and-times-of-cleopatra, standing secondary)"
+      },
+      {
+        "author": null,
+        "work": "Wikipedia, Battle of Actium",
+        "kind": "reference",
+        "perspective": null,
+        "why": "already a source of the inquiry (chr:entity:wikipedia-en-battle-of-actium, standing tertiary)"
+      },
+      {
+        "author": null,
+        "work": "Virgil, Aeneid",
+        "kind": "primary",
+        "perspective": null,
+        "why": "already a source of the inquiry (chr:entity:proposed-work-virgil-aeneid, standing primary)"
+      },
+      {
+        "author": null,
+        "work": "Strabo, Geography",
+        "kind": "primary",
+        "perspective": null,
+        "why": "already a source of the inquiry (chr:entity:proposed-work-strabo-geography, standing primary)"
+      },
+      {
+        "author": null,
+        "work": "Velleius Paterculus, Historiae Romanae",
+        "kind": "primary",
+        "perspective": null,
+        "why": "already a source of the inquiry (chr:entity:proposed-work-velleius-paterculus-historiae-romanae, standing primary)"
+      },
+      {
+        "author": null,
+        "work": "Augustus, Res Gestae Divi Augusti",
+        "kind": "primary",
+        "perspective": null,
+        "why": "already a source of the inquiry (chr:entity:proposed-work-augustus-res-gestae-divi-augusti, standing primary)"
+      }
+    ],
+    "lenses": [
+      {
+        "name": "General",
+        "why": "a lens in use (curation/lenses.json: general)"
+      },
+      {
+        "name": "Military",
+        "why": "a lens in use (curation/lenses.json: military)"
+      },
+      {
+        "name": "Political",
+        "why": "a lens in use (curation/lenses.json: political)"
+      },
+      {
+        "name": "Economic",
+        "why": "a lens in use (curation/lenses.json: economic)"
+      },
+      {
+        "name": "Social",
+        "why": "a lens in use (curation/lenses.json: social)"
+      },
+      {
+        "name": "Religious",
+        "why": "a lens in use (curation/lenses.json: religious)"
+      }
+    ],
+    "controversies": [
+      "Do Antony's legionary coin issues give reliable evidence of the forces he had in the Actium campaign? (accepted Question, chr:entity:proposed-question-do-antony-s-legionary-coin-issues-give-reliable-evidence-of-the-forces-he-had-in-the-actium-campaign)",
+      "Was Antony's abandonment of Corcyra the key moment that shifted the balance of the war? (accepted Question, chr:entity:proposed-question-was-antony-s-abandonment-of-corcyra-the-key-moment-that-shifted-the-balance-of-the-war)",
+      "Were Antony's Praetorian cohorts with him at Actium on September 2? (accepted Question, chr:entity:proposed-question-were-antony-s-praetorian-cohorts-with-him-at-actium-on-september-2)",
+      "What forces did Scarpus command in 32-31 BCE, and where? (accepted Question, chr:entity:proposed-question-what-forces-did-scarpus-command-in-32-31-bce-and-where)",
+      "Why was Scarpus sent to Cyrenaica in 31 BCE? (accepted Question, chr:entity:proposed-question-why-was-scarpus-sent-to-cyrenaica-in-31-bce)",
+      "Did Cleopatra take the decisive initiative in the flight from Actium? (proposed Question, chr:entity:proposed-question-did-cleopatra-take-the-decisive-initiative-in-the-flight-from-actium)",
+      "Did Cleopatra's squadron escape from the battle through a gap in the fleets' line? (proposed Question, chr:entity:proposed-question-did-cleopatra-s-squadron-escape-from-the-battle-through-a-gap-in-the-fleets-line)",
+      "Did Cleopatra, and perhaps Antonius too, secretly plan the flight before the battle began? (proposed Question, chr:entity:proposed-question-did-cleopatra-and-perhaps-antonius-too-secretly-plan-the-flight-before-the-battle-began)",
+      "Did Octavian's forces keep the bases Agrippa captured and use them to blockade Antonius by sea? (proposed Question, chr:entity:proposed-question-did-octavian-s-forces-keep-the-bases-agrippa-captured-and-use-them-to-blockade-antonius-by-sea)",
+      "How many casualties did Antonius' side suffer at Actium? (proposed Question, chr:entity:proposed-question-how-many-casualties-did-antonius-side-suffer-at-actium)",
+      "How many ships did Octavian and Antonius bring into the battle of Actium? (proposed Question, chr:entity:proposed-question-how-many-ships-did-octavian-and-antonius-bring-into-the-battle-of-actium)",
+      "To which victory did Antony's fourth imperial salutation (Imp IIII) in 31 BCE relate? (proposed Question, chr:entity:proposed-question-to-which-victory-did-antony-s-fourth-imperial-salutation-imp-iiii-in-31-bce-relate)",
+      "Was the battle of Actium a hard-fought contest between well-matched sides, or a lame one? (proposed Question, chr:entity:proposed-question-was-the-battle-of-actium-a-hard-fought-contest-between-well-matched-sides-or-a-lame-one)",
+      "Was the naval battle at Actium only part of an intended larger battle including Antonius' land army? (proposed Question, chr:entity:proposed-question-was-the-naval-battle-at-actium-only-part-of-an-intended-larger-battle-including-antonius-land-army)",
+      "What was Antonius' aim in the battle: to win it, or to break out and withdraw? (proposed Question, chr:entity:proposed-question-what-was-antonius-aim-in-the-battle-to-win-it-or-to-break-out-and-withdraw)",
+      "What was the turning point of the battle: Cleopatra's flight or the defection of part of Antonius' fleet? (proposed Question, chr:entity:proposed-question-what-was-the-turning-point-of-the-battle-cleopatra-s-flight-or-the-defection-of-part-of-antonius-fleet)",
+      "Why did Antonius draw up his fleet in the narrows? (proposed Question, chr:entity:proposed-question-why-did-antonius-draw-up-his-fleet-in-the-narrows)",
+      "Why did Augustus claim no more than 5,000 enemy dead at Actium? (proposed Question, chr:entity:proposed-question-why-did-augustus-claim-no-more-than-5-000-enemy-dead-at-actium)"
+    ],
+    "identity_traps": [
+      "Battle of Actium (Event, chr:entity:battle-of-actium-q9173813) shares words with the focus (matched “Battle of Actium”); already recorded as distinct (accepted distinctFrom)",
+      "Actium promontory (Place, chr:entity:actium-promontory) shares words with the focus (matched “Actium”)"
+    ],
+    "statements": [
+      {
+        "text": "curator chose the focus: Battle of Actium (Event, Wikidata Q160387, chr:entity:battle-of-actium).",
+        "source": "the command line (--focus Q160387)"
+      },
+      {
+        "text": "The Subject is “History of the Battle of Actium” (provisional).",
+        "source": "graph: chr:subject:history-of-battle-of-actium"
+      },
+      {
+        "text": "The graph dates it to 31 BCE.",
+        "source": "graph: chr:entity:battle-of-actium (Year links)"
+      },
+      {
+        "text": "It took place at Actium promontory (accepted).",
+        "source": "graph: chr:entity:actium-promontory"
+      },
+      {
+        "text": "It took place at Ionian Sea (accepted).",
+        "source": "graph: chr:entity:ionian-sea"
+      }
+    ],
+    "stopping_rule": "the plan's budget is spent; a batch of reading adds no new independent evidence (31 §3.8); every item of the coverage checklist is met (41 §4)"
+  },
+  "open_questions": [],
+  "used_by_inquiries": [
+    "chr:inquiry:actium-battle"
+  ],
+  "updated_at": "2026-11-24T13:43:10.329484+00:00",
+  "updated_by_run": "front-door-battle-of-actium-20261124T134305Z"
+}

@@ -413,7 +413,7 @@ and an account for at least one battle.
    `orchestration/front_door.py` with the Event recipe in `curation/recipes.json`;
    the model stage (scope, controversies, traps, lenses) is still to come.
 4. **Guided orchestration**: run the approved items with the existing modules,
-   one resumable run file.
+   one resumable run file. **Built 2026-11-24 (D-175):** `orchestration/orchestrator.py`.
 5. **Reconciler and critic** (§3.5, §3.6).
 6. **Three pilot lenses** on the same Actium material; keep a lens only if it
    adds proposals or source targets that are not duplicates.

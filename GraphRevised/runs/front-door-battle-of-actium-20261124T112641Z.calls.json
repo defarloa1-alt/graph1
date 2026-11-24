@@ -8,6 +8,7 @@
         "--source",
         "chr:entity:plutarch-life-of-antony",
         "--found",
+        "--unread",
         "--lens",
         "military",
         "--submit"
@@ -20,6 +21,7 @@
         "--source",
         "chr:entity:cassius-dio-roman-history",
         "--found",
+        "--unread",
         "--lens",
         "military",
         "--submit"
@@ -32,6 +34,7 @@
         "--source",
         "chr:entity:hale-famous-sea-fights",
         "--found",
+        "--unread",
         "--lens",
         "military",
         "--submit"
@@ -44,10 +47,12 @@
         "--source",
         "chr:entity:weigall-life-and-times-of-cleopatra",
         "--found",
+        "--unread",
         "--lens",
         "military",
         "--submit"
       ]
     }
-  }
+  },
+  "note": "2026-11-24: --unread added to the readings (D-175), so a retry resumes where it stopped; nothing else changed"
 }

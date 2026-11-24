@@ -1092,6 +1092,8 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--outputs", default=None,
                         help="which outputs to store with --submit (claims, notes, periods, events); "
                              "default all, or claims,notes,events with --lens")
+    parser.add_argument("--unread", action="store_true",
+                        help="skip passages a stored run of this source and lens already read (resume after a stop)")
     parser.add_argument("--lens", help="read through one lens (curation/lenses.json), as its specialist (39)")
     parser.add_argument("--lens-scope", default="roman-republic",
                         help="the lens's grounding: curation/lens-grounding/<scope>.json (default roman-republic)")
@@ -1160,6 +1162,24 @@ def main(argv: list[str] | None = None) -> int:
     return 0
 
 
+def read_refs(inquiry_id: str, work_id: str, lens_id: str | None, directory: Path = RUNS_DIRECTORY) -> set[str]:
+    """The passages a stored reading (not a dry run) of this inquiry's source, by this reader or lens,
+    has already read without an error, as its run logs record them. A crash after a passage's commit
+    but before its log line leaves that passage unrecorded, so it is read again: a repeat, not a gap."""
+    done: set[str] = set()
+    for path in sorted(directory.glob("*reader*.jsonl")):
+        lines = [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines() if line.strip()]
+        if not lines:
+            continue
+        head = lines[0]
+        lens = head.get("lens")
+        lens = lens.get("id") if isinstance(lens, dict) else lens  # older logs give the lens as its id
+        if (head.get("inquiry"), head.get("workId"), lens, head.get("submit")) != (inquiry_id, work_id, lens_id, True):
+            continue
+        done |= {line["ref"] for line in lines[1:] if "ref" in line and "error" not in line}
+    return done
+
+
 def _read_source(args, inquiry: Inquiry, session, dry, operations, registry, client, log, authorities,
                  periodo, totals: dict[str, int], storing: set[str]):
     scope_ids = {entity["id"] for entity in inquiry.scope}
@@ -1175,6 +1195,12 @@ def _read_source(args, inquiry: Inquiry, session, dry, operations, registry, cli
         refs = finds["selected"]
     else:
         refs = edition.refs(args.chapters or inquiry.source.get("chapters"))
+    skipped = 0
+    if getattr(args, "unread", False):
+        done = read_refs(inquiry.id, inquiry.work_id, inquiry.lens.id if inquiry.lens else None)
+        skipped = sum(ref in done for ref in refs)
+        refs = [ref for ref in refs if ref not in done]
+        print(f"--unread: {skipped} passages already read by a stored run are skipped; {len(refs)} left")
     all_refs = edition.refs(None)
     known = (depicted_events(dry, inquiry.work_id) if dry is not None
              else session.execute_read(lambda tx: depicted_events(tx, inquiry.work_id)))
@@ -1194,6 +1220,7 @@ def _read_source(args, inquiry: Inquiry, session, dry, operations, registry, cli
                  "groundingVersion": inquiry.lens.grounding_version} if inquiry.lens else None,
         "finds": {k: finds[k] for k in ("createdAt", "promptVersion", "model", "passages")} | {"selected": len(refs)}
                  if finds else None,
+        "skippedAlreadyRead": skipped,
     }) + "\n")
 
     for ref in refs:

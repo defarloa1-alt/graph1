@@ -19,12 +19,16 @@ class SourceRegistryTests(unittest.TestCase):
         for source in REGISTRY["sources"]:
             with self.subTest(source=source["id"]):
                 self.assertIn(source["status"], REGISTRY["statuses"])
+                self.assertTrue(set(source["gives"]) <= set(REGISTRY["gives"]) - {"_about"} and source["gives"])
+                if source["rights"]["class"] is None:  # not yet read at the source: said so, never assumed
+                    self.assertTrue(source["status"] == "candidate" or source["rights"].get("unverified"))
+                    continue
                 for part in source["rights"]["class"].split("/"):
                     self.assertIn(part, REGISTRY["rightsClasses"])
 
     def test_checked_rights_are_quoted_with_where_and_when(self):
         for source in REGISTRY["sources"]:
-            if source["status"] == "candidate":
+            if source["status"] == "candidate" or source["rights"].get("unverified"):
                 continue
             with self.subTest(source=source["id"]):
                 rights = source["rights"]
@@ -37,8 +41,10 @@ class SourceRegistryTests(unittest.TestCase):
         for source in REGISTRY["sources"]:
             with self.subTest(source=source["id"]):
                 if source["status"] == "read":
+                    for module in source["adapter"]["module"].split(", "):
+                        self.assertTrue((Path(sources.__file__).parents[1] / module).exists(), module)
+                if source["status"] == "read" and "passages" in source["gives"]:  # a passage source opens by type
                     self.assertIn(f'"{source["adapter"]["type"]}"', known)
-                    self.assertTrue((Path(sources.__file__).parents[1] / source["adapter"]["module"]).exists())
 
     def test_registered_source_may_have_a_catalog_adapter(self):
         source = next(s for s in REGISTRY["sources"] if s["id"] == "loc-catalog")

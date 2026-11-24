@@ -10,6 +10,8 @@ A model call needs a named budget: set CHRYSTALLUM_BUDGET to a name in
 curation/budgets.json (the curator's). With no budget named, or a model with no
 known price, no call is made. Each ledger line names its run: the name passed to
 `anthropic_client(run=...)`, else CHRYSTALLUM_RUN, else the script's name.
+CHRYSTALLUM_RUN_CAP, when set, also caps what that run name may spend (the orchestrator sets it
+for each plan item, D-175), so one item cannot overrun before anything checks it.
 
     python -m GraphRevised.spend_meter            # spend by budget, run and model
     python -m GraphRevised.spend_meter --budget actium
@@ -36,6 +38,7 @@ BUDGETS = ROOT / "curation" / "budgets.json"
 LEDGER = ROOT / "runs" / "spend-ledger.jsonl"
 ENV = "CHRYSTALLUM_BUDGET"
 RUN_ENV = "CHRYSTALLUM_RUN"  # optional: names the run in the ledger (else the script's name)
+RUN_CAP_ENV = "CHRYSTALLUM_RUN_CAP"  # optional: a cap in USD on this run name's spend, inside the budget's
 
 # (input, output, cache read or None for 0.1x input)
 PRICES: dict[str, tuple[str, str, str | None]] = {
@@ -129,11 +132,15 @@ def run_name(run: str | None = None, argv0: str | None = None) -> str:
 class Meter:
     """One budget, its cap, and the ledger it writes to."""
 
-    def __init__(self, budget: str, cap: Decimal, run: str, ledger: Path = LEDGER):
+    def __init__(self, budget: str, cap: Decimal, run: str, ledger: Path = LEDGER, run_cap: Decimal | None = None):
         if not cap.is_finite() or cap <= 0:
             raise BudgetRefused(f"Budget {budget!r} has no positive cap.")
-        self.budget, self.cap, self.run, self.ledger = budget, cap, run, ledger
-        self.spent = spent(budget, ledger)
+        if run_cap is not None and (not run_cap.is_finite() or run_cap <= 0):
+            raise BudgetRefused(f"Run {run!r} has no positive cap.")
+        self.budget, self.cap, self.run, self.ledger, self.run_cap = budget, cap, run, ledger, run_cap
+        entries = read_ledger(ledger)
+        self.spent = sum((Decimal(e["costUSD"]) for e in entries if e.get("budget") == budget), Decimal(0))
+        self.run_spent = sum((Decimal(e["costUSD"]) for e in entries if e.get("run") == run), Decimal(0))
 
     @classmethod
     def from_environment(cls, run: str | None = None, budgets: Path = BUDGETS, ledger: Path = LEDGER) -> "Meter":
@@ -145,7 +152,9 @@ class Meter:
             raise BudgetRefused(f"Budget {name!r} is not in {budgets.name}.")
         if entry.get("closed"):
             raise BudgetRefused(f"Budget {name!r} is closed.")
-        return cls(name, Decimal(str(entry["capUSD"])), run_name(run), ledger)
+        run_cap = os.environ.get(RUN_CAP_ENV)
+        return cls(name, Decimal(str(entry["capUSD"])), run_name(run), ledger,
+                   Decimal(run_cap) if run_cap else None)
 
     def reserve(self, request: dict[str, Any]) -> Decimal:
         top = ceiling(request["model"], request)
@@ -153,6 +162,10 @@ class Meter:
             raise BudgetRefused(
                 f"Budget {self.budget!r}: ${self.spent:.4f} spent of ${self.cap}; this call could cost up to "
                 f"${top:.4f}. No model call made.")
+        if self.run_cap is not None and self.run_spent + top > self.run_cap:
+            raise BudgetRefused(
+                f"Run {self.run!r}: ${self.run_spent:.4f} spent of its ${self.run_cap} cap; this call could cost up "
+                f"to ${top:.4f}. No model call made.")
         return top
 
     def record(self, request: dict[str, Any], response: Any, top: Decimal) -> Decimal:
@@ -161,6 +174,7 @@ class Meter:
             model = request["model"]
         cost, tokens = priced(model, response.usage)
         self.spent += cost
+        self.run_spent += cost
         entry = {"at": datetime.now(timezone.utc).isoformat(timespec="seconds"), "budget": self.budget,
                  "run": self.run, "model": model, **tokens, "costUSD": str(cost.quantize(Decimal("0.000001"))),
                  "ceilingUSD": str(top.quantize(Decimal("0.000001"))),
@@ -173,6 +187,7 @@ class Meter:
     def record_estimate(self, request: dict[str, Any], top: Decimal, reason: str) -> Decimal:
         """A billed call whose usage is unknown: logged at its ceiling, marked estimated."""
         self.spent += top
+        self.run_spent += top
         entry = {"at": datetime.now(timezone.utc).isoformat(timespec="seconds"), "budget": self.budget,
                  "run": self.run, "model": request["model"], "costUSD": str(top.quantize(Decimal("0.000001"))),
                  "ceilingUSD": str(top.quantize(Decimal("0.000001"))), "estimated": True, "failure": reason}

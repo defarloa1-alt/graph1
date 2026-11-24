@@ -1,0 +1,103 @@
+{
+  "runId": "front-door-battle-of-actium-20261124T134305Z",
+  "calls": {
+    "P01": {
+      "worker": "manual",
+      "instructions": "Read the rights for ORBIS at its own site (https://orbis.stanford.edu/). Quote them in curation/sources.json under orbis, with the page and the date; set its rights class and nonCommercial; register it if they allow. Answer with the class, or with 'not usable' and why."
+    },
+    "P02": {
+      "worker": "manual",
+      "instructions": "Read the rights for Epigraphik-Datenbank Clauss-Slaby (EDCS) at its own site (https://db.edcs.eu/). Quote them in curation/sources.json under edcs, with the page and the date; set its rights class and nonCommercial; register it if they allow. Answer with the class, or with 'not usable' and why."
+    },
+    "P03": {
+      "worker": "manual",
+      "instructions": "Read the rights for Nomisma.org at its own site (https://nomisma.org/). Quote them in curation/sources.json under nomisma, with the page and the date; set its rights class and nonCommercial; register it if they allow. Answer with the class, or with 'not usable' and why."
+    },
+    "P04": {
+      "worker": "manual",
+      "instructions": "Read the rights for Online Coins of the Roman Empire (OCRE) at its own site (https://numismatics.org/ocre/). Quote them in curation/sources.json under ocre, with the page and the date; set its rights class and nonCommercial; register it if they allow. Answer with the class, or with 'not usable' and why."
+    },
+    "P05": {
+      "worker": "manual",
+      "instructions": "Read the rights for Seshat at its own site (https://seshatdatabank.info/). Quote them in curation/sources.json under seshat, with the page and the date; set its rights class and nonCommercial; register it if they allow. Answer with the class, or with 'not usable' and why."
+    },
+    "P06": {
+      "worker": "GraphRevised.proposals.passage_reader",
+      "arguments": [
+        "GraphRevised/inquiries/actium-battle.json",
+        "--source",
+        "chr:entity:wikipedia-en-battle-of-actium",
+        "--found",
+        "--unread",
+        "--lens",
+        "military",
+        "--submit"
+      ]
+    },
+    "P07": {
+      "worker": "GraphRevised.proposals.passage_reader",
+      "arguments": [
+        "GraphRevised/inquiries/actium-battle.json",
+        "--source",
+        "chr:entity:proposed-work-virgil-aeneid",
+        "--found",
+        "--unread",
+        "--lens",
+        "military",
+        "--submit"
+      ]
+    },
+    "P08": {
+      "worker": "GraphRevised.proposals.passage_reader",
+      "arguments": [
+        "GraphRevised/inquiries/actium-battle.json",
+        "--source",
+        "chr:entity:proposed-work-strabo-geography",
+        "--found",
+        "--unread",
+        "--lens",
+        "military",
+        "--submit"
+      ]
+    },
+    "P09": {
+      "worker": "GraphRevised.proposals.passage_reader",
+      "arguments": [
+        "GraphRevised/inquiries/actium-battle.json",
+        "--source",
+        "chr:entity:proposed-work-velleius-paterculus-historiae-romanae",
+        "--found",
+        "--unread",
+        "--lens",
+        "military",
+        "--submit"
+      ]
+    },
+    "P10": {
+      "worker": "GraphRevised.proposals.passage_reader",
+      "arguments": [
+        "GraphRevised/inquiries/actium-battle.json",
+        "--source",
+        "chr:entity:proposed-work-augustus-res-gestae-divi-augusti",
+        "--found",
+        "--unread",
+        "--lens",
+        "military",
+        "--submit"
+      ]
+    },
+    "P11": {
+      "worker": "GraphRevised.proposals.passage_reader",
+      "arguments": [
+        "GraphRevised/inquiries/actium-battle.json",
+        "--source",
+        "chr:entity:plutarch-life-of-antony",
+        "--found",
+        "--unread",
+        "--lens",
+        "political",
+        "--submit"
+      ]
+    }
+  }
+}

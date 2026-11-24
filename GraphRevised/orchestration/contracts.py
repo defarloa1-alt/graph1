@@ -186,6 +186,24 @@ class Choice(_Contract):
     why: str = Field(min_length=3)
 
 
+Gives = Literal["passages", "identities", "statements", "places", "people-offices", "coins", "periods",
+                "headings", "pictures", "works"]
+
+
+class Federation(_Contract):
+    """A source system the inquiry can read, or could once registered (curation/sources.json), with what
+    it gives, its standing in the registry, and its rights as recorded there. A rights class is None until
+    the rights are read at the source; a candidate's stated rights are never taken as checked."""
+    name: str = Field(min_length=2)
+    why: str = Field(min_length=3)
+    system_id: str | None = None
+    gives: list[Gives] = Field(default_factory=list)
+    status: Literal["read", "registered", "candidate"] | None = None
+    rights_class: str | None = None  # "A", "B", "C", "A/B" as the registry records it
+    non_commercial: bool = False  # a non-commercial licence: behind the curator's switch (D-166)
+    item_id: str | None = Field(default=None, pattern=ITEM_ID_PATTERN)  # the plan item that would register it
+
+
 class OrientationBrief(_Contract):
     """The general orientation (a workflow stage, not a lens): enough of the subject to plan it."""
     focus: ResolvedFocus
@@ -195,7 +213,7 @@ class OrientationBrief(_Contract):
     places: list[str] = Field(default_factory=list)
     candidates: list[CandidateEntity] = Field(default_factory=list)
     relationship_needs: list[RelationshipNeed] = Field(default_factory=list)
-    federations: list[Choice] = Field(default_factory=list)
+    federations: list[Federation] = Field(default_factory=list)  # an older brief's {name, why} still loads
     sources: list[SourceCandidate] = Field(default_factory=list)
     lenses: list[Choice] = Field(default_factory=list)
     controversies: list[str] = Field(default_factory=list)
@@ -327,6 +345,7 @@ class OrientationDossier(_Contract):
 PlanAction = Literal[
     "FIRST_CONTACT", "HARVEST", "EXPAND", "WIKIPEDIA_CONTACT", "ENRICH", "SOURCE_PLAN", "BUILD_INQUIRY",
     "BRIEF", "FIND", "READ", "LENS", "PHASES", "RECONCILE", "CRITIQUE", "ACCOUNT", "SUB_INQUIRY",
+    "REGISTER",  # check a candidate source's rights at the source and register it: by hand, free
 ]
 
 
@@ -606,6 +625,7 @@ class InquiryRunState(_Contract):
     reconciliations: list[ReconciliationDecision] = Field(default_factory=list)
     verdicts: list[CriticVerdict] = Field(default_factory=list)
     interrupts: list[Interrupt] = Field(default_factory=list)
+    set_aside: list[str] = Field(default_factory=list)  # failed assignments the curator chose to retry
     spent_usd: float = Field(default=0, ge=0)
     stopping_explanation: str | None = None
 
@@ -626,6 +646,9 @@ class InquiryRunState(_Contract):
         assigned = {a.assignment_id for a in self.assignments}
         if any(r.assignment_id not in assigned for r in self.results):
             raise ValueError("every result answers an assignment")
+        failed = {r.assignment_id for r in self.results if r.status != "ok"}
+        if any(a not in failed for a in self.set_aside):
+            raise ValueError("only a failed attempt is set aside for a retry")
         packet_ids = [p.packet_id for p in self.packets]
         if len(packet_ids) != len(set(packet_ids)):
             raise ValueError("packet ids are unique")
@@ -651,7 +674,7 @@ class InquiryRunState(_Contract):
         if self.plan is None or self.open_interrupts():
             return None
         done = self.done_items()
-        attempted = {a.item_id for a in self.assignments}
+        attempted = {a.item_id for a in self.assignments if a.assignment_id not in self.set_aside}
         for item in self.plan.items:
             if item.item_id in attempted or not self.plan.runnable(item):
                 continue

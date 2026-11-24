@@ -53,6 +53,15 @@ class OfflineTests(unittest.TestCase):
         self.assertTrue(held["noPhases"])
         self.assertFalse(conditions(FOCUS, {"sources": SOURCES}, report(open_=3), ESTIMATES)["noPhases"])
 
+    def test_lenses_are_planned_in_the_catalogue_order_whichever_source_lacks_them(self):
+        rows = report()
+        rows["2 sources read"]["sources"][0]["readers"] = {"general": {"read": 10, "dryOnly": 0},
+                                                           "military": {"read": 10, "dryOnly": 0},
+                                                           "political": {"read": 0, "dryOnly": 0}}
+        rows["2 sources read"]["sources"][1]["readers"]["political"] = {"read": 0, "dryOnly": 0}
+        held = conditions(FOCUS, {"sources": SOURCES}, rows, ESTIMATES)
+        self.assertEqual(list(held["sourceUnreadByLens"]), ["military", "political"])
+
     def test_the_plan_follows_the_recipe_within_the_budget(self):
         held = conditions(FOCUS, {"sources": SOURCES * 2}, report(), ESTIMATES)
         items, questions, calls = plan_items(self.recipe, held, ESTIMATES, self.values, budget=10)
@@ -62,9 +71,10 @@ class OfflineTests(unittest.TestCase):
         read = next(i for i in items if i.action == "READ" and i.target == "chr:entity:w2")
         find = next(i for i in items if i.action == "FIND" and i.target == "chr:entity:w2")
         self.assertIn(find.item_id, read.depends_on)  # a reading waits for its own source's finder
-        self.assertEqual(read.budget_usd, 0.1)
+        self.assertEqual(read.budget_usd, 0.1)  # 10 passages at $0.01, no start cost in these estimates
         self.assertEqual(calls[read.item_id]["arguments"],
-                         ["GraphRevised/inquiries/t.json", "--source", "chr:entity:w2", "--found", "--lens", "military", "--submit"])
+                         ["GraphRevised/inquiries/t.json", "--source", "chr:entity:w2", "--found", "--unread", "--lens", "military",
+                          "--submit"])
         self.assertTrue(any(q.startswith("RECONCILE is not built") for q in questions))
         self.assertFalse(any(i.action in ("RECONCILE", "CRITIQUE", "ACCOUNT") for i in items))
 
@@ -76,6 +86,40 @@ class OfflineTests(unittest.TestCase):
         self.assertEqual([i.action for i in items], ["FIND"])
         left = next(q for q in questions if q.startswith("Left out for the budget"))
         self.assertIn("READ military One ($0.10)", left)  # it would fit, but the plan stays in recipe order
+
+    def test_every_registry_source_is_listed_with_what_it_gives_and_its_rights(self):
+        from GraphRevised.orchestration.front_door import REGISTRY, registry_federations
+
+        registry = load_json(REGISTRY)
+        listed = registry_federations(registry)
+        self.assertEqual(len(listed), len(registry["sources"]))
+        self.assertTrue(all(f.gives and f.status for f in listed))
+        unverified = [f for f in listed if f.rights_class is None and f.status != "candidate"]
+        self.assertTrue(all("not yet read at the source" in f.why for f in unverified))
+
+    def test_candidates_are_ranked_by_the_questions_and_the_lenses_missing(self):
+        from GraphRevised.orchestration.front_door import rank_candidates
+
+        registry = {"sources": [
+            {"id": "coins", "label": "Coins", "status": "candidate", "terms": ["coin"], "lenses": ["economic"], "rights": {}},
+            {"id": "roads", "label": "Roads", "status": "candidate", "terms": ["route"], "lenses": ["military"], "rights": {}},
+            {"id": "poems", "label": "Poems", "status": "candidate", "terms": ["verse"], "lenses": ["artistic"], "rights": {}},
+            {"id": "inuse", "label": "In use", "status": "read", "terms": [], "lenses": [], "rights": {"unverified": "403"}},
+            {"id": "fine", "label": "Fine", "status": "read", "terms": ["coin"], "lenses": ["economic"], "rights": {"class": "A"}}]}
+        ranked = rank_candidates(registry, ["Do the legionary coin issues show his forces?"], ["military"])
+        self.assertEqual([r["systemId"] for r in ranked], ["coins", "roads"])  # not poems, nor a source already read
+        self.assertIn("bears on the Question", ranked[0]["why"])
+        self.assertIn("military lens", ranked[1]["why"])
+
+    def test_a_ranked_candidate_becomes_a_free_register_item_done_by_hand(self):
+        held = conditions(FOCUS, {"sources": SOURCES * 2}, report(), ESTIMATES)
+        held["candidateSources"] = [{"systemId": "coins", "label": "Coins", "homepage": "https://example.org/",
+                                     "why": "bears on a Question", "score": 3, "passages": 0}]
+        items, _, calls = plan_items(self.recipe, held, ESTIMATES, self.values, budget=10)
+        register = next(i for i in items if i.action == "REGISTER")
+        self.assertEqual((register.target, register.budget_usd), ("coins", 0))
+        self.assertEqual(calls[register.item_id]["worker"], "manual")
+        self.assertIn("https://example.org/", calls[register.item_id]["instructions"])
 
     def test_the_inquiry_is_found_by_its_focus(self):
         with tempfile.TemporaryDirectory() as directory:

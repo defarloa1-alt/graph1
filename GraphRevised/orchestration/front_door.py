@@ -39,7 +39,7 @@ from pathlib import Path
 from typing import Any, Callable
 
 from GraphRevised.orchestration.contracts import (
-    AuthorityMatch, Choice, CoverageMap, Gap, IdentityCandidate, Inquiry, InquiryPlan, InquiryRunState, Interrupt,
+    AuthorityMatch, Choice, CoverageMap, Federation, Gap, IdentityCandidate, Inquiry, InquiryPlan, InquiryRunState, Interrupt,
     OrientationBrief, OrientationDossier, OrientationStatement, PlanItem, RelationshipNeed, ResolvedFocus, RunMode,
     RunStatus, ScopeDecision, SourceCandidate, SubjectAnchor,
 )
@@ -384,8 +384,7 @@ def orient(tx, focus: ResolvedFocus, kind: str, inquiry: dict[str, Any] | None, 
     sources =[SourceCandidate(work=row["label"], kind=STANDING.get(row["standing"] or "", "reference"),
                                why=f"already a source of the inquiry ({row['id']}, standing {row['standing'] or 'not set'})")
                for row in tx.run(WORKS, ids=[s["workId"] for s in (inquiry or {}).get("sources", [])]).data()]
-    federations = [Choice(name=s["label"], why=f"the source registry reads it (status {s['status']}, {s['id']})")
-                   for s in load_json(REGISTRY)["sources"] if s.get("status") == "read"]
+    federations = registry_federations(load_json(REGISTRY))
     lenses = [Choice(name=lens["label"], why=f"a lens in use (curation/lenses.json: {lens['id']})")
               for lens in load_json(LENSES)["lenses"] if lens.get("status") != "catalogued"]
     if not fid:
@@ -394,6 +393,51 @@ def orient(tx, focus: ResolvedFocus, kind: str, inquiry: dict[str, Any] | None, 
                             relationship_needs=needs, federations=federations, sources=sources, lenses=lenses,
                             controversies=controversies, identity_traps=traps, statements=statements,
                             stopping_rule="; ".join(recipe["stoppingRules"]))
+
+
+STATUS_WHY = {"read": "a reader exists and its passages or records are in the graph",
+              "registered": "registered, its rights checked at the source; no reader yet",
+              "candidate": "a candidate: its rights are not yet read at the source"}
+
+
+def registry_federations(registry: dict[str, Any]) -> list[Federation]:
+    """Every source in the registry, with what it gives, its status, and its rights as recorded (D-177)."""
+    out = []
+    for s in registry["sources"]:
+        rights = s.get("rights") or {}
+        why = STATUS_WHY[s["status"]]
+        if rights.get("unverified"):
+            why += f"; rights not yet read at the source ({rights['unverified']})"
+        elif s["status"] == "candidate" and rights.get("stated"):
+            why += f"; stated, unverified: {rights['stated']}"
+        out.append(Federation(name=s["label"], why=why, system_id=s["id"], gives=s.get("gives", []), status=s["status"],
+                              rights_class=rights.get("class"), non_commercial=bool(s.get("nonCommercial"))))
+    return out
+
+
+def rank_candidates(registry: dict[str, Any], questions: list[str], gap_lenses: list[str],
+                    limit: int = 5) -> list[dict[str, Any]]:
+    """The candidate sources that bear on this inquiry, most first, each with a one-line reason. By code
+    (D-177): a term of the source's in a Question about the focus counts most; a lens the inquiry's sources
+    still lack counts next. Sources already read whose rights are unverified are the registry's upkeep, not
+    this focus's: the front door lists them as one open question instead."""
+    ranked = []
+    for s in registry["sources"]:
+        if s["status"] != "candidate":
+            continue
+        terms = [t.lower() for t in s.get("terms", [])]
+        hits = [q for q in questions if any(re.search(rf"\b{re.escape(t)}\b", q.lower()) for t in terms)]
+        lenses = [lens for lens in gap_lenses if lens in s.get("lenses", [])]
+        score = 3 * len(hits) + len(lenses)
+        if score == 0:
+            continue
+        if hits:
+            why = f"bears on the Question “{hits[0]}”" + (f" and {len(hits) - 1} more" if len(hits) > 1 else "")
+        else:
+            why = f"for the {', '.join(lenses)} lens{'es' if len(lenses) > 1 else ''}, which the inquiry's sources still lack"
+        ranked.append({"systemId": s["id"], "label": s["label"], "homepage": s.get("homepage", ""), "why": why,
+                       "score": score, "passages": 0})
+    return sorted(ranked, key=lambda r: (-r["score"], r["systemId"]))[:limit]
 
 
 def _year(year: int) -> str:
@@ -412,12 +456,14 @@ def conditions(focus: IdentityCandidate, inquiry: dict[str, Any] | None, report:
     read = {r["workId"]: r for r in report.get("2 sources read", {}).get("sources", [])}
     lens = report.get("3 lens questions")
     phases = report.get("4 phase spine")
+    order = [lens["id"] for lens in load_json(LENSES)["lenses"]]  # lenses in the catalogue's order, not as met
     by_lens: dict[str, list[dict[str, Any]]] = {}
     for source in sources:
         row = read.get(source["workId"])
         for name, counts in (row or {}).get("readers", {}).items():
             if name != "general" and counts["read"] < row["assigned"]:
                 by_lens.setdefault(name, []).append(source | {"passages": row["assigned"] - counts["read"]})
+    by_lens = dict(sorted(by_lens.items(), key=lambda kv: order.index(kv[0]) if kv[0] in order else len(order)))
     return {
         "always": True,
         "noLocalEntity": focus.local_entity_id is None,
@@ -457,15 +503,17 @@ def plan_items(recipe: dict[str, Any], held: dict[str, Any], estimates: dict[str
             continue
         if step.get("perLens"):
             units = [(lens, s) for lens, rows in held_value.items() for s in rows]
-        elif step.get("perSource"):
+        elif step.get("perSource") or step.get("perCandidate"):
             units = [(None, s) for s in held_value]
         else:
             units = [(None, None)]
         for lens, source in units:
-            work = source["workId"] if source else None
-            cost = (source["passages"] * estimates["perPassageReadUSD"]) if step.get("costPerPassage") else step["budgetUSD"]
+            work = source.get("workId") if source else None
+            system = source.get("systemId") if source and step.get("perCandidate") else None
+            cost = (source["passages"] * estimates["perPassageReadUSD"] + estimates.get("perReadingStartUSD", 0)
+                    if step.get("costPerPassage") else step["budgetUSD"])
             cost = round(cost, 2)
-            name = " ".join(x for x in (step["action"], lens, source and (source.get("voice") or work)) if x)
+            name = " ".join(x for x in (step["action"], lens, source and (source.get("voice") or work or system)) if x)
             if left_out or spent + cost > budget + 1e-9:  # the plan is a prefix of the recipe's order
                 left_out.append(f"{name} (${cost:.2f})")
                 continue
@@ -473,12 +521,18 @@ def plan_items(recipe: dict[str, Any], held: dict[str, Any], estimates: dict[str
             after = set(step.get("after", []))
             depends = [i for i, action, w in planned if action in after
                        and (action != "FIND" or w == work)]
-            target = work or values.get("focus") or values["label"]
+            target = system or work or values.get("focus") or values["label"]
             rationale = step["rationale"] + (f" ({source['passages']} passages)" if source and source["passages"] else "")
+            if system:
+                rationale = f"{step['rationale']}: {source['label']}, {source['why']}"
             items.append(PlanItem(item_id=item_id, action=step["action"], target=target, rationale=rationale,
                                   expected_outputs=step["outputs"], budget_usd=cost, depends_on=depends, lens=lens))
-            calls[item_id] = {"worker": step["worker"],
-                              "arguments": _fill(step["arguments"], values | {"workId": work or "", "lens": lens or ""})}
+            fill = values | {"workId": work or "", "lens": lens or "", "systemId": system or "",
+                             "homepage": (source or {}).get("homepage", ""), "source": (source or {}).get("label", "")}
+            if step["worker"] == "manual":  # done by the curator; the orchestrator asks, and records the answer
+                calls[item_id] = {"worker": "manual", "instructions": _fill([step["instructions"]], fill)[0]}
+            else:
+                calls[item_id] = {"worker": step["worker"], "arguments": _fill(step["arguments"], fill)}
             planned.append((item_id, step["action"], work))
             spent += cost
     if left_out:
@@ -577,8 +631,15 @@ def front_door(tx, command: str, *, kind: str | None = None, focus_key: str | No
         out["draftInquiry"] = {"path": inquiry_file, "data": draft}
 
     held = conditions(chosen, inquiry_data, report, recipes["estimates"])
+    registry = load_json(REGISTRY)
+    gap_lenses = list(held["sourceUnreadByLens"])  # lenses the inquiry's own sources lack, none without sources
+    question_labels = [re.sub(r" \((accepted|proposed) Question, .*\)$", "", q) for q in brief.controversies]
+    held["candidateSources"] = rank_candidates(registry, question_labels, gap_lenses)
     values = {"qid": chosen.qid or "", "focus": focus_id, "inquiry": f"GraphRevised/{inquiry_file}", "label": chosen.label}
     items, questions, calls = plan_items(recipe, held, recipes["estimates"], values, budget)
+    unchecked = [s["label"] for s in registry["sources"] if (s.get("rights") or {}).get("unverified")]
+    if unchecked:
+        questions.append("Rights to read at the source (the registry's upkeep, D-177): " + "; ".join(unchecked))
     if held["fewSources"] and any(i.action == "BUILD_INQUIRY" for i in items):
         questions.append("Once the new sources are in the inquiry, run the front door again: finding, reading, "
                          "lenses and phases are planned from the sources the inquiry then holds (plan v2)")
@@ -589,6 +650,9 @@ def front_door(tx, command: str, *, kind: str | None = None, focus_key: str | No
         questions.append(f"Approve the draft inquiry ({inquiry_file}) into inquiries/ before its items run")
     questions.append("The scope test (08) and the model's orientation (controversies, traps, lenses) are not built "
                      "yet (D-174): this brief is read from the graph, the inquiry, and the registries")
+    registering = {i.target: i.item_id for i in items if i.action == "REGISTER"}
+    brief = brief.model_copy(update={"federations": [f.model_copy(update={"item_id": registering.get(f.system_id)})
+                                                     for f in brief.federations]})
     scope = ScopeDecision(decision="IN_SCOPE", primary_intent="HISTORICAL_GRAPH_CONSTRUCTION",
                           explanation=f"the command names a {focus_kind} with a recipe; scope by code until the "
                                       "model's test (08) is built")
@@ -688,6 +752,14 @@ def text(result: dict[str, Any]) -> str:
             lines.append(f"    … and {len(brief.controversies) - 8} more")
     lines += [f"  Identity trap: {t}" for t in brief.identity_traps]
     lines.append("  Lenses: " + ", ".join(lens.name for lens in brief.lenses))
+    lines.append("  Where it can read, by what each gives (status; rights class; NC = non-commercial):")
+    groups: dict[str, list[str]] = {}
+    for f in brief.federations:
+        rights = f.rights_class or "rights to check"
+        tag = f"{f.name} ({f.status}; {rights}{'; NC' if f.non_commercial else ''}" + (f"; {f.item_id}" if f.item_id else "") + ")"
+        for gives in f.gives or ["other"]:
+            groups.setdefault(gives, []).append(tag)
+    lines += [f"    {gives}: " + "; ".join(names) for gives, names in groups.items()]
     lines += ["", f"Plan v{plan.version} ({plan.mode.value}, recipe {plan.recipe}, budget ${plan.budget_usd:.2f}, "
               f"items ${sum(i.budget_usd for i in plan.items):.2f}); nothing has run:"]
     for i in plan.items:
@@ -695,7 +767,10 @@ def text(result: dict[str, Any]) -> str:
         call = result["calls"].get(i.item_id, {})
         lines.append(f"  {i.item_id} {i.action}{' ' + i.lens if i.lens else ''} — {i.target}  ${i.budget_usd:.2f}{after}")
         lines.append(f"      {i.rationale}")
-        lines.append(f"      python -m {call.get('worker')} {' '.join(call.get('arguments', []))}")
+        if call.get("worker") == "manual":
+            lines.append(f"      by hand: {call.get('instructions')}")
+        else:
+            lines.append(f"      python -m {call.get('worker')} {' '.join(call.get('arguments', []))}")
     if not plan.items:
         lines.append("  (no items: coverage shows nothing the recipe's workers would add)")
     lines += ["", "Open questions:"] + [f"  - {q}" for q in plan.unresolved_questions]

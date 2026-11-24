@@ -1,0 +1,44 @@
+{
+  "runId": "front-door-battle-of-actium-20261124T123329Z",
+  "calls": {
+    "P01": {
+      "worker": "GraphRevised.proposals.passage_reader",
+      "arguments": [
+        "GraphRevised/inquiries/actium-battle.json",
+        "--source",
+        "chr:entity:cassius-dio-roman-history",
+        "--found",
+        "--unread",
+        "--lens",
+        "military",
+        "--submit"
+      ]
+    },
+    "P02": {
+      "worker": "GraphRevised.proposals.passage_reader",
+      "arguments": [
+        "GraphRevised/inquiries/actium-battle.json",
+        "--source",
+        "chr:entity:hale-famous-sea-fights",
+        "--found",
+        "--unread",
+        "--lens",
+        "military",
+        "--submit"
+      ]
+    },
+    "P03": {
+      "worker": "GraphRevised.proposals.passage_reader",
+      "arguments": [
+        "GraphRevised/inquiries/actium-battle.json",
+        "--source",
+        "chr:entity:weigall-life-and-times-of-cleopatra",
+        "--found",
+        "--unread",
+        "--lens",
+        "military",
+        "--submit"
+      ]
+    }
+  }
+}

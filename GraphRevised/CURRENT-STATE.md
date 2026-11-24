@@ -620,6 +620,21 @@ the failures: a stopped Neo4j looked like 92 failures on 2026-11-15.
    Next: the guided orchestrator (31 §5 step 4), which runs the approved items from the run file;
    then the metered model stage of the front door. Test it on the Battle of Philippi (it has no
    inquiry yet; the front door drafts one).
+8. **The guided orchestrator (D-175), built 2026-11-24:**
+   `python -m GraphRevised.orchestration.orchestrator show|decide|approve-all|answer|retry|run <run file>`.
+   `run` is a dry run without `--execute`. Paid items need `--budget-name`. Each paid item is capped
+   in the meter at 1.5x its estimate; readings pass `--unread`, so a retry resumes. The Actium
+   plan's four military readings were approved and run on 2026-11-24 (item 9).
+   Next: the reconciler and the critic (31 §5 step 5).
+9. **Military readings done (2026-11-24, budget `actium`, $20.24 of $50):** Plutarch $3.53, 18 proposals;
+   Dio $4.51, 41; Hale $1.82, 20; Weigall $7.46, 32. That is 111 proposals, all proposed, for the curator. Runs
+   `runs/front-door-battle-of-actium-20261124T112641Z.json` (Plutarch) and `...123329Z.json` (the other three).
+   Measured: about $0.027 to $0.04 a passage, plus $0.30 to start each reading.
+10. **The brief lists every source (D-177):** grouped by what each gives, with status and rights; candidates
+    ranked for the focus become free REGISTER items, done by hand. Rights still to read at the source: CRRO,
+    LC authorities, FAST, Commons. A plan in this shape is saved for Actium, awaiting the curator:
+    `runs/front-door-battle-of-actium-20261124T134305Z.json` (five REGISTER items, then military and
+    political readings, $10.86 of $11).
 
 **Earlier handoff (2026-11-19, late; D-167).**
 

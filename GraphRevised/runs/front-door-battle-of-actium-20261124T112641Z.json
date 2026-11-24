@@ -9,7 +9,7 @@
   "mode": "guided",
   "owner": "curator",
   "visibility": "private",
-  "status": "awaiting_user",
+  "status": "done",
   "created_at": "2026-11-24T11:27:00.923557+00:00",
   "orientation": {
     "focus": {
@@ -211,8 +211,8 @@
   "plan": {
     "plan_id": "front-door-battle-of-actium-20261124T112641Z",
     "inquiry_id": "chr:inquiry:actium-battle",
-    "version": 1,
-    "previous_version": null,
+    "version": 5,
+    "previous_version": 4,
     "command": "graph \"Battle of Actium\"",
     "mode": "guided",
     "scope": {
@@ -624,10 +624,10 @@
         "depends_on": [],
         "lens": "military",
         "decision": {
-          "status": "awaiting",
-          "by": null,
-          "at": null,
-          "note": null
+          "status": "approved",
+          "by": "curator",
+          "at": "2026-11-24T11:56:33.353896+00:00",
+          "note": "approve all"
         }
       },
       {
@@ -643,10 +643,10 @@
         "depends_on": [],
         "lens": "military",
         "decision": {
-          "status": "awaiting",
-          "by": null,
-          "at": null,
-          "note": null
+          "status": "deferred",
+          "by": "curator",
+          "at": "2026-11-24T12:33:32+00:00",
+          "note": "replaced by front-door-battle-of-actium-20261124T123329Z, planned at the measured rate (curator, 2026-11-24)"
         }
       },
       {
@@ -662,10 +662,10 @@
         "depends_on": [],
         "lens": "military",
         "decision": {
-          "status": "awaiting",
-          "by": null,
-          "at": null,
-          "note": null
+          "status": "deferred",
+          "by": "curator",
+          "at": "2026-11-24T12:33:33+00:00",
+          "note": "replaced by front-door-battle-of-actium-20261124T123329Z, planned at the measured rate (curator, 2026-11-24)"
         }
       },
       {
@@ -681,10 +681,10 @@
         "depends_on": [],
         "lens": "military",
         "decision": {
-          "status": "awaiting",
-          "by": null,
-          "at": null,
-          "note": null
+          "status": "deferred",
+          "by": "curator",
+          "at": "2026-11-24T12:33:33+00:00",
+          "note": "replaced by front-door-battle-of-actium-20261124T123329Z, planned at the measured rate (curator, 2026-11-24)"
         }
       }
     ],
@@ -705,14 +705,193 @@
     "scope_approved": false
   },
   "plan_versions": [
-    1
+    1,
+    2,
+    3,
+    4,
+    5
   ],
-  "assignments": [],
-  "results": [],
+  "assignments": [
+    {
+      "assignment_id": "front-door-battle-of-actium-20261124T112641Z:P01:1",
+      "item_id": "P01",
+      "worker": "GraphRevised.proposals.passage_reader",
+      "arguments": [
+        "GraphRevised/inquiries/actium-battle.json",
+        "--source",
+        "chr:entity:plutarch-life-of-antony",
+        "--found",
+        "--lens",
+        "military",
+        "--submit"
+      ],
+      "lens": "military",
+      "idempotency_key": "53a3075ad84aac67",
+      "started_at": "2026-11-24T11:56:53.542219+00:00"
+    },
+    {
+      "assignment_id": "front-door-battle-of-actium-20261124T112641Z:P01:2",
+      "item_id": "P01",
+      "worker": "GraphRevised.proposals.passage_reader",
+      "arguments": [
+        "GraphRevised/inquiries/actium-battle.json",
+        "--source",
+        "chr:entity:plutarch-life-of-antony",
+        "--found",
+        "--unread",
+        "--lens",
+        "military",
+        "--submit"
+      ],
+      "lens": "military",
+      "idempotency_key": "9c8eb5eddc0971da",
+      "started_at": "2026-11-24T12:30:07.788220+00:00"
+    },
+    {
+      "assignment_id": "front-door-battle-of-actium-20261124T112641Z:P01:3",
+      "item_id": "P01",
+      "worker": "GraphRevised.proposals.passage_reader",
+      "arguments": [
+        "GraphRevised/inquiries/actium-battle.json",
+        "--source",
+        "chr:entity:plutarch-life-of-antony",
+        "--found",
+        "--unread",
+        "--lens",
+        "military",
+        "--submit"
+      ],
+      "lens": "military",
+      "idempotency_key": "9c8eb5eddc0971da",
+      "started_at": "2026-11-24T12:30:56.655639+00:00"
+    }
+  ],
+  "results": [
+    {
+      "assignment_id": "front-door-battle-of-actium-20261124T112641Z:P01:1",
+      "status": "failed",
+      "outputs": [
+        "runs/front-door-battle-of-actium-20261124T112641Z.P01.log",
+        "proposal_ids corrected 2026-11-24 from the graph (createdBy lens-specialist:military, registry v21, this inquiry): the orchestrator then counted by time, which reader proposals do not carry"
+      ],
+      "proposal_ids": [
+        "chr:proposal:augustus:held-authority-over:octavian-fleet-at-actium:qc67b4f8f98:27211c2ff578",
+        "chr:proposal:augustus:opposed:mark-antony:qab36159d7b:acc5b1336735",
+        "chr:proposal:cleopatra:participated-in:depicted:plutarch-life-of-antony:antony-and-cleopatra-sail-to-samos:qc67b4f8f98:bbb3db145589",
+        "chr:proposal:cleopatra:participated-in:depicted:plutarch-life-of-antony:cleopatra-tries-to-move-fleet-overland:qc67b4f8f98:358391733404",
+        "chr:proposal:depicted:plutarch-life-of-antony:antony-and-cleopatra-sail-to-samos:occurred-at:samos:qc67b4f8f98:cf44c6176fab",
+        "chr:proposal:depicted:plutarch-life-of-antony:antony-arms-rowers-to-bluff:triggered-by:depicted:plutarch-life-of-antony:the-enemy-sails-against-antony-at-daybreak:qc67b4f8f98:882479ded7ea",
+        "chr:proposal:depicted:plutarch-life-of-antony:cleopatra-bribes-canidius-to-plead-for-her:happened-before:depicted:plutarch-life-of-antony:antony-and-cleopatra-sail-to-samos:qc67b4f8f98:30660e008d03",
+        "chr:proposal:depicted:plutarch-life-of-antony:cleopatra-s-sixty-ships-hoist-sails-and-flee:occurred-at:peloponnese:qc67b4f8f98:c1a96c4cc962",
+        "chr:proposal:depicted:plutarch-life-of-antony:the-enemy-sails-against-antony-at-daybreak:occurred:qbee2e0122a:87f8fe562c4a",
+        "chr:proposal:mark-antony:held-authority-over:antony-army-at-actium:q26299f3ba1:01df2c2ba5e9",
+        "chr:proposal:mark-antony:held-authority-over:antony-army-at-actium:qc67b4f8f98:f0f3a23c4316",
+        "chr:proposal:mark-antony:held-authority-over:antony-fleet-at-actium:q26299f3ba1:8c1f46d2d627",
+        "chr:proposal:mark-antony:held-authority-over:antony-fleet-at-actium:q3702dfda42:777b00816637",
+        "chr:proposal:mark-antony:held-authority-over:antony-fleet-at-actium:qc67b4f8f98:7f23b37370ed",
+        "chr:proposal:mark-antony:participated-in:depicted:plutarch-life-of-antony:antony-and-cleopatra-sail-to-samos:qc67b4f8f98:4cf7b275edd0",
+        "chr:proposal:mark-antony:participated-in:depicted:plutarch-life-of-antony:antony-turns-to-his-land-forces:qc67b4f8f98:673d9ec4879f",
+        "chr:proposal:octavian-fleet-at-actium:participated-in:depicted:plutarch-life-of-antony:the-enemy-sails-against-antony-at-daybreak:qc67b4f8f98:df93623435ba",
+        "chr:proposal:publius-canidius-crassus:commanded:antony-army-at-actium:qc67b4f8f98:c942fd451172"
+      ],
+      "packet_ids": [],
+      "model": null,
+      "prompt_version": null,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cost_usd": 3.222688,
+      "coverage": {
+        "new_entities": 0,
+        "new_claim_families": 0,
+        "new_evidence": 0,
+        "new_traditions": 0,
+        "new_evidence_classes": [],
+        "gaps_closed": []
+      },
+      "error": "exit code 1; see the log",
+      "finished_at": "2026-11-24T12:10:44.919433+00:00"
+    },
+    {
+      "assignment_id": "front-door-battle-of-actium-20261124T112641Z:P01:2",
+      "status": "failed",
+      "outputs": [
+        "runs/front-door-battle-of-actium-20261124T112641Z.P01.log",
+        "cost corrected 2026-11-24: the attempt failed before any model call; the orchestrator had counted the first attempt's spend again"
+      ],
+      "proposal_ids": [],
+      "packet_ids": [],
+      "model": null,
+      "prompt_version": null,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cost_usd": 0.0,
+      "coverage": {
+        "new_entities": 0,
+        "new_claim_families": 0,
+        "new_evidence": 0,
+        "new_traditions": 0,
+        "new_evidence_classes": [],
+        "gaps_closed": []
+      },
+      "error": "exit code 1; see the log",
+      "finished_at": "2026-11-24T12:30:15.764551+00:00"
+    },
+    {
+      "assignment_id": "front-door-battle-of-actium-20261124T112641Z:P01:3",
+      "status": "ok",
+      "outputs": [
+        "runs/front-door-battle-of-actium-20261124T112641Z.P01.log"
+      ],
+      "proposal_ids": [],
+      "packet_ids": [],
+      "model": null,
+      "prompt_version": null,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cost_usd": 0.310423,
+      "coverage": {
+        "new_entities": 0,
+        "new_claim_families": 0,
+        "new_evidence": 0,
+        "new_traditions": 0,
+        "new_evidence_classes": [],
+        "gaps_closed": []
+      },
+      "error": null,
+      "finished_at": "2026-11-24T12:31:09.285719+00:00"
+    }
+  ],
   "packets": [],
   "reconciliations": [],
   "verdicts": [],
-  "interrupts": [],
-  "spent_usd": 0.0,
-  "stopping_explanation": null
+  "interrupts": [
+    {
+      "interrupt_id": "front-door-battle-of-actium-20261124T112641Z:1",
+      "reason": "deviation",
+      "question": "P01 failed (exit code 1; see the log): retry, modify, or reject it?",
+      "options": [],
+      "item_id": "P01",
+      "raised_at": "2026-11-24T12:10:44.922887+00:00",
+      "answer": "retry",
+      "answered_by": "curator",
+      "answered_at": "2026-11-24T12:30:06+00:00"
+    },
+    {
+      "interrupt_id": "front-door-battle-of-actium-20261124T112641Z:2",
+      "reason": "deviation",
+      "question": "P01 failed (exit code 1; see the log): retry, modify, or reject it?",
+      "options": [],
+      "item_id": "P01",
+      "raised_at": "2026-11-24T12:30:15.764617+00:00",
+      "answer": "retry",
+      "answered_by": "curator",
+      "answered_at": "2026-11-24T12:30:54+00:00"
+    }
+  ],
+  "set_aside": [
+    "front-door-battle-of-actium-20261124T112641Z:P01:1",
+    "front-door-battle-of-actium-20261124T112641Z:P01:2"
+  ],
+  "spent_usd": 3.533111,
+  "stopping_explanation": "every approved item has run; rejected and deferred items were left (reconciliation, the critic and the new-evidence measure are not built, so the curator judges whether to plan more)"
 }
