@@ -1,0 +1,2683 @@
+{
+ "id": "chr:scene:actium-campaign-31bc",
+ "type": "movement",
+ "subject": {
+  "id": "chr:entity:battle-of-actium",
+  "label": "Battle of Actium",
+  "kind": "Event"
+ },
+ "scope": "the campaign around the battle: steps 1-4 lead to it, 12-13 follow it and belong to other events",
+ "sequenceBy": "order",
+ "status": "proposed",
+ "proposedBy": "Claude Code (for the curator)",
+ "proposedAt": "2026-11-24",
+ "derivedFrom": {
+  "file": "docs/Actium/Actium Campaign and Battle, 31 BC (Animated Terrain Map).html",
+  "madeBy": "Claude, in a chat, from the Wikipedia article 'Battle of Actium' and its own knowledge (curator, 2026-11-24)",
+  "note": "Most of its detail is not in the revision we hold (1378178531); its locators were claimed, not read. Each statement below was checked against the stored passages.",
+  "check": "docs/Actium/animation-check.md",
+  "builtBy": "scenes/actium_campaign_31bc.py (quotations read from the graph and checked verbatim)"
+ },
+ "bases": {
+  "sourced": "a stored passage says it; the quotation is verbatim",
+  "inferred": "joined up from sourced points; 'by' says whose inference",
+  "illustrative": "drawn so the picture reads; no passage (a Generalized Abstraction, D-172)",
+  "not-checked": "the passage it rests on is not held yet; 'by' says who asserted it"
+ },
+ "layers": [
+  "terrain",
+  "places",
+  "unitPaths",
+  "labels",
+  "orderOfBattle"
+ ],
+ "terrain": {
+  "source": "modern",
+  "note": "Coastlines: Natural Earth (public domain) and OpenStreetMap (ODbL, attribution and share-alike); elevation: Mapzen terrain tiles (SRTM and others). The ancient shore near the strait differed (26a, question 4)."
+ },
+ "places": {
+  "Brundisium": {
+   "label": "Brundisium",
+   "lonLat": [
+    17.9429115,
+    40.638663
+   ],
+   "lonLatFrom": "the place's card (Pleiades 442509)",
+   "entity": "chr:entity:proposed-place-brundisium",
+   "status": "proposed"
+  },
+  "Corcyra": {
+   "label": "Corcyra",
+   "lonLat": [
+    19.86654164868683,
+    39.61996963797889
+   ],
+   "lonLatFrom": "the place's card (Pleiades 530835)",
+   "entity": "chr:entity:corfu",
+   "status": "proposed",
+   "heldAs": "Corfu"
+  },
+  "Toryne": {
+   "label": "Toryne",
+   "lonLat": [
+    20.401164,
+    39.286165
+   ],
+   "lonLatFrom": "the place's card (Pleiades 531127)",
+   "entity": "chr:entity:proposed-place-toryne",
+   "status": "proposed"
+  },
+  "Actium": {
+   "label": "Actium",
+   "lonLat": [
+    20.765852,
+    38.953891
+   ],
+   "lonLatFrom": "the place's card (Pleiades 530771)",
+   "entity": "chr:entity:actium-promontory",
+   "status": "provisional",
+   "heldAs": "Actium promontory"
+  },
+  "Octavian's camp": {
+   "label": "Octavian's camp at Actium",
+   "lonLat": [
+    20.735,
+    39.03
+   ],
+   "lonLatFrom": "the animation (unverified)",
+   "entity": "chr:entity:octavian-camp-at-actium",
+   "status": "provisional"
+  },
+  "Leucas": {
+   "label": "Leucas",
+   "lonLat": [
+    20.713116,
+    38.807342
+   ],
+   "lonLatFrom": "the place's card (Pleiades 530974)",
+   "entity": "chr:entity:proposed-place-leucas",
+   "status": "proposed"
+  },
+  "Patrae": {
+   "label": "Patrae",
+   "lonLat": [
+    21.738518,
+    38.243265
+   ],
+   "lonLatFrom": "the place's card (Pleiades 570567)",
+   "entity": "chr:entity:patras",
+   "status": "proposed",
+   "heldAs": "Patras"
+  },
+  "Corinth": {
+   "label": "Corinth",
+   "lonLat": [
+    22.878614390874485,
+    37.90564164345828
+   ],
+   "lonLatFrom": "the place's card (Pleiades 570182)",
+   "entity": "chr:entity:ancient-corinth",
+   "status": "proposed",
+   "heldAs": "Ancient Corinth"
+  },
+  "Methone": {
+   "label": "Methone",
+   "lonLat": [
+    21.704441,
+    36.81435
+   ],
+   "lonLatFrom": "the place's card (Pleiades 570483)",
+   "entity": "chr:entity:proposed-place-methone",
+   "status": "proposed"
+  },
+  "Taenarum": {
+   "label": "Taenarum",
+   "lonLat": [
+    22.48650368203567,
+    36.40135856966597
+   ],
+   "lonLatFrom": "the place's card (Pleiades 570702)",
+   "entity": "chr:entity:proposed-place-taenarum",
+   "status": "proposed"
+  },
+  "Paraetonium": {
+   "label": "Paraetonium",
+   "lonLat": [
+    27.2368445,
+    31.350136
+   ],
+   "lonLatFrom": "the place's card (Pleiades 716615)",
+   "entity": "chr:entity:proposed-place-paraetonium",
+   "status": "proposed"
+  },
+  "Alexandria": {
+   "label": "Alexandria",
+   "lonLat": [
+    29.909773,
+    31.201435
+   ],
+   "lonLatFrom": "the place's card (Pleiades 727070)",
+   "entity": "chr:entity:alexandria",
+   "status": "proposed"
+  }
+ },
+ "steps": [
+  {
+   "order": 1,
+   "phase": "road-to-war",
+   "timeWords": "winter of 32/31 BC",
+   "view": "overview",
+   "title": "Antony holds the coast of western Greece",
+   "statements": [
+    {
+     "text": "Antony sails back to the Peloponnese and winters at Patrae.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Cassius Dio, Roman History",
+       "work": "chr:entity:cassius-dio-roman-history",
+       "observation": "chr:observation:lacuscurtius:cassius-dio:50.9.3:1f50fd6b",
+       "locator": "Cassius Dio 50.9.3",
+       "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Cassius_Dio/50*.html#9.3",
+       "quotation": "he sailed back to the Peloponnesus, the season being already late autumn, and passed the winter at Patrae"
+      }
+     ],
+     "id": "chr:scene:actium-campaign-31bc#1.1"
+    },
+    {
+     "text": "He spreads his soldiers to guard the strategic points and secure provisions.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Cassius Dio, Roman History",
+       "work": "chr:entity:cassius-dio-roman-history",
+       "observation": "chr:observation:lacuscurtius:cassius-dio:50.9.3:1f50fd6b",
+       "locator": "Cassius Dio 50.9.3",
+       "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Cassius_Dio/50*.html#9.3",
+       "quotation": "distributing his soldiers in every direction in order that they might keep guard over the strategic points and secure more easily an abundance of provisions"
+      }
+     ],
+     "id": "chr:scene:actium-campaign-31bc#1.2"
+    },
+    {
+     "text": "Antony's garrisons hold Corcyra.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Cassius Dio, Roman History",
+       "work": "chr:entity:cassius-dio-roman-history",
+       "observation": "chr:observation:lacuscurtius:cassius-dio:50.12.2:1f50fd6b",
+       "locator": "Cassius Dio 50.12.2",
+       "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Cassius_Dio/50*.html#12.2",
+       "quotation": "seized Corcyra, which had been deserted by the garrisons there"
+      }
+     ],
+     "id": "chr:scene:actium-campaign-31bc#1.3"
+    },
+    {
+     "text": "Antony holds Methone.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Cassius Dio, Roman History",
+       "work": "chr:entity:cassius-dio-roman-history",
+       "observation": "chr:observation:lacuscurtius:cassius-dio:50.11.3:1f50fd6b",
+       "locator": "Cassius Dio 50.11.3",
+       "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Cassius_Dio/50*.html#11.3",
+       "quotation": "Agrippa had captured Methone by storm"
+      }
+     ],
+     "note": "Implied: Agrippa had to take it from Antony.",
+     "id": "chr:scene:actium-campaign-31bc#1.4"
+    },
+    {
+     "text": "The chain of posts guards the supply route from Egypt.",
+     "basis": "inferred",
+     "voices": [],
+     "by": "the animation's generator (Claude, in a chat, from Wikipedia and its own knowledge)",
+     "note": "Dio gives guard and provisions; Egypt as the route is the generator's.",
+     "id": "chr:scene:actium-campaign-31bc#1.5"
+    }
+   ],
+   "places": [
+    "Patrae",
+    "Corcyra",
+    "Actium",
+    "Leucas",
+    "Methone",
+    "Corinth"
+   ],
+   "legs": [],
+   "id": "chr:scene:actium-campaign-31bc#1"
+  },
+  {
+   "order": 2,
+   "phase": "isolation",
+   "timeWords": "before spring 31 BC",
+   "view": "overview",
+   "title": "Agrippa storms Methone",
+   "statements": [
+    {
+     "text": "Agrippa takes Methone by storm and kills Bogud there.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Cassius Dio, Roman History",
+       "work": "chr:entity:cassius-dio-roman-history",
+       "observation": "chr:observation:lacuscurtius:cassius-dio:50.11.3:1f50fd6b",
+       "locator": "Cassius Dio 50.11.3",
+       "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Cassius_Dio/50*.html#11.3",
+       "quotation": "Agrippa had captured Methone by storm and killed Bogud there"
+      }
+     ],
+     "id": "chr:scene:actium-campaign-31bc#2.1"
+    },
+    {
+     "text": "From there he watches for the merchant ships and raids the coasts of Greece.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Cassius Dio, Roman History",
+       "work": "chr:entity:cassius-dio-roman-history",
+       "observation": "chr:observation:lacuscurtius:cassius-dio:50.11.3:1f50fd6b",
+       "locator": "Cassius Dio 50.11.3",
+       "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Cassius_Dio/50*.html#11.3",
+       "quotation": "was now watching for the merchant vessels that came to land and was making descents from time to time on various parts of Greece"
+      }
+     ],
+     "id": "chr:scene:actium-campaign-31bc#2.2"
+    },
+    {
+     "text": "The merchant ships were grain ships from Egypt.",
+     "basis": "inferred",
+     "voices": [],
+     "by": "the animation's generator (Claude, in a chat, from Wikipedia and its own knowledge)",
+     "note": "Dio says merchant vessels; Egypt and grain are not in the passage.",
+     "id": "chr:scene:actium-campaign-31bc#2.3"
+    }
+   ],
+   "legs": [
+    {
+     "unit": {
+      "entity": "chr:entity:marcus-vipsanius-agrippa",
+      "label": "Agrippa",
+      "side": "Octavian"
+     },
+     "from": {
+      "label": "Brundisium",
+      "lonLat": [
+       17.9429115,
+       40.638663
+      ],
+      "lonLatFrom": "the place's card (Pleiades 442509)",
+      "entity": "chr:entity:proposed-place-brundisium",
+      "status": "proposed"
+     },
+     "to": {
+      "label": "Methone",
+      "lonLat": [
+       21.704441,
+       36.81435
+      ],
+      "lonLatFrom": "the place's card (Pleiades 570483)",
+      "entity": "chr:entity:proposed-place-methone",
+      "status": "proposed"
+     },
+     "basis": "inferred",
+     "note": "Dio gives the capture, not the route or the port of departure."
+    }
+   ],
+   "id": "chr:scene:actium-campaign-31bc#2"
+  },
+  {
+   "order": 3,
+   "phase": "road-to-war",
+   "timeWords": "spring 31 BC",
+   "view": "overview",
+   "title": "Octavian crosses the Adriatic",
+   "statements": [
+    {
+     "text": "Octavian crosses the Ionian Gulf from Brundisium with his whole force.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Cassius Dio, Roman History",
+       "work": "chr:entity:cassius-dio-roman-history",
+       "observation": "chr:observation:lacuscurtius:cassius-dio:50.11.6:1f50fd6b",
+       "locator": "Cassius Dio 50.11.6",
+       "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Cassius_Dio/50*.html#11.6",
+       "quotation": "Thereupon he crossed the Ionian Gulf with the entire array"
+      }
+     ],
+     "id": "chr:scene:actium-campaign-31bc#3.1"
+    },
+    {
+     "text": "His cavalry lands at the foot of the Ceraunian mountains.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Cassius Dio, Roman History",
+       "work": "chr:entity:cassius-dio-roman-history",
+       "observation": "chr:observation:lacuscurtius:cassius-dio:50.12.1:1f50fd6b",
+       "locator": "Cassius Dio 50.12.1",
+       "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Cassius_Dio/50*.html#12.1",
+       "quotation": "Caesar disembarked the cavalry at the foot of the Ceraunian mountains"
+      }
+     ],
+     "id": "chr:scene:actium-campaign-31bc#3.2"
+    },
+    {
+     "text": "He seizes Corcyra, abandoned by its garrisons.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Cassius Dio, Roman History",
+       "work": "chr:entity:cassius-dio-roman-history",
+       "observation": "chr:observation:lacuscurtius:cassius-dio:50.12.2:1f50fd6b",
+       "locator": "Cassius Dio 50.12.2",
+       "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Cassius_Dio/50*.html#12.2",
+       "quotation": "seized Corcyra, which had been deserted by the garrisons there"
+      }
+     ],
+     "id": "chr:scene:actium-campaign-31bc#3.3"
+    },
+    {
+     "text": "He occupies Toryne in Epirus.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Plutarch, Life of Antony",
+       "work": "chr:entity:plutarch-life-of-antony",
+       "observation": "chr:observation:perseus:tlg0007.tlg058.perseus-eng2:62.3:70427323",
+       "locator": "Plutarch Antony 62.3",
+       "url": "urn:cts:greekLit:tlg0007.tlg058.perseus-eng2:62.3",
+       "quotation": "occupying a place in Epeirus called Torun"
+      }
+     ],
+     "id": "chr:scene:actium-campaign-31bc#3.4"
+    },
+    {
+     "text": "He camps on the high ground north of the strait, where Nicopolis later stood.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Cassius Dio, Roman History",
+       "work": "chr:entity:cassius-dio-roman-history",
+       "observation": "chr:observation:lacuscurtius:cassius-dio:50.12.3:1f50fd6b",
+       "locator": "Cassius Dio 50.12.3",
+       "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Cassius_Dio/50*.html#12.3",
+       "quotation": "He then occupied the site where Nicopolis now stands"
+      },
+      {
+       "accordingTo": "Cassius Dio, Roman History",
+       "work": "chr:entity:cassius-dio-roman-history",
+       "observation": "chr:observation:lacuscurtius:cassius-dio:50.12.4:1f50fd6b",
+       "locator": "Cassius Dio 50.12.4",
+       "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Cassius_Dio/50*.html#12.4",
+       "quotation": "took up a position on high ground there"
+      }
+     ],
+     "id": "chr:scene:actium-campaign-31bc#3.5"
+    },
+    {
+     "text": "He marches south from Toryne to the camp.",
+     "basis": "inferred",
+     "voices": [],
+     "by": "the animation's generator (Claude, in a chat, from Wikipedia and its own knowledge)",
+     "id": "chr:scene:actium-campaign-31bc#3.6"
+    }
+   ],
+   "legs": [
+    {
+     "unit": {
+      "entity": "chr:entity:augustus",
+      "label": "Octavian",
+      "heldAs": "Augustus",
+      "side": "Octavian"
+     },
+     "from": {
+      "label": "Brundisium",
+      "lonLat": [
+       17.9429115,
+       40.638663
+      ],
+      "lonLatFrom": "the place's card (Pleiades 442509)",
+      "entity": "chr:entity:proposed-place-brundisium",
+      "status": "proposed"
+     },
+     "to": {
+      "label": "Octavian's camp at Actium",
+      "lonLat": [
+       20.735,
+       39.03
+      ],
+      "lonLatFrom": "the animation (unverified)",
+      "entity": "chr:entity:octavian-camp-at-actium",
+      "status": "provisional"
+     },
+     "basis": "inferred",
+     "via": [
+      {
+       "label": "Corcyra",
+       "lonLat": [
+        19.86654164868683,
+        39.61996963797889
+       ],
+       "lonLatFrom": "the place's card (Pleiades 530835)",
+       "entity": "chr:entity:corfu",
+       "status": "proposed",
+       "heldAs": "Corfu"
+      },
+      {
+       "label": "Toryne",
+       "lonLat": [
+        20.401164,
+        39.286165
+       ],
+       "lonLatFrom": "the place's card (Pleiades 531127)",
+       "entity": "chr:entity:proposed-place-toryne",
+       "status": "proposed"
+      }
+     ],
+     "note": "Each place is sourced; the line between them and its order are ours."
+    }
+   ],
+   "id": "chr:scene:actium-campaign-31bc#3"
+  },
+  {
+   "order": 4,
+   "phase": "isolation",
+   "timeWords": "summer 31 BC",
+   "view": "overview",
+   "title": "Agrippa closes the ring",
+   "statements": [
+    {
+     "text": "Agrippa takes Leucas, takes Patrae after beating Nasidius at sea, and later takes Corinth.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Cassius Dio, Roman History",
+       "work": "chr:entity:cassius-dio-roman-history",
+       "observation": "chr:observation:lacuscurtius:cassius-dio:50.13.5:1f50fd6b",
+       "locator": "Cassius Dio 50.13.5",
+       "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Cassius_Dio/50*.html#13.5",
+       "quotation": "Agrippa made a sudden dash with his fleet and captured Leucas and the vessels which were there, took Patrae by conquering Quintus Nasidius in a sea-fight, and later reduced Corinth also"
+      },
+      {
+       "accordingTo": "Velleius Paterculus, Historiae Romanae",
+       "work": "chr:entity:proposed-work-velleius-paterculus-historiae-romanae",
+       "observation": "chr:observation:lacuscurtius:velleius-paterculus:2.84.2:45a8b33f",
+       "locator": "C. Velleius Paterculus 2.84.2",
+       "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Velleius_Paterculus/2C*.html#84.2",
+       "quotation": "Marcus Agrippa had stormed Leucas, had captured Patrae, had seized Corinth"
+      }
+     ],
+     "id": "chr:scene:actium-campaign-31bc#4.1"
+    },
+    {
+     "text": "Antony's forces lose men to disease and desertion.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Cassius Dio, Roman History",
+       "work": "chr:entity:cassius-dio-roman-history",
+       "observation": "chr:observation:lacuscurtius:cassius-dio:50.11.2:1f50fd6b",
+       "locator": "Cassius Dio 50.11.2",
+       "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Cassius_Dio/50*.html#11.2",
+       "quotation": "their numbers had been diminished by disease and desertions"
+      },
+      {
+       "accordingTo": "Velleius Paterculus, Historiae Romanae",
+       "work": "chr:entity:proposed-work-velleius-paterculus-historiae-romanae",
+       "observation": "chr:observation:lacuscurtius:velleius-paterculus:2.84.1:45a8b33f",
+       "locator": "C. Velleius Paterculus 2.84.1",
+       "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Velleius_Paterculus/2C*.html#84.1",
+       "quotation": "from Antony to Caesar someone or other was deserting daily"
+      }
+     ],
+     "id": "chr:scene:actium-campaign-31bc#4.2"
+    },
+    {
+     "text": "Cut off from bringing in grain, Antony's provisions begin to fail.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Cassius Dio, Roman History",
+       "work": "chr:entity:cassius-dio-roman-history",
+       "observation": "chr:observation:lacuscurtius:cassius-dio:50.14.4:1f50fd6b",
+       "locator": "Cassius Dio 50.14.4",
+       "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Cassius_Dio/50*.html#14.4",
+       "quotation": "when provisions also began to fail him because he was shut off from bringing in grain"
+      }
+     ],
+     "id": "chr:scene:actium-campaign-31bc#4.3"
+    }
+   ],
+   "legs": [
+    {
+     "unit": {
+      "entity": "chr:entity:marcus-vipsanius-agrippa",
+      "label": "Agrippa",
+      "side": "Octavian"
+     },
+     "from": {
+      "label": "Actium",
+      "lonLat": [
+       20.765852,
+       38.953891
+      ],
+      "lonLatFrom": "the place's card (Pleiades 530771)",
+      "entity": "chr:entity:actium-promontory",
+      "status": "provisional",
+      "heldAs": "Actium promontory"
+     },
+     "to": {
+      "label": "Leucas",
+      "lonLat": [
+       20.713116,
+       38.807342
+      ],
+      "lonLatFrom": "the place's card (Pleiades 530974)",
+      "entity": "chr:entity:proposed-place-leucas",
+      "status": "proposed"
+     },
+     "basis": "inferred"
+    },
+    {
+     "unit": {
+      "entity": "chr:entity:marcus-vipsanius-agrippa",
+      "label": "Agrippa",
+      "side": "Octavian"
+     },
+     "from": {
+      "label": "Leucas",
+      "lonLat": [
+       20.713116,
+       38.807342
+      ],
+      "lonLatFrom": "the place's card (Pleiades 530974)",
+      "entity": "chr:entity:proposed-place-leucas",
+      "status": "proposed"
+     },
+     "to": {
+      "label": "Patrae",
+      "lonLat": [
+       21.738518,
+       38.243265
+      ],
+      "lonLatFrom": "the place's card (Pleiades 570567)",
+      "entity": "chr:entity:patras",
+      "status": "proposed",
+      "heldAs": "Patras"
+     },
+     "basis": "inferred"
+    },
+    {
+     "unit": {
+      "entity": "chr:entity:marcus-vipsanius-agrippa",
+      "label": "Agrippa",
+      "side": "Octavian"
+     },
+     "from": {
+      "label": "Patrae",
+      "lonLat": [
+       21.738518,
+       38.243265
+      ],
+      "lonLatFrom": "the place's card (Pleiades 570567)",
+      "entity": "chr:entity:patras",
+      "status": "proposed",
+      "heldAs": "Patras"
+     },
+     "to": {
+      "label": "Corinth",
+      "lonLat": [
+       22.878614390874485,
+       37.90564164345828
+      ],
+      "lonLatFrom": "the place's card (Pleiades 570182)",
+      "entity": "chr:entity:ancient-corinth",
+      "status": "proposed",
+      "heldAs": "Ancient Corinth"
+     },
+     "basis": "inferred"
+    }
+   ],
+   "id": "chr:scene:actium-campaign-31bc#4"
+  },
+  {
+   "order": 5,
+   "phase": "deployment",
+   "timeWords": "2 September 31 BC, morning",
+   "view": "battle",
+   "title": "The fleets form up outside the strait",
+   "statements": [
+    {
+     "text": "The battle is fought on 2 September.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Cassius Dio, Roman History",
+       "work": "chr:entity:cassius-dio-roman-history",
+       "observation": "chr:observation:lacuscurtius:cassius-dio:51.1.1:688a84b4",
+       "locator": "Cassius Dio 51.1.1",
+       "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Cassius_Dio/51*.html#1.1",
+       "quotation": "Such was the naval battle in which they engaged on the second of September"
+      }
+     ],
+     "id": "chr:scene:actium-campaign-31bc#5.1"
+    },
+    {
+     "text": "Antony's fleet draws up its line a little outside the strait and comes no further.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Cassius Dio, Roman History",
+       "work": "chr:entity:cassius-dio-roman-history",
+       "observation": "chr:observation:lacuscurtius:cassius-dio:50.31.4:1f50fd6b",
+       "locator": "Cassius Dio 50.31.4",
+       "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Cassius_Dio/50*.html#31.4",
+       "quotation": "drew up their line a little outside the strait and advanced no further"
+      }
+     ],
+     "id": "chr:scene:actium-campaign-31bc#5.2"
+    },
+    {
+     "text": "Antony orders his ships to hold their position at the narrow mouth of the gulf.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Plutarch, Life of Antony",
+       "work": "chr:entity:plutarch-life-of-antony",
+       "observation": "chr:observation:perseus:tlg0007.tlg058.perseus-eng2:65.3:70427323",
+       "locator": "Plutarch Antony 65.3",
+       "url": "urn:cts:greekLit:tlg0007.tlg058.perseus-eng2:65.3",
+       "quotation": "to maintain their position at the mouth of the gulf, which was narrow and difficult"
+      }
+     ],
+     "id": "chr:scene:actium-campaign-31bc#5.3"
+    },
+    {
+     "text": "Octavian keeps his ships about eight furlongs (some 1.5 km) away, waiting a long time.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Plutarch, Life of Antony",
+       "work": "chr:entity:plutarch-life-of-antony",
+       "observation": "chr:observation:perseus:tlg0007.tlg058.perseus-eng2:65.4:70427323",
+       "locator": "Plutarch Antony 65.4",
+       "url": "urn:cts:greekLit:tlg0007.tlg058.perseus-eng2:65.4",
+       "quotation": "kept his own ships at a distance of about eight furlongs from the enemy"
+      },
+      {
+       "accordingTo": "Cassius Dio, Roman History",
+       "work": "chr:entity:cassius-dio-roman-history",
+       "observation": "chr:observation:lacuscurtius:cassius-dio:50.31.5:1f50fd6b",
+       "locator": "Cassius Dio 50.31.5",
+       "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Cassius_Dio/50*.html#31.5",
+       "quotation": "ordered his sailors to let their oars rest in the water, and waited for a time"
+      }
+     ],
+     "note": "1.5 km is the conversion; west of Antony's line is the map's.",
+     "id": "chr:scene:actium-campaign-31bc#5.4"
+    },
+    {
+     "text": "Cleopatra's sixty ships lie behind the line.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Plutarch, Life of Antony",
+       "work": "chr:entity:plutarch-life-of-antony",
+       "observation": "chr:observation:perseus:tlg0007.tlg058.perseus-eng2:66.3:70427323",
+       "locator": "Plutarch Antony 66.3",
+       "url": "urn:cts:greekLit:tlg0007.tlg058.perseus-eng2:66.3",
+       "quotation": "they had been posted in the rear of the large vessels"
+      },
+      {
+       "accordingTo": "Cassius Dio, Roman History",
+       "work": "chr:entity:cassius-dio-roman-history",
+       "observation": "chr:observation:lacuscurtius:cassius-dio:50.33.1:1f50fd6b",
+       "locator": "Cassius Dio 50.33.1",
+       "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Cassius_Dio/50*.html#33.1",
+       "quotation": "Cleopatra, riding at anchor behind the combatants"
+      }
+     ],
+     "note": "Both sources say the rear; 'behind the centre', as the animation had it, is ours, and the map draws it so.",
+     "id": "chr:scene:actium-campaign-31bc#5.5"
+    }
+   ],
+   "ordersOfBattle": {
+    "note": "Two orders of battle, and the sources disagree: shown side by side, never merged.",
+    "alternatives": [
+     {
+      "accordingTo": "Plutarch, Life of Antony",
+      "antony": {
+       "right": [
+        "Antony",
+        "Publicola"
+       ],
+       "centre": [
+        "Marcus Octavius",
+        "Marcus Insteius"
+       ],
+       "left": [
+        "Coelius"
+       ]
+      },
+      "octavian": {
+       "left": [
+        "Agrippa"
+       ],
+       "right": [
+        "Octavian"
+       ],
+       "centre": [
+        "Arruntius (from 66.3: the centre engages him)"
+       ]
+      },
+      "voices": [
+       {
+        "accordingTo": "Plutarch, Life of Antony",
+        "work": "chr:entity:plutarch-life-of-antony",
+        "observation": "chr:observation:perseus:tlg0007.tlg058.perseus-eng2:65.1:70427323",
+        "locator": "Plutarch Antony 65.1",
+        "url": "urn:cts:greekLit:tlg0007.tlg058.perseus-eng2:65.1",
+        "quotation": "Antony had the right wing, with Publicola, Coelius the left, and in the centre were Marcus Octavius and Marcus Insteius"
+       },
+       {
+        "accordingTo": "Plutarch, Life of Antony",
+        "work": "chr:entity:plutarch-life-of-antony",
+        "observation": "chr:observation:perseus:tlg0007.tlg058.perseus-eng2:65.2:70427323",
+        "locator": "Plutarch Antony 65.2",
+        "url": "urn:cts:greekLit:tlg0007.tlg058.perseus-eng2:65.2",
+        "quotation": "Caesar posted Agrippa on the left, and reserved the right wing for himself"
+       },
+       {
+        "accordingTo": "Plutarch, Life of Antony",
+        "work": "chr:entity:plutarch-life-of-antony",
+        "observation": "chr:observation:perseus:tlg0007.tlg058.perseus-eng2:66.3:70427323",
+        "locator": "Plutarch Antony 66.3",
+        "url": "urn:cts:greekLit:tlg0007.tlg058.perseus-eng2:66.3",
+        "quotation": "The centre falling into confusion and engaging with Arruntius"
+       }
+      ]
+     },
+     {
+      "accordingTo": "Velleius Paterculus, Historiae Romanae",
+      "antony": {
+       "fleet": [
+        "Publicola",
+        "Sosius"
+       ]
+      },
+      "octavian": {
+       "right": [
+        "Lurius"
+       ],
+       "left": [
+        "Arruntius"
+       ],
+       "overall": [
+        "Agrippa"
+       ],
+       "everywhere": [
+        "Octavian"
+       ]
+      },
+      "voices": [
+       {
+        "accordingTo": "Velleius Paterculus, Historiae Romanae",
+        "work": "chr:entity:proposed-work-velleius-paterculus-historiae-romanae",
+        "observation": "chr:observation:lacuscurtius:velleius-paterculus:2.85.2:45a8b33f",
+        "locator": "C. Velleius Paterculus 2.85.2",
+        "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Velleius_Paterculus/2C*.html#85.2",
+        "quotation": "The command of the right wing of Caesar's fleet was entrusted to Marcus Lurius, of the left to Arruntius, while Agrippa had full charge of the entire conflict at sea"
+       },
+       {
+        "accordingTo": "Velleius Paterculus, Historiae Romanae",
+        "work": "chr:entity:proposed-work-velleius-paterculus-historiae-romanae",
+        "observation": "chr:observation:lacuscurtius:velleius-paterculus:2.85.2:45a8b33f",
+        "locator": "C. Velleius Paterculus 2.85.2",
+        "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Velleius_Paterculus/2C*.html#85.2",
+        "quotation": "The command of Antony's fleet was entrusted to Publicola and Sosius"
+       }
+      ],
+      "note": "Velleius gives Sosius no wing; the animation's 'Coelius south (Velleius: Sosius)' was its generator's reading."
+     }
+    ]
+   },
+   "placements": [
+    {
+     "unit": {
+      "entity": "chr:entity:octavian-fleet-at-actium-left-wing",
+      "label": "Left wing of Octavian's fleet",
+      "side": "Octavian"
+     },
+     "line": [
+      [
+       20.693,
+       38.966
+      ],
+      [
+       20.7,
+       38.95
+      ]
+     ],
+     "basis": "illustrative",
+     "note": "No passage gives a ship's position; the lines are drawn to orient the reader (D-172)."
+    },
+    {
+     "unit": {
+      "entity": "chr:entity:octavian-fleet-at-actium-centre",
+      "label": "Centre of Octavian's fleet",
+      "side": "Octavian"
+     },
+     "line": [
+      [
+       20.702,
+       38.946
+      ],
+      [
+       20.712,
+       38.925
+      ]
+     ],
+     "basis": "illustrative",
+     "note": "No passage gives a ship's position; the lines are drawn to orient the reader (D-172)."
+    },
+    {
+     "unit": {
+      "entity": "chr:entity:octavian-fleet-at-actium-right-wing",
+      "label": "Right wing of Octavian's fleet",
+      "side": "Octavian"
+     },
+     "line": [
+      [
+       20.714,
+       38.921
+      ],
+      [
+       20.728,
+       38.9
+      ]
+     ],
+     "basis": "illustrative",
+     "note": "No passage gives a ship's position; the lines are drawn to orient the reader (D-172)."
+    },
+    {
+     "unit": {
+      "entity": "chr:entity:antony-fleet-at-actium-right-wing",
+      "label": "Right wing of Antony's fleet",
+      "side": "Antony"
+     },
+     "line": [
+      [
+       20.712,
+       38.958
+      ],
+      [
+       20.719,
+       38.946
+      ]
+     ],
+     "basis": "illustrative",
+     "note": "No passage gives a ship's position; the lines are drawn to orient the reader (D-172)."
+    },
+    {
+     "unit": {
+      "entity": "chr:entity:antony-fleet-at-actium-centre",
+      "label": "Centre of Antony's fleet",
+      "side": "Antony"
+     },
+     "line": [
+      [
+       20.721,
+       38.943
+      ],
+      [
+       20.731,
+       38.926
+      ]
+     ],
+     "basis": "illustrative",
+     "note": "No passage gives a ship's position; the lines are drawn to orient the reader (D-172)."
+    },
+    {
+     "unit": {
+      "entity": "chr:entity:antony-fleet-at-actium-left-wing",
+      "label": "Left wing of Antony's fleet",
+      "side": "Antony"
+     },
+     "line": [
+      [
+       20.733,
+       38.923
+      ],
+      [
+       20.745,
+       38.91
+      ]
+     ],
+     "basis": "illustrative",
+     "note": "No passage gives a ship's position; the lines are drawn to orient the reader (D-172)."
+    },
+    {
+     "unit": {
+      "entity": "chr:entity:cleopatra-squadron-at-actium",
+      "label": "Cleopatra's squadron",
+      "side": "Antony"
+     },
+     "line": [
+      [
+       20.737,
+       38.94
+      ],
+      [
+       20.745,
+       38.931
+      ]
+     ],
+     "basis": "illustrative",
+     "note": "No passage gives a ship's position; the lines are drawn to orient the reader (D-172)."
+    },
+    {
+     "unit": {
+      "entity": "chr:entity:mark-antony",
+      "label": "Antony's ship",
+      "side": "Antony"
+     },
+     "line": [
+      [
+       20.714,
+       38.954
+      ],
+      [
+       20.716,
+       38.95
+      ]
+     ],
+     "basis": "illustrative",
+     "note": "No passage gives a ship's position; the lines are drawn to orient the reader (D-172)."
+    }
+   ],
+   "id": "chr:scene:actium-campaign-31bc#5"
+  },
+  {
+   "order": 6,
+   "phase": "engagement",
+   "timeWords": "the sixth hour (about midday)",
+   "view": "battle",
+   "title": "Antony's left wing moves first",
+   "statements": [
+    {
+     "text": "At the sixth hour, with a wind rising from the sea, Antony's men put their left wing in motion.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Plutarch, Life of Antony",
+       "work": "chr:entity:plutarch-life-of-antony",
+       "observation": "chr:observation:perseus:tlg0007.tlg058.perseus-eng2:65.4:70427323",
+       "locator": "Plutarch Antony 65.4",
+       "url": "urn:cts:greekLit:tlg0007.tlg058.perseus-eng2:65.4",
+       "quotation": "it was now the sixth hour, and since a wind was rising from the sea, the soldiers of Antony became impatient at the delay"
+      }
+     ],
+     "id": "chr:scene:actium-campaign-31bc#6.1"
+    },
+    {
+     "text": "Octavian orders his right wing to row backwards, to draw them out of the gulf and the narrows.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Plutarch, Life of Antony",
+       "work": "chr:entity:plutarch-life-of-antony",
+       "observation": "chr:observation:perseus:tlg0007.tlg058.perseus-eng2:65.5:70427323",
+       "locator": "Plutarch Antony 65.5",
+       "url": "urn:cts:greekLit:tlg0007.tlg058.perseus-eng2:65.5",
+       "quotation": "ordered his right wing to row backwards, wishing to draw the enemy still farther out from the gulf and the narrows"
+      }
+     ],
+     "id": "chr:scene:actium-campaign-31bc#6.2"
+    }
+   ],
+   "placements": [
+    {
+     "unit": {
+      "entity": "chr:entity:octavian-fleet-at-actium-left-wing",
+      "label": "Left wing of Octavian's fleet",
+      "side": "Octavian"
+     },
+     "line": [
+      [
+       20.693,
+       38.966
+      ],
+      [
+       20.7,
+       38.95
+      ]
+     ],
+     "basis": "illustrative",
+     "note": "Positions drawn; the movement itself is sourced (Plutarch 65.4-5)."
+    },
+    {
+     "unit": {
+      "entity": "chr:entity:octavian-fleet-at-actium-centre",
+      "label": "Centre of Octavian's fleet",
+      "side": "Octavian"
+     },
+     "line": [
+      [
+       20.702,
+       38.946
+      ],
+      [
+       20.712,
+       38.925
+      ]
+     ],
+     "basis": "illustrative",
+     "note": "Positions drawn; the movement itself is sourced (Plutarch 65.4-5)."
+    },
+    {
+     "unit": {
+      "entity": "chr:entity:octavian-fleet-at-actium-right-wing",
+      "label": "Right wing of Octavian's fleet",
+      "side": "Octavian"
+     },
+     "line": [
+      [
+       20.706,
+       38.918
+      ],
+      [
+       20.719,
+       38.896
+      ]
+     ],
+     "basis": "illustrative",
+     "note": "Positions drawn; the movement itself is sourced (Plutarch 65.4-5)."
+    },
+    {
+     "unit": {
+      "entity": "chr:entity:antony-fleet-at-actium-right-wing",
+      "label": "Right wing of Antony's fleet",
+      "side": "Antony"
+     },
+     "line": [
+      [
+       20.712,
+       38.958
+      ],
+      [
+       20.719,
+       38.946
+      ]
+     ],
+     "basis": "illustrative",
+     "note": "Positions drawn; the movement itself is sourced (Plutarch 65.4-5)."
+    },
+    {
+     "unit": {
+      "entity": "chr:entity:antony-fleet-at-actium-centre",
+      "label": "Centre of Antony's fleet",
+      "side": "Antony"
+     },
+     "line": [
+      [
+       20.721,
+       38.943
+      ],
+      [
+       20.731,
+       38.926
+      ]
+     ],
+     "basis": "illustrative",
+     "note": "Positions drawn; the movement itself is sourced (Plutarch 65.4-5)."
+    },
+    {
+     "unit": {
+      "entity": "chr:entity:antony-fleet-at-actium-left-wing",
+      "label": "Left wing of Antony's fleet",
+      "side": "Antony"
+     },
+     "line": [
+      [
+       20.722,
+       38.921
+      ],
+      [
+       20.733,
+       38.905
+      ]
+     ],
+     "basis": "illustrative",
+     "note": "Positions drawn; the movement itself is sourced (Plutarch 65.4-5)."
+    },
+    {
+     "unit": {
+      "entity": "chr:entity:cleopatra-squadron-at-actium",
+      "label": "Cleopatra's squadron",
+      "side": "Antony"
+     },
+     "line": [
+      [
+       20.737,
+       38.94
+      ],
+      [
+       20.745,
+       38.931
+      ]
+     ],
+     "basis": "illustrative",
+     "note": "Positions drawn; the movement itself is sourced (Plutarch 65.4-5)."
+    },
+    {
+     "unit": {
+      "entity": "chr:entity:mark-antony",
+      "label": "Antony's ship",
+      "side": "Antony"
+     },
+     "line": [
+      [
+       20.714,
+       38.954
+      ],
+      [
+       20.716,
+       38.95
+      ]
+     ],
+     "basis": "illustrative",
+     "note": "Positions drawn; the movement itself is sourced (Plutarch 65.4-5)."
+    }
+   ],
+   "id": "chr:scene:actium-campaign-31bc#6"
+  },
+  {
+   "order": 7,
+   "phase": "engagement",
+   "timeWords": "afternoon",
+   "view": "battle",
+   "title": "Agrippa stretches the northern wing",
+   "statements": [
+    {
+     "text": "Agrippa extends his wing to encircle; Publicola advances against him and is cut off from the centre.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Plutarch, Life of Antony",
+       "work": "chr:entity:plutarch-life-of-antony",
+       "observation": "chr:observation:perseus:tlg0007.tlg058.perseus-eng2:66.3:70427323",
+       "locator": "Plutarch Antony 66.3",
+       "url": "urn:cts:greekLit:tlg0007.tlg058.perseus-eng2:66.3",
+       "quotation": "as Agrippa was extending the left wing with a view to encircling the enemy, Publicola was forced to advance against him, and so was separated from the centre"
+      }
+     ],
+     "id": "chr:scene:actium-campaign-31bc#7.1"
+    },
+    {
+     "text": "Antony's centre falls into confusion, engaging Arruntius.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Plutarch, Life of Antony",
+       "work": "chr:entity:plutarch-life-of-antony",
+       "observation": "chr:observation:perseus:tlg0007.tlg058.perseus-eng2:66.3:70427323",
+       "locator": "Plutarch Antony 66.3",
+       "url": "urn:cts:greekLit:tlg0007.tlg058.perseus-eng2:66.3",
+       "quotation": "The centre falling into confusion and engaging with Arruntius"
+      }
+     ],
+     "id": "chr:scene:actium-campaign-31bc#7.2"
+    },
+    {
+     "text": "This happens on the northern side of the battle.",
+     "basis": "inferred",
+     "voices": [],
+     "by": "the animation's generator (Claude, in a chat, from Wikipedia and its own knowledge)",
+     "note": "Agrippa held Octavian's left (Plutarch), which faced north as the fleets lay; the compass point is ours.",
+     "id": "chr:scene:actium-campaign-31bc#7.3"
+    }
+   ],
+   "placements": [
+    {
+     "unit": {
+      "entity": "chr:entity:octavian-fleet-at-actium-left-wing",
+      "label": "Left wing of Octavian's fleet",
+      "side": "Octavian"
+     },
+     "line": [
+      [
+       20.668,
+       38.972
+      ],
+      [
+       20.682,
+       38.955
+      ]
+     ],
+     "basis": "illustrative",
+     "note": "Positions drawn; the movement itself is sourced (Plutarch 66.3)."
+    },
+    {
+     "unit": {
+      "entity": "chr:entity:octavian-fleet-at-actium-centre",
+      "label": "Centre of Octavian's fleet",
+      "side": "Octavian"
+     },
+     "line": [
+      [
+       20.708,
+       38.944
+      ],
+      [
+       20.718,
+       38.926
+      ]
+     ],
+     "basis": "illustrative",
+     "note": "Positions drawn; the movement itself is sourced (Plutarch 66.3)."
+    },
+    {
+     "unit": {
+      "entity": "chr:entity:octavian-fleet-at-actium-right-wing",
+      "label": "Right wing of Octavian's fleet",
+      "side": "Octavian"
+     },
+     "line": [
+      [
+       20.71,
+       38.918
+      ],
+      [
+       20.723,
+       38.897
+      ]
+     ],
+     "basis": "illustrative",
+     "note": "Positions drawn; the movement itself is sourced (Plutarch 66.3)."
+    },
+    {
+     "unit": {
+      "entity": "chr:entity:antony-fleet-at-actium-right-wing",
+      "label": "Right wing of Antony's fleet",
+      "side": "Antony"
+     },
+     "line": [
+      [
+       20.688,
+       38.966
+      ],
+      [
+       20.7,
+       38.952
+      ]
+     ],
+     "basis": "illustrative",
+     "note": "Positions drawn; the movement itself is sourced (Plutarch 66.3)."
+    },
+    {
+     "unit": {
+      "entity": "chr:entity:antony-fleet-at-actium-centre",
+      "label": "Centre of Antony's fleet",
+      "side": "Antony"
+     },
+     "line": [
+      [
+       20.722,
+       38.94
+      ],
+      [
+       20.731,
+       38.924
+      ]
+     ],
+     "basis": "illustrative",
+     "note": "Positions drawn; the movement itself is sourced (Plutarch 66.3)."
+    },
+    {
+     "unit": {
+      "entity": "chr:entity:antony-fleet-at-actium-left-wing",
+      "label": "Left wing of Antony's fleet",
+      "side": "Antony"
+     },
+     "line": [
+      [
+       20.722,
+       38.921
+      ],
+      [
+       20.733,
+       38.905
+      ]
+     ],
+     "basis": "illustrative",
+     "note": "Positions drawn; the movement itself is sourced (Plutarch 66.3)."
+    },
+    {
+     "unit": {
+      "entity": "chr:entity:cleopatra-squadron-at-actium",
+      "label": "Cleopatra's squadron",
+      "side": "Antony"
+     },
+     "line": [
+      [
+       20.737,
+       38.94
+      ],
+      [
+       20.745,
+       38.931
+      ]
+     ],
+     "basis": "illustrative",
+     "note": "Positions drawn; the movement itself is sourced (Plutarch 66.3)."
+    },
+    {
+     "unit": {
+      "entity": "chr:entity:mark-antony",
+      "label": "Antony's ship",
+      "side": "Antony"
+     },
+     "line": [
+      [
+       20.692,
+       38.962
+      ],
+      [
+       20.696,
+       38.958
+      ]
+     ],
+     "basis": "illustrative",
+     "note": "Positions drawn; the movement itself is sourced (Plutarch 66.3)."
+    }
+   ],
+   "id": "chr:scene:actium-campaign-31bc#7"
+  },
+  {
+   "order": 8,
+   "phase": "breakout",
+   "timeWords": "afternoon",
+   "view": "battle",
+   "title": "Cleopatra's squadron breaks out",
+   "statements": [
+    {
+     "text": "Cleopatra's sixty ships hoist their sails and make off through the midst of the fighting.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Plutarch, Life of Antony",
+       "work": "chr:entity:plutarch-life-of-antony",
+       "observation": "chr:observation:perseus:tlg0007.tlg058.perseus-eng2:66.3:70427323",
+       "locator": "Plutarch Antony 66.3",
+       "url": "urn:cts:greekLit:tlg0007.tlg058.perseus-eng2:66.3",
+       "quotation": "suddenly the sixty ships of Cleopatra were seen hoisting their sails for flight and making off through the midst of the combatants"
+      }
+     ],
+     "id": "chr:scene:actium-campaign-31bc#8.1"
+    },
+    {
+     "text": "They take advantage of the wind and make for the Peloponnese.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Plutarch, Life of Antony",
+       "work": "chr:entity:plutarch-life-of-antony",
+       "observation": "chr:observation:perseus:tlg0007.tlg058.perseus-eng2:66.4:70427323",
+       "locator": "Plutarch Antony 66.4",
+       "url": "urn:cts:greekLit:tlg0007.tlg058.perseus-eng2:66.4",
+       "quotation": "they took advantage of the wind and made for Peloponnesus"
+      }
+     ],
+     "id": "chr:scene:actium-campaign-31bc#8.2"
+    },
+    {
+     "text": "She turns to flight from the strain of waiting, and signals her ships.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Cassius Dio, Roman History",
+       "work": "chr:entity:cassius-dio-roman-history",
+       "observation": "chr:observation:lacuscurtius:cassius-dio:50.33.2:1f50fd6b",
+       "locator": "Cassius Dio 50.33.2",
+       "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Cassius_Dio/50*.html#33.2",
+       "quotation": "she suddenly turned to flight herself and raised the signal for the others"
+      }
+     ],
+     "note": "Dio's reading: panic. Whether the flight was planned is a debated Question in the graph.",
+     "id": "chr:scene:actium-campaign-31bc#8.3"
+    }
+   ],
+   "disputed": {
+    "words": "Panic, or a planned breakout?",
+    "questions": [
+     "chr:entity:proposed-question-did-cleopatra-and-perhaps-antonius-too-secretly-plan-the-flight-before-the-battle-began",
+     "chr:entity:proposed-question-did-cleopatra-take-the-decisive-initiative-in-the-flight-from-actium",
+     "chr:entity:proposed-question-did-cleopatra-s-squadron-escape-from-the-battle-through-a-gap-in-the-fleets-line"
+    ]
+   },
+   "locatorNote": "The animation cited Plutarch 66.5 in another edition's numbering; in the text we hold it is 66.3-4.",
+   "placements": [
+    {
+     "unit": {
+      "entity": "chr:entity:octavian-fleet-at-actium-left-wing",
+      "label": "Left wing of Octavian's fleet",
+      "side": "Octavian"
+     },
+     "line": [
+      [
+       20.668,
+       38.972
+      ],
+      [
+       20.682,
+       38.955
+      ]
+     ],
+     "basis": "illustrative",
+     "note": "The breakout is sourced; the path drawn through the line is ours."
+    },
+    {
+     "unit": {
+      "entity": "chr:entity:octavian-fleet-at-actium-centre",
+      "label": "Centre of Octavian's fleet",
+      "side": "Octavian"
+     },
+     "line": [
+      [
+       20.708,
+       38.944
+      ],
+      [
+       20.718,
+       38.926
+      ]
+     ],
+     "basis": "illustrative",
+     "note": "The breakout is sourced; the path drawn through the line is ours."
+    },
+    {
+     "unit": {
+      "entity": "chr:entity:octavian-fleet-at-actium-right-wing",
+      "label": "Right wing of Octavian's fleet",
+      "side": "Octavian"
+     },
+     "line": [
+      [
+       20.71,
+       38.918
+      ],
+      [
+       20.723,
+       38.897
+      ]
+     ],
+     "basis": "illustrative",
+     "note": "The breakout is sourced; the path drawn through the line is ours."
+    },
+    {
+     "unit": {
+      "entity": "chr:entity:antony-fleet-at-actium-right-wing",
+      "label": "Right wing of Antony's fleet",
+      "side": "Antony"
+     },
+     "line": [
+      [
+       20.688,
+       38.966
+      ],
+      [
+       20.7,
+       38.952
+      ]
+     ],
+     "basis": "illustrative",
+     "note": "The breakout is sourced; the path drawn through the line is ours."
+    },
+    {
+     "unit": {
+      "entity": "chr:entity:antony-fleet-at-actium-centre",
+      "label": "Centre of Antony's fleet",
+      "side": "Antony"
+     },
+     "line": [
+      [
+       20.724,
+       38.938
+      ],
+      [
+       20.735,
+       38.922
+      ]
+     ],
+     "basis": "illustrative",
+     "note": "The breakout is sourced; the path drawn through the line is ours."
+    },
+    {
+     "unit": {
+      "entity": "chr:entity:antony-fleet-at-actium-left-wing",
+      "label": "Left wing of Antony's fleet",
+      "side": "Antony"
+     },
+     "line": [
+      [
+       20.722,
+       38.921
+      ],
+      [
+       20.733,
+       38.905
+      ]
+     ],
+     "basis": "illustrative",
+     "note": "The breakout is sourced; the path drawn through the line is ours."
+    },
+    {
+     "unit": {
+      "entity": "chr:entity:cleopatra-squadron-at-actium",
+      "label": "Cleopatra's squadron",
+      "side": "Antony"
+     },
+     "line": [
+      [
+       20.7,
+       38.93
+      ],
+      [
+       20.706,
+       38.912
+      ]
+     ],
+     "basis": "illustrative",
+     "note": "The breakout is sourced; the path drawn through the line is ours."
+    },
+    {
+     "unit": {
+      "entity": "chr:entity:mark-antony",
+      "label": "Antony's ship",
+      "side": "Antony"
+     },
+     "line": [
+      [
+       20.692,
+       38.962
+      ],
+      [
+       20.696,
+       38.958
+      ]
+     ],
+     "basis": "illustrative",
+     "note": "The breakout is sourced; the path drawn through the line is ours."
+    }
+   ],
+   "id": "chr:scene:actium-campaign-31bc#8"
+  },
+  {
+   "order": 9,
+   "phase": "antony-follows",
+   "timeWords": "afternoon",
+   "view": "battle",
+   "title": "Antony follows her",
+   "statements": [
+    {
+     "text": "Antony leaves the fight in a five-oared galley, with only Alexas the Syrian and Scellius, and goes after her.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Plutarch, Life of Antony",
+       "work": "chr:entity:plutarch-life-of-antony",
+       "observation": "chr:observation:perseus:tlg0007.tlg058.perseus-eng2:66.5:70427323",
+       "locator": "Plutarch Antony 66.5",
+       "url": "urn:cts:greekLit:tlg0007.tlg058.perseus-eng2:66.5",
+       "quotation": "got into a five-oared galley, where Alexas the Syrian and Scellius were his only companions, and hastened after the woman"
+      }
+     ],
+     "id": "chr:scene:actium-campaign-31bc#9.1"
+    },
+    {
+     "text": "Dio: he thought her ships fled from fear, not at her bidding, and so followed.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Cassius Dio, Roman History",
+       "work": "chr:entity:cassius-dio-roman-history",
+       "observation": "chr:observation:lacuscurtius:cassius-dio:50.33.3:1f50fd6b",
+       "locator": "Cassius Dio 50.33.3",
+       "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Cassius_Dio/50*.html#33.3",
+       "quotation": "Antony thought they were fleeing, not at the bidding of Cleopatra, but through fear because they felt themselves vanquished, and so he followed them"
+      }
+     ],
+     "id": "chr:scene:actium-campaign-31bc#9.2"
+    },
+    {
+     "text": "The fleet left behind loses its commander.",
+     "basis": "inferred",
+     "voices": [],
+     "by": "the check of 2026-11-24 (Claude Code, against the stored passages)",
+     "id": "chr:scene:actium-campaign-31bc#9.3"
+    }
+   ],
+   "corrected": [
+    {
+     "was": "The fleet loses its commander, its reserve and its treasury.",
+     "why": "Dio says the money was still aboard the ships left fighting: Octavian held back from fire to gain it.",
+     "voices": [
+      {
+       "accordingTo": "Cassius Dio, Roman History",
+       "work": "chr:entity:cassius-dio-roman-history",
+       "observation": "chr:observation:lacuscurtius:cassius-dio:50.34.1:1f50fd6b",
+       "locator": "Cassius Dio 50.34.1",
+       "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Cassius_Dio/50*.html#34.1",
+       "quotation": "Previously he had wished to avoid using it, in order to gain possession of the money"
+      },
+      {
+       "accordingTo": "Cassius Dio, Roman History",
+       "work": "chr:entity:cassius-dio-roman-history",
+       "observation": "chr:observation:lacuscurtius:cassius-dio:50.35.5:1f50fd6b",
+       "locator": "Cassius Dio 50.35.5",
+       "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Cassius_Dio/50*.html#35.5",
+       "quotation": "in the hope that they might possibly gain possession of the money"
+      }
+     ]
+    }
+   ],
+   "disputed": {
+    "words": "Desertion, or a planned escape?",
+    "questions": [
+     "chr:entity:proposed-question-did-cleopatra-and-perhaps-antonius-too-secretly-plan-the-flight-before-the-battle-began"
+    ]
+   },
+   "locatorNote": "The animation cited Plutarch 66.7; in the text we hold it is 66.5.",
+   "placements": [
+    {
+     "unit": {
+      "entity": "chr:entity:octavian-fleet-at-actium-left-wing",
+      "label": "Left wing of Octavian's fleet",
+      "side": "Octavian"
+     },
+     "line": [
+      [
+       20.668,
+       38.972
+      ],
+      [
+       20.682,
+       38.955
+      ]
+     ],
+     "basis": "illustrative",
+     "note": "Positions drawn."
+    },
+    {
+     "unit": {
+      "entity": "chr:entity:octavian-fleet-at-actium-centre",
+      "label": "Centre of Octavian's fleet",
+      "side": "Octavian"
+     },
+     "line": [
+      [
+       20.708,
+       38.944
+      ],
+      [
+       20.718,
+       38.926
+      ]
+     ],
+     "basis": "illustrative",
+     "note": "Positions drawn."
+    },
+    {
+     "unit": {
+      "entity": "chr:entity:octavian-fleet-at-actium-right-wing",
+      "label": "Right wing of Octavian's fleet",
+      "side": "Octavian"
+     },
+     "line": [
+      [
+       20.71,
+       38.918
+      ],
+      [
+       20.723,
+       38.897
+      ]
+     ],
+     "basis": "illustrative",
+     "note": "Positions drawn."
+    },
+    {
+     "unit": {
+      "entity": "chr:entity:antony-fleet-at-actium-right-wing",
+      "label": "Right wing of Antony's fleet",
+      "side": "Antony"
+     },
+     "line": [
+      [
+       20.69,
+       38.964
+      ],
+      [
+       20.702,
+       38.95
+      ]
+     ],
+     "basis": "illustrative",
+     "note": "Positions drawn."
+    },
+    {
+     "unit": {
+      "entity": "chr:entity:antony-fleet-at-actium-centre",
+      "label": "Centre of Antony's fleet",
+      "side": "Antony"
+     },
+     "line": [
+      [
+       20.724,
+       38.938
+      ],
+      [
+       20.735,
+       38.922
+      ]
+     ],
+     "basis": "illustrative",
+     "note": "Positions drawn."
+    },
+    {
+     "unit": {
+      "entity": "chr:entity:antony-fleet-at-actium-left-wing",
+      "label": "Left wing of Antony's fleet",
+      "side": "Antony"
+     },
+     "line": [
+      [
+       20.722,
+       38.921
+      ],
+      [
+       20.733,
+       38.905
+      ]
+     ],
+     "basis": "illustrative",
+     "note": "Positions drawn."
+    },
+    {
+     "unit": {
+      "entity": "chr:entity:cleopatra-squadron-at-actium",
+      "label": "Cleopatra's squadron",
+      "side": "Antony"
+     },
+     "line": [
+      [
+       20.668,
+       38.884
+      ],
+      [
+       20.676,
+       38.868
+      ]
+     ],
+     "basis": "illustrative",
+     "note": "Positions drawn."
+    },
+    {
+     "unit": {
+      "entity": "chr:entity:mark-antony",
+      "label": "Antony's ship",
+      "side": "Antony"
+     },
+     "line": [
+      [
+       20.68,
+       38.9
+      ],
+      [
+       20.684,
+       38.89
+      ]
+     ],
+     "basis": "illustrative",
+     "note": "Positions drawn."
+    }
+   ],
+   "id": "chr:scene:actium-campaign-31bc#9"
+  },
+  {
+   "order": 10,
+   "phase": "fleet-defeat",
+   "timeWords": "late afternoon, to the tenth hour",
+   "view": "battle",
+   "title": "The fleet left behind is destroyed",
+   "statements": [
+    {
+     "text": "With the fight still even, Octavian sends to the camp for fire.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Cassius Dio, Roman History",
+       "work": "chr:entity:cassius-dio-roman-history",
+       "observation": "chr:observation:lacuscurtius:cassius-dio:50.34.1:1f50fd6b",
+       "locator": "Cassius Dio 50.34.1",
+       "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Cassius_Dio/50*.html#34.1",
+       "quotation": "As the fight continued equal, Caesar, at a loss what he should do, sent for fire from the camp"
+      }
+     ],
+     "id": "chr:scene:actium-campaign-31bc#10.1"
+    },
+    {
+     "text": "His ships attack from many sides with blazing missiles, torches and pots of charcoal and pitch.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Cassius Dio, Roman History",
+       "work": "chr:entity:cassius-dio-roman-history",
+       "observation": "chr:observation:lacuscurtius:cassius-dio:50.34.2:1f50fd6b",
+       "locator": "Cassius Dio 50.34.2",
+       "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Cassius_Dio/50*.html#34.2",
+       "quotation": "The assailants would approach their victims from many directions at once"
+      }
+     ],
+     "id": "chr:scene:actium-campaign-31bc#10.2"
+    },
+    {
+     "text": "Antony's fleet holds out until the tenth hour, worn down by a rising sea; three hundred ships are captured.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Plutarch, Life of Antony",
+       "work": "chr:entity:plutarch-life-of-antony",
+       "observation": "chr:observation:perseus:tlg0007.tlg058.perseus-eng2:68.1:70427323",
+       "locator": "Plutarch Antony 68.1",
+       "url": "urn:cts:greekLit:tlg0007.tlg058.perseus-eng2:68.1",
+       "quotation": "only after it had been most severely damaged by the high sea which rose against it did it reluctantly, and at the tenth hour, give up the struggle"
+      },
+      {
+       "accordingTo": "Plutarch, Life of Antony",
+       "work": "chr:entity:plutarch-life-of-antony",
+       "observation": "chr:observation:perseus:tlg0007.tlg058.perseus-eng2:68.1:70427323",
+       "locator": "Plutarch Antony 68.1",
+       "url": "urn:cts:greekLit:tlg0007.tlg058.perseus-eng2:68.1",
+       "quotation": "three hundred ships were captured, as Caesar himself has written"
+      }
+     ],
+     "note": "Plutarch and Dio differ on what ended it: the sea, or the fire. Both are kept.",
+     "id": "chr:scene:actium-campaign-31bc#10.3"
+    }
+   ],
+   "placements": [
+    {
+     "unit": {
+      "entity": "chr:entity:octavian-fleet-at-actium-left-wing",
+      "label": "Left wing of Octavian's fleet",
+      "side": "Octavian"
+     },
+     "line": [
+      [
+       20.684,
+       38.968
+      ],
+      [
+       20.706,
+       38.957
+      ]
+     ],
+     "basis": "illustrative",
+     "note": "Positions drawn; which ships burned is not known."
+    },
+    {
+     "unit": {
+      "entity": "chr:entity:octavian-fleet-at-actium-centre",
+      "label": "Centre of Octavian's fleet",
+      "side": "Octavian"
+     },
+     "line": [
+      [
+       20.71,
+       38.944
+      ],
+      [
+       20.738,
+       38.928
+      ]
+     ],
+     "basis": "illustrative",
+     "note": "Positions drawn; which ships burned is not known."
+    },
+    {
+     "unit": {
+      "entity": "chr:entity:octavian-fleet-at-actium-right-wing",
+      "label": "Right wing of Octavian's fleet",
+      "side": "Octavian"
+     },
+     "line": [
+      [
+       20.716,
+       38.922
+      ],
+      [
+       20.744,
+       38.904
+      ]
+     ],
+     "basis": "illustrative",
+     "note": "Positions drawn; which ships burned is not known."
+    },
+    {
+     "unit": {
+      "entity": "chr:entity:antony-fleet-at-actium-right-wing",
+      "label": "Right wing of Antony's fleet",
+      "side": "Antony"
+     },
+     "line": [
+      [
+       20.696,
+       38.962
+      ],
+      [
+       20.708,
+       38.952
+      ]
+     ],
+     "basis": "illustrative",
+     "note": "Positions drawn; which ships burned is not known."
+    },
+    {
+     "unit": {
+      "entity": "chr:entity:antony-fleet-at-actium-centre",
+      "label": "Centre of Antony's fleet",
+      "side": "Antony"
+     },
+     "line": [
+      [
+       20.722,
+       38.94
+      ],
+      [
+       20.731,
+       38.926
+      ]
+     ],
+     "basis": "illustrative",
+     "note": "Positions drawn; which ships burned is not known."
+    },
+    {
+     "unit": {
+      "entity": "chr:entity:antony-fleet-at-actium-left-wing",
+      "label": "Left wing of Antony's fleet",
+      "side": "Antony"
+     },
+     "line": [
+      [
+       20.725,
+       38.92
+      ],
+      [
+       20.735,
+       38.906
+      ]
+     ],
+     "basis": "illustrative",
+     "note": "Positions drawn; which ships burned is not known."
+    },
+    {
+     "unit": {
+      "entity": "chr:entity:cleopatra-squadron-at-actium",
+      "label": "Cleopatra's squadron",
+      "side": "Antony"
+     },
+     "line": [
+      [
+       20.655,
+       38.872
+      ],
+      [
+       20.66,
+       38.862
+      ]
+     ],
+     "basis": "illustrative",
+     "note": "Positions drawn; which ships burned is not known."
+    },
+    {
+     "unit": {
+      "entity": "chr:entity:mark-antony",
+      "label": "Antony's ship",
+      "side": "Antony"
+     },
+     "line": [
+      [
+       20.66,
+       38.876
+      ],
+      [
+       20.663,
+       38.868
+      ]
+     ],
+     "basis": "illustrative",
+     "note": "Positions drawn; which ships burned is not known."
+    }
+   ],
+   "id": "chr:scene:actium-campaign-31bc#10"
+  },
+  {
+   "order": 11,
+   "phase": "army-surrender",
+   "timeWords": "seven days after the battle",
+   "view": "battle",
+   "title": "The army goes over without fighting",
+   "statements": [
+    {
+     "text": "Antony's legions hold together for seven days, ignoring Octavian's messages.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Plutarch, Life of Antony",
+       "work": "chr:entity:plutarch-life-of-antony",
+       "observation": "chr:observation:perseus:tlg0007.tlg058.perseus-eng2:68.3:70427323",
+       "locator": "Plutarch Antony 68.3",
+       "url": "urn:cts:greekLit:tlg0007.tlg058.perseus-eng2:68.3",
+       "quotation": "they held together for seven days, paying no heed to the messages which Caesar sent them"
+      }
+     ],
+     "id": "chr:scene:actium-campaign-31bc#11.1"
+    },
+    {
+     "text": "Then Canidius runs away by night, and the army goes over to Octavian.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Plutarch, Life of Antony",
+       "work": "chr:entity:plutarch-life-of-antony",
+       "observation": "chr:observation:perseus:tlg0007.tlg058.perseus-eng2:68.3:70427323",
+       "locator": "Plutarch Antony 68.3",
+       "url": "urn:cts:greekLit:tlg0007.tlg058.perseus-eng2:68.3",
+       "quotation": "after Canidius their general had run away by night and forsaken the camp, being now destitute of all things and betrayed by their commanders, they went over to the conqueror"
+      }
+     ],
+     "id": "chr:scene:actium-campaign-31bc#11.2"
+    }
+   ],
+   "corrected": [
+    {
+     "was": "Canidius slips away. After seven days the legions go over.",
+     "why": "Plutarch has the seven days first, and Canidius's flight at their end.",
+     "voices": []
+    }
+   ],
+   "army": {
+    "unit": {
+     "entity": "chr:entity:antony-army-at-actium",
+     "label": "Antony's land army at Actium",
+     "side": "Antony"
+    },
+    "at": {
+     "label": "Actium",
+     "lonLat": [
+      20.765852,
+      38.953891
+     ],
+     "lonLatFrom": "the place's card (Pleiades 530771)",
+     "entity": "chr:entity:actium-promontory",
+     "status": "provisional",
+     "heldAs": "Actium promontory"
+    },
+    "basis": "sourced"
+   },
+   "placements": [
+    {
+     "unit": {
+      "entity": "chr:entity:octavian-fleet-at-actium-left-wing",
+      "label": "Left wing of Octavian's fleet",
+      "side": "Octavian"
+     },
+     "line": [
+      [
+       20.684,
+       38.968
+      ],
+      [
+       20.706,
+       38.957
+      ]
+     ],
+     "basis": "illustrative",
+     "note": "Positions drawn."
+    },
+    {
+     "unit": {
+      "entity": "chr:entity:octavian-fleet-at-actium-centre",
+      "label": "Centre of Octavian's fleet",
+      "side": "Octavian"
+     },
+     "line": [
+      [
+       20.71,
+       38.944
+      ],
+      [
+       20.738,
+       38.928
+      ]
+     ],
+     "basis": "illustrative",
+     "note": "Positions drawn."
+    },
+    {
+     "unit": {
+      "entity": "chr:entity:octavian-fleet-at-actium-right-wing",
+      "label": "Right wing of Octavian's fleet",
+      "side": "Octavian"
+     },
+     "line": [
+      [
+       20.716,
+       38.922
+      ],
+      [
+       20.744,
+       38.904
+      ]
+     ],
+     "basis": "illustrative",
+     "note": "Positions drawn."
+    },
+    {
+     "unit": {
+      "entity": "chr:entity:antony-fleet-at-actium-right-wing",
+      "label": "Right wing of Antony's fleet",
+      "side": "Antony"
+     },
+     "line": [
+      [
+       20.696,
+       38.962
+      ],
+      [
+       20.708,
+       38.952
+      ]
+     ],
+     "basis": "illustrative",
+     "note": "Positions drawn."
+    },
+    {
+     "unit": {
+      "entity": "chr:entity:antony-fleet-at-actium-centre",
+      "label": "Centre of Antony's fleet",
+      "side": "Antony"
+     },
+     "line": [
+      [
+       20.722,
+       38.94
+      ],
+      [
+       20.731,
+       38.926
+      ]
+     ],
+     "basis": "illustrative",
+     "note": "Positions drawn."
+    },
+    {
+     "unit": {
+      "entity": "chr:entity:antony-fleet-at-actium-left-wing",
+      "label": "Left wing of Antony's fleet",
+      "side": "Antony"
+     },
+     "line": [
+      [
+       20.725,
+       38.92
+      ],
+      [
+       20.735,
+       38.906
+      ]
+     ],
+     "basis": "illustrative",
+     "note": "Positions drawn."
+    },
+    {
+     "unit": {
+      "entity": "chr:entity:cleopatra-squadron-at-actium",
+      "label": "Cleopatra's squadron",
+      "side": "Antony"
+     },
+     "line": [
+      [
+       20.655,
+       38.872
+      ],
+      [
+       20.66,
+       38.862
+      ]
+     ],
+     "basis": "illustrative",
+     "note": "Positions drawn."
+    },
+    {
+     "unit": {
+      "entity": "chr:entity:mark-antony",
+      "label": "Antony's ship",
+      "side": "Antony"
+     },
+     "line": [
+      [
+       20.66,
+       38.876
+      ],
+      [
+       20.663,
+       38.868
+      ]
+     ],
+     "basis": "illustrative",
+     "note": "Positions drawn."
+    }
+   ],
+   "id": "chr:scene:actium-campaign-31bc#11"
+  },
+  {
+   "order": 12,
+   "phase": null,
+   "context": "after the battle (outside the event's phases)",
+   "timeWords": "September 31 BC",
+   "view": "overview",
+   "title": "Flight to Taenarum, then Egypt",
+   "statements": [
+    {
+     "text": "Antony is taken aboard Cleopatra's ship.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Plutarch, Life of Antony",
+       "work": "chr:entity:plutarch-life-of-antony",
+       "observation": "chr:observation:perseus:tlg0007.tlg058.perseus-eng2:67.1:70427323",
+       "locator": "Plutarch Antony 67.1",
+       "url": "urn:cts:greekLit:tlg0007.tlg058.perseus-eng2:67.1",
+       "quotation": "Antony came up and was taken on board"
+      }
+     ],
+     "id": "chr:scene:actium-campaign-31bc#12.1"
+    },
+    {
+     "text": "He means to cross from Taenarum to Libya.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Plutarch, Life of Antony",
+       "work": "chr:entity:plutarch-life-of-antony",
+       "observation": "chr:observation:perseus:tlg0007.tlg058.perseus-eng2:67.6:70427323",
+       "locator": "Plutarch Antony 67.6",
+       "url": "urn:cts:greekLit:tlg0007.tlg058.perseus-eng2:67.6",
+       "quotation": "he purposed to cross from Taenarum to Libya"
+      }
+     ],
+     "id": "chr:scene:actium-campaign-31bc#12.2"
+    },
+    {
+     "text": "They go as far as the Peloponnese together; Cleopatra then hastens to Egypt.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Cassius Dio, Roman History",
+       "work": "chr:entity:cassius-dio-roman-history",
+       "observation": "chr:observation:lacuscurtius:cassius-dio:51.5.3:688a84b4",
+       "locator": "Cassius Dio 51.5.3",
+       "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Cassius_Dio/51*.html#5.3",
+       "quotation": "had gone as far as the Peloponnesus together"
+      },
+      {
+       "accordingTo": "Cassius Dio, Roman History",
+       "work": "chr:entity:cassius-dio-roman-history",
+       "observation": "chr:observation:lacuscurtius:cassius-dio:51.5.3:688a84b4",
+       "locator": "Cassius Dio 51.5.3",
+       "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Cassius_Dio/51*.html#5.3",
+       "quotation": "Cleopatra had hastened to Egypt"
+      }
+     ],
+     "id": "chr:scene:actium-campaign-31bc#12.3"
+    },
+    {
+     "text": "Antony reaches the coast of Libya and sends Cleopatra on into Egypt from Paraetonium.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Plutarch, Life of Antony",
+       "work": "chr:entity:plutarch-life-of-antony",
+       "observation": "chr:observation:perseus:tlg0007.tlg058.perseus-eng2:69.1:70427323",
+       "locator": "Plutarch Antony 69.1",
+       "url": "urn:cts:greekLit:tlg0007.tlg058.perseus-eng2:69.1",
+       "quotation": "After Antony had reached the coast of Libya and sent Cleopatra forward into Egypt from Paraetonium"
+      }
+     ],
+     "id": "chr:scene:actium-campaign-31bc#12.4"
+    },
+    {
+     "text": "Antony is at Paraetonium until the news of Pelusium.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Cassius Dio, Roman History",
+       "work": "chr:entity:cassius-dio-roman-history",
+       "observation": "chr:observation:lacuscurtius:cassius-dio:51.10.1:688a84b4",
+       "locator": "Cassius Dio 51.10.1",
+       "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Cassius_Dio/51*.html#10.1",
+       "quotation": "At the news concerning Pelusium Antony returned from Paraetonium"
+      }
+     ],
+     "id": "chr:scene:actium-campaign-31bc#12.5"
+    }
+   ],
+   "routes": {
+    "note": "Where Cleopatra parted from Antony: the sources differ, and both are kept.",
+    "alternatives": [
+     {
+      "accordingTo": "Plutarch, Life of Antony",
+      "words": "She went with him to Libya and on into Egypt from Paraetonium.",
+      "voices": [
+       {
+        "accordingTo": "Plutarch, Life of Antony",
+        "work": "chr:entity:plutarch-life-of-antony",
+        "observation": "chr:observation:perseus:tlg0007.tlg058.perseus-eng2:69.1:70427323",
+        "locator": "Plutarch Antony 69.1",
+        "url": "urn:cts:greekLit:tlg0007.tlg058.perseus-eng2:69.1",
+        "quotation": "sent Cleopatra forward into Egypt from Paraetonium"
+       }
+      ]
+     },
+     {
+      "accordingTo": "Cassius Dio, Roman History",
+      "words": "From the Peloponnese she hastened to Egypt.",
+      "voices": [
+       {
+        "accordingTo": "Cassius Dio, Roman History",
+        "work": "chr:entity:cassius-dio-roman-history",
+        "observation": "chr:observation:lacuscurtius:cassius-dio:51.5.3:688a84b4",
+        "locator": "Cassius Dio 51.5.3",
+        "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Cassius_Dio/51*.html#5.3",
+        "quotation": "had gone as far as the Peloponnesus together"
+       },
+       {
+        "accordingTo": "Cassius Dio, Roman History",
+        "work": "chr:entity:cassius-dio-roman-history",
+        "observation": "chr:observation:lacuscurtius:cassius-dio:51.5.3:688a84b4",
+        "locator": "Cassius Dio 51.5.3",
+        "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Cassius_Dio/51*.html#5.3",
+        "quotation": "Cleopatra had hastened to Egypt"
+       }
+      ]
+     }
+    ]
+   },
+   "legs": [
+    {
+     "unit": {
+      "entity": "chr:entity:mark-antony",
+      "label": "Antony",
+      "side": "Antony"
+     },
+     "from": {
+      "label": "Actium",
+      "lonLat": [
+       20.765852,
+       38.953891
+      ],
+      "lonLatFrom": "the place's card (Pleiades 530771)",
+      "entity": "chr:entity:actium-promontory",
+      "status": "provisional",
+      "heldAs": "Actium promontory"
+     },
+     "to": {
+      "label": "Taenarum",
+      "lonLat": [
+       22.48650368203567,
+       36.40135856966597
+      ],
+      "lonLatFrom": "the place's card (Pleiades 570702)",
+      "entity": "chr:entity:proposed-place-taenarum",
+      "status": "proposed"
+     },
+     "basis": "inferred",
+     "note": "Together on her ship (Plutarch 67.1); the route is ours."
+    },
+    {
+     "unit": {
+      "entity": "chr:entity:mark-antony",
+      "label": "Antony",
+      "side": "Antony"
+     },
+     "from": {
+      "label": "Taenarum",
+      "lonLat": [
+       22.48650368203567,
+       36.40135856966597
+      ],
+      "lonLatFrom": "the place's card (Pleiades 570702)",
+      "entity": "chr:entity:proposed-place-taenarum",
+      "status": "proposed"
+     },
+     "to": {
+      "label": "Paraetonium",
+      "lonLat": [
+       27.2368445,
+       31.350136
+      ],
+      "lonLatFrom": "the place's card (Pleiades 716615)",
+      "entity": "chr:entity:proposed-place-paraetonium",
+      "status": "proposed"
+     },
+     "basis": "inferred",
+     "note": "Plutarch 67.6, 69.1: Taenarum, then Libya; the line is ours."
+    },
+    {
+     "unit": {
+      "entity": "chr:entity:cleopatra",
+      "label": "Cleopatra",
+      "side": "Antony"
+     },
+     "from": {
+      "label": "Paraetonium",
+      "lonLat": [
+       27.2368445,
+       31.350136
+      ],
+      "lonLatFrom": "the place's card (Pleiades 716615)",
+      "entity": "chr:entity:proposed-place-paraetonium",
+      "status": "proposed"
+     },
+     "to": {
+      "label": "Alexandria",
+      "lonLat": [
+       29.909773,
+       31.201435
+      ],
+      "lonLatFrom": "the place's card (Pleiades 727070)",
+      "entity": "chr:entity:alexandria",
+      "status": "proposed"
+     },
+     "basis": "inferred",
+     "accordingTo": "Plutarch (69.1)"
+    },
+    {
+     "unit": {
+      "entity": "chr:entity:cleopatra",
+      "label": "Cleopatra",
+      "side": "Antony"
+     },
+     "from": {
+      "label": "Taenarum",
+      "lonLat": [
+       22.48650368203567,
+       36.40135856966597
+      ],
+      "lonLatFrom": "the place's card (Pleiades 570702)",
+      "entity": "chr:entity:proposed-place-taenarum",
+      "status": "proposed"
+     },
+     "to": {
+      "label": "Alexandria",
+      "lonLat": [
+       29.909773,
+       31.201435
+      ],
+      "lonLatFrom": "the place's card (Pleiades 727070)",
+      "entity": "chr:entity:alexandria",
+      "status": "proposed"
+     },
+     "basis": "inferred",
+     "accordingTo": "Dio (51.5.3)"
+    }
+   ],
+   "id": "chr:scene:actium-campaign-31bc#12"
+  },
+  {
+   "order": 13,
+   "phase": null,
+   "context": "the end of the war (another event)",
+   "timeWords": "1 August 30 BC",
+   "view": "overview",
+   "title": "Alexandria falls",
+   "statements": [
+    {
+     "text": "Antony's fleet goes over to Octavian before Alexandria.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Plutarch, Life of Antony",
+       "work": "chr:entity:plutarch-life-of-antony",
+       "observation": "chr:observation:perseus:tlg0007.tlg058.perseus-eng2:76.1:70427323",
+       "locator": "Plutarch Antony 76.1",
+       "url": "urn:cts:greekLit:tlg0007.tlg058.perseus-eng2:76.1",
+       "quotation": "on their returning the salute changed sides"
+      },
+      {
+       "accordingTo": "Cassius Dio, Roman History",
+       "work": "chr:entity:cassius-dio-roman-history",
+       "observation": "chr:observation:lacuscurtius:cassius-dio:51.10.4:688a84b4",
+       "locator": "Cassius Dio 51.10.4",
+       "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Cassius_Dio/51*.html#10.4",
+       "quotation": "Cleopatra, upon perceiving this, caused the ships to desert"
+      }
+     ],
+     "note": "Plutarch tells it as the crews' own choice; Dio has Cleopatra cause it. Both are kept.",
+     "id": "chr:scene:actium-campaign-31bc#13.1"
+    },
+    {
+     "text": "His cavalry deserts, his infantry is beaten, and he retires into the city.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Plutarch, Life of Antony",
+       "work": "chr:entity:plutarch-life-of-antony",
+       "observation": "chr:observation:perseus:tlg0007.tlg058.perseus-eng2:76.2:70427323",
+       "locator": "Plutarch Antony 76.2",
+       "url": "urn:cts:greekLit:tlg0007.tlg058.perseus-eng2:76.2",
+       "quotation": "he was deserted by his cavalry, which went over to the enemy, and after being defeated with his infantry he retired into the city"
+      }
+     ],
+     "id": "chr:scene:actium-campaign-31bc#13.2"
+    },
+    {
+     "text": "Told that Cleopatra is dead, Antony wounds himself, and dies with her in the tomb.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Plutarch, Life of Antony",
+       "work": "chr:entity:plutarch-life-of-antony",
+       "observation": "chr:observation:perseus:tlg0007.tlg058.perseus-eng2:76.3:70427323",
+       "locator": "Plutarch Antony 76.3",
+       "url": "urn:cts:greekLit:tlg0007.tlg058.perseus-eng2:76.3",
+       "quotation": "Antony believed the message"
+      },
+      {
+       "accordingTo": "Cassius Dio, Roman History",
+       "work": "chr:entity:cassius-dio-roman-history",
+       "observation": "chr:observation:lacuscurtius:cassius-dio:51.10.7:688a84b4",
+       "locator": "Cassius Dio 51.10.7",
+       "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Cassius_Dio/51*.html#10.7",
+       "quotation": "gave himself a wound and fell upon his face"
+      },
+      {
+       "accordingTo": "Cassius Dio, Roman History",
+       "work": "chr:entity:cassius-dio-roman-history",
+       "observation": "chr:observation:lacuscurtius:cassius-dio:51.10.9:688a84b4",
+       "locator": "Cassius Dio 51.10.9",
+       "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Cassius_Dio/51*.html#10.9",
+       "quotation": "So Antony died there in Cleopatra's bosom"
+      }
+     ],
+     "id": "chr:scene:actium-campaign-31bc#13.3"
+    },
+    {
+     "text": "Octavian drives into the city.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Plutarch, Life of Antony",
+       "work": "chr:entity:plutarch-life-of-antony",
+       "observation": "chr:observation:perseus:tlg0007.tlg058.perseus-eng2:80.1:70427323",
+       "locator": "Plutarch Antony 80.1",
+       "url": "urn:cts:greekLit:tlg0007.tlg058.perseus-eng2:80.1",
+       "quotation": "And now Caesar himself drove into the city"
+      }
+     ],
+     "id": "chr:scene:actium-campaign-31bc#13.4"
+    },
+    {
+     "text": "The city fell on 1 August 30 BC.",
+     "basis": "not-checked",
+     "voices": [],
+     "by": "the animation's generator (Claude, in a chat, from Wikipedia and its own knowledge)",
+     "note": "No passage read gives the date. Dio 51.19.6 says the day of the capture was declared a lucky day, without naming it.",
+     "id": "chr:scene:actium-campaign-31bc#13.5"
+    },
+    {
+     "text": "Cleopatra dies; Octavian admires her spirit and has her buried with Antony.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Plutarch, Life of Antony",
+       "work": "chr:entity:plutarch-life-of-antony",
+       "observation": "chr:observation:perseus:tlg0007.tlg058.perseus-eng2:86.4:70427323",
+       "locator": "Plutarch Antony 86.4",
+       "url": "urn:cts:greekLit:tlg0007.tlg058.perseus-eng2:86.4",
+       "quotation": "he gave orders that her body should be buried with that of Antony in splendid and regal fashion"
+      }
+     ],
+     "id": "chr:scene:actium-campaign-31bc#13.6"
+    },
+    {
+     "text": "Octavian now holds all power alone.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Cassius Dio, Roman History",
+       "work": "chr:entity:cassius-dio-roman-history",
+       "observation": "chr:observation:lacuscurtius:cassius-dio:51.1.1:688a84b4",
+       "locator": "Cassius Dio 51.1.1",
+       "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Cassius_Dio/51*.html#1.1",
+       "quotation": "Caesar now for the first time held all the power alone"
+      }
+     ],
+     "note": "Dio dates this from Actium, not from Alexandria.",
+     "id": "chr:scene:actium-campaign-31bc#13.7"
+    }
+   ],
+   "legs": [],
+   "id": "chr:scene:actium-campaign-31bc#13"
+  }
+ ],
+ "footnote": "Not in the scene: the council before the battle (phase 'council'). The date of Alexandria's fall is in no passage held. Places added for the scene (proposed, migration 035): Brundisium, Toryne, Leucas, Methone, Taenarum, Paraetonium; Corcyra is the graph's Corfu (the island).",
+ "contentHash": "2e841b723b709562098404b0a65d55abad4827da8a383eb9e85d5d9cd98b7b05"
+}

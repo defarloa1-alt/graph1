@@ -180,3 +180,7 @@ GraphRevised/chats/
 
 # Database backups: data, possibly licensed text; the curator moves them elsewhere
 GraphRevised/backup/
+
+# generated narration audio (the record audio.json is tracked)
+GraphRevised/scenes/audio/**/*.mp3
+GraphRevised/scenes/*.mp3

@@ -9,6 +9,7 @@ this script are the only tracked parts.
 
 from __future__ import annotations
 
+import hashlib
 import json
 import re
 from pathlib import Path
@@ -259,6 +260,48 @@ def load_plans() -> dict:
     return out
 
 
+def load_scenes() -> dict:
+    """Movement scenes (scenes/*.json, 26a shape 7), by subject. A scene derived from an animation page that
+    embeds its own basemap (coastlines and hillshade, `const GEO={...}`) carries that basemap with it; its
+    licences are in the scene's `terrain` note."""
+    out = {}
+    for path in sorted((ROOT / "scenes").glob("*.json")) if (ROOT / "scenes").exists() else []:
+        scene = json.loads(path.read_text(encoding="utf-8"))
+        if scene.get("type") not in ("movement", "flyby"):
+            continue  # its narration input and its narrations sit beside it
+        source = (scene.get("derivedFrom") or {}).get("file")
+        page = ROOT / source if source else None
+        if page and page.exists():
+            m = re.search(r"const GEO=(\{.*?\});", page.read_text(encoding="utf-8"), re.S)
+            if m:
+                scene["basemap"] = json.loads(m.group(1))
+        scene["file"] = path.relative_to(ROOT).as_posix()
+        # its narrations (scenes/NARRATION.md), by persona; one written for another version of the scene is stale
+        stem = path.name.split(".")[0]
+        scene["narrations"] = {}
+        for npath in sorted(path.parent.glob(f"{stem}.narration.*.json")):
+            if npath.name.endswith(".rejected.json"):
+                continue
+            n = json.loads(npath.read_text(encoding="utf-8"))
+            scene["narrations"][n.get("persona", "browser")] = {
+                "stale": n.get("sceneContentHash") != scene.get("contentHash"), "madeBy": n.get("madeBy"),
+                "madeAt": n.get("madeAt"), "warnings": len((n.get("check") or {}).get("warnings", [])),
+                "steps": {s["stepId"]: s["lines"] for s in n.get("steps", [])}}
+            # its voiced clips (narrative/voice_scene.py), used only if they voice this exact narration file
+            apath = ROOT / "scenes" / "audio" / scene["id"].rsplit(":", 1)[-1] / n.get("persona", "browser") / "audio.json"
+            if apath.exists():
+                rec = json.loads(apath.read_text(encoding="utf-8"))
+                if rec.get("narrationSha256") == hashlib.sha256(npath.read_bytes()).hexdigest():
+                    scene["narrations"][n.get("persona", "browser")]["audio"] = {
+                        "dir": "../" + apath.parent.relative_to(ROOT).as_posix() + "/",
+                        "voice": rec.get("voiceName") or rec.get("voice"), "generator": rec.get("generator"),
+                        "madeAt": rec.get("madeAt"), "seconds": rec.get("seconds"),
+                        "clips": {c["id"]: {"file": c["file"], "seconds": c.get("seconds")} for c in rec["clips"]
+                                  if (apath.parent / c["file"]).exists()}}
+        out[scene["subject"]["id"]] = scene
+    return out
+
+
 def load_phases() -> dict:
     """Each event's phase keys in the curator's order (curation/phases.json, D-091)."""
     path = ROOT / "curation" / "phases.json"
@@ -290,7 +333,7 @@ def build() -> Path:
         })
     edges = [trim_fact(e["data"]) for e in export["elements"]["edges"]]
     data = {"generatedBy": export.get("generated_by"), "nodes": nodes, "edges": edges,
-            "images": load_images(), "gallery": load_gallery(), "backdrops": load_backdrops(), "plans": load_plans(), "reach": load_reach(), "phases": load_phases()}
+            "images": load_images(), "gallery": load_gallery(), "backdrops": load_backdrops(), "plans": load_plans(), "reach": load_reach(), "scenes": load_scenes(), "phases": load_phases()}
     payload = json.dumps(data, ensure_ascii=False).replace("</", "<\\/")
     page = TEMPLATE.read_text(encoding="utf-8").replace("__GRAPH_DATA__", payload)
     OUTPUT.write_text(page, encoding="utf-8")

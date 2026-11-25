@@ -399,6 +399,87 @@ a.ext::after { content: " ↗"; font-size: .85em; }
 .counts span { font-size: var(--fs-label); color: var(--ink-3); }
 .plan ul.small { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 4px; color: var(--ink-2); }
 @media (max-width: 900px) { .plan { grid-template-columns: minmax(0, 1fr); } }
+/* the scene in the Animation view (26a): the basis of every sentence, and its passages */
+.anv.scene { grid-template-columns: minmax(0, 1fr) minmax(340px, 42%); }
+.anv.scene .anv-map { background: #dce9f1; }
+.sc-cap { position: absolute; left: 8px; right: 8px; bottom: 8px; font-size: var(--fs-label); color: var(--ink); background: rgba(255,255,255,.88); border-radius: 4px; padding: 3px 8px; }
+.anv.scene .anv-side { overflow: auto; }
+.sc-step h3 { margin: 2px 0; font-size: var(--fs-title); }
+.stms { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
+.stm { display: flex; flex-direction: column; gap: 3px; font-size: var(--fs-read); line-height: 1.4; }
+.stm .st-t { color: var(--ink); }
+.bchip { align-self: flex-start; font-family: var(--font-mono); font-size: var(--fs-mono); text-transform: uppercase; letter-spacing: .05em; border-radius: 3px; padding: 0 5px; border: 1px solid var(--ink-2); color: var(--ink-2); }
+.bchip.b-sourced { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.bchip.b-inferred { border-style: dashed; }
+.bchip.b-not-checked { border-style: dotted; color: var(--ink-3); }
+.sv-list { display: flex; flex-direction: column; gap: 2px; border-left: 2px solid var(--line); padding-left: 8px; }
+.sv { font-size: var(--fs-chrome); color: var(--ink-2); }
+.sv q { font-style: italic; }
+.cite-l { border: 0; background: var(--fill); border-radius: 3px; font-family: var(--font-mono); font-size: var(--fs-mono); padding: 0 4px; color: var(--ink); cursor: pointer; }
+.st-by, .st-note { font-size: var(--fs-chrome); color: var(--ink-3); }
+.sc-alt, .sc-corr, .sc-disp { border: 1px solid var(--line); border-radius: var(--r); padding: 8px 10px; display: flex; flex-direction: column; gap: 4px; margin-top: 10px; font-size: var(--fs-chrome); }
+.sc-alt .alt { display: flex; flex-direction: column; gap: 2px; border-top: 1px dashed var(--line); padding-top: 4px; }
+.sc-corr s { color: var(--ink-3); }
+.sc-disp .linkish { text-align: left; }
+.sc-prov { margin-top: 12px; }
+:root { --side-o: #2f68b0; --side-a: #b33a2c; --side-c: #c8961b; }
+/* the scene's cover (curator, 2026-11-24): the poster's night and gold; the evidence restyled, never hidden */
+.anv.scene.poster { background: #0d1318; color: #f4ecd8; }
+.anv.scene.poster .anv-head h2 { font-family: Cinzel, serif; color: #f4ecd8; }
+.anv.scene.poster .anv-head .label, .anv.scene.poster .anv-head .muted { color: #b9ad92; }
+.anv.scene.poster .anv-map { background: #16222b; border: 1px solid #d4b36a; box-shadow: inset 0 0 60px rgba(0,0,0,.6); }
+.anv.scene.poster .sc-cap { background: rgba(13,19,24,.85); color: #f4ecd8; border: 1px solid #d4b36a; }
+.sc-bust { position: absolute; top: 8px; margin: 0; width: min(12.5%, 140px); display: flex; flex-direction: column; gap: 3px; opacity: .38; filter: grayscale(.7); transition: opacity .6s, filter .6s; pointer-events: none; }
+.sc-bust.l { left: 8px; } .sc-bust.r { right: 8px; text-align: right; }
+.sc-bust.on { opacity: 1; filter: none; }
+.sc-bust img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 30%; border: 1px solid #d4b36a; filter: sepia(.25) contrast(1.05) brightness(.9); border: 0; -webkit-mask-image: radial-gradient(ellipse 50% 50% at 50% 45%, #000 55%, transparent 100%); mask-image: radial-gradient(ellipse 50% 50% at 50% 45%, #000 55%, transparent 100%); }
+.sc-bust figcaption { font-size: var(--fs-label); color: #f4ecd8; line-height: 1.3; }
+.sc-bust figcaption b { display: block; font-family: Cinzel, serif; font-size: 13px; color: #d4b36a; font-weight: 600; }
+.sc-bust figcaption span { display: -webkit-box; -webkit-line-clamp: 2; line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; opacity: .8; }
+.sc-plate { position: absolute; left: 12px; bottom: 44px; max-width: 62%; background: rgba(13,19,24,.88); border: 1px solid #d4b36a; outline: 1px solid rgba(212,179,106,.35); outline-offset: 3px; border-radius: 3px; padding: 8px 14px; display: flex; flex-direction: column; gap: 2px; }
+.sc-plate .sc-when { font-family: Cinzel, serif; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: #d4b36a; }
+.sc-plate h3 { margin: 0; font-family: Cinzel, serif; font-weight: 600; font-size: 22px; line-height: 1.15; color: #f4ecd8; }
+.sc-plate .sc-counts { font-size: var(--fs-label); color: #b9ad92; }
+.anv.scene.poster .anv-side { background: #0d1318; border-left: 1px solid #d4b36a; padding-left: 12px; color: #f4ecd8; }
+.anv.scene.poster .anv-side .label, .anv.scene.poster .sc-step .label { color: #d4b36a; }
+.anv.scene.poster .sc-step h3 { font-family: Cinzel, serif; color: #f4ecd8; }
+.anv.scene.poster .stm .st-t { color: #f4ecd8; }
+.anv.scene.poster .bchip { border-color: #d4b36a; color: #d4b36a; }
+.anv.scene.poster .bchip.b-sourced { background: #d4b36a; color: #0d1318; }
+.anv.scene.poster .bchip.b-not-checked { border-color: #b9ad92; color: #b9ad92; }
+.anv.scene.poster .sv-list { border-left-color: rgba(212,179,106,.5); }
+.anv.scene.poster .sv, .anv.scene.poster .sv q { color: #e6dcc4; }
+.anv.scene.poster .cite-l { background: transparent; border: 1px solid rgba(212,179,106,.6); color: #d4b36a; }
+.anv.scene.poster .st-by, .anv.scene.poster .st-note, .anv.scene.poster .muted, .anv.scene.poster .small { color: #b9ad92; }
+.anv.scene.poster .sc-alt, .anv.scene.poster .sc-corr, .anv.scene.poster .sc-disp { border-color: rgba(212,179,106,.55); }
+.anv.scene.poster .sc-corr s { color: #8f8572; }
+.anv.scene.poster .linkish { color: #f4ecd8; }
+.anv.scene.poster .anno { background: #16222b; color: #e6dcc4; }
+.anv.scene.poster .btn, .anv.scene.poster .seg button { background: transparent; color: #f4ecd8; border-color: #d4b36a; }
+.anv.scene.poster .btn[aria-pressed="true"], .anv.scene.poster .seg button[aria-pressed="true"], .anv.scene.poster .btn.primary { background: #d4b36a; color: #0d1318; }
+.anv.scene.poster .anv-strip button { background: #16222b; color: #b9ad92; border-color: rgba(212,179,106,.35); }
+.anv.scene.poster .anv-strip button.done { color: #e6dcc4; }
+.anv.scene.poster .anv-strip button.now { background: #d4b36a; color: #0d1318; }
+.anv.scene.poster .mono { color: #b9ad92; }
+.anv.scene.poster .pill { border-color: #d4b36a; color: #d4b36a; }
+.anv.scene.poster { --side-o: #7fa8d8; --side-a: #e07a68; --side-c: #e2b64e; }
+/* captions (scenes/NARRATION.md): the line spoken, over the map; the sentence it voices lit on the side */
+.sc-caption { position: absolute; left: 50%; transform: translateX(-50%); bottom: 44px; width: min(78%, 640px); z-index: 3; display: grid; grid-template-columns: auto 1fr auto; gap: 4px 10px; align-items: center; background: rgba(13,19,24,.9); color: #f4ecd8; border-radius: 6px; padding: 8px 10px; font-size: 15px; line-height: 1.4; box-shadow: 0 4px 18px rgba(0,0,0,.35); }
+.sc-caption .sc-ln { border: 0; background: transparent; color: #d4b36a; font-size: 18px; cursor: pointer; padding: 0 4px; }
+.sc-caption .sc-ln:disabled { opacity: .25; cursor: default; }
+.sc-caption .sc-lc { grid-column: 1 / -1; justify-self: end; font-family: var(--font-mono); font-size: var(--fs-mono); color: #b9ad92; }
+.sc-caption.b-inferred span:nth-of-type(1) { font-style: italic; }
+.sc-caption.b-not-checked { border: 1px dotted #b9ad92; }
+.anv.scene.poster .sc-caption { border: 1px solid #d4b36a; }
+.anv.scene.poster .sc-plate { bottom: auto; top: 8px; left: 50%; transform: translateX(-50%); max-width: 56%; text-align: center; }
+.stm.speaking, .sc-alt.speaking, .sc-corr.speaking, .sc-disp.speaking { background: rgba(212,179,106,.16); box-shadow: -4px 0 0 #d4b36a; border-radius: 4px; }
+.anv.scene.poster .sc-plate.slim { padding: 4px 14px; outline: 0; flex-direction: row; align-items: baseline; gap: 10px; max-width: 70%; white-space: nowrap; }
+.anv.scene.poster .sc-plate.slim h3 { font-size: 14px; overflow: hidden; text-overflow: ellipsis; }
+.anv.scene.poster .sc-plate.slim .sc-when { font-size: 10px; }
+.anv-side.sc-reading .stm:not(.speaking), .anv-side.sc-reading .sc-alt:not(.speaking), .anv-side.sc-reading .sc-corr:not(.speaking), .anv-side.sc-reading .sc-disp:not(.speaking), .anv-side.sc-reading .anno, .anv-side.sc-reading .sc-prov { opacity: .35; transition: opacity .3s; }
+.anv-side.sc-reading .speaking { background: rgba(212,179,106,.22); box-shadow: -4px 0 0 #d4b36a; padding: 6px 8px; transition: opacity .3s, background .3s; }
+.sc-zoom { transform-origin: 0 0; transition: transform 1.6s cubic-bezier(.45,0,.2,1); }
+@media (prefers-reduced-motion: reduce) { .sc-zoom { transition: none; } }
 /* stage modes, path bar, reading panes */
 .pathbar { flex-basis: 100%; display: flex; flex-wrap: wrap; align-items: center; gap: 4px; font-size: var(--fs-body); background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 3px 8px; }
 .pathbar .step { border: 0; background: transparent; padding: 0 2px; color: var(--ink-2); text-decoration: underline; text-underline-offset: 2px; }
@@ -878,7 +959,7 @@ const S = {
   cats: new Set(["factual", "interpretive"]), att: new Set(ATT.map(a => a[0])), // fiction off by default (fix 2, curator 2026-11-18)
   voice: "", from: -100, to: 20, drawerOpen: false, log: [], cites: [], myNotes: {}, mapZoom: 1,
   fs: false, anim: { i: 0, playing: false },
-  planDec: {}, planAllQ: false, // the curator's approve / reject / defer per plan item, in this page only (the real write is InquiryPlan.decide)
+  planDec: {}, planAllQ: false, scene: { i: 0, playing: false }, animMode: "scene", // the curator's approve / reject / defer per plan item, in this page only (the real write is InquiryPlan.decide)
 };
 
 /* ---------- helpers ---------- */
@@ -2412,10 +2493,235 @@ function animPlay(on) {
   }
   renderAnim();
 }
+/* ---------- the Animation view, drawn from a movement scene (26a shape 7) ----------
+   Every sentence on the side carries its basis and its passages; every line on the map its basis:
+   sourced solid, inferred dashed, illustrative faded (D-172). The basemap is the one the source
+   animation embedded (its licences are in the scene's terrain note). */
+const SCENES = DATA.scenes || {};
+const SIDE_C = { Octavian: "var(--side-o)", Antony: "var(--side-a)" };
+const BASIS_WORD = { sourced: "sourced", inferred: "inferred", illustrative: "drawn", "not-checked": "not checked" };
+let sceneTimer = null;
+function sceneUnitColour(u) { return u.label?.startsWith("Cleopatra") ? "var(--side-c)" : SIDE_C[u.side] || "var(--ink-3)"; }
+// the scene's cover (curator, 2026-11-24): the poster's night, gold and Cinzel, with every basis still shown
+const SCENE_PAL = {
+  plain: { sea: "#dce9f1", land: "#e8e2cf", coast: "#7d6f52", shade: .55, ink: "#1f1b14", dim: "#6b6b6b", halo: "rgba(255,255,255,.8)", pin: "#fff", font: "inherit" },
+  poster: { sea: "#16222b", land: "#9c8a64", coast: GOLD, shade: .7, ink: CREAM, dim: "#b9ad92", halo: NIGHT, pin: NIGHT, font: "Cinzel, serif" },
+};
+function sceneLeader(id, name) {
+  const n = nodeById.get(id); if (!n) return null;
+  const g = (GALLERY[id] || []).find(x => x.class === "of-the-time"), im = imageFor(n);
+  const pic = g ? { src: g.src, what: `${g.depicts}: ${g.caption}` } : im && !im.mock ? { src: im.src, what: im.credit } : null;
+  return pic && { id, name, ...pic };
+}
+function renderScene(el) {
+  const sc = SCENES[S.focus], G = sc.basemap, steps = sc.steps;
+  const poster = S.scenePoster !== false, C = poster ? SCENE_PAL.poster : SCENE_PAL.plain;
+  S.scene.i = Math.min(Math.max(0, S.scene.i), steps.length - 1);
+  const i = S.scene.i, st = steps[i], battle = st.view === "battle";
+  const NR = sceneNarration(sc), lines = NR && S.captions !== false ? NR.steps[st.id] || [] : [];
+  S.scene.line = Math.min(S.scene.line || 0, Math.max(0, lines.length - 1));
+  const line = lines[S.scene.line], speaking = new Set(line ? line.keys : []);
+  const M = la => Math.log(Math.tan(Math.PI / 4 + la * Math.PI / 360));
+  const pj = (p, lon, lat) => [p.ox + (lon - p.lon0) * Math.PI / 180 * p.k, p.oy + (p.mlat1 - M(lat)) * p.k];
+  const P = battle ? G.pz : G.po, xy = ([lon, lat]) => pj(P, lon, lat).map(v => +v.toFixed(1));
+  const box = battle ? G.zmbox : G.ovbox;
+  // the geographic focus: what the line being read names (places and their legs; on the battle map a wing, the
+  // squadron, a ship or the camps), else the step's own places and legs, else all its ships; the map zooms to it
+  const textOf = ids => st.statements.filter(x => !ids || ids.has(x.id)).map(x => x.text).join(" ");
+  const has = (w, t) => new RegExp("\\b" + w.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + "\\b", "i").test(t);
+  const named = t => {
+    const pts = [];
+    if (!battle) {
+      for (const p of Object.values(sc.places)) if (p.label !== "Octavian's camp at Actium" && has(p.label, t)) pts.push(xy(p.lonLat));
+      for (const l of st.legs || []) if (has(l.from.label, t) || has(l.to.label, t)) [l.from, ...(l.via || []), l.to].forEach(p => pts.push(xy(p.lonLat)));
+      return pts;
+    }
+    for (const pl of st.placements || []) {
+      const L = pl.unit.label, wing = (L.match(/left wing|right wing|centre/i) || [])[0];
+      const hit = wing ? has(wing, t) && has(pl.unit.side, t) : /Cleopatra/.test(L) ? has("Cleopatra", t) : has("galley", t) || has("ship", t);
+      if (hit) pl.line.forEach(q => pts.push(xy(q)));
+    }
+    if (/\b(camp|legions|army)\b/i.test(t)) ["Actium", "Octavian's camp"].map(k => sc.places[k]).filter(Boolean).forEach(p => pts.push(xy(p.lonLat)));
+    return pts;
+  };
+  let fp = line ? named(line.text + " " + textOf(speaking)) : [];
+  if (!fp.length && !battle) {
+    (st.places || []).forEach(lb => { const p = Object.values(sc.places).find(q => q.label === lb); if (p) fp.push(xy(p.lonLat)); });
+    (st.legs || []).forEach(l => [l.from, ...(l.via || []), l.to].forEach(p => fp.push(xy(p.lonLat))));
+    if (!fp.length) fp = named(textOf());
+  }
+  if (!fp.length && battle) (st.placements || []).forEach(pl => pl.line.forEach(q => fp.push(xy(q))));
+  const VW = 470, VH = 440;
+  let zb = [0, 0, VW, VH];
+  if (fp.length && S.sceneZoom !== false) {
+    const xs = fp.map(p => p[0]), ys = fp.map(p => p[1]), pad = battle ? 70 : 110;
+    // the caption covers the lowest fifth of the map, so the focus is fitted to the upper four fifths
+    let w = Math.max(battle ? 230 : 140, Math.max(...xs) - Math.min(...xs) + pad), h = w * VH / VW;
+    if ((Math.max(...ys) - Math.min(...ys) + pad) / .78 > h) { h = (Math.max(...ys) - Math.min(...ys) + pad) / .78; w = h * VW / VH; }
+    if (w < VW * .92) {
+      const cx = (Math.min(...xs) + Math.max(...xs)) / 2, cy = (Math.min(...ys) + Math.max(...ys)) / 2 + h * .1;
+      zb = [Math.min(Math.max(0, cx - w / 2), VW - w), Math.min(Math.max(0, cy - h / 2), VH - h), w, h];
+    }
+  }
+  const zf = VW / zb[2], zT = `matrix(${zf.toFixed(4)},0,0,${zf.toFixed(4)},${(-zb[0] * zf).toFixed(1)},${(-zb[1] * zf).toFixed(1)})`;
+  const zFrom = S.scene.zoomView === st.view + i && S.scene.zoomNow ? S.scene.zoomNow : S.scene.zoomView?.startsWith(st.view) && S.scene.zoomNow ? S.scene.zoomNow : "matrix(1,0,0,1,0,0)";
+  S.scene.zoomTo = zT; S.scene.zoomView = st.view + i;
+  const u = v => +(v / zf).toFixed(2); // a size on screen, whatever the zoom
+  const HALO = `paint-order="stroke" stroke="${C.halo}" stroke-width="${u(poster ? 3.4 : 3)}" stroke-linejoin="round"`;
+  // places: lit when this step's legs touch them, ringed when an earlier step's did
+  const legPlaces = s => (s.legs || []).flatMap(l => [l.from, ...(l.via || []), l.to]);
+  const now = new Set(legPlaces(st).map(p => p.label));
+  const was = new Set(steps.slice(0, i).flatMap(legPlaces).map(p => p.label));
+  const marks = [], names = [];
+  const LEFT = new Set(["Leucas", "Methone", "Paraetonium"]); // names set left where a neighbour sits to the right
+  if (!battle) for (const p of Object.values(sc.places)) {
+    if (p.label === "Octavian's camp at Actium") continue; // a battle-map mark; on the overview it sits on Actium
+    const [x, y] = xy(p.lonLat), on = now.has(p.label), ring = was.has(p.label), left = LEFT.has(p.label);
+    const pin = p.entity ? `data-pin="${esc(p.entity)}" style="cursor:pointer"` : "";
+    const hot = poster ? GOLD : "var(--ink)";
+    marks.push(`<circle ${pin} cx="${x}" cy="${y}" r="${u(on ? 4.5 : 3)}" fill="${on ? hot : C.pin}" stroke="${on || ring ? hot : C.dim}" stroke-width="${u(ring && !on ? 1.6 : 1)}"/>`);
+    names.push(`<text ${pin} x="${left ? x - u(6) : x + u(6)}" y="${y + u(3.5)}" text-anchor="${left ? "end" : "start"}" font-family="${C.font}" font-size="${u(on ? 11.5 : 10)}" font-weight="${on ? 700 : 400}" fill="${on || ring ? C.ink : C.dim}" ${HALO}>${esc(p.label)}${p.status === "proposed" ? "*" : ""}</text>`);
+  }
+  // legs: a polyline through from, via, to; dashed when inferred, faded when drawn
+  const legs = (battle ? [] : st.legs || []).map(l => {
+    const pts = [l.from, ...(l.via || []), l.to].map(p => xy(p.lonLat).join(",")).join(" ");
+    const dash = l.basis === "inferred" ? `stroke-dasharray="${u(5)} ${u(4)}"` : "";
+    const op = l.basis === "illustrative" ? 0.45 : 1;
+    return `<polyline points="${pts}" fill="none" stroke="${sceneUnitColour(l.unit)}" stroke-width="${u(2.2)}" ${dash} opacity="${op}" marker-end="url(#sc-ar)"><title>${esc(l.unit.label)}: ${esc(l.from.label)} to ${esc(l.to.label)} (${esc(BASIS_WORD[l.basis])}${l.accordingTo ? ", according to " + esc(l.accordingTo) : ""})${l.note ? ". " + esc(l.note) : ""}</title></polyline>`;
+  }).join("");
+  // placements (battle steps): each unit a short row of ships along its drawn line; all drawn, none sourced
+  const ships = (battle ? st.placements || [] : []).map(pl => {
+    const [a, b] = pl.line.map(xy), n = pl.unit.label === "Antony's ship" ? 2 : poster ? 5 : 7;
+    const c = sceneUnitColour(pl.unit), east = pl.unit.side !== "Antony"; // the fleets face each other
+    const hull = Array.from({ length: n }, (_, k) => {
+      const t = n === 1 ? .5 : k / (n - 1), x = a[0] + (b[0] - a[0]) * t, y = a[1] + (b[1] - a[1]) * t;
+      if (!poster) return `<rect x="${(x - 3.5).toFixed(1)}" y="${(y - 2).toFixed(1)}" width="7" height="4" rx="1.5" fill="${c}" stroke="#fff" stroke-width=".5"/>`;
+      return `<g transform="translate(${x.toFixed(1)},${y.toFixed(1)})${east ? "" : " scale(-1,1)"}"><rect x="-8" y="-4.4" width="16" height="8.8" rx="2" fill="#e9dfc6" stroke="${c}" stroke-width="1.1"/><image href="${SHIP_SVG}" x="-7.2" y="-3.6" width="14.4" height="7.2"/></g>`;
+    }).join("");
+    return `<g opacity="${poster ? .85 : .78}"><title>${esc(pl.unit.label)}: position drawn, not sourced</title><line x1="${a[0]}" y1="${a[1]}" x2="${b[0]}" y2="${b[1]}" stroke="${c}" stroke-width=".8" stroke-dasharray="2 2"/>${hull}</g>`;
+  }).join("");
+  const camps = battle ? ["Actium", "Octavian's camp"].map(k => sc.places[k]).filter(Boolean).map(p => { const [x, y] = xy(p.lonLat); const army = st.army && p.label === "Actium"; return `<rect x="${x - u(4)}" y="${y - u(4)}" width="${u(8)}" height="${u(8)}" fill="${army ? "var(--side-o)" : C.pin}" stroke="${poster ? GOLD : "#2f2a20"}" stroke-width="${u(1.2)}"/><text x="${x + u(8)}" y="${y + u(4)}" font-family="${C.font}" font-size="${u(10.5)}" fill="${C.ink}" ${HALO}>${esc(p.label === "Actium" ? "Antony's camp (Actium)" : p.label)}</text>`; }).join("") : "";
+  const map = `<svg viewBox="0 0 470 440" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Step ${i + 1}: ${esc(st.title)}">
+    <defs><marker id="sc-ar" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M1 1L8 5L1 9" fill="none" stroke="context-stroke" stroke-width="1.8"/></marker>
+      <clipPath id="sc-clip"><path d="${battle ? G.zm : G.ov}"/></clipPath></defs>
+    <rect width="470" height="440" fill="${C.sea}"/>
+    <g class="sc-zoom" style="transform:${zFrom}">
+    <path d="${battle ? G.zm : G.ov}" fill="${C.land}" stroke="${C.coast}" stroke-width="${poster ? .9 : .6}"/>
+    <image href="${battle ? G.zmimg : G.ovimg}" x="${box[0]}" y="${box[1]}" width="${box[2]}" height="${box[3]}" clip-path="url(#sc-clip)" opacity="${C.shade}" preserveAspectRatio="none" ${poster ? 'style="mix-blend-mode:multiply"' : ""}/>
+    ${legs}${ships}${camps}${marks.join("")}${names.join("")}
+    </g>
+  </svg>`;
+  // the side: each statement with its basis and passages
+  const chip = b => `<span class="bchip b-${esc(b)}">${esc(BASIS_WORD[b] || b)}</span>`;
+  const voice = v => `<span class="sv"><button class="cite-l" data-sel-node="${esc(v.work)}" title="${esc(v.accordingTo)}">${esc(v.locator)}</button> <q>${esc(v.quotation)}</q></span>`;
+  const stmts = st.statements.map(x => `<li class="stm ${speaking.has(x.id) ? "speaking" : ""}">${chip(x.basis)} <span class="st-t">${esc(x.text)}</span>
+      ${x.voices.length ? `<div class="sv-list">${x.voices.map(voice).join("")}</div>` : ""}
+      ${x.by ? `<span class="st-by">${x.basis === "not-checked" ? "Asserted by" : "Inference by"} ${esc(x.by)}</span>` : ""}
+      ${x.note ? `<span class="st-note">${esc(x.note)}</span>` : ""}</li>`).join("");
+  const alt = (title, a, key) => a ? `<div class="sc-alt ${speaking.has(st.id + ":" + key) ? "speaking" : ""}"><span class="label">${esc(title)}</span><span class="small muted">${esc(a.note)}</span>
+      ${a.alternatives.map(x => `<div class="alt"><b>${esc(x.accordingTo)}</b>${x.words ? `<span>${esc(x.words)}</span>` : ""}
+        ${x.antony ? `<span class="small">Antony: ${esc(Object.entries(x.antony).map(([k, v]) => `${k}: ${v.join(", ")}`).join("; "))}</span>` : ""}
+        ${x.octavian ? `<span class="small">Octavian: ${esc(Object.entries(x.octavian).map(([k, v]) => `${k}: ${v.join(", ")}`).join("; "))}</span>` : ""}
+        <div class="sv-list">${x.voices.map(voice).join("")}</div>${x.note ? `<span class="st-note">${esc(x.note)}</span>` : ""}</div>`).join("")}</div>` : "";
+  const corr = (st.corrected || []).map(c => `<div class="sc-corr ${speaking.has(st.id + ":corrected") ? "speaking" : ""}"><span class="label">Corrected from the animation</span><s>${esc(c.was)}</s><span>${esc(c.why)}</span>${c.voices.length ? `<div class="sv-list">${c.voices.map(voice).join("")}</div>` : ""}</div>`).join("");
+  const disp = st.disputed ? `<div class="sc-disp ${speaking.has(st.id + ":disputed") ? "speaking" : ""}"><span class="label">Disputed: ${esc(st.disputed.words)}</span>${st.disputed.questions.map(qid => nodeById.has(qid) ? `<button class="linkish" data-stand="${esc(qid)}">${esc(nodeById.get(qid).fullLabel)}</button>` : "").join("")}</div>` : "";
+  const counts = st.statements.reduce((a, x) => (a[x.basis] = (a[x.basis] || 0) + 1, a), {});
+  const countWords = Object.entries(counts).map(([k, n]) => `${n} ${BASIS_WORD[k]}`).join(" · ");
+  // the two leaders from their time, in the corners; one lights when the step moves his side or names him
+  const said = st.statements.map(x => x.text).join(" ");
+  const acts = side => (st.legs || []).some(l => l.unit.side === side) || new RegExp("\\b" + side + "\\b").test(said);
+  const leaders = poster ? [["chr:entity:mark-antony", "Antony", "l"], ["chr:entity:augustus", "Octavian", "r"]]
+    .map(([id, name, at]) => {
+      const L = sceneLeader(id, name);
+      return L ? `<figure class="sc-bust ${at} ${acts(name) ? "on" : ""}"><img src="${L.src}" alt="${esc(name)}"><figcaption><b>${esc(name)}</b><span>${esc(L.what)}</span></figcaption></figure>` : "";
+    }).join("") : "";
+  const plate = !poster ? "" : line
+    ? `<div class="sc-plate slim"><span class="sc-when">${esc(st.timeWords)}</span><h3>${esc(st.title)}</h3></div>`
+    : `<div class="sc-plate"><span class="sc-when">${esc(st.timeWords)}</span><h3>${esc(st.title)}</h3><span class="sc-counts">${esc(countWords)}</span></div>`;
+  el.innerHTML = `<div class="anv scene ${poster ? "poster" : ""}">
+    <div class="anv-head"><span class="label">Animation</span><h2>${esc(nameOf(nodeById.get(S.focus)))}</h2>
+      <span class="seg" role="group"><button data-anim-mode="phases" aria-pressed="false">Phases</button><button data-anim-mode="scene" aria-pressed="true">Scene</button></span>
+      ${NR ? `<button class="btn" data-captions="1" aria-pressed="${S.captions !== false}" title="Narration, ${esc(NR.persona)}: ${esc(NR.madeBy)}, ${esc(NR.madeAt)}">Captions</button>${NR.audio && S.captions !== false ? `<button class="btn" data-sound="1" aria-pressed="${S.sound !== false}" title="Voiced: ${esc(NR.audio.voice)}, ${esc(NR.audio.generator)}, ${esc(NR.audio.madeAt)}. Made audio, never evidence">Sound</button>` : ""}${NR.stale ?`<span class="pill" title="Written for another version of the scene">narration stale</span>` : ""}` : ""}
+      <button class="btn" data-scene-poster="1" aria-pressed="${poster}" title="The scene's cover: the poster's palette, every basis still shown">Poster</button>
+      <span class="pill">${esc(sc.status)}</span><span class="muted small">${esc(sc.scope)}</span></div>
+    <div class="anv-map">${map}${leaders}${plate}${line ? `<div class="sc-caption b-${esc(line.basis || "transition")}" aria-live="polite">
+        <button class="sc-ln" data-scene-line="-1" aria-label="Previous line" ${S.scene.line ? "" : "disabled"}>‹</button>
+        <span>${esc(line.text)}</span>
+        <button class="sc-ln" data-scene-line="1" aria-label="Next line" ${S.scene.line < lines.length - 1 ? "" : "disabled"}>›</button>
+        <span class="sc-lc">${S.scene.line + 1}/${lines.length}${line.basis && line.basis !== "sourced" ? " · " + esc(BASIS_WORD[line.basis]) : ""}</span></div>` : ""}
+      <span class="sc-cap">${battle ? "Ship positions are drawn, not sourced: no passage gives them (a Generalized Abstraction, D-172)." : "Lines: solid sourced, dashed inferred (ours), faded drawn. * a place proposed for this scene."}</span></div>
+    <div class="anv-side ${speaking.size ? "sc-reading" : ""}">
+      <span class="anno"><b>Scene on the stage.</b> A movement scene (26a), checked against the stored passages. Each sentence says what it rests on: a passage (quoted, with its locator), an inference (and whose), or nothing yet. Positions with no passage are drawn and say so.</span>
+      <div class="sc-step"><span class="label">${i + 1} / ${steps.length} · ${esc(st.timeWords)}${st.phase ? ` · phase: ${esc(st.phase.replace(/-/g, " "))}` : st.context ? ` · ${esc(st.context)}` : ""}</span>
+        <h3>${esc(st.title)}</h3>
+        <span class="small muted">${esc(countWords)}</span></div>
+      <ul class="stms">${stmts}</ul>
+      ${disp}${corr}${alt("Two orders of battle", st.ordersOfBattle, "ordersOfBattle")}${alt("Two routes", st.routes, "routes")}
+      ${st.locatorNote ? `<span class="st-note">${esc(st.locatorNote)}</span>` : ""}
+      <details class="sc-prov"><summary class="small">Where this scene comes from</summary>
+        <p class="small">${esc(sc.derivedFrom.madeBy)}. ${esc(sc.derivedFrom.note)}</p>
+        <p class="small">Check: ${esc(sc.derivedFrom.check)}. Scene: ${esc(sc.file)}.</p>
+        <p class="small">${esc(sc.terrain.note)}</p>
+        <p class="small">${esc(sc.footnote)}</p></details>
+    </div>
+    <div class="anv-ctl" role="group" aria-label="Play controls">
+      <button class="btn" data-scene="first" aria-label="First step">⏮</button><button class="btn" data-scene="prev" aria-label="Previous step">‹</button>
+      <button class="btn primary" data-scene="play">${S.scene.playing ? "❚❚ Pause" : "▶ Play"}</button>
+      <button class="btn" data-scene="next" aria-label="Next step">›</button>
+      <span class="mono small">${i + 1} / ${steps.length}</span>
+    </div>
+    <div class="anv-strip" style="grid-template-columns:repeat(${steps.length}, minmax(0, 1fr))">${steps.map((s, k) => `<button data-scene-i="${k}" class="${k === i ? "now" : k < i ? "done" : ""}" title="${esc(s.title)}">${k + 1}. ${esc(s.title)}</button>`).join("")}</div>
+  </div>`;
+}
+function sceneNarration(sc) {
+  const all = sc.narrations || {}, persona = S.persona === "scholar" || S.persona === "student" ? S.persona : "browser";
+  const key = all[persona] ? persona : Object.keys(all)[0];
+  return key ? { persona: key, ...all[key] } : null;
+}
+function sceneGo(i, line = 0) { S.scene.i = i; S.scene.line = line; renderAnim(); }
+const sceneAudio = new Audio();
+function sceneStop() { clearTimeout(sceneTimer); sceneTimer = null; S.scene.playing = false; sceneAudio.onended = sceneAudio.onerror = null; sceneAudio.pause(); }
+function sceneTick() {
+  // with captions: each line plays its voiced clip and the next follows when it ends (or, with no clip or the sound
+  // off, holds for its estimated length); then the next step. Without captions: 6 s a step.
+  const sc = SCENES[S.focus], n = sc.steps.length, NR = S.captions !== false ? sceneNarration(sc) : null;
+  const lines = NR ? NR.steps[sc.steps[S.scene.i].id] || [] : [];
+  const line = lines[S.scene.line || 0], clip = line && S.sound !== false && NR.audio ? NR.audio.clips[line.id] : null;
+  const next = () => {
+    if (!S.scene.playing) return;
+    if (lines.length && (S.scene.line || 0) < lines.length - 1) sceneGo(S.scene.i, (S.scene.line || 0) + 1);
+    else if (S.scene.i < n - 1) sceneGo(S.scene.i + 1, 0);
+    else { sceneStop(); renderAnim(); return; }
+    sceneTick();
+  };
+  if (clip) {
+    sceneAudio.src = NR.audio.dir + clip.file;
+    sceneAudio.onended = () => { sceneTimer = setTimeout(next, 350); };  // a breath between lines
+    sceneAudio.onerror = () => { sceneTimer = setTimeout(next, Math.max(1.5, line.estSeconds || 3) * 1000); };
+    sceneAudio.play().catch(sceneAudio.onerror);
+    return;
+  }
+  sceneTimer = setTimeout(next, lines.length ? Math.max(1.5, line?.estSeconds || 3) * 1000 : 6000);
+}
 function renderAnim() {
   const el = $("#animStage");
   el.hidden = S.view !== "animation";
-  if (el.hidden) { if (S.anim.playing) { clearInterval(animTimer); S.anim.playing = false; } return; }
+  if (el.hidden) { if (S.anim.playing) { clearInterval(animTimer); S.anim.playing = false; } if (S.scene.playing) sceneStop(); return; }
+  if (SCENES[S.focus] && S.animMode !== "phases") { // a checked scene, when one exists (26a)
+    const was = el.querySelector(".anv-side")?.scrollTop || 0;
+    renderScene(el);
+    const zg = el.querySelector(".sc-zoom");
+    if (zg) { zg.getBoundingClientRect(); requestAnimationFrame(() => { zg.style.transform = S.scene.zoomTo; S.scene.zoomNow = S.scene.zoomTo; }); }
+    const side = el.querySelector(".anv-side"), sp = side && side.querySelector(".speaking");
+    if (side) {
+      side.scrollTop = was;
+      if (sp) {
+        const off = sp.getBoundingClientRect().top - side.getBoundingClientRect().top;
+        if (off < 40 || off + sp.offsetHeight > side.clientHeight - 20) side.scrollTo({ top: side.scrollTop + off - 60, behavior: "smooth" });
+      }
+    }
+    return;
+  }
   const n = nodeById.get(S.focus), phs = phaseList(S.focus);
   if (!phs.length) {
     el.innerHTML = `<div style="padding:24px 40px" class="muted">Animation plays an event's phases in order. ${esc(nameOf(n))} has no phases yet. <button class="linkish" data-stand-view="${esc(ACTIUM)}|animation">Play the Battle of Actium</button></div>`;
@@ -2446,7 +2752,7 @@ function renderAnim() {
   }
   const pins = dots.join("") + names.join("");
   el.innerHTML = `<div class="anv">
-    <div class="anv-head"><span class="label">Animation</span><h2>${esc(nameOf(n))}</h2><span class="muted">Phase ${i + 1} of ${phs.length}: <b style="color:var(--ink)">${esc(phaseName(ph))}</b></span><span class="mono muted small">${y != null ? esc(yearText(y)) + " · " : ""}date inherited from the battle (fix 4c)</span></div>
+    <div class="anv-head"><span class="label">Animation</span><h2>${esc(nameOf(n))}</h2>${SCENES[S.focus] ? `<span class="seg" role="group"><button data-anim-mode="phases" aria-pressed="true">Phases</button><button data-anim-mode="scene" aria-pressed="false">Scene</button></span>` : ""}<span class="muted">Phase ${i + 1} of ${phs.length}: <b style="color:var(--ink)">${esc(phaseName(ph))}</b></span><span class="mono muted small">${y != null ? esc(yearText(y)) + " · " : ""}date inherited from the battle (fix 4c)</span></div>
     <div class="anv-map"><svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Places of phase ${i + 1}: ${esc(phaseName(ph))}">${grat.join("")}${pins}</svg></div>
     <div class="anv-side">
       <span class="anno"><b>Animation on the stage.</b> The battle played phase by phase. Each phase lights the places its moments name; earlier places stay ringed. Places with no coordinates wait in the tray and do not move.</span>
@@ -2579,6 +2885,18 @@ document.addEventListener("click", ev => {
   if (t.id === "tourPrev") return showScreen(Math.max(0, S.screen - 1));
   if (t.id === "tourNext") return showScreen(Math.min(TOUR_CAPTION.length - 1, S.screen + 1));
   if (d.side) return setSide(d.side, d.mode);
+  if (d.scenePoster) { S.scenePoster = S.scenePoster === false; return renderAnim(); }
+  if (d.animMode) { S.animMode = d.animMode; if (S.scene.playing) sceneStop(); return renderAnim(); }
+  if (d.sceneI != null) { sceneStop(); return sceneGo(+d.sceneI); }
+  if (d.sceneLine) { sceneStop(); S.scene.line = Math.max(0, (S.scene.line || 0) + +d.sceneLine); return renderAnim(); }
+  if (d.captions) { S.captions = S.captions === false; sceneStop(); return renderAnim(); }
+  if (d.sound) { S.sound = S.sound === false; sceneStop(); return renderAnim(); }
+  if (d.scene) {
+    const n = SCENES[S.focus].steps.length;
+    if (d.scene === "play") { if (S.scene.playing) sceneStop(); else { S.scene.playing = true; sceneTick(); } return renderAnim(); }
+    sceneStop();
+    return sceneGo(d.scene === "first" ? 0 : d.scene === "prev" ? Math.max(0, S.scene.i - 1) : Math.min(n - 1, S.scene.i + 1));
+  }
   if (d.planItem) { const r = PLANS[S.focus], k = r.runId + ":" + d.planItem; S.planDec[k] = S.planDec[k] === d.planDec ? "awaiting" : d.planDec; return renderPlan(); }
   if (d.planAll) { const r = PLANS[S.focus]; r.items.forEach(it => { S.planDec[r.runId + ":" + it.item_id] = d.planAll; }); return renderPlan(); }
   if (d.planJump) { const x = document.getElementById("pi-" + d.planJump); if (x) { x.scrollIntoView({ behavior: "smooth", block: "center" }); x.classList.add("flash"); setTimeout(() => x.classList.remove("flash"), 1200); } return; }

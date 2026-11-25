@@ -1,0 +1,945 @@
+{
+ "about": "Input for narration: see scenes/NARRATION.md. Key every line to statement ids; record contentHash.",
+ "id": "chr:scene:actium-campaign-31bc",
+ "contentHash": "2e841b723b709562098404b0a65d55abad4827da8a383eb9e85d5d9cd98b7b05",
+ "scope": "the campaign around the battle: steps 1-4 lead to it, 12-13 follow it and belong to other events",
+ "status": "proposed",
+ "bases": {
+  "sourced": "a stored passage says it; the quotation is verbatim",
+  "inferred": "joined up from sourced points; 'by' says whose inference",
+  "illustrative": "drawn so the picture reads; no passage (a Generalized Abstraction, D-172)",
+  "not-checked": "the passage it rests on is not held yet; 'by' says who asserted it"
+ },
+ "subject": "Battle of Actium",
+ "steps": [
+  {
+   "id": "chr:scene:actium-campaign-31bc#1",
+   "order": 1,
+   "title": "Antony holds the coast of western Greece",
+   "timeWords": "winter of 32/31 BC",
+   "view": "overview",
+   "phase": "road-to-war",
+   "statements": [
+    {
+     "text": "Antony sails back to the Peloponnese and winters at Patrae.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Cassius Dio, Roman History",
+       "locator": "Cassius Dio 50.9.3",
+       "quotation": "he sailed back to the Peloponnesus, the season being already late autumn, and passed the winter at Patrae"
+      }
+     ],
+     "id": "chr:scene:actium-campaign-31bc#1.1"
+    },
+    {
+     "text": "He spreads his soldiers to guard the strategic points and secure provisions.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Cassius Dio, Roman History",
+       "locator": "Cassius Dio 50.9.3",
+       "quotation": "distributing his soldiers in every direction in order that they might keep guard over the strategic points and secure more easily an abundance of provisions"
+      }
+     ],
+     "id": "chr:scene:actium-campaign-31bc#1.2"
+    },
+    {
+     "text": "Antony's garrisons hold Corcyra.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Cassius Dio, Roman History",
+       "locator": "Cassius Dio 50.12.2",
+       "quotation": "seized Corcyra, which had been deserted by the garrisons there"
+      }
+     ],
+     "id": "chr:scene:actium-campaign-31bc#1.3"
+    },
+    {
+     "text": "Antony holds Methone.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Cassius Dio, Roman History",
+       "locator": "Cassius Dio 50.11.3",
+       "quotation": "Agrippa had captured Methone by storm"
+      }
+     ],
+     "note": "Implied: Agrippa had to take it from Antony.",
+     "id": "chr:scene:actium-campaign-31bc#1.4"
+    },
+    {
+     "text": "The chain of posts guards the supply route from Egypt.",
+     "basis": "inferred",
+     "voices": [],
+     "by": "the animation's generator (Claude, in a chat, from Wikipedia and its own knowledge)",
+     "note": "Dio gives guard and provisions; Egypt as the route is the generator's.",
+     "id": "chr:scene:actium-campaign-31bc#1.5"
+    }
+   ]
+  },
+  {
+   "id": "chr:scene:actium-campaign-31bc#2",
+   "order": 2,
+   "title": "Agrippa storms Methone",
+   "timeWords": "before spring 31 BC",
+   "view": "overview",
+   "phase": "isolation",
+   "statements": [
+    {
+     "text": "Agrippa takes Methone by storm and kills Bogud there.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Cassius Dio, Roman History",
+       "locator": "Cassius Dio 50.11.3",
+       "quotation": "Agrippa had captured Methone by storm and killed Bogud there"
+      }
+     ],
+     "id": "chr:scene:actium-campaign-31bc#2.1"
+    },
+    {
+     "text": "From there he watches for the merchant ships and raids the coasts of Greece.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Cassius Dio, Roman History",
+       "locator": "Cassius Dio 50.11.3",
+       "quotation": "was now watching for the merchant vessels that came to land and was making descents from time to time on various parts of Greece"
+      }
+     ],
+     "id": "chr:scene:actium-campaign-31bc#2.2"
+    },
+    {
+     "text": "The merchant ships were grain ships from Egypt.",
+     "basis": "inferred",
+     "voices": [],
+     "by": "the animation's generator (Claude, in a chat, from Wikipedia and its own knowledge)",
+     "note": "Dio says merchant vessels; Egypt and grain are not in the passage.",
+     "id": "chr:scene:actium-campaign-31bc#2.3"
+    }
+   ]
+  },
+  {
+   "id": "chr:scene:actium-campaign-31bc#3",
+   "order": 3,
+   "title": "Octavian crosses the Adriatic",
+   "timeWords": "spring 31 BC",
+   "view": "overview",
+   "phase": "road-to-war",
+   "statements": [
+    {
+     "text": "Octavian crosses the Ionian Gulf from Brundisium with his whole force.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Cassius Dio, Roman History",
+       "locator": "Cassius Dio 50.11.6",
+       "quotation": "Thereupon he crossed the Ionian Gulf with the entire array"
+      }
+     ],
+     "id": "chr:scene:actium-campaign-31bc#3.1"
+    },
+    {
+     "text": "His cavalry lands at the foot of the Ceraunian mountains.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Cassius Dio, Roman History",
+       "locator": "Cassius Dio 50.12.1",
+       "quotation": "Caesar disembarked the cavalry at the foot of the Ceraunian mountains"
+      }
+     ],
+     "id": "chr:scene:actium-campaign-31bc#3.2"
+    },
+    {
+     "text": "He seizes Corcyra, abandoned by its garrisons.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Cassius Dio, Roman History",
+       "locator": "Cassius Dio 50.12.2",
+       "quotation": "seized Corcyra, which had been deserted by the garrisons there"
+      }
+     ],
+     "id": "chr:scene:actium-campaign-31bc#3.3"
+    },
+    {
+     "text": "He occupies Toryne in Epirus.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Plutarch, Life of Antony",
+       "locator": "Plutarch Antony 62.3",
+       "quotation": "occupying a place in Epeirus called Torun"
+      }
+     ],
+     "id": "chr:scene:actium-campaign-31bc#3.4"
+    },
+    {
+     "text": "He camps on the high ground north of the strait, where Nicopolis later stood.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Cassius Dio, Roman History",
+       "locator": "Cassius Dio 50.12.3",
+       "quotation": "He then occupied the site where Nicopolis now stands"
+      },
+      {
+       "accordingTo": "Cassius Dio, Roman History",
+       "locator": "Cassius Dio 50.12.4",
+       "quotation": "took up a position on high ground there"
+      }
+     ],
+     "id": "chr:scene:actium-campaign-31bc#3.5"
+    },
+    {
+     "text": "He marches south from Toryne to the camp.",
+     "basis": "inferred",
+     "voices": [],
+     "by": "the animation's generator (Claude, in a chat, from Wikipedia and its own knowledge)",
+     "id": "chr:scene:actium-campaign-31bc#3.6"
+    }
+   ]
+  },
+  {
+   "id": "chr:scene:actium-campaign-31bc#4",
+   "order": 4,
+   "title": "Agrippa closes the ring",
+   "timeWords": "summer 31 BC",
+   "view": "overview",
+   "phase": "isolation",
+   "statements": [
+    {
+     "text": "Agrippa takes Leucas, takes Patrae after beating Nasidius at sea, and later takes Corinth.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Cassius Dio, Roman History",
+       "locator": "Cassius Dio 50.13.5",
+       "quotation": "Agrippa made a sudden dash with his fleet and captured Leucas and the vessels which were there, took Patrae by conquering Quintus Nasidius in a sea-fight, and later reduced Corinth also"
+      },
+      {
+       "accordingTo": "Velleius Paterculus, Historiae Romanae",
+       "locator": "C. Velleius Paterculus 2.84.2",
+       "quotation": "Marcus Agrippa had stormed Leucas, had captured Patrae, had seized Corinth"
+      }
+     ],
+     "id": "chr:scene:actium-campaign-31bc#4.1"
+    },
+    {
+     "text": "Antony's forces lose men to disease and desertion.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Cassius Dio, Roman History",
+       "locator": "Cassius Dio 50.11.2",
+       "quotation": "their numbers had been diminished by disease and desertions"
+      },
+      {
+       "accordingTo": "Velleius Paterculus, Historiae Romanae",
+       "locator": "C. Velleius Paterculus 2.84.1",
+       "quotation": "from Antony to Caesar someone or other was deserting daily"
+      }
+     ],
+     "id": "chr:scene:actium-campaign-31bc#4.2"
+    },
+    {
+     "text": "Cut off from bringing in grain, Antony's provisions begin to fail.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Cassius Dio, Roman History",
+       "locator": "Cassius Dio 50.14.4",
+       "quotation": "when provisions also began to fail him because he was shut off from bringing in grain"
+      }
+     ],
+     "id": "chr:scene:actium-campaign-31bc#4.3"
+    }
+   ]
+  },
+  {
+   "id": "chr:scene:actium-campaign-31bc#5",
+   "order": 5,
+   "title": "The fleets form up outside the strait",
+   "timeWords": "2 September 31 BC, morning",
+   "view": "battle",
+   "phase": "deployment",
+   "statements": [
+    {
+     "text": "The battle is fought on 2 September.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Cassius Dio, Roman History",
+       "locator": "Cassius Dio 51.1.1",
+       "quotation": "Such was the naval battle in which they engaged on the second of September"
+      }
+     ],
+     "id": "chr:scene:actium-campaign-31bc#5.1"
+    },
+    {
+     "text": "Antony's fleet draws up its line a little outside the strait and comes no further.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Cassius Dio, Roman History",
+       "locator": "Cassius Dio 50.31.4",
+       "quotation": "drew up their line a little outside the strait and advanced no further"
+      }
+     ],
+     "id": "chr:scene:actium-campaign-31bc#5.2"
+    },
+    {
+     "text": "Antony orders his ships to hold their position at the narrow mouth of the gulf.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Plutarch, Life of Antony",
+       "locator": "Plutarch Antony 65.3",
+       "quotation": "to maintain their position at the mouth of the gulf, which was narrow and difficult"
+      }
+     ],
+     "id": "chr:scene:actium-campaign-31bc#5.3"
+    },
+    {
+     "text": "Octavian keeps his ships about eight furlongs (some 1.5 km) away, waiting a long time.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Plutarch, Life of Antony",
+       "locator": "Plutarch Antony 65.4",
+       "quotation": "kept his own ships at a distance of about eight furlongs from the enemy"
+      },
+      {
+       "accordingTo": "Cassius Dio, Roman History",
+       "locator": "Cassius Dio 50.31.5",
+       "quotation": "ordered his sailors to let their oars rest in the water, and waited for a time"
+      }
+     ],
+     "note": "1.5 km is the conversion; west of Antony's line is the map's.",
+     "id": "chr:scene:actium-campaign-31bc#5.4"
+    },
+    {
+     "text": "Cleopatra's sixty ships lie behind the line.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Plutarch, Life of Antony",
+       "locator": "Plutarch Antony 66.3",
+       "quotation": "they had been posted in the rear of the large vessels"
+      },
+      {
+       "accordingTo": "Cassius Dio, Roman History",
+       "locator": "Cassius Dio 50.33.1",
+       "quotation": "Cleopatra, riding at anchor behind the combatants"
+      }
+     ],
+     "note": "Both sources say the rear; 'behind the centre', as the animation had it, is ours, and the map draws it so.",
+     "id": "chr:scene:actium-campaign-31bc#5.5"
+    }
+   ],
+   "ordersOfBattle": {
+    "note": "Two orders of battle, and the sources disagree: shown side by side, never merged.",
+    "alternatives": [
+     {
+      "accordingTo": "Plutarch, Life of Antony",
+      "antony": {
+       "right": [
+        "Antony",
+        "Publicola"
+       ],
+       "centre": [
+        "Marcus Octavius",
+        "Marcus Insteius"
+       ],
+       "left": [
+        "Coelius"
+       ]
+      },
+      "octavian": {
+       "left": [
+        "Agrippa"
+       ],
+       "right": [
+        "Octavian"
+       ],
+       "centre": [
+        "Arruntius (from 66.3: the centre engages him)"
+       ]
+      },
+      "voices": [
+       {
+        "accordingTo": "Plutarch, Life of Antony",
+        "locator": "Plutarch Antony 65.1",
+        "quotation": "Antony had the right wing, with Publicola, Coelius the left, and in the centre were Marcus Octavius and Marcus Insteius"
+       },
+       {
+        "accordingTo": "Plutarch, Life of Antony",
+        "locator": "Plutarch Antony 65.2",
+        "quotation": "Caesar posted Agrippa on the left, and reserved the right wing for himself"
+       },
+       {
+        "accordingTo": "Plutarch, Life of Antony",
+        "locator": "Plutarch Antony 66.3",
+        "quotation": "The centre falling into confusion and engaging with Arruntius"
+       }
+      ]
+     },
+     {
+      "accordingTo": "Velleius Paterculus, Historiae Romanae",
+      "antony": {
+       "fleet": [
+        "Publicola",
+        "Sosius"
+       ]
+      },
+      "octavian": {
+       "right": [
+        "Lurius"
+       ],
+       "left": [
+        "Arruntius"
+       ],
+       "overall": [
+        "Agrippa"
+       ],
+       "everywhere": [
+        "Octavian"
+       ]
+      },
+      "voices": [
+       {
+        "accordingTo": "Velleius Paterculus, Historiae Romanae",
+        "locator": "C. Velleius Paterculus 2.85.2",
+        "quotation": "The command of the right wing of Caesar's fleet was entrusted to Marcus Lurius, of the left to Arruntius, while Agrippa had full charge of the entire conflict at sea"
+       },
+       {
+        "accordingTo": "Velleius Paterculus, Historiae Romanae",
+        "locator": "C. Velleius Paterculus 2.85.2",
+        "quotation": "The command of Antony's fleet was entrusted to Publicola and Sosius"
+       }
+      ],
+      "note": "Velleius gives Sosius no wing; the animation's 'Coelius south (Velleius: Sosius)' was its generator's reading."
+     }
+    ]
+   }
+  },
+  {
+   "id": "chr:scene:actium-campaign-31bc#6",
+   "order": 6,
+   "title": "Antony's left wing moves first",
+   "timeWords": "the sixth hour (about midday)",
+   "view": "battle",
+   "phase": "engagement",
+   "statements": [
+    {
+     "text": "At the sixth hour, with a wind rising from the sea, Antony's men put their left wing in motion.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Plutarch, Life of Antony",
+       "locator": "Plutarch Antony 65.4",
+       "quotation": "it was now the sixth hour, and since a wind was rising from the sea, the soldiers of Antony became impatient at the delay"
+      }
+     ],
+     "id": "chr:scene:actium-campaign-31bc#6.1"
+    },
+    {
+     "text": "Octavian orders his right wing to row backwards, to draw them out of the gulf and the narrows.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Plutarch, Life of Antony",
+       "locator": "Plutarch Antony 65.5",
+       "quotation": "ordered his right wing to row backwards, wishing to draw the enemy still farther out from the gulf and the narrows"
+      }
+     ],
+     "id": "chr:scene:actium-campaign-31bc#6.2"
+    }
+   ]
+  },
+  {
+   "id": "chr:scene:actium-campaign-31bc#7",
+   "order": 7,
+   "title": "Agrippa stretches the northern wing",
+   "timeWords": "afternoon",
+   "view": "battle",
+   "phase": "engagement",
+   "statements": [
+    {
+     "text": "Agrippa extends his wing to encircle; Publicola advances against him and is cut off from the centre.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Plutarch, Life of Antony",
+       "locator": "Plutarch Antony 66.3",
+       "quotation": "as Agrippa was extending the left wing with a view to encircling the enemy, Publicola was forced to advance against him, and so was separated from the centre"
+      }
+     ],
+     "id": "chr:scene:actium-campaign-31bc#7.1"
+    },
+    {
+     "text": "Antony's centre falls into confusion, engaging Arruntius.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Plutarch, Life of Antony",
+       "locator": "Plutarch Antony 66.3",
+       "quotation": "The centre falling into confusion and engaging with Arruntius"
+      }
+     ],
+     "id": "chr:scene:actium-campaign-31bc#7.2"
+    },
+    {
+     "text": "This happens on the northern side of the battle.",
+     "basis": "inferred",
+     "voices": [],
+     "by": "the animation's generator (Claude, in a chat, from Wikipedia and its own knowledge)",
+     "note": "Agrippa held Octavian's left (Plutarch), which faced north as the fleets lay; the compass point is ours.",
+     "id": "chr:scene:actium-campaign-31bc#7.3"
+    }
+   ]
+  },
+  {
+   "id": "chr:scene:actium-campaign-31bc#8",
+   "order": 8,
+   "title": "Cleopatra's squadron breaks out",
+   "timeWords": "afternoon",
+   "view": "battle",
+   "phase": "breakout",
+   "statements": [
+    {
+     "text": "Cleopatra's sixty ships hoist their sails and make off through the midst of the fighting.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Plutarch, Life of Antony",
+       "locator": "Plutarch Antony 66.3",
+       "quotation": "suddenly the sixty ships of Cleopatra were seen hoisting their sails for flight and making off through the midst of the combatants"
+      }
+     ],
+     "id": "chr:scene:actium-campaign-31bc#8.1"
+    },
+    {
+     "text": "They take advantage of the wind and make for the Peloponnese.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Plutarch, Life of Antony",
+       "locator": "Plutarch Antony 66.4",
+       "quotation": "they took advantage of the wind and made for Peloponnesus"
+      }
+     ],
+     "id": "chr:scene:actium-campaign-31bc#8.2"
+    },
+    {
+     "text": "She turns to flight from the strain of waiting, and signals her ships.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Cassius Dio, Roman History",
+       "locator": "Cassius Dio 50.33.2",
+       "quotation": "she suddenly turned to flight herself and raised the signal for the others"
+      }
+     ],
+     "note": "Dio's reading: panic. Whether the flight was planned is a debated Question in the graph.",
+     "id": "chr:scene:actium-campaign-31bc#8.3"
+    }
+   ],
+   "disputed": {
+    "words": "Panic, or a planned breakout?",
+    "questions": [
+     {
+      "id": "chr:entity:proposed-question-did-cleopatra-and-perhaps-antonius-too-secretly-plan-the-flight-before-the-battle-began",
+      "label": "Did Cleopatra, and perhaps Antonius too, secretly plan the flight before the battle began?"
+     },
+     {
+      "id": "chr:entity:proposed-question-did-cleopatra-take-the-decisive-initiative-in-the-flight-from-actium",
+      "label": "Did Cleopatra take the decisive initiative in the flight from Actium?"
+     },
+     {
+      "id": "chr:entity:proposed-question-did-cleopatra-s-squadron-escape-from-the-battle-through-a-gap-in-the-fleets-line",
+      "label": "Did Cleopatra's squadron escape from the battle through a gap in the fleets' line?"
+     }
+    ]
+   }
+  },
+  {
+   "id": "chr:scene:actium-campaign-31bc#9",
+   "order": 9,
+   "title": "Antony follows her",
+   "timeWords": "afternoon",
+   "view": "battle",
+   "phase": "antony-follows",
+   "statements": [
+    {
+     "text": "Antony leaves the fight in a five-oared galley, with only Alexas the Syrian and Scellius, and goes after her.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Plutarch, Life of Antony",
+       "locator": "Plutarch Antony 66.5",
+       "quotation": "got into a five-oared galley, where Alexas the Syrian and Scellius were his only companions, and hastened after the woman"
+      }
+     ],
+     "id": "chr:scene:actium-campaign-31bc#9.1"
+    },
+    {
+     "text": "Dio: he thought her ships fled from fear, not at her bidding, and so followed.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Cassius Dio, Roman History",
+       "locator": "Cassius Dio 50.33.3",
+       "quotation": "Antony thought they were fleeing, not at the bidding of Cleopatra, but through fear because they felt themselves vanquished, and so he followed them"
+      }
+     ],
+     "id": "chr:scene:actium-campaign-31bc#9.2"
+    },
+    {
+     "text": "The fleet left behind loses its commander.",
+     "basis": "inferred",
+     "voices": [],
+     "by": "the check of 2026-11-24 (Claude Code, against the stored passages)",
+     "id": "chr:scene:actium-campaign-31bc#9.3"
+    }
+   ],
+   "disputed": {
+    "words": "Desertion, or a planned escape?",
+    "questions": [
+     {
+      "id": "chr:entity:proposed-question-did-cleopatra-and-perhaps-antonius-too-secretly-plan-the-flight-before-the-battle-began",
+      "label": "Did Cleopatra, and perhaps Antonius too, secretly plan the flight before the battle began?"
+     }
+    ]
+   },
+   "corrected": [
+    {
+     "was": "The fleet loses its commander, its reserve and its treasury.",
+     "why": "Dio says the money was still aboard the ships left fighting: Octavian held back from fire to gain it.",
+     "voices": [
+      {
+       "accordingTo": "Cassius Dio, Roman History",
+       "locator": "Cassius Dio 50.34.1",
+       "quotation": "Previously he had wished to avoid using it, in order to gain possession of the money"
+      },
+      {
+       "accordingTo": "Cassius Dio, Roman History",
+       "locator": "Cassius Dio 50.35.5",
+       "quotation": "in the hope that they might possibly gain possession of the money"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "chr:scene:actium-campaign-31bc#10",
+   "order": 10,
+   "title": "The fleet left behind is destroyed",
+   "timeWords": "late afternoon, to the tenth hour",
+   "view": "battle",
+   "phase": "fleet-defeat",
+   "statements": [
+    {
+     "text": "With the fight still even, Octavian sends to the camp for fire.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Cassius Dio, Roman History",
+       "locator": "Cassius Dio 50.34.1",
+       "quotation": "As the fight continued equal, Caesar, at a loss what he should do, sent for fire from the camp"
+      }
+     ],
+     "id": "chr:scene:actium-campaign-31bc#10.1"
+    },
+    {
+     "text": "His ships attack from many sides with blazing missiles, torches and pots of charcoal and pitch.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Cassius Dio, Roman History",
+       "locator": "Cassius Dio 50.34.2",
+       "quotation": "The assailants would approach their victims from many directions at once"
+      }
+     ],
+     "id": "chr:scene:actium-campaign-31bc#10.2"
+    },
+    {
+     "text": "Antony's fleet holds out until the tenth hour, worn down by a rising sea; three hundred ships are captured.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Plutarch, Life of Antony",
+       "locator": "Plutarch Antony 68.1",
+       "quotation": "only after it had been most severely damaged by the high sea which rose against it did it reluctantly, and at the tenth hour, give up the struggle"
+      },
+      {
+       "accordingTo": "Plutarch, Life of Antony",
+       "locator": "Plutarch Antony 68.1",
+       "quotation": "three hundred ships were captured, as Caesar himself has written"
+      }
+     ],
+     "note": "Plutarch and Dio differ on what ended it: the sea, or the fire. Both are kept.",
+     "id": "chr:scene:actium-campaign-31bc#10.3"
+    }
+   ]
+  },
+  {
+   "id": "chr:scene:actium-campaign-31bc#11",
+   "order": 11,
+   "title": "The army goes over without fighting",
+   "timeWords": "seven days after the battle",
+   "view": "battle",
+   "phase": "army-surrender",
+   "statements": [
+    {
+     "text": "Antony's legions hold together for seven days, ignoring Octavian's messages.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Plutarch, Life of Antony",
+       "locator": "Plutarch Antony 68.3",
+       "quotation": "they held together for seven days, paying no heed to the messages which Caesar sent them"
+      }
+     ],
+     "id": "chr:scene:actium-campaign-31bc#11.1"
+    },
+    {
+     "text": "Then Canidius runs away by night, and the army goes over to Octavian.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Plutarch, Life of Antony",
+       "locator": "Plutarch Antony 68.3",
+       "quotation": "after Canidius their general had run away by night and forsaken the camp, being now destitute of all things and betrayed by their commanders, they went over to the conqueror"
+      }
+     ],
+     "id": "chr:scene:actium-campaign-31bc#11.2"
+    }
+   ],
+   "corrected": [
+    {
+     "was": "Canidius slips away. After seven days the legions go over.",
+     "why": "Plutarch has the seven days first, and Canidius's flight at their end.",
+     "voices": []
+    }
+   ]
+  },
+  {
+   "id": "chr:scene:actium-campaign-31bc#12",
+   "order": 12,
+   "title": "Flight to Taenarum, then Egypt",
+   "timeWords": "September 31 BC",
+   "view": "overview",
+   "context": "after the battle (outside the event's phases)",
+   "statements": [
+    {
+     "text": "Antony is taken aboard Cleopatra's ship.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Plutarch, Life of Antony",
+       "locator": "Plutarch Antony 67.1",
+       "quotation": "Antony came up and was taken on board"
+      }
+     ],
+     "id": "chr:scene:actium-campaign-31bc#12.1"
+    },
+    {
+     "text": "He means to cross from Taenarum to Libya.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Plutarch, Life of Antony",
+       "locator": "Plutarch Antony 67.6",
+       "quotation": "he purposed to cross from Taenarum to Libya"
+      }
+     ],
+     "id": "chr:scene:actium-campaign-31bc#12.2"
+    },
+    {
+     "text": "They go as far as the Peloponnese together; Cleopatra then hastens to Egypt.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Cassius Dio, Roman History",
+       "locator": "Cassius Dio 51.5.3",
+       "quotation": "had gone as far as the Peloponnesus together"
+      },
+      {
+       "accordingTo": "Cassius Dio, Roman History",
+       "locator": "Cassius Dio 51.5.3",
+       "quotation": "Cleopatra had hastened to Egypt"
+      }
+     ],
+     "id": "chr:scene:actium-campaign-31bc#12.3"
+    },
+    {
+     "text": "Antony reaches the coast of Libya and sends Cleopatra on into Egypt from Paraetonium.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Plutarch, Life of Antony",
+       "locator": "Plutarch Antony 69.1",
+       "quotation": "After Antony had reached the coast of Libya and sent Cleopatra forward into Egypt from Paraetonium"
+      }
+     ],
+     "id": "chr:scene:actium-campaign-31bc#12.4"
+    },
+    {
+     "text": "Antony is at Paraetonium until the news of Pelusium.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Cassius Dio, Roman History",
+       "locator": "Cassius Dio 51.10.1",
+       "quotation": "At the news concerning Pelusium Antony returned from Paraetonium"
+      }
+     ],
+     "id": "chr:scene:actium-campaign-31bc#12.5"
+    }
+   ],
+   "routes": {
+    "note": "Where Cleopatra parted from Antony: the sources differ, and both are kept.",
+    "alternatives": [
+     {
+      "accordingTo": "Plutarch, Life of Antony",
+      "words": "She went with him to Libya and on into Egypt from Paraetonium.",
+      "voices": [
+       {
+        "accordingTo": "Plutarch, Life of Antony",
+        "locator": "Plutarch Antony 69.1",
+        "quotation": "sent Cleopatra forward into Egypt from Paraetonium"
+       }
+      ]
+     },
+     {
+      "accordingTo": "Cassius Dio, Roman History",
+      "words": "From the Peloponnese she hastened to Egypt.",
+      "voices": [
+       {
+        "accordingTo": "Cassius Dio, Roman History",
+        "locator": "Cassius Dio 51.5.3",
+        "quotation": "had gone as far as the Peloponnesus together"
+       },
+       {
+        "accordingTo": "Cassius Dio, Roman History",
+        "locator": "Cassius Dio 51.5.3",
+        "quotation": "Cleopatra had hastened to Egypt"
+       }
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "chr:scene:actium-campaign-31bc#13",
+   "order": 13,
+   "title": "Alexandria falls",
+   "timeWords": "1 August 30 BC",
+   "view": "overview",
+   "context": "the end of the war (another event)",
+   "statements": [
+    {
+     "text": "Antony's fleet goes over to Octavian before Alexandria.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Plutarch, Life of Antony",
+       "locator": "Plutarch Antony 76.1",
+       "quotation": "on their returning the salute changed sides"
+      },
+      {
+       "accordingTo": "Cassius Dio, Roman History",
+       "locator": "Cassius Dio 51.10.4",
+       "quotation": "Cleopatra, upon perceiving this, caused the ships to desert"
+      }
+     ],
+     "note": "Plutarch tells it as the crews' own choice; Dio has Cleopatra cause it. Both are kept.",
+     "id": "chr:scene:actium-campaign-31bc#13.1"
+    },
+    {
+     "text": "His cavalry deserts, his infantry is beaten, and he retires into the city.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Plutarch, Life of Antony",
+       "locator": "Plutarch Antony 76.2",
+       "quotation": "he was deserted by his cavalry, which went over to the enemy, and after being defeated with his infantry he retired into the city"
+      }
+     ],
+     "id": "chr:scene:actium-campaign-31bc#13.2"
+    },
+    {
+     "text": "Told that Cleopatra is dead, Antony wounds himself, and dies with her in the tomb.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Plutarch, Life of Antony",
+       "locator": "Plutarch Antony 76.3",
+       "quotation": "Antony believed the message"
+      },
+      {
+       "accordingTo": "Cassius Dio, Roman History",
+       "locator": "Cassius Dio 51.10.7",
+       "quotation": "gave himself a wound and fell upon his face"
+      },
+      {
+       "accordingTo": "Cassius Dio, Roman History",
+       "locator": "Cassius Dio 51.10.9",
+       "quotation": "So Antony died there in Cleopatra's bosom"
+      }
+     ],
+     "id": "chr:scene:actium-campaign-31bc#13.3"
+    },
+    {
+     "text": "Octavian drives into the city.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Plutarch, Life of Antony",
+       "locator": "Plutarch Antony 80.1",
+       "quotation": "And now Caesar himself drove into the city"
+      }
+     ],
+     "id": "chr:scene:actium-campaign-31bc#13.4"
+    },
+    {
+     "text": "The city fell on 1 August 30 BC.",
+     "basis": "not-checked",
+     "voices": [],
+     "by": "the animation's generator (Claude, in a chat, from Wikipedia and its own knowledge)",
+     "note": "No passage read gives the date. Dio 51.19.6 says the day of the capture was declared a lucky day, without naming it.",
+     "id": "chr:scene:actium-campaign-31bc#13.5"
+    },
+    {
+     "text": "Cleopatra dies; Octavian admires her spirit and has her buried with Antony.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Plutarch, Life of Antony",
+       "locator": "Plutarch Antony 86.4",
+       "quotation": "he gave orders that her body should be buried with that of Antony in splendid and regal fashion"
+      }
+     ],
+     "id": "chr:scene:actium-campaign-31bc#13.6"
+    },
+    {
+     "text": "Octavian now holds all power alone.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Cassius Dio, Roman History",
+       "locator": "Cassius Dio 51.1.1",
+       "quotation": "Caesar now for the first time held all the power alone"
+      }
+     ],
+     "note": "Dio dates this from Actium, not from Alexandria.",
+     "id": "chr:scene:actium-campaign-31bc#13.7"
+    }
+   ]
+  }
+ ]
+}

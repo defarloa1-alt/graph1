@@ -1,0 +1,725 @@
+{
+ "sceneId": "chr:scene:actium-campaign-31bc",
+ "sceneContentHash": "2e841b723b709562098404b0a65d55abad4827da8a383eb9e85d5d9cd98b7b05",
+ "language": "en",
+ "persona": "browser",
+ "madeBy": "narrative/narrate_scene.py with claude-opus-5-5",
+ "madeAt": "2026-11-24T19:21:32+00:00",
+ "calls": [
+  {
+   "model": "claude-opus-5-5",
+   "stopReason": "end_turn",
+   "requestId": "req_011ChNHyvdug6YP5SrFaUpmD",
+   "inputTokens": 17359,
+   "outputTokens": 10650
+  },
+  {
+   "model": "claude-opus-5-5",
+   "stopReason": "end_turn",
+   "requestId": "req_011ChNJ5gJ8VMoietrRB68aZ",
+   "inputTokens": 23942,
+   "outputTokens": 6627
+  }
+ ],
+ "steps": [
+  {
+   "stepId": "chr:scene:actium-campaign-31bc#1",
+   "lines": [
+    {
+     "id": "n1.1",
+     "kind": "narration",
+     "text": "In the winter of 32/31 BC, Antony sails back to the Peloponnese and winters at Patrae.",
+     "keys": [
+      "chr:scene:actium-campaign-31bc#1.1"
+     ],
+     "basis": "sourced",
+     "voice": null,
+     "estSeconds": 6.0
+    },
+    {
+     "id": "n1.2",
+     "kind": "narration",
+     "text": "He spreads his soldiers to guard the strategic points and secure provisions.",
+     "keys": [
+      "chr:scene:actium-campaign-31bc#1.2"
+     ],
+     "basis": "sourced",
+     "voice": null,
+     "estSeconds": 5.0
+    },
+    {
+     "id": "n1.3",
+     "kind": "narration",
+     "text": "His garrisons hold Corcyra, and he holds Methone.",
+     "keys": [
+      "chr:scene:actium-campaign-31bc#1.3",
+      "chr:scene:actium-campaign-31bc#1.4"
+     ],
+     "basis": "sourced",
+     "voice": null,
+     "estSeconds": 3.5
+    },
+    {
+     "id": "n1.4",
+     "kind": "narration",
+     "text": "We have drawn this chain of posts as guarding the supply route from Egypt. That is our reading; the source speaks only of guard and provisions.",
+     "keys": [
+      "chr:scene:actium-campaign-31bc#1.5"
+     ],
+     "basis": "inferred",
+     "voice": null,
+     "estSeconds": 9.5
+    }
+   ]
+  },
+  {
+   "stepId": "chr:scene:actium-campaign-31bc#2",
+   "lines": [
+    {
+     "id": "n2.1",
+     "kind": "narration",
+     "text": "Before spring 31 BC, Agrippa takes Methone by storm and kills Bogud there.",
+     "keys": [
+      "chr:scene:actium-campaign-31bc#2.1"
+     ],
+     "basis": "sourced",
+     "voice": null,
+     "estSeconds": 5.0
+    },
+    {
+     "id": "n2.2",
+     "kind": "narration",
+     "text": "From there he watches for the merchant ships and raids the coasts of Greece.",
+     "keys": [
+      "chr:scene:actium-campaign-31bc#2.2"
+     ],
+     "basis": "sourced",
+     "voice": null,
+     "estSeconds": 5.5
+    },
+    {
+     "id": "n2.3",
+     "kind": "narration",
+     "text": "Those merchant ships were probably grain ships from Egypt, though that is our reading, not the source's.",
+     "keys": [
+      "chr:scene:actium-campaign-31bc#2.3"
+     ],
+     "basis": "inferred",
+     "voice": null,
+     "estSeconds": 7.0
+    }
+   ]
+  },
+  {
+   "stepId": "chr:scene:actium-campaign-31bc#3",
+   "lines": [
+    {
+     "id": "n3.1",
+     "kind": "narration",
+     "text": "In spring 31 BC, Octavian crosses the Ionian Gulf from Brundisium with his whole force.",
+     "keys": [
+      "chr:scene:actium-campaign-31bc#3.1"
+     ],
+     "basis": "sourced",
+     "voice": null,
+     "estSeconds": 6.0
+    },
+    {
+     "id": "n3.2",
+     "kind": "narration",
+     "text": "His cavalry lands at the foot of the Ceraunian mountains.",
+     "keys": [
+      "chr:scene:actium-campaign-31bc#3.2"
+     ],
+     "basis": "sourced",
+     "voice": null,
+     "estSeconds": 4.0
+    },
+    {
+     "id": "n3.3",
+     "kind": "narration",
+     "text": "He seizes Corcyra, abandoned by its garrisons.",
+     "keys": [
+      "chr:scene:actium-campaign-31bc#3.3"
+     ],
+     "basis": "sourced",
+     "voice": null,
+     "estSeconds": 3.0
+    },
+    {
+     "id": "n3.4",
+     "kind": "narration",
+     "text": "He occupies Toryne in Epirus.",
+     "keys": [
+      "chr:scene:actium-campaign-31bc#3.4"
+     ],
+     "basis": "sourced",
+     "voice": null,
+     "estSeconds": 2.5
+    },
+    {
+     "id": "n3.5",
+     "kind": "narration",
+     "text": "From Toryne he probably marched south to his camp; the sources give the places, not the road.",
+     "keys": [
+      "chr:scene:actium-campaign-31bc#3.6"
+     ],
+     "basis": "inferred",
+     "voice": null,
+     "estSeconds": 6.5
+    },
+    {
+     "id": "n3.6",
+     "kind": "narration",
+     "text": "He camps on the high ground north of the strait, where Nicopolis later stood.",
+     "keys": [
+      "chr:scene:actium-campaign-31bc#3.5"
+     ],
+     "basis": "sourced",
+     "voice": null,
+     "estSeconds": 5.5
+    }
+   ]
+  },
+  {
+   "stepId": "chr:scene:actium-campaign-31bc#4",
+   "lines": [
+    {
+     "id": "n4.1",
+     "kind": "narration",
+     "text": "In summer 31 BC, Agrippa takes Leucas, takes Patrae after beating Nasidius at sea, and later takes Corinth.",
+     "keys": [
+      "chr:scene:actium-campaign-31bc#4.1"
+     ],
+     "basis": "sourced",
+     "voice": null,
+     "estSeconds": 7.5
+    },
+    {
+     "id": "n4.2",
+     "kind": "narration",
+     "text": "Antony's forces lose men to disease and desertion.",
+     "keys": [
+      "chr:scene:actium-campaign-31bc#4.2"
+     ],
+     "basis": "sourced",
+     "voice": null,
+     "estSeconds": 3.5
+    },
+    {
+     "id": "n4.3",
+     "kind": "quote",
+     "text": "Velleius writes: \"from Antony to Caesar someone or other was deserting daily\".",
+     "keys": [
+      "chr:scene:actium-campaign-31bc#4.2"
+     ],
+     "basis": "sourced",
+     "voice": "C. Velleius Paterculus 2.84.1",
+     "estSeconds": 5.0
+    },
+    {
+     "id": "n4.4",
+     "kind": "narration",
+     "text": "Cut off from bringing in grain, Antony's provisions begin to fail.",
+     "keys": [
+      "chr:scene:actium-campaign-31bc#4.3"
+     ],
+     "basis": "sourced",
+     "voice": null,
+     "estSeconds": 4.5
+    }
+   ]
+  },
+  {
+   "stepId": "chr:scene:actium-campaign-31bc#5",
+   "lines": [
+    {
+     "id": "n5.0",
+     "kind": "transition",
+     "text": "Now to the battle itself.",
+     "keys": [],
+     "basis": null,
+     "voice": null,
+     "estSeconds": 2.0
+    },
+    {
+     "id": "n5.1",
+     "kind": "narration",
+     "text": "The battle is fought on 2 September 31 BC.",
+     "keys": [
+      "chr:scene:actium-campaign-31bc#5.1"
+     ],
+     "basis": "sourced",
+     "voice": null,
+     "estSeconds": 3.5
+    },
+    {
+     "id": "n5.2",
+     "kind": "narration",
+     "text": "That morning, Antony's fleet draws up its line a little outside the strait, and comes no further.",
+     "keys": [
+      "chr:scene:actium-campaign-31bc#5.2"
+     ],
+     "basis": "sourced",
+     "voice": null,
+     "estSeconds": 6.5
+    },
+    {
+     "id": "n5.3",
+     "kind": "narration",
+     "text": "Plutarch says Antony ordered his ships to hold their position at the narrow mouth of the gulf.",
+     "keys": [
+      "chr:scene:actium-campaign-31bc#5.3"
+     ],
+     "basis": "sourced",
+     "voice": null,
+     "estSeconds": 6.5
+    },
+    {
+     "id": "n5.4",
+     "kind": "narration",
+     "text": "Octavian keeps his ships about eight furlongs away, some one and a half kilometres, and waits a long time.",
+     "keys": [
+      "chr:scene:actium-campaign-31bc#5.4"
+     ],
+     "basis": "sourced",
+     "voice": null,
+     "estSeconds": 7.5
+    },
+    {
+     "id": "n5.5",
+     "kind": "narration",
+     "text": "Cleopatra's sixty ships lie behind the line. Both sources put them in the rear; where the map draws them is ours, not theirs.",
+     "keys": [
+      "chr:scene:actium-campaign-31bc#5.5"
+     ],
+     "basis": "sourced",
+     "voice": null,
+     "estSeconds": 8.5
+    },
+    {
+     "id": "n5.6",
+     "kind": "narration",
+     "text": "Who commanded where? The sources disagree. Plutarch gives Antony the right wing with Publicola, Coelius the left, and Marcus Octavius and Marcus Insteius the centre. On the other side he puts Agrippa on the left and Octavian on the right.",
+     "keys": [
+      "chr:scene:actium-campaign-31bc#5:ordersOfBattle"
+     ],
+     "basis": "sourced",
+     "voice": null,
+     "estSeconds": 15.5
+    },
+    {
+     "id": "n5.7",
+     "kind": "narration",
+     "text": "Velleius gives Antony's fleet to Publicola and Sosius. On Octavian's side he puts Lurius on the right, Arruntius on the left, and Agrippa in charge of the whole fight at sea.",
+     "keys": [
+      "chr:scene:actium-campaign-31bc#5:ordersOfBattle"
+     ],
+     "basis": "sourced",
+     "voice": null,
+     "estSeconds": 12.0
+    }
+   ]
+  },
+  {
+   "stepId": "chr:scene:actium-campaign-31bc#6",
+   "lines": [
+    {
+     "id": "n6.1",
+     "kind": "narration",
+     "text": "Plutarch tells us that at the sixth hour, about midday, with a wind rising from the sea, Antony's men put their left wing in motion.",
+     "keys": [
+      "chr:scene:actium-campaign-31bc#6.1"
+     ],
+     "basis": "sourced",
+     "voice": null,
+     "estSeconds": 9.0
+    },
+    {
+     "id": "n6.2",
+     "kind": "narration",
+     "text": "Octavian orders his right wing to row backwards, to draw them out of the gulf and the narrows.",
+     "keys": [
+      "chr:scene:actium-campaign-31bc#6.2"
+     ],
+     "basis": "sourced",
+     "voice": null,
+     "estSeconds": 6.5
+    }
+   ]
+  },
+  {
+   "stepId": "chr:scene:actium-campaign-31bc#7",
+   "lines": [
+    {
+     "id": "n7.1",
+     "kind": "narration",
+     "text": "In the afternoon, Agrippa extends his wing to encircle the enemy. Publicola advances against him, and is cut off from the centre.",
+     "keys": [
+      "chr:scene:actium-campaign-31bc#7.1"
+     ],
+     "basis": "sourced",
+     "voice": null,
+     "estSeconds": 8.5
+    },
+    {
+     "id": "n7.2",
+     "kind": "narration",
+     "text": "Antony's centre falls into confusion, engaging Arruntius.",
+     "keys": [
+      "chr:scene:actium-campaign-31bc#7.2"
+     ],
+     "basis": "sourced",
+     "voice": null,
+     "estSeconds": 3.5
+    },
+    {
+     "id": "n7.3",
+     "kind": "narration",
+     "text": "We have drawn this on the northern side of the battle; the compass point is our reading, not the sources'.",
+     "keys": [
+      "chr:scene:actium-campaign-31bc#7.3"
+     ],
+     "basis": "inferred",
+     "voice": null,
+     "estSeconds": 7.5
+    }
+   ]
+  },
+  {
+   "stepId": "chr:scene:actium-campaign-31bc#8",
+   "lines": [
+    {
+     "id": "n8.1",
+     "kind": "quote",
+     "text": "Then, in Plutarch's words, \"suddenly the sixty ships of Cleopatra were seen hoisting their sails for flight and making off through the midst of the combatants\".",
+     "keys": [
+      "chr:scene:actium-campaign-31bc#8.1"
+     ],
+     "basis": "sourced",
+     "voice": "Plutarch Antony 66.3",
+     "estSeconds": 10.0
+    },
+    {
+     "id": "n8.2",
+     "kind": "narration",
+     "text": "They take advantage of the wind and make for the Peloponnese.",
+     "keys": [
+      "chr:scene:actium-campaign-31bc#8.2"
+     ],
+     "basis": "sourced",
+     "voice": null,
+     "estSeconds": 4.0
+    },
+    {
+     "id": "n8.3",
+     "kind": "narration",
+     "text": "Dio tells it as panic: she turns to flight from the strain of waiting, and signals her ships.",
+     "keys": [
+      "chr:scene:actium-campaign-31bc#8.3"
+     ],
+     "basis": "sourced",
+     "voice": null,
+     "estSeconds": 6.5
+    },
+    {
+     "id": "n8.4",
+     "kind": "narration",
+     "text": "Panic, or a planned breakout? Did Cleopatra, and perhaps Antonius too, plan the flight before the battle began? Did she take the decisive initiative? Did her squadron escape through a gap in the line? Historians still disagree.",
+     "keys": [
+      "chr:scene:actium-campaign-31bc#8:disputed"
+     ],
+     "basis": "sourced",
+     "voice": null,
+     "estSeconds": 14.0
+    }
+   ]
+  },
+  {
+   "stepId": "chr:scene:actium-campaign-31bc#9",
+   "lines": [
+    {
+     "id": "n9.1",
+     "kind": "narration",
+     "text": "Antony leaves the fight in a five-oared galley, with only Alexas the Syrian and Scellius, and goes after her.",
+     "keys": [
+      "chr:scene:actium-campaign-31bc#9.1"
+     ],
+     "basis": "sourced",
+     "voice": null,
+     "estSeconds": 7.5
+    },
+    {
+     "id": "n9.2",
+     "kind": "narration",
+     "text": "Dio says he thought her ships fled from fear, not at her bidding, and so he followed.",
+     "keys": [
+      "chr:scene:actium-campaign-31bc#9.2"
+     ],
+     "basis": "sourced",
+     "voice": null,
+     "estSeconds": 6.0
+    },
+    {
+     "id": "n9.3",
+     "kind": "narration",
+     "text": "So, it seems, the fleet left behind loses its commander.",
+     "keys": [
+      "chr:scene:actium-campaign-31bc#9.3"
+     ],
+     "basis": "inferred",
+     "voice": null,
+     "estSeconds": 4.0
+    },
+    {
+     "id": "n9.4",
+     "kind": "narration",
+     "text": "But not its money: Dio says the money was still aboard the ships left fighting, and Octavian held back from fire to gain it.",
+     "keys": [
+      "chr:scene:actium-campaign-31bc#9:corrected"
+     ],
+     "basis": "sourced",
+     "voice": null,
+     "estSeconds": 8.5
+    },
+    {
+     "id": "n9.5",
+     "kind": "narration",
+     "text": "Desertion, or a planned escape? Whether Cleopatra, and perhaps Antonius too, planned the flight before the battle is still an open question.",
+     "keys": [
+      "chr:scene:actium-campaign-31bc#9:disputed"
+     ],
+     "basis": "sourced",
+     "voice": null,
+     "estSeconds": 9.0
+    }
+   ]
+  },
+  {
+   "stepId": "chr:scene:actium-campaign-31bc#10",
+   "lines": [
+    {
+     "id": "n10.1",
+     "kind": "narration",
+     "text": "Late in the afternoon, with the fight still even, Octavian sends to the camp for fire.",
+     "keys": [
+      "chr:scene:actium-campaign-31bc#10.1"
+     ],
+     "basis": "sourced",
+     "voice": null,
+     "estSeconds": 6.0
+    },
+    {
+     "id": "n10.2",
+     "kind": "narration",
+     "text": "His ships attack from many sides, with blazing missiles, torches, and pots of charcoal and pitch.",
+     "keys": [
+      "chr:scene:actium-campaign-31bc#10.2"
+     ],
+     "basis": "sourced",
+     "voice": null,
+     "estSeconds": 6.5
+    },
+    {
+     "id": "n10.3",
+     "kind": "narration",
+     "text": "Plutarch says Antony's fleet held out until the tenth hour, worn down by a rising sea. Three hundred ships were captured, \"as Caesar himself has written\".",
+     "keys": [
+      "chr:scene:actium-campaign-31bc#10.3"
+     ],
+     "basis": "sourced",
+     "voice": null,
+     "estSeconds": 10.0
+    },
+    {
+     "id": "n10.4",
+     "kind": "narration",
+     "text": "Plutarch and Dio differ on what ended it: the sea, or the fire. Both are kept.",
+     "keys": [
+      "chr:scene:actium-campaign-31bc#10.3"
+     ],
+     "basis": "sourced",
+     "voice": null,
+     "estSeconds": 5.5
+    }
+   ]
+  },
+  {
+   "stepId": "chr:scene:actium-campaign-31bc#11",
+   "lines": [
+    {
+     "id": "n11.1",
+     "kind": "narration",
+     "text": "Antony's legions hold together for seven days, ignoring Octavian's messages.",
+     "keys": [
+      "chr:scene:actium-campaign-31bc#11.1"
+     ],
+     "basis": "sourced",
+     "voice": null,
+     "estSeconds": 5.0
+    },
+    {
+     "id": "n11.2",
+     "kind": "narration",
+     "text": "Only then does Canidius run away by night, and the army goes over to Octavian.",
+     "keys": [
+      "chr:scene:actium-campaign-31bc#11.2"
+     ],
+     "basis": "sourced",
+     "voice": null,
+     "estSeconds": 5.5
+    }
+   ]
+  },
+  {
+   "stepId": "chr:scene:actium-campaign-31bc#12",
+   "lines": [
+    {
+     "id": "n12.0",
+     "kind": "transition",
+     "text": "Now we follow the flight.",
+     "keys": [],
+     "basis": null,
+     "voice": null,
+     "estSeconds": 2.0
+    },
+    {
+     "id": "n12.1",
+     "kind": "narration",
+     "text": "Antony is taken aboard Cleopatra's ship.",
+     "keys": [
+      "chr:scene:actium-campaign-31bc#12.1"
+     ],
+     "basis": "sourced",
+     "voice": null,
+     "estSeconds": 3.0
+    },
+    {
+     "id": "n12.2",
+     "kind": "narration",
+     "text": "He means to cross from Taenarum to Libya.",
+     "keys": [
+      "chr:scene:actium-campaign-31bc#12.2"
+     ],
+     "basis": "sourced",
+     "voice": null,
+     "estSeconds": 3.0
+    },
+    {
+     "id": "n12.3",
+     "kind": "narration",
+     "text": "Where they parted, the sources differ. Dio says they went as far as the Peloponnese together, and Cleopatra then hastened to Egypt. Plutarch has Antony reach the coast of Libya and send her on into Egypt from Paraetonium.",
+     "keys": [
+      "chr:scene:actium-campaign-31bc#12.3",
+      "chr:scene:actium-campaign-31bc#12.4",
+      "chr:scene:actium-campaign-31bc#12:routes"
+     ],
+     "basis": "sourced",
+     "voice": null,
+     "estSeconds": 15.0
+    },
+    {
+     "id": "n12.4",
+     "kind": "narration",
+     "text": "Antony stays at Paraetonium until the news of Pelusium.",
+     "keys": [
+      "chr:scene:actium-campaign-31bc#12.5"
+     ],
+     "basis": "sourced",
+     "voice": null,
+     "estSeconds": 4.0
+    }
+   ]
+  },
+  {
+   "stepId": "chr:scene:actium-campaign-31bc#13",
+   "lines": [
+    {
+     "id": "n13.1",
+     "kind": "narration",
+     "text": "Before Alexandria, Antony's fleet goes over to Octavian. Plutarch tells it as the crews' own choice; Dio says Cleopatra caused the ships to desert.",
+     "keys": [
+      "chr:scene:actium-campaign-31bc#13.1"
+     ],
+     "basis": "sourced",
+     "voice": null,
+     "estSeconds": 10.0
+    },
+    {
+     "id": "n13.2",
+     "kind": "narration",
+     "text": "His cavalry deserts, his infantry is beaten, and he retires into the city.",
+     "keys": [
+      "chr:scene:actium-campaign-31bc#13.2"
+     ],
+     "basis": "sourced",
+     "voice": null,
+     "estSeconds": 5.0
+    },
+    {
+     "id": "n13.3",
+     "kind": "narration",
+     "text": "Told that Cleopatra is dead, Antony wounds himself, and dies with her in the tomb.",
+     "keys": [
+      "chr:scene:actium-campaign-31bc#13.3"
+     ],
+     "basis": "sourced",
+     "voice": null,
+     "estSeconds": 5.5
+    },
+    {
+     "id": "n13.4",
+     "kind": "narration",
+     "text": "Octavian drives into the city.",
+     "keys": [
+      "chr:scene:actium-campaign-31bc#13.4"
+     ],
+     "basis": "sourced",
+     "voice": null,
+     "estSeconds": 2.0
+    },
+    {
+     "id": "n13.5",
+     "kind": "narration",
+     "text": "The city fell, by the usual account, on 1 August 30 BC; no passage we hold gives the date.",
+     "keys": [
+      "chr:scene:actium-campaign-31bc#13.5"
+     ],
+     "basis": "not-checked",
+     "voice": null,
+     "estSeconds": 6.5
+    },
+    {
+     "id": "n13.6",
+     "kind": "narration",
+     "text": "Cleopatra dies. Octavian admires her spirit, and has her buried with Antony.",
+     "keys": [
+      "chr:scene:actium-campaign-31bc#13.6"
+     ],
+     "basis": "sourced",
+     "voice": null,
+     "estSeconds": 5.0
+    },
+    {
+     "id": "n13.7",
+     "kind": "narration",
+     "text": "Octavian now holds all power alone; Dio dates that from Actium.",
+     "keys": [
+      "chr:scene:actium-campaign-31bc#13.7"
+     ],
+     "basis": "sourced",
+     "voice": null,
+     "estSeconds": 4.5
+    }
+   ]
+  }
+ ],
+ "check": {
+  "problems": [],
+  "warnings": [
+   "chr:scene:actium-campaign-31bc#10 n10.4: 'Dio' is not in what the line keys",
+   "chr:scene:actium-campaign-31bc#13 n13.7: 'Actium' is not in what the line keys"
+  ],
+  "checkedAt": "2026-11-24T19:21:32+00:00"
+ }
+}
