@@ -323,6 +323,13 @@ steps = [
            [q("Cassius Dio 51.5.3", "had gone as far as the Peloponnesus together"), q("Cassius Dio 51.5.3", "Cleopatra had hastened to Egypt")]),
          s("Antony reaches the coast of Libya and sends Cleopatra on into Egypt from Paraetonium.", "sourced",
            [q("Plutarch Antony 69.1", "After Antony had reached the coast of Libya and sent Cleopatra forward into Egypt from Paraetonium")]),
+         s("Antony sails to Pinarius Scarpus and the army in Africa kept for the protection of Egypt; Scarpus refuses to receive him and kills the men Antony sent ahead.", "sourced",
+           [q("Cassius Dio 51.5.6", "had sailed to Pinarius Scarpus in Africa and to the army under Scarpus' command previously assembled there for the protection of Egypt"),
+            q("Cassius Dio 51.5.6", "this general not only refused to receive him but furthermore slew the men sent ahead by Antony")]),
+         s("Plutarch: when the general holding his forces in Libya brings about their defection, Antony tries to kill himself, and his friends take him to Alexandria.", "sourced",
+           [q("Plutarch Antony 69.2", "When the general to whom his forces in Libya had been entrusted brought about their defection, Antony tried to kill himself, but was prevented by his friends and brought to Alexandria")]),
+         s("Plutarch's unnamed general is most likely Scarpus.", "inferred", by=CHK,
+           note="Plutarch names no general; Dio 51.5.6 names Scarpus as the commander of the army in Africa who refused Antony. The identification is ours (graph1-1a, for the curator, 2026-11-25)."),
          s("Antony is at Paraetonium until the news of Pelusium.", "sourced",
            [q("Cassius Dio 51.10.1", "At the news concerning Pelusium Antony returned from Paraetonium")]),
      ],
@@ -341,6 +348,9 @@ steps = [
     {"order": 13, "phase": None, "context": "the end of the war (another event)", "timeWords": "1 August 30 BC", "view": "overview",
      "title": "Alexandria falls",
      "statements": [
+         s("Cornelius Gallus takes over Scarpus' army, marches suddenly on Paraetonium and occupies it.", "sourced",
+           [q("Cassius Dio 51.9.1", "Cornelius Gallus had taken over Scarpus' army and had suddenly marched with these troops upon Paraetonium and occupied it")],
+           note="The western front. Wikipedia 3.2 tells it too (Gallus advancing from Paraetonium and defeating Antony), with no source cited: it is not used as a voice here."),
          s("Antony's fleet goes over to Octavian before Alexandria.", "sourced",
            [q("Plutarch Antony 76.1", "on their returning the salute changed sides"),
             q("Cassius Dio 51.10.4", "Cleopatra, upon perceiving this, caused the ships to desert")],
@@ -358,7 +368,7 @@ steps = [
          s("Octavian now holds all power alone.", "sourced", [q("Cassius Dio 51.1.1", "Caesar now for the first time held all the power alone")],
            note="Dio dates this from Actium, not from Alexandria."),
      ],
-     "legs": []},
+     "legs": [leg("Antony", "Paraetonium", "Alexandria", "inferred", note="Dio 51.10.1: at the news of Pelusium he returned from Paraetonium; the line is ours.")]},
 ]
 
 scene = {
@@ -387,7 +397,7 @@ scene = {
     "terrain": {"source": "modern", "note": "Coastlines: Natural Earth (public domain) and OpenStreetMap (ODbL, attribution and share-alike); elevation: Mapzen terrain tiles (SRTM and others). The ancient shore near the strait differed (26a, question 4)."},
     "places": PLACES,
     "steps": steps,
-    "footnote": "Not in the scene: the council before the battle (phase 'council'). The date of Alexandria's fall is in no passage held. Places added for the scene (proposed, migration 035): Brundisium, Toryne, Leucas, Methone, Taenarum, Paraetonium; Corcyra is the graph's Corfu (the island).",
+    "footnote": "The western front (Scarpus refusing Antony, Gallus taking Scarpus' army and Paraetonium) is drawn from Dio 51.5.6, 51.9.1 and Plutarch 69.2; Gallus's march has no place of origin held, so it has no line. Not in the scene: the council before the battle (phase 'council'). The date of Alexandria's fall is in no passage held. Places added for the scene (proposed, migration 035): Brundisium, Toryne, Leucas, Methone, Taenarum, Paraetonium; Corcyra is the graph's Corfu (the island).",
 }
 scene["id"] = "chr:scene:actium-campaign-31bc"
 # stable keys for anything keyed to the scene (narration, captions): a step is "<scene>#<order>", a statement

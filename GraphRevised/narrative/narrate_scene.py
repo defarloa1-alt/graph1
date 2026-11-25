@@ -1,7 +1,7 @@
 """Write a scene's narration (scenes/NARRATION.md): one model call, then the check; one repair round.
 
     python -m GraphRevised.narrative.narrate_scene <scene.narration-input.json> [--persona browser]
-        [--rules GraphRevised/scenes/NARRATION.md] [--model claude-opus-5-5]
+        [--rules GraphRevised/scenes/NARRATION.md] [--model claude-opus-5-5] [--fresh] [--stamp]
 
 Needs a named budget (CHRYSTALLUM_BUDGET; the spend meter prices and caps the call). The model sees the
 narration rules and the scene's narration input, and returns lines keyed to statement ids. The check
@@ -10,11 +10,19 @@ A narration that passes is written beside the scene as <scene>.narration.<person
 not is written as <scene>.narration.<persona>.rejected.json with its problems, for the curator. The
 scene's id and contentHash are copied from the input, never from the model. Nothing goes into the graph:
 a narration is a made presentation, never evidence.
+
+Only what changed is rewritten. A narration records a fingerprint of each step it was written from
+(`stepHashes`). When the scene changes, only the steps whose fingerprint changed go to the model; every
+other step keeps its lines word for word, so their voiced clips stay valid (narrative/voice_scene.py
+re-voices only lines whose text changed). If no step changed, nothing is called. The merged narration is
+checked whole. --fresh rewrites every step; --stamp records the fingerprints on an existing narration
+written for this exact scene version, calling nothing.
 """
 
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import sys
 from datetime import datetime, timezone
@@ -81,11 +89,24 @@ def call(client, req: dict) -> tuple[Narration | None, dict]:
     return (None if response.stop_reason in ("refusal", "max_tokens") else response.parsed_output), meta
 
 
-def assemble(parsed: Narration, scene: dict, persona: str, metas: list[dict]) -> dict:
+def step_hashes(scene: dict) -> dict[str, str]:
+    """A fingerprint of each step as the narrator reads it: its id, words, quotations and keys."""
+    return {st["id"]: hashlib.sha256(json.dumps(st, sort_keys=True, ensure_ascii=False).encode("utf-8")).hexdigest()[:16]
+            for st in scene["steps"]}
+
+
+def merge(scene: dict, persona: str, metas: list[dict], new_steps: list[dict], previous: dict | None,
+          changed: set[str]) -> dict:
+    """The narration in the scene's order: rewritten steps from the model, the rest kept from before."""
+    new = {s["stepId"]: s for s in new_steps}
+    kept = {s["stepId"]: s for s in (previous or {}).get("steps", [])}
+    order = [st["id"] for st in scene["steps"]]
+    steps = [new.get(i, {"stepId": i, "lines": []}) if i in changed else kept[i] for i in order]
     return {"sceneId": scene["id"], "sceneContentHash": scene["contentHash"], "language": "en", "persona": persona,
             "madeBy": f"narrative/narrate_scene.py with {metas[-1]['model']}",
             "madeAt": datetime.now(timezone.utc).isoformat(timespec="seconds"), "calls": metas,
-            "steps": [s.model_dump() for s in parsed.steps]}
+            "rewritten": [i for i in order if i in changed], "kept": [i for i in order if i not in changed],
+            "stepHashes": step_hashes(scene), "steps": steps}
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -94,33 +115,60 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--persona", default="browser", choices=["browser", "student", "scholar"])
     parser.add_argument("--rules", type=Path, default=ROOT / "scenes" / "NARRATION.md")
     parser.add_argument("--model", default=MODEL)
+    parser.add_argument("--fresh", action="store_true", help="rewrite every step, keeping nothing")
+    parser.add_argument("--stamp", action="store_true",
+                        help="record step fingerprints on the existing narration of this scene version; call nothing")
     args = parser.parse_args(argv)
     sys.stdout.reconfigure(encoding="utf-8")
-    from GraphRevised.proposals.passage_reader import anthropic_client
 
     scene_text = args.scene_input.read_text(encoding="utf-8")
     scene = json.loads(scene_text)
+    stem = args.scene_input.name.replace(".narration-input.json", "")
+    current = args.scene_input.with_name(f"{stem}.narration.{args.persona}.json")
+    previous = json.loads(current.read_text(encoding="utf-8")) if current.exists() else None
+    hashes = step_hashes(scene)
+
+    if args.stamp:
+        if not previous or previous.get("sceneContentHash") != scene["contentHash"]:
+            raise SystemExit("--stamp needs a narration written for this exact scene version (its contentHash)")
+        previous["stepHashes"] = hashes
+        current.write_text(json.dumps(previous, indent=1, ensure_ascii=False), encoding="utf-8")
+        print(f"stamped {current}: {len(hashes)} step fingerprints")
+        return 0
+
+    usable = previous if previous and previous.get("stepHashes") and not args.fresh else None
+    changed = {i for i, h in hashes.items() if not usable or usable["stepHashes"].get(i) != h}
+    if usable and not changed:
+        print(f"no step changed: {current.name} kept, nothing called")
+        return 0
+    partial = scene_text if not usable else json.dumps(
+        {**scene, "steps": [st for st in scene["steps"] if st["id"] in changed]}, ensure_ascii=False)
+    print(f"rewriting {len(changed)} of {len(hashes)} steps" + ("" if usable else " (no earlier fingerprints to keep from)"))
+
+    from GraphRevised.proposals.passage_reader import anthropic_client
     client = anthropic_client(run=f"narrate:{scene['id']}")
-    req = request(args.model, args.rules.read_text(encoding="utf-8"), scene_text, args.persona)
+    req = request(args.model, args.rules.read_text(encoding="utf-8"), partial, args.persona)
+    if usable:
+        req["messages"][0]["content"] += ("\n\nThis is part of the scene: only the steps given changed. Return lines for "
+                                          "these steps only; the other steps keep their narration.")
     parsed, meta = call(client, req)
     metas = [meta]
     if parsed is None:
         print(f"no narration: {meta['stopReason']}")
         return 1
-    narration = assemble(parsed, scene, args.persona, metas)
+    narration = merge(scene, args.persona, metas, [x.model_dump() for x in parsed.steps], usable, changed)
     result = check(narration, scene)
     if result["problems"]:  # one repair round: the problems go back with the first answer
         req["messages"] += [{"role": "assistant", "content": parsed.model_dump_json()},
-                            {"role": "user", "content": "The check found these problems. Return the whole narration again, "
+                            {"role": "user", "content": "The check found these problems. Return the same steps again, "
                                                         "fixed, changing only what they require:\n- " + "\n- ".join(result["problems"])}]
         repaired, meta = call(client, req)
         metas.append(meta)
         if repaired is not None:
-            narration, result = assemble(repaired, scene, args.persona, metas), None
+            narration = merge(scene, args.persona, metas, [x.model_dump() for x in repaired.steps], usable, changed)
             result = check(narration, scene)
     narration["check"] = {**result, "checkedAt": datetime.now(timezone.utc).isoformat(timespec="seconds")}
-    stem = args.scene_input.name.replace(".narration-input.json", "")
-    out = args.scene_input.with_name(f"{stem}.narration.{args.persona}{'.rejected' if result['problems'] else ''}.json")
+    out = current if not result["problems"] else args.scene_input.with_name(f"{stem}.narration.{args.persona}.rejected.json")
     out.write_text(json.dumps(narration, indent=1, ensure_ascii=False), encoding="utf-8")
     print(f"wrote {out}: {len(result['problems'])} problems, {len(result['warnings'])} warnings; "
           f"{sum(len(s['lines']) for s in narration['steps'])} lines")

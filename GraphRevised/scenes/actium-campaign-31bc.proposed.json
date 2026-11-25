@@ -2417,6 +2417,52 @@
      "id": "chr:scene:actium-campaign-31bc#12.4"
     },
     {
+     "text": "Antony sails to Pinarius Scarpus and the army in Africa kept for the protection of Egypt; Scarpus refuses to receive him and kills the men Antony sent ahead.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Cassius Dio, Roman History",
+       "work": "chr:entity:cassius-dio-roman-history",
+       "observation": "chr:observation:lacuscurtius:cassius-dio:51.5.6:688a84b4",
+       "locator": "Cassius Dio 51.5.6",
+       "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Cassius_Dio/51*.html#5.6",
+       "quotation": "had sailed to Pinarius Scarpus in Africa and to the army under Scarpus' command previously assembled there for the protection of Egypt"
+      },
+      {
+       "accordingTo": "Cassius Dio, Roman History",
+       "work": "chr:entity:cassius-dio-roman-history",
+       "observation": "chr:observation:lacuscurtius:cassius-dio:51.5.6:688a84b4",
+       "locator": "Cassius Dio 51.5.6",
+       "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Cassius_Dio/51*.html#5.6",
+       "quotation": "this general not only refused to receive him but furthermore slew the men sent ahead by Antony"
+      }
+     ],
+     "id": "chr:scene:actium-campaign-31bc#12.5"
+    },
+    {
+     "text": "Plutarch: when the general holding his forces in Libya brings about their defection, Antony tries to kill himself, and his friends take him to Alexandria.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Plutarch, Life of Antony",
+       "work": "chr:entity:plutarch-life-of-antony",
+       "observation": "chr:observation:perseus:tlg0007.tlg058.perseus-eng2:69.2:70427323",
+       "locator": "Plutarch Antony 69.2",
+       "url": "urn:cts:greekLit:tlg0007.tlg058.perseus-eng2:69.2",
+       "quotation": "When the general to whom his forces in Libya had been entrusted brought about their defection, Antony tried to kill himself, but was prevented by his friends and brought to Alexandria"
+      }
+     ],
+     "id": "chr:scene:actium-campaign-31bc#12.6"
+    },
+    {
+     "text": "Plutarch's unnamed general is most likely Scarpus.",
+     "basis": "inferred",
+     "voices": [],
+     "by": "the check of 2026-11-24 (Claude Code, against the stored passages)",
+     "note": "Plutarch names no general; Dio 51.5.6 names Scarpus as the commander of the army in Africa who refused Antony. The identification is ours (graph1-1a, for the curator, 2026-11-25).",
+     "id": "chr:scene:actium-campaign-31bc#12.7"
+    },
+    {
      "text": "Antony is at Paraetonium until the news of Pelusium.",
      "basis": "sourced",
      "voices": [
@@ -2429,7 +2475,7 @@
        "quotation": "At the news concerning Pelusium Antony returned from Paraetonium"
       }
      ],
-     "id": "chr:scene:actium-campaign-31bc#12.5"
+     "id": "chr:scene:actium-campaign-31bc#12.8"
     }
    ],
    "routes": {
@@ -2603,6 +2649,22 @@
    "title": "Alexandria falls",
    "statements": [
     {
+     "text": "Cornelius Gallus takes over Scarpus' army, marches suddenly on Paraetonium and occupies it.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Cassius Dio, Roman History",
+       "work": "chr:entity:cassius-dio-roman-history",
+       "observation": "chr:observation:lacuscurtius:cassius-dio:51.9.1:688a84b4",
+       "locator": "Cassius Dio 51.9.1",
+       "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Cassius_Dio/51*.html#9.1",
+       "quotation": "Cornelius Gallus had taken over Scarpus' army and had suddenly marched with these troops upon Paraetonium and occupied it"
+      }
+     ],
+     "note": "The western front. Wikipedia 3.2 tells it too (Gallus advancing from Paraetonium and defeating Antony), with no source cited: it is not used as a voice here.",
+     "id": "chr:scene:actium-campaign-31bc#13.1"
+    },
+    {
      "text": "Antony's fleet goes over to Octavian before Alexandria.",
      "basis": "sourced",
      "voices": [
@@ -2624,7 +2686,7 @@
       }
      ],
      "note": "Plutarch tells it as the crews' own choice; Dio has Cleopatra cause it. Both are kept.",
-     "id": "chr:scene:actium-campaign-31bc#13.1"
+     "id": "chr:scene:actium-campaign-31bc#13.2"
     },
     {
      "text": "His cavalry deserts, his infantry is beaten, and he retires into the city.",
@@ -2639,7 +2701,7 @@
        "quotation": "he was deserted by his cavalry, which went over to the enemy, and after being defeated with his infantry he retired into the city"
       }
      ],
-     "id": "chr:scene:actium-campaign-31bc#13.2"
+     "id": "chr:scene:actium-campaign-31bc#13.3"
     },
     {
      "text": "Told that Cleopatra is dead, Antony wounds himself, and dies with her in the tomb.",
@@ -2670,7 +2732,7 @@
        "quotation": "So Antony died there in Cleopatra's bosom"
       }
      ],
-     "id": "chr:scene:actium-campaign-31bc#13.3"
+     "id": "chr:scene:actium-campaign-31bc#13.4"
     },
     {
      "text": "Octavian drives into the city.",
@@ -2685,7 +2747,7 @@
        "quotation": "And now Caesar himself drove into the city"
       }
      ],
-     "id": "chr:scene:actium-campaign-31bc#13.4"
+     "id": "chr:scene:actium-campaign-31bc#13.5"
     },
     {
      "text": "The city fell on 1 August 30 BC.",
@@ -2693,7 +2755,7 @@
      "voices": [],
      "by": "the animation's generator (Claude, in a chat, from Wikipedia and its own knowledge)",
      "note": "No passage read gives the date. Dio 51.19.6 says the day of the capture was declared a lucky day, without naming it.",
-     "id": "chr:scene:actium-campaign-31bc#13.5"
+     "id": "chr:scene:actium-campaign-31bc#13.6"
     },
     {
      "text": "Cleopatra dies; Octavian admires her spirit and has her buried with Antony.",
@@ -2708,7 +2770,7 @@
        "quotation": "he gave orders that her body should be buried with that of Antony in splendid and regal fashion"
       }
      ],
-     "id": "chr:scene:actium-campaign-31bc#13.6"
+     "id": "chr:scene:actium-campaign-31bc#13.7"
     },
     {
      "text": "Octavian now holds all power alone.",
@@ -2724,13 +2786,43 @@
       }
      ],
      "note": "Dio dates this from Actium, not from Alexandria.",
-     "id": "chr:scene:actium-campaign-31bc#13.7"
+     "id": "chr:scene:actium-campaign-31bc#13.8"
     }
    ],
-   "legs": [],
+   "legs": [
+    {
+     "unit": {
+      "entity": "chr:entity:mark-antony",
+      "label": "Antony",
+      "side": "Antony"
+     },
+     "from": {
+      "label": "Paraetonium",
+      "lonLat": [
+       27.2368445,
+       31.350136
+      ],
+      "lonLatFrom": "the place's card (Pleiades 716615)",
+      "entity": "chr:entity:proposed-place-paraetonium",
+      "status": "proposed"
+     },
+     "to": {
+      "label": "Alexandria",
+      "lonLat": [
+       29.909773,
+       31.201435
+      ],
+      "lonLatFrom": "the place's card (Pleiades 727070)",
+      "entity": "chr:entity:alexandria",
+      "status": "proposed"
+     },
+     "basis": "inferred",
+     "note": "Dio 51.10.1: at the news of Pelusium he returned from Paraetonium; the line is ours."
+    }
+   ],
    "id": "chr:scene:actium-campaign-31bc#13"
   }
  ],
- "footnote": "Not in the scene: the council before the battle (phase 'council'). The date of Alexandria's fall is in no passage held. Places added for the scene (proposed, migration 035): Brundisium, Toryne, Leucas, Methone, Taenarum, Paraetonium; Corcyra is the graph's Corfu (the island).",
- "contentHash": "037e74eff9f4c23edcf51bfd90689fe4653a6ed5333bdbe28441d9b8ff2db603"
+ "footnote": "The western front (Scarpus refusing Antony, Gallus taking Scarpus' army and Paraetonium) is drawn from Dio 51.5.6, 51.9.1 and Plutarch 69.2; Gallus's march has no place of origin held, so it has no line. Not in the scene: the council before the battle (phase 'council'). The date of Alexandria's fall is in no passage held. Places added for the scene (proposed, migration 035): Brundisium, Toryne, Leucas, Methone, Taenarum, Paraetonium; Corcyra is the graph's Corfu (the island).",
+ "contentHash": "c51705d6287b56d54db42e84836f446074b3f38f0c6cd0fb8f97d0d6680cd027"
 }

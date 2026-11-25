@@ -168,7 +168,9 @@ You may use only the PASSAGES given. Rules:
 - Where two sources disagree (a route, who commanded what), give both as a disagreement, never choose.
 - Prefer the ancient witnesses. A modern work or an encyclopedia may be quoted where no ancient passage
   says it, and then the statement names whose account it is ("in <author>'s account").
-- Leave out what the passages do not support. Fewer, well-sourced steps are better than many.
+- Leave out what the passages do not support. Fewer, well-sourced steps are better than many: at most 10
+  steps, at most 4 statements a step, and a quotation is a short phrase (25 words or fewer), enough to show
+  the passage says it.
 Return JSON only."""
 
 
@@ -185,11 +187,22 @@ def ask(client: Any, model: str, ev: dict[str, Any], repair: list[str] | None = 
         messages += [{"role": "assistant", "content": earlier or ""},
                      {"role": "user", "content": "The check found these problems. Return the whole draft again, fixed, "
                                                  "changing only what they require:\n- " + "\n- ".join(repair)}]
-    r = client.beta.messages.parse(model=model, max_tokens=16000, system=SYSTEM, messages=messages, output_format=Draft,
-                                   betas=["server-side-fallback-2026-07-01"], extra_body={"fallbacks": "default"})
+    # create, not parse: the stop reason and the usage are read before the JSON is, so an answer that ends early
+    # (a refusal mid-way, the output limit) is reported for what it is, and the meter records its real cost
+    from pydantic import TypeAdapter, ValidationError
+    from anthropic.lib._parse._transform import transform_schema
+    fmt = {"type": "json_schema", "schema": transform_schema(TypeAdapter(Draft).json_schema())}
+    r = client.beta.messages.create(model=model, max_tokens=16000, system=SYSTEM, messages=messages, output_format=fmt,
+                                    betas=["server-side-fallback-2026-07-01"], extra_body={"fallbacks": "default"})
+    text = "".join(getattr(b, "text", "") for b in r.content)
     meta = {"model": r.model, "stopReason": r.stop_reason, "inputTokens": r.usage.input_tokens,
-            "outputTokens": r.usage.output_tokens}
-    return (None if r.stop_reason in ("refusal", "max_tokens") else r.parsed_output), meta
+            "outputTokens": r.usage.output_tokens, "characters": len(text)}
+    if r.stop_reason in ("refusal", "max_tokens"):
+        return None, meta
+    try:
+        return Draft.model_validate_json(text), meta
+    except ValidationError as e:
+        return None, meta | {"stopReason": f"{r.stop_reason}, but the JSON does not parse", "error": str(e)[:300]}
 
 
 # --- The check: code --------------------------------------------------------------------------------
@@ -446,7 +459,7 @@ def main(argv: list[str] | None = None) -> int:
         draft, meta = ask(client, args.model, ev)
         metas = [meta]
         if draft is None:
-            print(f"no draft: {meta['stopReason']}")
+            print(f"no draft: {meta}")
             return 1
         result = check(draft.model_dump(), ev)
     if result["problems"] and not args.from_draft:

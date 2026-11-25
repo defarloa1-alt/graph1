@@ -236,6 +236,12 @@ def load_plans() -> dict:
                 "state": state, "started": a.get("started_at"), "finished": r.get("finished_at") if r else None,
                 "cost": r.get("cost_usd") if r else None, "proposals": len(r.get("proposal_ids") or []) if r else 0,
                 "error": (r.get("error") or None) if r else None})
+        # an item that has run ok has read its source through its lens since the plan was made: the matrix says so
+        for row in rows:
+            for lens, c in row["cells"].items():
+                tries = attempts.get(c.get("item")) if isinstance(c, dict) else None
+                if tries and tries[-1]["state"] == "ok":
+                    row["cells"][lens] = "read"
         interrupts = [{k: i.get(k) for k in ("item_id", "reason", "question", "options", "answer", "answered_by")}
                       for i in run.get("interrupts") or []]
         earlier = out.get(key)  # the runs are read oldest first, so a run already held is an earlier plan

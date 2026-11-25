@@ -112,6 +112,8 @@ One JSON file per scene version:
 
 The scene is rebuilt from the graph and can change. Statement ids are positional (`#<step>.<n>`), so they renumber when a statement is added. Always record `sceneContentHash`. If it no longer matches the scene's `contentHash`, the narration is stale: the player marks it, and it must be regenerated for the steps whose statements changed.
 
+Chrystallum's own narrator (`narrative/narrate_scene.py`) does this by step: a narration records a fingerprint of each step it was written from (`stepHashes`), and a re-run sends only the steps whose fingerprint changed. Every other step keeps its lines word for word, so its voiced clips stay valid. An app narrating from outside should do the same: return lines only for the steps that changed, and keep the rest.
+
 ## 6. What the narration is, in Chrystallum's terms
 
 A narration is a **made** presentation of the scene, never evidence. It is never written into the graph as a claim, and it never cites itself.

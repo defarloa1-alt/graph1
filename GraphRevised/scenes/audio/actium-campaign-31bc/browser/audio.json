@@ -9,13 +9,14 @@
  "voiceCategory": "premade",
  "format": "mp3_44100_128",
  "madeBy": "narrative/voice_scene.py",
- "madeAt": "2026-11-25T14:27:13+00:00",
+ "madeAt": "2026-11-25T15:58:15+00:00",
  "sceneId": "chr:scene:actium-campaign-31bc",
- "sceneContentHash": "037e74eff9f4c23edcf51bfd90689fe4653a6ed5333bdbe28441d9b8ff2db603",
+ "sceneContentHash": "c51705d6287b56d54db42e84836f446074b3f38f0c6cd0fb8f97d0d6680cd027",
  "persona": "browser",
  "narration": "actium-campaign-31bc.narration.browser.json",
- "narrationSha256": "ee448fbf913392147d50f07c27d1a2b0f19bc32ab5335e3319e47fc1634ae189",
+ "narrationSha256": "cb39d3cd739b5ab46b93121113afe9bd38cb51116b8e5237c7e90f03bc2c8aa7",
  "pronunciations": {
+  "Actium": "AK-tee-um",
   "Patrae": "PAT-ree",
   "Corcyra": "kor-SY-ruh",
   "Leucas": "LOO-kus",
@@ -36,84 +37,95 @@
   "Bogud": "BOH-gud"
  },
  "licence": "per the ElevenLabs plan in use; record it here",
- "seconds": 413.4,
+ "seconds": 453.1,
  "clips": [
   {
    "id": "n1.1",
-   "text": "The winter of 32 to 31 BC. Antony sails back to the Peloponnese and winters at Patrae.",
-   "spoken": "The winter of 32 to 31 BC. Antony sails back to the Peloponnese and winters at PAT-ree.",
+   "text": "In the winter of 32/31 BC, Antony sails back to the Peloponnese and winters at Patrae.",
+   "spoken": "In the winter of 32/31 BC, Antony sails back to the Peloponnese and winters at PAT-ree.",
    "file": "n1.1.mp3",
    "seconds": 8.08,
    "bytes": 130446,
    "voice": "onwK4e9ZLuTAKqWW03F9",
    "model": "eleven_v4",
-   "madeAt": "2026-11-25T14:25:06+00:00"
+   "madeAt": "2026-11-25T15:55:49+00:00"
   },
   {
    "id": "n1.2",
-   "text": "He spreads his soldiers out, to guard the strategic points and secure provisions.",
-   "spoken": "He spreads his soldiers out, to guard the strategic points and secure provisions.",
+   "text": "He spreads his soldiers to guard the strategic points and secure provisions.",
+   "spoken": "He spreads his soldiers to guard the strategic points and secure provisions.",
    "file": "n1.2.mp3",
-   "seconds": 5.76,
-   "bytes": 91994,
+   "seconds": 5.12,
+   "bytes": 81545,
    "voice": "onwK4e9ZLuTAKqWW03F9",
    "model": "eleven_v4",
-   "madeAt": "2026-11-25T14:25:09+00:00"
+   "madeAt": "2026-11-25T15:55:52+00:00"
   },
   {
    "id": "n1.3",
-   "text": "His garrisons hold Corcyra. He holds Methone.",
-   "spoken": "His garrisons hold kor-SY-ruh. He holds meh-THOH-nee.",
+   "text": "His garrisons hold Corcyra, and he holds Methone.",
+   "spoken": "His garrisons hold kor-SY-ruh, and he holds meh-THOH-nee.",
    "file": "n1.3.mp3",
-   "seconds": 4.4,
-   "bytes": 71514,
+   "seconds": 4.24,
+   "bytes": 67752,
    "voice": "onwK4e9ZLuTAKqWW03F9",
    "model": "eleven_v4",
-   "madeAt": "2026-11-25T14:25:11+00:00"
+   "madeAt": "2026-11-25T15:55:54+00:00"
   },
   {
    "id": "n1.4",
-   "text": "We read this chain of posts as probably guarding the supply route from Egypt. That is our reading; the passage speaks only of guard and provisions.",
-   "spoken": "We read this chain of posts as probably guarding the supply route from Egypt. That is our reading; the passage speaks only of guard and provisions.",
+   "text": "We have drawn this chain of posts as guarding the supply route from Egypt. That is our reading, not the sources' words.",
+   "spoken": "We have drawn this chain of posts as guarding the supply route from Egypt. That is our reading, not the sources' words.",
    "file": "n1.4.mp3",
-   "seconds": 9.76,
-   "bytes": 155941,
+   "seconds": 8.0,
+   "bytes": 127938,
    "voice": "onwK4e9ZLuTAKqWW03F9",
    "model": "eleven_v4",
-   "madeAt": "2026-11-25T14:25:14+00:00"
+   "madeAt": "2026-11-25T15:55:57+00:00"
   },
   {
    "id": "n2.1",
-   "text": "Before spring 31 BC, Agrippa takes Methone by storm, and kills Bogud there.",
-   "spoken": "Before spring 31 BC, Agrippa takes meh-THOH-nee by storm, and kills BOH-gud there.",
+   "text": "Then the other side moves.",
+   "spoken": "Then the other side moves.",
    "file": "n2.1.mp3",
-   "seconds": 7.52,
-   "bytes": 119997,
+   "seconds": 2.24,
+   "bytes": 35569,
    "voice": "onwK4e9ZLuTAKqWW03F9",
    "model": "eleven_v4",
-   "madeAt": "2026-11-25T14:25:18+00:00"
+   "madeAt": "2026-11-25T15:55:59+00:00"
   },
   {
    "id": "n2.2",
+   "text": "Before spring 31 BC, Agrippa takes Methone by storm, and kills Bogud there.",
+   "spoken": "Before spring 31 BC, Agrippa takes meh-THOH-nee by storm, and kills BOH-gud there.",
+   "file": "n2.2.mp3",
+   "seconds": 7.6,
+   "bytes": 122505,
+   "voice": "onwK4e9ZLuTAKqWW03F9",
+   "model": "eleven_v4",
+   "madeAt": "2026-11-25T15:56:02+00:00"
+  },
+  {
+   "id": "n2.3",
    "text": "From there he watches for the merchant ships, and raids the coasts of Greece.",
    "spoken": "From there he watches for the merchant ships, and raids the coasts of Greece.",
-   "file": "n2.2.mp3",
+   "file": "n2.3.mp3",
    "seconds": 5.2,
    "bytes": 82798,
    "voice": "onwK4e9ZLuTAKqWW03F9",
    "model": "eleven_v4",
-   "madeAt": "2026-11-25T14:25:20+00:00"
+   "madeAt": "2026-11-25T15:56:04+00:00"
   },
   {
-   "id": "n2.3",
-   "text": "Those were most likely grain ships from Egypt. That is our reading; the passage says only merchant ships.",
-   "spoken": "Those were most likely grain ships from Egypt. That is our reading; the passage says only merchant ships.",
-   "file": "n2.3.mp3",
-   "seconds": 7.76,
-   "bytes": 125430,
+   "id": "n2.4",
+   "text": "Those merchant ships were probably grain ships from Egypt, though that is our reading, not the source's.",
+   "spoken": "Those merchant ships were probably grain ships from Egypt, though that is our reading, not the source's.",
+   "file": "n2.4.mp3",
+   "seconds": 6.88,
+   "bytes": 111220,
    "voice": "onwK4e9ZLuTAKqWW03F9",
    "model": "eleven_v4",
-   "madeAt": "2026-11-25T14:25:23+00:00"
+   "madeAt": "2026-11-25T15:56:07+00:00"
   },
   {
    "id": "n3.1",
@@ -139,14 +151,14 @@
   },
   {
    "id": "n3.3",
-   "text": "He seizes Corcyra, abandoned by its garrisons, and occupies Toryne, in Epirus.",
-   "spoken": "He seizes kor-SY-ruh, abandoned by its garrisons, and occupies TOR-ih-nee, in Epirus.",
+   "text": "He seizes Corcyra, abandoned by its garrisons, and occupies Toryne in Epirus.",
+   "spoken": "He seizes kor-SY-ruh, abandoned by its garrisons, and occupies TOR-ih-nee in Epirus.",
    "file": "n3.3.mp3",
    "seconds": 6.64,
    "bytes": 107458,
    "voice": "onwK4e9ZLuTAKqWW03F9",
    "model": "eleven_v4",
-   "madeAt": "2026-11-25T14:25:26+00:00"
+   "madeAt": "2026-11-25T15:56:10+00:00"
   },
   {
    "id": "n3.4",
@@ -161,25 +173,25 @@
   },
   {
    "id": "n3.5",
-   "text": "From Toryne he probably marched south to that camp. We have drawn the road; the sources give the places, not the march.",
-   "spoken": "From TOR-ih-nee he probably marched south to that camp. We have drawn the road; the sources give the places, not the march.",
+   "text": "From Toryne he probably marched south to that camp; the sources give the places, not the road.",
+   "spoken": "From TOR-ih-nee he probably marched south to that camp; the sources give the places, not the road.",
    "file": "n3.5.mp3",
-   "seconds": 8.64,
-   "bytes": 137969,
+   "seconds": 6.96,
+   "bytes": 111220,
    "voice": "onwK4e9ZLuTAKqWW03F9",
    "model": "eleven_v4",
-   "madeAt": "2026-11-25T14:25:31+00:00"
+   "madeAt": "2026-11-25T15:56:13+00:00"
   },
   {
    "id": "n4.1",
-   "text": "Summer 31 BC. Agrippa takes Leucas, takes Patrae after beating Nasidius at sea, and later takes Corinth.",
-   "spoken": "Summer 31 BC. Agrippa takes LOO-kus, takes PAT-ree after beating nuh-SID-ee-us at sea, and later takes Corinth.",
+   "text": "In summer 31 BC, Agrippa takes Leucas, then Patrae after beating Nasidius at sea, and later Corinth.",
+   "spoken": "In summer 31 BC, Agrippa takes LOO-kus, then PAT-ree after beating nuh-SID-ee-us at sea, and later Corinth.",
    "file": "n4.1.mp3",
-   "seconds": 10.0,
-   "bytes": 160957,
+   "seconds": 9.12,
+   "bytes": 145910,
    "voice": "onwK4e9ZLuTAKqWW03F9",
    "model": "eleven_v4",
-   "madeAt": "2026-11-25T14:25:35+00:00"
+   "madeAt": "2026-11-25T15:56:16+00:00"
   },
   {
    "id": "n4.2",
@@ -194,80 +206,58 @@
   },
   {
    "id": "n4.3",
-   "text": "Velleius puts it plainly: \"from Antony to Caesar someone or other was deserting daily.\"",
-   "spoken": "Velleius puts it plainly: \"from Antony to Caesar someone or other was deserting daily.\"",
+   "text": "Cut off from bringing in grain, his provisions begin to fail.",
+   "spoken": "Cut off from bringing in grain, his provisions begin to fail.",
    "file": "n4.3.mp3",
-   "seconds": 6.64,
-   "bytes": 106204,
+   "seconds": 4.56,
+   "bytes": 72767,
    "voice": "onwK4e9ZLuTAKqWW03F9",
    "model": "eleven_v4",
-   "madeAt": "2026-11-25T14:25:38+00:00"
-  },
-  {
-   "id": "n4.4",
-   "text": "Cut off from bringing in grain, Antony's provisions begin to fail.",
-   "spoken": "Cut off from bringing in grain, Antony's provisions begin to fail.",
-   "file": "n4.4.mp3",
-   "seconds": 4.88,
-   "bytes": 77783,
-   "voice": "onwK4e9ZLuTAKqWW03F9",
-   "model": "eleven_v4",
-   "madeAt": "2026-11-25T06:16:04+00:00"
-  },
-  {
-   "id": "n5.0",
-   "text": "Now to the battle itself.",
-   "spoken": "Now to the battle itself.",
-   "file": "n5.0.mp3",
-   "seconds": 2.32,
-   "bytes": 38077,
-   "voice": "onwK4e9ZLuTAKqWW03F9",
-   "model": "eleven_v4",
-   "madeAt": "2026-11-25T06:16:06+00:00"
+   "madeAt": "2026-11-25T15:56:18+00:00"
   },
   {
    "id": "n5.1",
-   "text": "The battle is fought on the morning of 2 September, 31 BC.",
-   "spoken": "The battle is fought on the morning of 2 September, 31 BC.",
+   "text": "Now to the battle itself.",
+   "spoken": "Now to the battle itself.",
    "file": "n5.1.mp3",
-   "seconds": 5.12,
-   "bytes": 82798,
+   "seconds": 2.24,
+   "bytes": 36823,
    "voice": "onwK4e9ZLuTAKqWW03F9",
    "model": "eleven_v4",
-   "madeAt": "2026-11-25T14:25:40+00:00"
+   "madeAt": "2026-11-25T15:56:19+00:00"
   },
   {
    "id": "n5.2",
-   "text": "Antony's fleet draws up its line a little outside the strait, and comes no further.",
-   "spoken": "Antony's fleet draws up its line a little outside the strait, and comes no further.",
+   "text": "The battle is fought on 2 September, 31 BC.",
+   "spoken": "The battle is fought on 2 September, 31 BC.",
    "file": "n5.2.mp3",
-   "seconds": 6.0,
-   "bytes": 95755,
+   "seconds": 4.24,
+   "bytes": 67752,
    "voice": "onwK4e9ZLuTAKqWW03F9",
    "model": "eleven_v4",
-   "madeAt": "2026-11-25T14:25:43+00:00"
+   "madeAt": "2026-11-25T15:56:21+00:00"
   },
   {
    "id": "n5.3",
-   "text": "Antony orders his ships to hold their position at the narrow mouth of the gulf.",
-   "spoken": "Antony orders his ships to hold their position at the narrow mouth of the gulf.",
+   "text": "That morning, Antony's fleet draws up its line a little outside the strait, and comes no further. He has ordered his ships to hold their position at the narrow mouth of the gulf.",
+   "spoken": "That morning, Antony's fleet draws up its line a little outside the strait, and comes no further. He has ordered his ships to hold their position at the narrow mouth of the gulf.",
    "file": "n5.3.mp3",
-   "seconds": 5.2,
-   "bytes": 82798,
+   "seconds": 11.76,
+   "bytes": 188124,
    "voice": "onwK4e9ZLuTAKqWW03F9",
    "model": "eleven_v4",
-   "madeAt": "2026-11-25T14:25:45+00:00"
+   "madeAt": "2026-11-25T15:56:25+00:00"
   },
   {
    "id": "n5.4",
-   "text": "Octavian keeps his ships about eight furlongs away, some one and a half kilometres, and waits a long time.",
-   "spoken": "Octavian keeps his ships about eight furlongs away, some one and a half kilometres, and waits a long time.",
+   "text": "Octavian keeps his ships about eight furlongs away, some 1.5 kilometres, and waits a long time.",
+   "spoken": "Octavian keeps his ships about eight furlongs away, some 1.5 kilometres, and waits a long time.",
    "file": "n5.4.mp3",
-   "seconds": 7.92,
-   "bytes": 126684,
+   "seconds": 8.16,
+   "bytes": 130446,
    "voice": "onwK4e9ZLuTAKqWW03F9",
    "model": "eleven_v4",
-   "madeAt": "2026-11-25T06:16:15+00:00"
+   "madeAt": "2026-11-25T15:56:29+00:00"
   },
   {
    "id": "n5.5",
@@ -282,102 +272,80 @@
   },
   {
    "id": "n5.6",
-   "text": "Who commanded where? The sources disagree.",
-   "spoken": "Who commanded where? The sources disagree.",
+   "text": "Who commanded where? The sources disagree. Plutarch puts Antony on his own right wing with Publicola, Marcus Octavius and Marcus Insteius in the centre, and Coelius on the left. Against them, Agrippa holds Octavian's left, and Octavian keeps the right for himself.",
+   "spoken": "Who commanded where? The sources disagree. Plutarch puts Antony on his own right wing with pub-LIK-oh-luh, Marcus Octavius and Marcus in-STAY-us in the centre, and SEE-lee-us on the left. Against them, Agrippa holds Octavian's left, and Octavian keeps the right for himself.",
    "file": "n5.6.mp3",
-   "seconds": 3.44,
-   "bytes": 54795,
+   "seconds": 20.48,
+   "bytes": 327305,
    "voice": "onwK4e9ZLuTAKqWW03F9",
    "model": "eleven_v4",
-   "madeAt": "2026-11-25T14:25:49+00:00"
+   "madeAt": "2026-11-25T15:56:35+00:00"
   },
   {
    "id": "n5.7",
-   "text": "Plutarch gives Antony the right wing, with Publicola; Coelius the left; Marcus Octavius and Marcus Insteius the centre. Octavian, he says, posts Agrippa on the left and keeps the right for himself.",
-   "spoken": "Plutarch gives Antony the right wing, with pub-LIK-oh-luh; SEE-lee-us the left; Marcus Octavius and Marcus in-STAY-us the centre. Octavian, he says, posts Agrippa on the left and keeps the right for himself.",
+   "text": "Velleius gives Antony's fleet to Publicola and Sosius. On Octavian's side, he puts Lurius on the right, Arruntius on the left, and Agrippa in charge of the whole fight at sea.",
+   "spoken": "Velleius gives Antony's fleet to pub-LIK-oh-luh and SOH-shee-us. On Octavian's side, he puts LOO-ree-us on the right, uh-RUN-shus on the left, and Agrippa in charge of the whole fight at sea.",
    "file": "n5.7.mp3",
-   "seconds": 15.76,
-   "bytes": 252072,
+   "seconds": 13.28,
+   "bytes": 212366,
    "voice": "onwK4e9ZLuTAKqWW03F9",
    "model": "eleven_v4",
-   "madeAt": "2026-11-25T14:25:54+00:00"
+   "madeAt": "2026-11-25T15:56:40+00:00"
   },
   {
    "id": "n5.8",
-   "text": "Velleius names Publicola and Sosius as commanders of Antony's fleet, without wings. For Octavian he gives the right to Lurius, the left to Arruntius, and full charge of the fight at sea to Agrippa.",
-   "spoken": "Velleius names pub-LIK-oh-luh and SOH-shee-us as commanders of Antony's fleet, without wings. For Octavian he gives the right to LOO-ree-us, the left to uh-RUN-shus, and full charge of the fight at sea to Agrippa.",
+   "text": "A modern summary, on Wikipedia, combines the two: it gives Octavian's centre to Arruntius, and Antony's left wing to Sosius, which neither ancient passage we hold does.",
+   "spoken": "A modern summary, on Wikipedia, combines the two: it gives Octavian's centre to uh-RUN-shus, and Antony's left wing to SOH-shee-us, which neither ancient passage we hold does.",
    "file": "n5.8.mp3",
-   "seconds": 14.72,
-   "bytes": 235354,
+   "seconds": 13.12,
+   "bytes": 209858,
    "voice": "onwK4e9ZLuTAKqWW03F9",
    "model": "eleven_v4",
-   "madeAt": "2026-11-25T14:26:00+00:00"
+   "madeAt": "2026-11-25T15:56:45+00:00"
   },
   {
    "id": "n5.9",
-   "text": "A modern summary, Wikipedia's, combines the two, and gives Antony's left wing to Sosius, which neither ancient passage we hold says.",
-   "spoken": "A modern summary, Wikipedia's, combines the two, and gives Antony's left wing to SOH-shee-us, which neither ancient passage we hold says.",
+   "text": "The map draws just one arrangement, as a reconstruction. It does not settle the question.",
+   "spoken": "The map draws just one arrangement, as a reconstruction. It does not settle the question.",
    "file": "n5.9.mp3",
-   "seconds": 9.92,
-   "bytes": 158449,
+   "seconds": 6.32,
+   "bytes": 100771,
    "voice": "onwK4e9ZLuTAKqWW03F9",
    "model": "eleven_v4",
-   "madeAt": "2026-11-25T14:26:04+00:00"
-  },
-  {
-   "id": "n5.10",
-   "text": "The map draws one arrangement only. It is a reconstruction, not any one source's.",
-   "spoken": "The map draws one arrangement only. It is a reconstruction, not any one source's.",
-   "file": "n5.10.mp3",
-   "seconds": 6.72,
-   "bytes": 107458,
-   "voice": "onwK4e9ZLuTAKqWW03F9",
-   "model": "eleven_v4",
-   "madeAt": "2026-11-25T14:26:07+00:00"
+   "madeAt": "2026-11-25T15:56:47+00:00"
   },
   {
    "id": "n6.1",
-   "text": "At the sixth hour, about midday, a wind rises from the sea, and Antony's men put their left wing in motion.",
-   "spoken": "At the sixth hour, about midday, a wind rises from the sea, and Antony's men put their left wing in motion.",
+   "text": "Plutarch tells us that at the sixth hour, about midday, with a wind rising from the sea, Antony's men put their left wing in motion.",
+   "spoken": "Plutarch tells us that at the sixth hour, about midday, with a wind rising from the sea, Antony's men put their left wing in motion.",
    "file": "n6.1.mp3",
-   "seconds": 8.08,
-   "bytes": 129192,
+   "seconds": 9.52,
+   "bytes": 152180,
    "voice": "onwK4e9ZLuTAKqWW03F9",
    "model": "eleven_v4",
-   "madeAt": "2026-11-25T14:26:11+00:00"
+   "madeAt": "2026-11-25T15:56:51+00:00"
   },
   {
    "id": "n6.2",
-   "text": "Plutarch says \"the soldiers of Antony became impatient at the delay.\"",
-   "spoken": "Plutarch says \"the soldiers of Antony became impatient at the delay.\"",
-   "file": "n6.2.mp3",
-   "seconds": 4.96,
-   "bytes": 79037,
-   "voice": "onwK4e9ZLuTAKqWW03F9",
-   "model": "eleven_v4",
-   "madeAt": "2026-11-25T14:26:13+00:00"
-  },
-  {
-   "id": "n6.3",
    "text": "Octavian orders his right wing to row backwards, to draw them out of the gulf and the narrows.",
    "spoken": "Octavian orders his right wing to row backwards, to draw them out of the gulf and the narrows.",
-   "file": "n6.3.mp3",
+   "file": "n6.2.mp3",
    "seconds": 6.56,
    "bytes": 104950,
    "voice": "onwK4e9ZLuTAKqWW03F9",
    "model": "eleven_v4",
-   "madeAt": "2026-11-25T14:26:16+00:00"
+   "madeAt": "2026-11-25T15:56:53+00:00"
   },
   {
    "id": "n7.1",
-   "text": "In the afternoon, Agrippa extends his wing to encircle the enemy. Publicola advances against him, and is cut off from the centre.",
-   "spoken": "In the afternoon, Agrippa extends his wing to encircle the enemy. pub-LIK-oh-luh advances against him, and is cut off from the centre.",
+   "text": "Into the afternoon, Agrippa extends his wing to encircle them. Publicola advances against him, and is cut off from the centre.",
+   "spoken": "Into the afternoon, Agrippa extends his wing to encircle them. pub-LIK-oh-luh advances against him, and is cut off from the centre.",
    "file": "n7.1.mp3",
-   "seconds": 9.44,
-   "bytes": 150926,
+   "seconds": 9.12,
+   "bytes": 145910,
    "voice": "onwK4e9ZLuTAKqWW03F9",
    "model": "eleven_v4",
-   "madeAt": "2026-11-25T06:16:35+00:00"
+   "madeAt": "2026-11-25T15:56:57+00:00"
   },
   {
    "id": "n7.2",
@@ -392,25 +360,25 @@
   },
   {
    "id": "n7.3",
-   "text": "We have placed this on the northern side of the battle. The compass point is our reading, not the sources'.",
-   "spoken": "We have placed this on the northern side of the battle. The compass point is our reading, not the sources'.",
+   "text": "We have placed this on the northern side of the battle; the compass point is our reading, not the sources'.",
+   "spoken": "We have placed this on the northern side of the battle; the compass point is our reading, not the sources'.",
    "file": "n7.3.mp3",
-   "seconds": 7.04,
-   "bytes": 112474,
+   "seconds": 6.8,
+   "bytes": 108712,
    "voice": "onwK4e9ZLuTAKqWW03F9",
    "model": "eleven_v4",
-   "madeAt": "2026-11-25T14:26:19+00:00"
+   "madeAt": "2026-11-25T15:56:59+00:00"
   },
   {
    "id": "n8.1",
-   "text": "Then, suddenly, Cleopatra's sixty ships hoist their sails and make off through the midst of the fighting.",
-   "spoken": "Then, suddenly, Cleopatra's sixty ships hoist their sails and make off through the midst of the fighting.",
+   "text": "Then, in Plutarch's words, \"suddenly the sixty ships of Cleopatra were seen hoisting their sails for flight and making off through the midst of the combatants.\"",
+   "spoken": "Then, in Plutarch's words, \"suddenly the sixty ships of Cleopatra were seen hoisting their sails for flight and making off through the midst of the combatants.\"",
    "file": "n8.1.mp3",
-   "seconds": 7.44,
-   "bytes": 118743,
+   "seconds": 11.12,
+   "bytes": 177675,
    "voice": "onwK4e9ZLuTAKqWW03F9",
    "model": "eleven_v4",
-   "madeAt": "2026-11-25T14:26:22+00:00"
+   "madeAt": "2026-11-25T15:57:03+00:00"
   },
   {
    "id": "n8.2",
@@ -425,47 +393,47 @@
   },
   {
    "id": "n8.3",
-   "text": "Cassius Dio says she turned to flight from the strain of waiting, and signalled her ships.",
-   "spoken": "Cassius Dio says she turned to flight from the strain of waiting, and signalled her ships.",
+   "text": "Dio says she turned to flight from the strain of waiting, and signalled her ships.",
+   "spoken": "Dio says she turned to flight from the strain of waiting, and signalled her ships.",
    "file": "n8.3.mp3",
-   "seconds": 6.24,
-   "bytes": 99517,
+   "seconds": 5.68,
+   "bytes": 90740,
    "voice": "onwK4e9ZLuTAKqWW03F9",
    "model": "eleven_v4",
-   "madeAt": "2026-11-25T14:26:29+00:00"
+   "madeAt": "2026-11-25T15:57:06+00:00"
   },
   {
    "id": "n8.4",
-   "text": "Velleius puts it on her: \"Cleopatra took the initiative in the flight; Antony chose to be the companion of the fleeing queen rather than of his fighting soldiers.\"",
-   "spoken": "Velleius puts it on her: \"Cleopatra took the initiative in the flight; Antony chose to be the companion of the fleeing queen rather than of his fighting soldiers.\"",
+   "text": "Velleius puts it on her: Cleopatra took the initiative in the flight, and Antony chose to go with her rather than stay with his fighting men.",
+   "spoken": "Velleius puts it on her: Cleopatra took the initiative in the flight, and Antony chose to go with her rather than stay with his fighting men.",
    "file": "n8.4.mp3",
-   "seconds": 11.44,
-   "bytes": 182691,
+   "seconds": 9.92,
+   "bytes": 158449,
    "voice": "onwK4e9ZLuTAKqWW03F9",
    "model": "eleven_v4",
-   "madeAt": "2026-11-25T14:26:33+00:00"
+   "madeAt": "2026-11-25T15:57:10+00:00"
   },
   {
    "id": "n8.5",
-   "text": "Panic, her initiative, or a planned breakout? Did she escape through a gap in the line? Historians still disagree, and the question stays open.",
-   "spoken": "Panic, her initiative, or a planned breakout? Did she escape through a gap in the line? Historians still disagree, and the question stays open.",
+   "text": "Panic, her initiative, or a planned breakout? Did Cleopatra, and perhaps Antony too, plan the flight before the battle began? Did her squadron escape through a gap in the line? These questions are still open.",
+   "spoken": "Panic, her initiative, or a planned breakout? Did Cleopatra, and perhaps Antony too, plan the flight before the battle began? Did her squadron escape through a gap in the line? These questions are still open.",
    "file": "n8.5.mp3",
-   "seconds": 10.72,
-   "bytes": 172660,
+   "seconds": 15.6,
+   "bytes": 250818,
    "voice": "onwK4e9ZLuTAKqWW03F9",
    "model": "eleven_v4",
-   "madeAt": "2026-11-25T14:26:37+00:00"
+   "madeAt": "2026-11-25T15:57:15+00:00"
   },
   {
    "id": "n9.1",
-   "text": "Antony leaves the fight in a five-oared galley, with only Alexas the Syrian and Scellius, and goes after her.",
-   "spoken": "Antony leaves the fight in a five-oared galley, with only Alexas the Syrian and SKEL-ee-us, and goes after her.",
+   "text": "Antony leaves the fight in a five-oared galley, with only Alexas the Syrian and Scellius beside him, and goes after her.",
+   "spoken": "Antony leaves the fight in a five-oared galley, with only Alexas the Syrian and SKEL-ee-us beside him, and goes after her.",
    "file": "n9.1.mp3",
-   "seconds": 8.08,
-   "bytes": 129192,
+   "seconds": 9.04,
+   "bytes": 144238,
    "voice": "onwK4e9ZLuTAKqWW03F9",
    "model": "eleven_v4",
-   "madeAt": "2026-11-25T06:16:55+00:00"
+   "madeAt": "2026-11-25T15:57:19+00:00"
   },
   {
    "id": "n9.2",
@@ -480,14 +448,14 @@
   },
   {
    "id": "n9.3",
-   "text": "The fleet left behind, it seems, has lost its commander.",
-   "spoken": "The fleet left behind, it seems, has lost its commander.",
+   "text": "We have drawn from this that the fleet left behind has probably lost its commander.",
+   "spoken": "We have drawn from this that the fleet left behind has probably lost its commander.",
    "file": "n9.3.mp3",
-   "seconds": 4.24,
-   "bytes": 69006,
+   "seconds": 5.44,
+   "bytes": 86978,
    "voice": "onwK4e9ZLuTAKqWW03F9",
    "model": "eleven_v4",
-   "madeAt": "2026-11-25T14:26:39+00:00"
+   "madeAt": "2026-11-25T15:57:21+00:00"
   },
   {
    "id": "n9.4",
@@ -502,25 +470,25 @@
   },
   {
    "id": "n9.5",
-   "text": "Desertion, or a planned escape? That question, too, is still open.",
-   "spoken": "Desertion, or a planned escape? That question, too, is still open.",
+   "text": "Was this desertion, or a planned escape? Historians still disagree.",
+   "spoken": "Was this desertion, or a planned escape? Historians still disagree.",
    "file": "n9.5.mp3",
-   "seconds": 5.68,
-   "bytes": 91994,
+   "seconds": 5.76,
+   "bytes": 93247,
    "voice": "onwK4e9ZLuTAKqWW03F9",
    "model": "eleven_v4",
-   "madeAt": "2026-11-25T14:26:46+00:00"
+   "madeAt": "2026-11-25T15:57:24+00:00"
   },
   {
    "id": "n10.1",
-   "text": "With the fight still even, Octavian sends to the camp for fire.",
-   "spoken": "With the fight still even, Octavian sends to the camp for fire.",
+   "text": "Late in the afternoon, with the fight still even, Octavian sends to the camp for fire.",
+   "spoken": "Late in the afternoon, with the fight still even, Octavian sends to the camp for fire.",
    "file": "n10.1.mp3",
-   "seconds": 4.8,
-   "bytes": 76529,
+   "seconds": 6.24,
+   "bytes": 99517,
    "voice": "onwK4e9ZLuTAKqWW03F9",
    "model": "eleven_v4",
-   "madeAt": "2026-11-25T14:26:48+00:00"
+   "madeAt": "2026-11-25T15:57:26+00:00"
   },
   {
    "id": "n10.2",
@@ -535,14 +503,14 @@
   },
   {
    "id": "n10.3",
-   "text": "Plutarch says Antony's fleet held out until the tenth hour, worn down by a rising sea. Three hundred ships are captured.",
-   "spoken": "Plutarch says Antony's fleet held out until the tenth hour, worn down by a rising sea. Three hundred ships are captured.",
+   "text": "Plutarch says Antony's fleet held out until the tenth hour, worn down by a rising sea, and that three hundred ships were captured, \"as Caesar himself has written.\"",
+   "spoken": "Plutarch says Antony's fleet held out until the tenth hour, worn down by a rising sea, and that three hundred ships were captured, \"as Caesar himself has written.\"",
    "file": "n10.3.mp3",
-   "seconds": 9.76,
-   "bytes": 155941,
+   "seconds": 11.92,
+   "bytes": 190632,
    "voice": "onwK4e9ZLuTAKqWW03F9",
    "model": "eleven_v4",
-   "madeAt": "2026-11-25T14:26:53+00:00"
+   "madeAt": "2026-11-25T15:57:30+00:00"
   },
   {
    "id": "n11.1",
@@ -557,157 +525,179 @@
   },
   {
    "id": "n11.2",
-   "text": "Only then does Canidius run away by night, and the army goes over to Octavian without fighting.",
-   "spoken": "Only then does kuh-NID-ee-us run away by night, and the army goes over to Octavian without fighting.",
+   "text": "Then Canidius, their general, runs away by night, and the army goes over to Octavian without fighting.",
+   "spoken": "Then kuh-NID-ee-us, their general, runs away by night, and the army goes over to Octavian without fighting.",
    "file": "n11.2.mp3",
-   "seconds": 7.28,
-   "bytes": 117489,
+   "seconds": 7.52,
+   "bytes": 121251,
    "voice": "onwK4e9ZLuTAKqWW03F9",
    "model": "eleven_v4",
-   "madeAt": "2026-11-25T14:26:59+00:00"
-  },
-  {
-   "id": "n12.0",
-   "text": "After the battle.",
-   "spoken": "After the battle.",
-   "file": "n12.0.mp3",
-   "seconds": 1.44,
-   "bytes": 24284,
-   "voice": "onwK4e9ZLuTAKqWW03F9",
-   "model": "eleven_v4",
-   "madeAt": "2026-11-25T14:27:00+00:00"
+   "madeAt": "2026-11-25T15:57:33+00:00"
   },
   {
    "id": "n12.1",
+   "text": "After the battle, the story leaves Actium behind.",
+   "spoken": "After the battle, the story leaves AK-tee-um behind.",
+   "file": "n12.1.mp3",
+   "seconds": 4.0,
+   "bytes": 65244,
+   "voice": "onwK4e9ZLuTAKqWW03F9",
+   "model": "eleven_v4",
+   "madeAt": "2026-11-25T15:57:35+00:00"
+  },
+  {
+   "id": "n12.2",
    "text": "Antony is taken aboard Cleopatra's ship. He means to cross from Taenarum to Libya.",
    "spoken": "Antony is taken aboard Cleopatra's ship. He means to cross from TEE-nuh-rum to Libya.",
-   "file": "n12.1.mp3",
+   "file": "n12.2.mp3",
    "seconds": 6.48,
    "bytes": 103278,
    "voice": "onwK4e9ZLuTAKqWW03F9",
    "model": "eleven_v4",
-   "madeAt": "2026-11-25T14:27:03+00:00"
-  },
-  {
-   "id": "n12.2",
-   "text": "Where they parted, the sources differ. Dio says they went as far as the Peloponnese together, and Cleopatra then hastened to Egypt.",
-   "spoken": "Where they parted, the sources differ. Dio says they went as far as the Peloponnese together, and Cleopatra then hastened to Egypt.",
-   "file": "n12.2.mp3",
-   "seconds": 9.28,
-   "bytes": 148418,
-   "voice": "onwK4e9ZLuTAKqWW03F9",
-   "model": "eleven_v4",
-   "madeAt": "2026-11-25T14:27:07+00:00"
+   "madeAt": "2026-11-25T15:57:37+00:00"
   },
   {
    "id": "n12.3",
-   "text": "Plutarch says Antony reached the coast of Libya, and sent her on into Egypt from Paraetonium.",
-   "spoken": "Plutarch says Antony reached the coast of Libya, and sent her on into Egypt from pa-ree-TOH-nee-um.",
+   "text": "Where she parted from him, the sources differ. Dio says they went as far as the Peloponnese together, and from there Cleopatra hastened to Egypt. Plutarch has her go with him to Libya, and on into Egypt from Paraetonium.",
+   "spoken": "Where she parted from him, the sources differ. Dio says they went as far as the Peloponnese together, and from there Cleopatra hastened to Egypt. Plutarch has her go with him to Libya, and on into Egypt from pa-ree-TOH-nee-um.",
    "file": "n12.3.mp3",
-   "seconds": 6.64,
-   "bytes": 106204,
+   "seconds": 15.68,
+   "bytes": 252072,
    "voice": "onwK4e9ZLuTAKqWW03F9",
    "model": "eleven_v4",
-   "madeAt": "2026-11-25T14:27:09+00:00"
+   "madeAt": "2026-11-25T15:57:42+00:00"
   },
   {
    "id": "n12.4",
-   "text": "Antony stays at Paraetonium until the news of Pelusium.",
-   "spoken": "Antony stays at pa-ree-TOH-nee-um until the news of peh-LOO-zee-um.",
+   "text": "Dio says Antony sailed to Pinarius Scarpus and the army kept in Africa for the protection of Egypt. Scarpus refused to receive him, and killed the men Antony sent ahead.",
+   "spoken": "Dio says Antony sailed to Pinarius Scarpus and the army kept in Africa for the protection of Egypt. Scarpus refused to receive him, and killed the men Antony sent ahead.",
    "file": "n12.4.mp3",
-   "seconds": 4.8,
-   "bytes": 77783,
+   "seconds": 12.32,
+   "bytes": 196901,
    "voice": "onwK4e9ZLuTAKqWW03F9",
    "model": "eleven_v4",
-   "madeAt": "2026-11-25T06:17:32+00:00"
+   "madeAt": "2026-11-25T15:57:46+00:00"
   },
   {
-   "id": "n13.0",
-   "text": "Now, the end of the war.",
-   "spoken": "Now, the end of the war.",
-   "file": "n13.0.mp3",
-   "seconds": 2.48,
-   "bytes": 40585,
+   "id": "n12.5",
+   "text": "Plutarch says that when the general holding his forces in Libya brought about their defection, Antony tried to kill himself, and his friends took him to Alexandria.",
+   "spoken": "Plutarch says that when the general holding his forces in Libya brought about their defection, Antony tried to kill himself, and his friends took him to Alexandria.",
+   "file": "n12.5.mp3",
+   "seconds": 10.72,
+   "bytes": 171406,
    "voice": "onwK4e9ZLuTAKqWW03F9",
    "model": "eleven_v4",
-   "madeAt": "2026-11-25T14:27:11+00:00"
+   "madeAt": "2026-11-25T15:57:50+00:00"
+  },
+  {
+   "id": "n12.6",
+   "text": "Plutarch's general is unnamed; most likely he was Scarpus.",
+   "spoken": "Plutarch's general is unnamed; most likely he was Scarpus.",
+   "file": "n12.6.mp3",
+   "seconds": 5.04,
+   "bytes": 80291,
+   "voice": "onwK4e9ZLuTAKqWW03F9",
+   "model": "eleven_v4",
+   "madeAt": "2026-11-25T15:57:52+00:00"
+  },
+  {
+   "id": "n12.7",
+   "text": "Antony is at Paraetonium until the news of Pelusium.",
+   "spoken": "Antony is at pa-ree-TOH-nee-um until the news of peh-LOO-zee-um.",
+   "file": "n12.7.mp3",
+   "seconds": 4.64,
+   "bytes": 74021,
+   "voice": "onwK4e9ZLuTAKqWW03F9",
+   "model": "eleven_v4",
+   "madeAt": "2026-11-25T15:57:54+00:00"
   },
   {
    "id": "n13.1",
-   "text": "Before Alexandria, Antony's fleet goes over to Octavian. Plutarch tells it as the crews' own choice; Dio says Cleopatra caused the ships to desert.",
-   "spoken": "Before Alexandria, Antony's fleet goes over to Octavian. Plutarch tells it as the crews' own choice; Dio says Cleopatra caused the ships to desert.",
+   "text": "Cornelius Gallus takes over Scarpus' army, marches suddenly on Paraetonium, and occupies it.",
+   "spoken": "Cornelius Gallus takes over Scarpus' army, marches suddenly on pa-ree-TOH-nee-um, and occupies it.",
    "file": "n13.1.mp3",
-   "seconds": 11.76,
-   "bytes": 188124,
+   "seconds": 7.28,
+   "bytes": 116235,
    "voice": "onwK4e9ZLuTAKqWW03F9",
    "model": "eleven_v4",
-   "madeAt": "2026-11-25T06:17:36+00:00"
+   "madeAt": "2026-11-25T15:57:57+00:00"
   },
   {
    "id": "n13.2",
-   "text": "His cavalry deserts, his infantry is beaten, and he retires into the city.",
-   "spoken": "His cavalry deserts, his infantry is beaten, and he retires into the city.",
+   "text": "Before Alexandria, Antony's fleet goes over to Octavian. Plutarch tells it as the crews' own choice; Dio has Cleopatra cause the ships to desert.",
+   "spoken": "Before Alexandria, Antony's fleet goes over to Octavian. Plutarch tells it as the crews' own choice; Dio has Cleopatra cause the ships to desert.",
    "file": "n13.2.mp3",
-   "seconds": 5.92,
-   "bytes": 94501,
+   "seconds": 11.52,
+   "bytes": 183945,
    "voice": "onwK4e9ZLuTAKqWW03F9",
    "model": "eleven_v4",
-   "madeAt": "2026-11-25T06:17:38+00:00"
+   "madeAt": "2026-11-25T15:58:01+00:00"
   },
   {
    "id": "n13.3",
-   "text": "Told that Cleopatra is dead, Antony wounds himself, and dies with her in the tomb.",
-   "spoken": "Told that Cleopatra is dead, Antony wounds himself, and dies with her in the tomb.",
+   "text": "His cavalry deserts, his infantry is beaten, and he retires into the city.",
+   "spoken": "His cavalry deserts, his infantry is beaten, and he retires into the city.",
    "file": "n13.3.mp3",
-   "seconds": 6.64,
-   "bytes": 106204,
+   "seconds": 5.84,
+   "bytes": 93247,
    "voice": "onwK4e9ZLuTAKqWW03F9",
    "model": "eleven_v4",
-   "madeAt": "2026-11-25T06:17:41+00:00"
+   "madeAt": "2026-11-25T15:58:03+00:00"
   },
   {
    "id": "n13.4",
-   "text": "Octavian drives into the city.",
-   "spoken": "Octavian drives into the city.",
+   "text": "Told that Cleopatra is dead, Antony wounds himself, and dies with her in the tomb.",
+   "spoken": "Told that Cleopatra is dead, Antony wounds himself, and dies with her in the tomb.",
    "file": "n13.4.mp3",
-   "seconds": 2.8,
-   "bytes": 44764,
+   "seconds": 6.72,
+   "bytes": 107458,
    "voice": "onwK4e9ZLuTAKqWW03F9",
    "model": "eleven_v4",
-   "madeAt": "2026-11-25T06:17:42+00:00"
+   "madeAt": "2026-11-25T15:58:06+00:00"
   },
   {
    "id": "n13.5",
-   "text": "The city fell, by the usual account, on 1 August 30 BC; no passage we hold gives the date.",
-   "spoken": "The city fell, by the usual account, on 1 August 30 BC; no passage we hold gives the date.",
+   "text": "Octavian drives into the city.",
+   "spoken": "Octavian drives into the city.",
    "file": "n13.5.mp3",
-   "seconds": 8.0,
-   "bytes": 127938,
+   "seconds": 2.72,
+   "bytes": 43510,
    "voice": "onwK4e9ZLuTAKqWW03F9",
    "model": "eleven_v4",
-   "madeAt": "2026-11-25T06:17:45+00:00"
+   "madeAt": "2026-11-25T15:58:07+00:00"
   },
   {
    "id": "n13.6",
-   "text": "Cleopatra dies. Octavian admires her spirit, and has her buried with Antony.",
-   "spoken": "Cleopatra dies. Octavian admires her spirit, and has her buried with Antony.",
+   "text": "The city fell, by the usual account, on 1 August 30 BC; no passage we hold gives the date.",
+   "spoken": "The city fell, by the usual account, on 1 August 30 BC; no passage we hold gives the date.",
    "file": "n13.6.mp3",
-   "seconds": 6.72,
-   "bytes": 108712,
+   "seconds": 8.24,
+   "bytes": 132954,
    "voice": "onwK4e9ZLuTAKqWW03F9",
    "model": "eleven_v4",
-   "madeAt": "2026-11-25T06:17:48+00:00"
+   "madeAt": "2026-11-25T15:58:10+00:00"
   },
   {
    "id": "n13.7",
-   "text": "Octavian now holds all power alone.",
-   "spoken": "Octavian now holds all power alone.",
+   "text": "Cleopatra dies. Octavian admires her spirit, and has her buried with Antony.",
+   "spoken": "Cleopatra dies. Octavian admires her spirit, and has her buried with Antony.",
    "file": "n13.7.mp3",
-   "seconds": 3.36,
-   "bytes": 53541,
+   "seconds": 6.64,
+   "bytes": 107458,
    "voice": "onwK4e9ZLuTAKqWW03F9",
    "model": "eleven_v4",
-   "madeAt": "2026-11-25T14:27:13+00:00"
+   "madeAt": "2026-11-25T15:58:13+00:00"
+  },
+  {
+   "id": "n13.8",
+   "text": "Octavian now holds all power alone. Dio dates that from Actium, not from Alexandria.",
+   "spoken": "Octavian now holds all power alone. Dio dates that from AK-tee-um, not from Alexandria.",
+   "file": "n13.8.mp3",
+   "seconds": 7.84,
+   "bytes": 125430,
+   "voice": "onwK4e9ZLuTAKqWW03F9",
+   "model": "eleven_v4",
+   "madeAt": "2026-11-25T15:58:15+00:00"
   }
  ]
 }
