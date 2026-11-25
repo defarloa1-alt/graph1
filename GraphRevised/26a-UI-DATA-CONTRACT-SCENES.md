@@ -324,7 +324,7 @@ entry, for media a recipe should always propose. Not built.
 
 ## 5a. Shape 10 — Storyboard: which presentation for which stretch (draft, 2026-11-25)
 
-**Status:** adopted (D-179, 2026-11-25), and built except `GENERATE`:
+**Status:** adopted (D-179, 2026-11-25) and built. `GENERATE` has its first worker, the general scene builder (D-181, below):
 - the specialist and its check, `narrative/storyboard.py`;
 - the catalogue, `curation/presentations.json`;
 - the `STORYBOARD` action and its recipe step;
@@ -430,9 +430,50 @@ The narration (D-178) is an overlay on segments 1–3.
 
 **Open:**
 
-- `GENERATE` and its first worker, a general scene builder (drafts a scene from passages, as the Actium builder does by hand);
+- a battle scene from passages (its ship lines are a Generalized Abstraction the curator draws), flyby and memory-reception: `GENERATE` draws only `scene-movement` so far (D-181);
 - the profile does not yet count the pictures held;
 - the memory and reception layer (`commemorates`, `depicts`), proposed in doc 49, needed before the memory segment can qualify.
+
+### The general scene builder (D-181)
+
+`scenes/build_scene.py` is `GENERATE`'s first worker. It draws a storyboard
+segment as a movement scene (shape 7) from the passages the graph holds.
+
+1. **Evidence, by code.** It gathers:
+   - the segment's phases;
+   - the events placed in them;
+   - the passages that depict those events, with their stored text and locators (the most-cited first, about 90,000 characters at most);
+   - the located places those passages name, with gazetteer points and names;
+   - the people and groups who took part.
+2. **Draft, by the model.** Steps by phase, each with:
+   - statements, sourced by verbatim quotations or marked inferred with a note;
+   - legs between listed places only;
+   - disagreements as two versions.
+
+   Ancient witnesses are preferred; a modern author quoted is named in the statement.
+3. **Check, by code**, with one repair round. It requires that:
+   - every quotation is word for word in its passage;
+   - a sourced statement has a quotation, and every number it states is in it;
+   - legs run between listed places, for listed units;
+   - a sourced leg's statement quotes a passage naming both ends;
+   - steps keep the phases' order.
+4. **Assembly.** A place takes the name the quoted passages use most (Corcyra,
+   not Corfu); the held label is kept as `heldAs`. Statement ids follow the
+   shape-7 pattern, and the scene carries a `contentHash`. A basemap is taken
+   from a held page whose map holds every point. A narration input is written
+   beside the scene, so narration and voice (D-178) work unchanged.
+5. **Kept.** The model's draft is saved as `<scene>.draft.json`;
+   `--from-draft` re-checks and re-assembles it after a code fix without
+   asking the model again.
+
+**The first run.** Actium, segment 1 (the road to war and the isolation):
+- 54 passages in, 8 steps out, 20 statements, all sourced, 12 legs;
+- passed after one repair round, for $0.55;
+- it adds the gathering at Ephesus and the moves by Samos to Athens, which the hand-built scene lacks;
+- it keeps two real disagreements: Dio against Weigall on Corcyra, and Dio and Velleius against Wikipedia on who took Patrae.
+
+The wireframe shows it beside the hand-built scene; a chooser in the
+Animation head switches between them.
 
 ## 6. Node card — additions
 

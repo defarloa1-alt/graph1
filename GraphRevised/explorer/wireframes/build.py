@@ -260,6 +260,9 @@ def load_plans() -> dict:
     return out
 
 
+BASEMAPS: dict = {}
+
+
 def load_scenes() -> dict:
     """Movement scenes (scenes/*.json, 26a shape 7), by subject. A scene derived from an animation page that
     embeds its own basemap (coastlines and hillshade, `const GEO={...}`) carries that basemap with it; its
@@ -272,9 +275,12 @@ def load_scenes() -> dict:
         source = (scene.get("derivedFrom") or {}).get("file")
         page = ROOT / source if source else None
         if page and page.exists():
-            m = re.search(r"const GEO=(\{.*?\});", page.read_text(encoding="utf-8"), re.S)
-            if m:
-                scene["basemap"] = json.loads(m.group(1))
+            if source not in BASEMAPS:
+                m = re.search(r"const GEO=(\{.*?\});", page.read_text(encoding="utf-8"), re.S)
+                if m:
+                    BASEMAPS[source] = json.loads(m.group(1))
+            if source in BASEMAPS:
+                scene["basemap"] = source  # the page's basemap, held once in DATA.basemaps
         scene["file"] = path.relative_to(ROOT).as_posix()
         # its narrations (scenes/NARRATION.md), by persona; one written for another version of the scene is stale
         stem = path.name.split(".")[0]
@@ -298,7 +304,9 @@ def load_scenes() -> dict:
                         "madeAt": rec.get("madeAt"), "seconds": rec.get("seconds"),
                         "clips": {c["id"]: {"file": c["file"], "seconds": c.get("seconds")} for c in rec["clips"]
                                   if (apath.parent / c["file"]).exists()}}
-        out[scene["subject"]["id"]] = scene
+        out.setdefault(scene["subject"]["id"], []).append(scene)
+    for scenes in out.values():
+        scenes.sort(key=lambda sc: (bool((sc.get("derivedFrom") or {}).get("storyboard")), sc["file"]))
     return out
 
 
@@ -350,7 +358,7 @@ def build() -> Path:
         })
     edges = [trim_fact(e["data"]) for e in export["elements"]["edges"]]
     data = {"generatedBy": export.get("generated_by"), "nodes": nodes, "edges": edges,
-            "images": load_images(), "gallery": load_gallery(), "backdrops": load_backdrops(), "plans": load_plans(), "reach": load_reach(), "scenes": load_scenes(), "storyboards": load_storyboards(), "phases": load_phases()}
+            "images": load_images(), "gallery": load_gallery(), "backdrops": load_backdrops(), "plans": load_plans(), "reach": load_reach(), "sceneSets": load_scenes(), "basemaps": BASEMAPS, "storyboards": load_storyboards(), "phases": load_phases()}
     payload = json.dumps(data, ensure_ascii=False).replace("</", "<\\/")
     page = TEMPLATE.read_text(encoding="utf-8").replace("__GRAPH_DATA__", payload)
     OUTPUT.write_text(page, encoding="utf-8")

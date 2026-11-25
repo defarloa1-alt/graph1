@@ -1,0 +1,1225 @@
+{
+ "id": "chr:scene:battle-of-actium-seg1",
+ "type": "movement",
+ "title": "The road to war and Antony hemmed in (generated)",
+ "subject": {
+  "id": "chr:entity:battle-of-actium",
+  "label": "Battle of Actium",
+  "kind": "Event"
+ },
+ "scope": "storyboard segment 1: road-to-war, isolation",
+ "sequenceBy": "order",
+ "status": "proposed",
+ "proposedBy": "the scene builder (scenes/build_scene.py with claude-opus-5-5)",
+ "proposedAt": "2026-11-25T13:32:54+00:00",
+ "derivedFrom": {
+  "storyboard": "chr:storyboard:battle-of-actium",
+  "segment": 1,
+  "file": "docs/Actium/Actium Campaign and Battle, 31 BC (Animated Terrain Map).html",
+  "builtBy": "scenes/build_scene.py: evidence gathered from the graph, steps drafted by the model, every quotation checked word for word against the stored passage",
+  "passagesGiven": 54
+ },
+ "bases": {
+  "sourced": "a stored passage says it; the quotation is verbatim",
+  "inferred": "joined up from sourced points; 'by' says whose inference"
+ },
+ "layers": [
+  "terrain",
+  "places",
+  "unitPaths",
+  "labels"
+ ],
+ "terrain": {
+  "source": "modern",
+  "note": "the basemap of the held page named in derivedFrom.file, with its licences"
+ },
+ "places": {
+  "Actium": {
+   "label": "Actium",
+   "lonLat": [
+    20.765852,
+    38.953891
+   ],
+   "lonLatFrom": "the gazetteer (Pleiades 530771)",
+   "entity": "chr:entity:actium-promontory",
+   "status": "provisional",
+   "heldAs": "Actium promontory"
+  },
+  "Alexandria": {
+   "label": "Alexandria",
+   "lonLat": [
+    29.909773,
+    31.201435
+   ],
+   "lonLatFrom": "the gazetteer (Pleiades 727070)",
+   "entity": "chr:entity:alexandria",
+   "status": "proposed"
+  },
+  "Corinth": {
+   "label": "Corinth",
+   "lonLat": [
+    22.878614390874485,
+    37.90564164345828
+   ],
+   "lonLatFrom": "the gazetteer (Pleiades 570182)",
+   "entity": "chr:entity:ancient-corinth",
+   "status": "proposed",
+   "heldAs": "Ancient Corinth"
+  },
+  "Athens": {
+   "label": "Athens",
+   "lonLat": [
+    23.723954796773654,
+    37.97164747289856
+   ],
+   "lonLatFrom": "the gazetteer (Pleiades 579885)",
+   "entity": "chr:entity:athens",
+   "status": "proposed"
+  },
+  "Corcyra": {
+   "label": "Corcyra",
+   "lonLat": [
+    19.86654164868683,
+    39.61996963797889
+   ],
+   "lonLatFrom": "the gazetteer (Pleiades 530835)",
+   "entity": "chr:entity:corfu",
+   "status": "proposed",
+   "heldAs": "Corfu"
+  },
+  "Ephesus": {
+   "label": "Ephesus",
+   "lonLat": [
+    27.34240298195866,
+    37.940164271971945
+   ],
+   "lonLatFrom": "the gazetteer (Pleiades 599612)",
+   "entity": "chr:entity:ephesus",
+   "status": "proposed"
+  },
+  "Patrae": {
+   "label": "Patrae",
+   "lonLat": [
+    21.738518,
+    38.243265
+   ],
+   "lonLatFrom": "the gazetteer (Pleiades 570567)",
+   "entity": "chr:entity:patras",
+   "status": "proposed",
+   "heldAs": "Patras"
+  },
+  "Brundisium": {
+   "label": "Brundisium",
+   "lonLat": [
+    17.9429115,
+    40.638663
+   ],
+   "lonLatFrom": "the gazetteer (Pleiades 442509)",
+   "entity": "chr:entity:proposed-place-brundisium",
+   "status": "proposed"
+  },
+  "Leucas": {
+   "label": "Leucas",
+   "lonLat": [
+    20.713116,
+    38.807342
+   ],
+   "lonLatFrom": "the gazetteer (Pleiades 530974)",
+   "entity": "chr:entity:proposed-place-leucas",
+   "status": "proposed"
+  },
+  "Methone": {
+   "label": "Methone",
+   "lonLat": [
+    21.704441,
+    36.81435
+   ],
+   "lonLatFrom": "the gazetteer (Pleiades 570483)",
+   "entity": "chr:entity:proposed-place-methone",
+   "status": "proposed"
+  },
+  "Toryne": {
+   "label": "Toryne",
+   "lonLat": [
+    20.401164,
+    39.286165
+   ],
+   "lonLatFrom": "the gazetteer (Pleiades 531127)",
+   "entity": "chr:entity:proposed-place-toryne",
+   "status": "proposed"
+  },
+  "Samos": {
+   "label": "Samos",
+   "lonLat": [
+    26.839125346712173,
+    37.73246007056743
+   ],
+   "lonLatFrom": "the gazetteer (Pleiades 599926)",
+   "entity": "chr:entity:samos",
+   "status": "proposed"
+  }
+ },
+ "steps": [
+  {
+   "order": 1,
+   "phase": "road-to-war",
+   "timeWords": "early in the winter of B.C. 33 (Weigall)",
+   "view": "overview",
+   "title": "Antony and Cleopatra gather at Ephesus",
+   "statements": [
+    {
+     "text": "Antony took Cleopatra with him and came to Ephesus.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Plutarch, Life of Antony",
+       "work": "chr:entity:plutarch-life-of-antony",
+       "observation": "chr:observation:perseus:tlg0007.tlg058.perseus-eng2:56.1:70427323",
+       "locator": "Plutarch Antony 56.1",
+       "url": "urn:cts:greekLit:tlg0007.tlg058.perseus-eng2:56.1",
+       "quotation": "he himself took Cleopatra with him and came to Ephesus"
+      }
+     ],
+     "id": "chr:scene:battle-of-actium-seg1#1.1"
+    },
+    {
+     "text": "In Weigall's account, Antony and Cleopatra set out from Alexandria for Ephesus.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Weigall, The Life and Times of Cleopatra",
+       "work": "chr:entity:weigall-life-and-times-of-cleopatra",
+       "observation": "chr:observation:gutenberg:54038:15.24:79d09ee0",
+       "locator": "Weigall 15.24",
+       "url": "https://www.gutenberg.org/files/54038/54038-h/54038-h.htm#Page_301 (ch. 15, para. 24, p. 301-302)",
+       "quotation": "Antony and Cleopatra set out for Ephesus"
+      },
+      {
+       "accordingTo": "Weigall, The Life and Times of Cleopatra",
+       "work": "chr:entity:weigall-life-and-times-of-cleopatra",
+       "observation": "chr:observation:gutenberg:54038:15.24:79d09ee0",
+       "locator": "Weigall 15.24",
+       "url": "https://www.gutenberg.org/files/54038/54038-h/54038-h.htm#Page_301 (ch. 15, para. 24, p. 301-302)",
+       "quotation": "The people of Alexandria must have realised that their Queen was going forth"
+      }
+     ],
+     "id": "chr:scene:battle-of-actium-seg1#1.2"
+    },
+    {
+     "text": "At Ephesus Antony's naval force came together from all quarters.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Plutarch, Life of Antony",
+       "work": "chr:entity:plutarch-life-of-antony",
+       "observation": "chr:observation:perseus:tlg0007.tlg058.perseus-eng2:56.1:70427323",
+       "locator": "Plutarch Antony 56.1",
+       "url": "urn:cts:greekLit:tlg0007.tlg058.perseus-eng2:56.1",
+       "quotation": "It was there that his naval force was coming together from all quarters"
+      }
+     ],
+     "id": "chr:scene:battle-of-actium-seg1#1.3"
+    }
+   ],
+   "legs": [
+    {
+     "unit": {
+      "entity": "chr:entity:cleopatra",
+      "label": "Cleopatra",
+      "side": "Antony"
+     },
+     "from": {
+      "label": "Alexandria",
+      "lonLat": [
+       29.909773,
+       31.201435
+      ],
+      "lonLatFrom": "the gazetteer (Pleiades 727070)",
+      "entity": "chr:entity:alexandria",
+      "status": "proposed"
+     },
+     "to": {
+      "label": "Ephesus",
+      "lonLat": [
+       27.34240298195866,
+       37.940164271971945
+      ],
+      "lonLatFrom": "the gazetteer (Pleiades 599612)",
+      "entity": "chr:entity:ephesus",
+      "status": "proposed"
+     },
+     "basis": "inferred",
+     "statement": 2
+    },
+    {
+     "unit": {
+      "entity": "chr:entity:mark-antony",
+      "label": "Mark Antony",
+      "side": "Antony"
+     },
+     "from": {
+      "label": "Alexandria",
+      "lonLat": [
+       29.909773,
+       31.201435
+      ],
+      "lonLatFrom": "the gazetteer (Pleiades 727070)",
+      "entity": "chr:entity:alexandria",
+      "status": "proposed"
+     },
+     "to": {
+      "label": "Ephesus",
+      "lonLat": [
+       27.34240298195866,
+       37.940164271971945
+      ],
+      "lonLatFrom": "the gazetteer (Pleiades 599612)",
+      "entity": "chr:entity:ephesus",
+      "status": "proposed"
+     },
+     "basis": "inferred",
+     "statement": 2
+    }
+   ],
+   "routes": {
+    "title": "Two routes",
+    "note": "Where Antony came to Ephesus from.",
+    "alternatives": [
+     {
+      "accordingTo": "Plutarch, Life of Antony",
+      "words": "Antony was in Armenia when he took Cleopatra and came to Ephesus.",
+      "voices": [
+       {
+        "accordingTo": "Plutarch, Life of Antony",
+        "work": "chr:entity:plutarch-life-of-antony",
+        "observation": "chr:observation:perseus:tlg0007.tlg058.perseus-eng2:56.1:70427323",
+        "locator": "Plutarch Antony 56.1",
+        "url": "urn:cts:greekLit:tlg0007.tlg058.perseus-eng2:56.1",
+        "quotation": "Antony heard of this while he was tarrying in Armenia"
+       }
+      ]
+     },
+     {
+      "accordingTo": "Weigall, The Life and Times of Cleopatra",
+      "words": "Antony and Cleopatra set out together from Alexandria.",
+      "voices": [
+       {
+        "accordingTo": "Weigall, The Life and Times of Cleopatra",
+        "work": "chr:entity:weigall-life-and-times-of-cleopatra",
+        "observation": "chr:observation:gutenberg:54038:15.24:79d09ee0",
+        "locator": "Weigall 15.24",
+        "url": "https://www.gutenberg.org/files/54038/54038-h/54038-h.htm#Page_301 (ch. 15, para. 24, p. 301-302)",
+        "quotation": "Antony and Cleopatra set out for Ephesus early in the winter of B.C. 33"
+       }
+      ]
+     }
+    ]
+   },
+   "id": "chr:scene:battle-of-actium-seg1#1"
+  },
+  {
+   "order": 2,
+   "phase": "road-to-war",
+   "timeWords": "at the end of April; towards the end of May (Weigall)",
+   "view": "overview",
+   "title": "From Ephesus by Samos to Athens",
+   "statements": [
+    {
+     "text": "In Weigall's account, Antony sailed from Ephesus to Samos.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Weigall, The Life and Times of Cleopatra",
+       "work": "chr:entity:weigall-life-and-times-of-cleopatra",
+       "observation": "chr:observation:gutenberg:54038:16.10:79d09ee0",
+       "locator": "Weigall 16.10",
+       "url": "https://www.gutenberg.org/files/54038/54038-h/54038-h.htm#Page_310 (ch. 16, para. 10, p. 310-312)",
+       "quotation": "he sailed over from Ephesus to the island of Samos"
+      }
+     ],
+     "id": "chr:scene:battle-of-actium-seg1#2.1"
+    },
+    {
+     "text": "In Wikipedia's account, after staying with his allies at Samos, Antony moved to Athens.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Wikipedia, Battle of Actium",
+       "work": "chr:entity:wikipedia-en-battle-of-actium",
+       "observation": "chr:observation:wikipedia:en:battle-of-actium:1.5:r1378178531",
+       "locator": "Wikipedia 1.5",
+       "url": "https://en.wikipedia.org/w/index.php?title=Battle_of_Actium&oldid=1378178531 (Background, para. 5)",
+       "quotation": "After staying with his allies at Samos, Antony moved to Athens."
+      },
+      {
+       "accordingTo": "Weigall, The Life and Times of Cleopatra",
+       "work": "chr:entity:weigall-life-and-times-of-cleopatra",
+       "observation": "chr:observation:gutenberg:54038:16.11:79d09ee0",
+       "locator": "Weigall 16.11",
+       "url": "https://www.gutenberg.org/files/54038/54038-h/54038-h.htm#Page_312 (ch. 16, para. 11, p. 312-313)",
+       "quotation": "the great assemblage crossed over the sea to Athens"
+      }
+     ],
+     "id": "chr:scene:battle-of-actium-seg1#2.2"
+    }
+   ],
+   "legs": [
+    {
+     "unit": {
+      "entity": "chr:entity:mark-antony",
+      "label": "Mark Antony",
+      "side": "Antony"
+     },
+     "from": {
+      "label": "Ephesus",
+      "lonLat": [
+       27.34240298195866,
+       37.940164271971945
+      ],
+      "lonLatFrom": "the gazetteer (Pleiades 599612)",
+      "entity": "chr:entity:ephesus",
+      "status": "proposed"
+     },
+     "to": {
+      "label": "Samos",
+      "lonLat": [
+       26.839125346712173,
+       37.73246007056743
+      ],
+      "lonLatFrom": "the gazetteer (Pleiades 599926)",
+      "entity": "chr:entity:samos",
+      "status": "proposed"
+     },
+     "basis": "inferred",
+     "statement": 1
+    },
+    {
+     "unit": {
+      "entity": "chr:entity:mark-antony",
+      "label": "Mark Antony",
+      "side": "Antony"
+     },
+     "from": {
+      "label": "Samos",
+      "lonLat": [
+       26.839125346712173,
+       37.73246007056743
+      ],
+      "lonLatFrom": "the gazetteer (Pleiades 599926)",
+      "entity": "chr:entity:samos",
+      "status": "proposed"
+     },
+     "to": {
+      "label": "Athens",
+      "lonLat": [
+       23.723954796773654,
+       37.97164747289856
+      ],
+      "lonLatFrom": "the gazetteer (Pleiades 579885)",
+      "entity": "chr:entity:athens",
+      "status": "proposed"
+     },
+     "basis": "sourced",
+     "statement": 2,
+     "note": "Drawn as a line between the named places; the passages give the places, not the route."
+    }
+   ],
+   "id": "chr:scene:battle-of-actium-seg1#2"
+  },
+  {
+   "order": 3,
+   "phase": "road-to-war",
+   "timeWords": "toward the end of 32 BC; the winter",
+   "view": "overview",
+   "title": "Antony halts at Corcyra and winters at Patrae",
+   "statements": [
+    {
+     "text": "Antony set out to carry the war into Italy, came to Corcyra, and proceeded no further.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Cassius Dio, Roman History",
+       "work": "chr:entity:cassius-dio-roman-history",
+       "observation": "chr:observation:lacuscurtius:cassius-dio:50.9.2:1f50fd6b",
+       "locator": "Cassius Dio 50.9.2",
+       "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Cassius_Dio/50*.html#9.2",
+       "quotation": "he set out with the intention of carrying the war into Italy"
+      },
+      {
+       "accordingTo": "Cassius Dio, Roman History",
+       "work": "chr:entity:cassius-dio-roman-history",
+       "observation": "chr:observation:lacuscurtius:cassius-dio:50.9.2:1f50fd6b",
+       "locator": "Cassius Dio 50.9.2",
+       "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Cassius_Dio/50*.html#9.2",
+       "quotation": "when he came to Corcyra"
+      },
+      {
+       "accordingTo": "Cassius Dio, Roman History",
+       "work": "chr:entity:cassius-dio-roman-history",
+       "observation": "chr:observation:lacuscurtius:cassius-dio:50.9.2:1f50fd6b",
+       "locator": "Cassius Dio 50.9.2",
+       "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Cassius_Dio/50*.html#9.2",
+       "quotation": "proceeded no further"
+      }
+     ],
+     "id": "chr:scene:battle-of-actium-seg1#3.1"
+    },
+    {
+     "text": "In Wikipedia's account, Antony went as far as Corcyra and then retired to winter at Patrae.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Wikipedia, Battle of Actium",
+       "work": "chr:entity:wikipedia-en-battle-of-actium",
+       "observation": "chr:observation:wikipedia:en:battle-of-actium:2.1:r1378178531",
+       "locator": "Wikipedia 2.1",
+       "url": "https://en.wikipedia.org/w/index.php?title=Battle_of_Actium&oldid=1378178531 (Battle, para. 1)",
+       "quotation": "he went as far as Corcyra"
+      },
+      {
+       "accordingTo": "Wikipedia, Battle of Actium",
+       "work": "chr:entity:wikipedia-en-battle-of-actium",
+       "observation": "chr:observation:wikipedia:en:battle-of-actium:2.1:r1378178531",
+       "locator": "Wikipedia 2.1",
+       "url": "https://en.wikipedia.org/w/index.php?title=Battle_of_Actium&oldid=1378178531 (Battle, para. 1)",
+       "quotation": "Antony retired to winter at Patrae"
+      }
+     ],
+     "id": "chr:scene:battle-of-actium-seg1#3.2"
+    }
+   ],
+   "legs": [
+    {
+     "unit": {
+      "entity": "chr:entity:mark-antony",
+      "label": "Mark Antony",
+      "side": "Antony"
+     },
+     "from": {
+      "label": "Athens",
+      "lonLat": [
+       23.723954796773654,
+       37.97164747289856
+      ],
+      "lonLatFrom": "the gazetteer (Pleiades 579885)",
+      "entity": "chr:entity:athens",
+      "status": "proposed"
+     },
+     "to": {
+      "label": "Corcyra",
+      "lonLat": [
+       19.86654164868683,
+       39.61996963797889
+      ],
+      "lonLatFrom": "the gazetteer (Pleiades 530835)",
+      "entity": "chr:entity:corfu",
+      "status": "proposed",
+      "heldAs": "Corfu"
+     },
+     "basis": "inferred",
+     "statement": 1
+    },
+    {
+     "unit": {
+      "entity": "chr:entity:mark-antony",
+      "label": "Mark Antony",
+      "side": "Antony"
+     },
+     "from": {
+      "label": "Corcyra",
+      "lonLat": [
+       19.86654164868683,
+       39.61996963797889
+      ],
+      "lonLatFrom": "the gazetteer (Pleiades 530835)",
+      "entity": "chr:entity:corfu",
+      "status": "proposed",
+      "heldAs": "Corfu"
+     },
+     "to": {
+      "label": "Patrae",
+      "lonLat": [
+       21.738518,
+       38.243265
+      ],
+      "lonLatFrom": "the gazetteer (Pleiades 570567)",
+      "entity": "chr:entity:patras",
+      "status": "proposed",
+      "heldAs": "Patras"
+     },
+     "basis": "sourced",
+     "statement": 2,
+     "note": "Drawn as a line between the named places; the passages give the places, not the route."
+    }
+   ],
+   "routes": {
+    "title": "Two routes",
+    "note": "Whether Antony went to Corcyra himself before wintering at Patrae.",
+    "alternatives": [
+     {
+      "accordingTo": "Cassius Dio, Roman History",
+      "words": "Antony came to Corcyra and went no further.",
+      "voices": [
+       {
+        "accordingTo": "Cassius Dio, Roman History",
+        "work": "chr:entity:cassius-dio-roman-history",
+        "observation": "chr:observation:lacuscurtius:cassius-dio:50.9.2:1f50fd6b",
+        "locator": "Cassius Dio 50.9.2",
+        "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Cassius_Dio/50*.html#9.2",
+        "quotation": "when he came to Corcyra"
+       }
+      ]
+     },
+     {
+      "accordingTo": "Weigall, The Life and Times of Cleopatra",
+      "words": "Antony and Cleopatra advanced from Athens to Patrae; only outposts were placed at Corcyra.",
+      "voices": [
+       {
+        "accordingTo": "Weigall, The Life and Times of Cleopatra",
+        "work": "chr:entity:weigall-life-and-times-of-cleopatra",
+        "observation": "chr:observation:gutenberg:54038:16.22:79d09ee0",
+        "locator": "Weigall 16.22",
+        "url": "https://www.gutenberg.org/files/54038/54038-h/54038-h.htm#Page_321 (ch. 16, para. 22, p. 321)",
+        "quotation": "advanced with the whole army from Athens to Patrae"
+       },
+       {
+        "accordingTo": "Weigall, The Life and Times of Cleopatra",
+        "work": "chr:entity:weigall-life-and-times-of-cleopatra",
+        "observation": "chr:observation:gutenberg:54038:16.22:79d09ee0",
+        "locator": "Weigall 16.22",
+        "url": "https://www.gutenberg.org/files/54038/54038-h/54038-h.htm#Page_321 (ch. 16, para. 22, p. 321)",
+        "quotation": "outposts were placed at Corcyra"
+       }
+      ]
+     }
+    ]
+   },
+   "id": "chr:scene:battle-of-actium-seg1#3"
+  },
+  {
+   "order": 4,
+   "phase": "road-to-war",
+   "timeWords": "early in the spring (Hale)",
+   "view": "overview",
+   "title": "Agrippa seizes Methone",
+   "statements": [
+    {
+     "text": "Agrippa captured Methone by storm and killed Bogud there.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Cassius Dio, Roman History",
+       "work": "chr:entity:cassius-dio-roman-history",
+       "observation": "chr:observation:lacuscurtius:cassius-dio:50.11.3:1f50fd6b",
+       "locator": "Cassius Dio 50.11.3",
+       "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Cassius_Dio/50*.html#11.3",
+       "quotation": "Agrippa had captured Methone by storm and killed Bogud there"
+      }
+     ],
+     "id": "chr:scene:battle-of-actium-seg1#4.1"
+    },
+    {
+     "text": "In Hale's account, while Octavian's fleet concentrated at Brundusium, Agrippa put to sea and seized Methone.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Hale, Famous Sea Fights",
+       "work": "chr:entity:hale-famous-sea-fights",
+       "observation": "chr:observation:gutenberg:25088:2.5:d08c6920",
+       "locator": "Hale 2.5",
+       "url": "https://www.gutenberg.org/files/25088/25088-h/25088-h.htm#Page_27 (ch. 2, para. 5, p. 27)",
+       "quotation": "while the main body of Octavian's fleet concentrated at Brundusium"
+      },
+      {
+       "accordingTo": "Hale, Famous Sea Fights",
+       "work": "chr:entity:hale-famous-sea-fights",
+       "observation": "chr:observation:gutenberg:25088:2.5:d08c6920",
+       "locator": "Hale 2.5",
+       "url": "https://www.gutenberg.org/files/25088/25088-h/25088-h.htm#Page_27 (ch. 2, para. 5, p. 27)",
+       "quotation": "Agrippa with a strong squadron put to sea, seized the port of Methone in the Peloponnesus"
+      }
+     ],
+     "id": "chr:scene:battle-of-actium-seg1#4.2"
+    }
+   ],
+   "legs": [
+    {
+     "unit": {
+      "entity": "chr:entity:marcus-vipsanius-agrippa",
+      "label": "Marcus Vipsanius Agrippa",
+      "side": "Octavian"
+     },
+     "from": {
+      "label": "Brundisium",
+      "lonLat": [
+       17.9429115,
+       40.638663
+      ],
+      "lonLatFrom": "the gazetteer (Pleiades 442509)",
+      "entity": "chr:entity:proposed-place-brundisium",
+      "status": "proposed"
+     },
+     "to": {
+      "label": "Methone",
+      "lonLat": [
+       21.704441,
+       36.81435
+      ],
+      "lonLatFrom": "the gazetteer (Pleiades 570483)",
+      "entity": "chr:entity:proposed-place-methone",
+      "status": "proposed"
+     },
+     "basis": "inferred",
+     "statement": 2
+    }
+   ],
+   "id": "chr:scene:battle-of-actium-seg1#4"
+  },
+  {
+   "order": 5,
+   "phase": "road-to-war",
+   "timeWords": "after the winter",
+   "view": "overview",
+   "title": "Caesar crosses to Corcyra and Epeirus",
+   "statements": [
+    {
+     "text": "Caesar crossed the Ionian Gulf from Brundisium and seized Corcyra.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Cassius Dio, Roman History",
+       "work": "chr:entity:cassius-dio-roman-history",
+       "observation": "chr:observation:lacuscurtius:cassius-dio:50.11.6:1f50fd6b",
+       "locator": "Cassius Dio 50.11.6",
+       "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Cassius_Dio/50*.html#11.6",
+       "quotation": "From Brundisium"
+      },
+      {
+       "accordingTo": "Cassius Dio, Roman History",
+       "work": "chr:entity:cassius-dio-roman-history",
+       "observation": "chr:observation:lacuscurtius:cassius-dio:50.11.6:1f50fd6b",
+       "locator": "Cassius Dio 50.11.6",
+       "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Cassius_Dio/50*.html#11.6",
+       "quotation": "he crossed the Ionian Gulf with the entire array"
+      },
+      {
+       "accordingTo": "Cassius Dio, Roman History",
+       "work": "chr:entity:cassius-dio-roman-history",
+       "observation": "chr:observation:lacuscurtius:cassius-dio:50.12.2:1f50fd6b",
+       "locator": "Cassius Dio 50.12.2",
+       "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Cassius_Dio/50*.html#12.2",
+       "quotation": "he himself with his ships seized Corcyra"
+      }
+     ],
+     "id": "chr:scene:battle-of-actium-seg1#5.1"
+    },
+    {
+     "text": "Caesar occupied a place in Epeirus called Toruné.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Plutarch, Life of Antony",
+       "work": "chr:entity:plutarch-life-of-antony",
+       "observation": "chr:observation:perseus:tlg0007.tlg058.perseus-eng2:62.3:70427323",
+       "locator": "Plutarch Antony 62.3",
+       "url": "urn:cts:greekLit:tlg0007.tlg058.perseus-eng2:62.3",
+       "quotation": "occupying a place in Epeirus called Toruné"
+      }
+     ],
+     "id": "chr:scene:battle-of-actium-seg1#5.2"
+    },
+    {
+     "text": "He then occupied the site where Nicopolis now stands.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Cassius Dio, Roman History",
+       "work": "chr:entity:cassius-dio-roman-history",
+       "observation": "chr:observation:lacuscurtius:cassius-dio:50.12.3:1f50fd6b",
+       "locator": "Cassius Dio 50.12.3",
+       "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Cassius_Dio/50*.html#12.3",
+       "quotation": "He then occupied the site where Nicopolis now stands"
+      }
+     ],
+     "id": "chr:scene:battle-of-actium-seg1#5.3"
+    }
+   ],
+   "legs": [
+    {
+     "unit": {
+      "entity": "chr:entity:augustus",
+      "label": "Augustus",
+      "side": "Octavian"
+     },
+     "from": {
+      "label": "Brundisium",
+      "lonLat": [
+       17.9429115,
+       40.638663
+      ],
+      "lonLatFrom": "the gazetteer (Pleiades 442509)",
+      "entity": "chr:entity:proposed-place-brundisium",
+      "status": "proposed"
+     },
+     "to": {
+      "label": "Corcyra",
+      "lonLat": [
+       19.86654164868683,
+       39.61996963797889
+      ],
+      "lonLatFrom": "the gazetteer (Pleiades 530835)",
+      "entity": "chr:entity:corfu",
+      "status": "proposed",
+      "heldAs": "Corfu"
+     },
+     "basis": "sourced",
+     "statement": 1,
+     "note": "Drawn as a line between the named places; the passages give the places, not the route."
+    },
+    {
+     "unit": {
+      "entity": "chr:entity:augustus",
+      "label": "Augustus",
+      "side": "Octavian"
+     },
+     "from": {
+      "label": "Corcyra",
+      "lonLat": [
+       19.86654164868683,
+       39.61996963797889
+      ],
+      "lonLatFrom": "the gazetteer (Pleiades 530835)",
+      "entity": "chr:entity:corfu",
+      "status": "proposed",
+      "heldAs": "Corfu"
+     },
+     "to": {
+      "label": "Toryne",
+      "lonLat": [
+       20.401164,
+       39.286165
+      ],
+      "lonLatFrom": "the gazetteer (Pleiades 531127)",
+      "entity": "chr:entity:proposed-place-toryne",
+      "status": "proposed"
+     },
+     "basis": "inferred",
+     "statement": 2
+    }
+   ],
+   "routes": {
+    "title": "Two routes",
+    "note": "Where Caesar's forces came ashore.",
+    "alternatives": [
+     {
+      "accordingTo": "Cassius Dio, Roman History",
+      "words": "Caesar landed the cavalry at the Ceraunian mountains and based his ships at Corcyra.",
+      "voices": [
+       {
+        "accordingTo": "Cassius Dio, Roman History",
+        "work": "chr:entity:cassius-dio-roman-history",
+        "observation": "chr:observation:lacuscurtius:cassius-dio:50.12.1:1f50fd6b",
+        "locator": "Cassius Dio 50.12.1",
+        "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Cassius_Dio/50*.html#12.1",
+        "quotation": "Caesar disembarked the cavalry at the foot of the Ceraunian mountains"
+       },
+       {
+        "accordingTo": "Cassius Dio, Roman History",
+        "work": "chr:entity:cassius-dio-roman-history",
+        "observation": "chr:observation:lacuscurtius:cassius-dio:50.12.2:1f50fd6b",
+        "locator": "Cassius Dio 50.12.2",
+        "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Cassius_Dio/50*.html#12.2",
+        "quotation": "There he established a naval station"
+       }
+      ]
+     },
+     {
+      "accordingTo": "Plutarch, Life of Antony",
+      "words": "Caesar crossed the Ionian sea and occupied Toruné in Epeirus.",
+      "voices": [
+       {
+        "accordingTo": "Plutarch, Life of Antony",
+        "work": "chr:entity:plutarch-life-of-antony",
+        "observation": "chr:observation:perseus:tlg0007.tlg058.perseus-eng2:62.3:70427323",
+        "locator": "Plutarch Antony 62.3",
+        "url": "urn:cts:greekLit:tlg0007.tlg058.perseus-eng2:62.3",
+        "quotation": "crossing the Ionian sea and occupying a place in Epeirus called Toruné"
+       }
+      ]
+     }
+    ]
+   },
+   "id": "chr:scene:battle-of-actium-seg1#5"
+  },
+  {
+   "order": 6,
+   "phase": "road-to-war",
+   "timeWords": "on learning of Caesar's arrival",
+   "view": "overview",
+   "title": "Antony hastens to Actium",
+   "statements": [
+    {
+     "text": "Learning of Caesar's arrival, Antony hastened to Actium.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Cassius Dio, Roman History",
+       "work": "chr:entity:cassius-dio-roman-history",
+       "observation": "chr:observation:lacuscurtius:cassius-dio:50.13.1:1f50fd6b",
+       "locator": "Cassius Dio 50.13.1",
+       "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Cassius_Dio/50*.html#13.1",
+       "quotation": "As soon as Antony learned of Caesar's arrival he did not delay, but hastened to Actium with his followers"
+      }
+     ],
+     "id": "chr:scene:battle-of-actium-seg1#6.1"
+    },
+    {
+     "text": "In Weigall's account, Cleopatra joined him there a few days later.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Weigall, The Life and Times of Cleopatra",
+       "work": "chr:entity:weigall-life-and-times-of-cleopatra",
+       "observation": "chr:observation:gutenberg:54038:16.25:79d09ee0",
+       "locator": "Weigall 16.25",
+       "url": "https://www.gutenberg.org/files/54038/54038-h/54038-h.htm#Page_323 (ch. 16, para. 25, p. 323)",
+       "quotation": "a few days later he was joined there by Cleopatra"
+      }
+     ],
+     "id": "chr:scene:battle-of-actium-seg1#6.2"
+    }
+   ],
+   "legs": [
+    {
+     "unit": {
+      "entity": "chr:entity:mark-antony",
+      "label": "Mark Antony",
+      "side": "Antony"
+     },
+     "from": {
+      "label": "Patrae",
+      "lonLat": [
+       21.738518,
+       38.243265
+      ],
+      "lonLatFrom": "the gazetteer (Pleiades 570567)",
+      "entity": "chr:entity:patras",
+      "status": "proposed",
+      "heldAs": "Patras"
+     },
+     "to": {
+      "label": "Actium",
+      "lonLat": [
+       20.765852,
+       38.953891
+      ],
+      "lonLatFrom": "the gazetteer (Pleiades 530771)",
+      "entity": "chr:entity:actium-promontory",
+      "status": "provisional",
+      "heldAs": "Actium promontory"
+     },
+     "basis": "inferred",
+     "statement": 1
+    }
+   ],
+   "routes": {
+    "title": "Two routes",
+    "note": "Whether Antony was already at Actium when Caesar crossed.",
+    "alternatives": [
+     {
+      "accordingTo": "Cassius Dio, Roman History",
+      "words": "Antony hurried to Actium after hearing Caesar had arrived.",
+      "voices": [
+       {
+        "accordingTo": "Cassius Dio, Roman History",
+        "work": "chr:entity:cassius-dio-roman-history",
+        "observation": "chr:observation:lacuscurtius:cassius-dio:50.13.1:1f50fd6b",
+        "locator": "Cassius Dio 50.13.1",
+        "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Cassius_Dio/50*.html#13.1",
+        "quotation": "hastened to Actium with his followers"
+       }
+      ]
+     },
+     {
+      "accordingTo": "Plutarch, Life of Antony",
+      "words": "Antony was already lying at anchor off Actium when Caesar crossed.",
+      "voices": [
+       {
+        "accordingTo": "Plutarch, Life of Antony",
+        "work": "chr:entity:plutarch-life-of-antony",
+        "observation": "chr:observation:perseus:tlg0007.tlg058.perseus-eng2:62.3:70427323",
+        "locator": "Plutarch Antony 62.3",
+        "url": "urn:cts:greekLit:tlg0007.tlg058.perseus-eng2:62.3",
+        "quotation": "while Antony was lying at anchor off Actium"
+       }
+      ]
+     }
+    ]
+   },
+   "id": "chr:scene:battle-of-actium-seg1#6"
+  },
+  {
+   "order": 7,
+   "phase": "isolation",
+   "timeWords": "after occupying the site of Nicopolis",
+   "view": "overview",
+   "title": "Caesar fortifies and blockades Actium",
+   "statements": [
+    {
+     "text": "Caesar fortified the height and built walls down to Comarus, the outer harbour.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Cassius Dio, Roman History",
+       "work": "chr:entity:cassius-dio-roman-history",
+       "observation": "chr:observation:lacuscurtius:cassius-dio:50.12.4:1f50fd6b",
+       "locator": "Cassius Dio 50.12.4",
+       "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Cassius_Dio/50*.html#12.4",
+       "quotation": "This spot he fortified, and he constructed walls from it down to Comarus, the outer harbour"
+      }
+     ],
+     "id": "chr:scene:battle-of-actium-seg1#7.1"
+    },
+    {
+     "text": "He commanded Actium by land and sea.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Cassius Dio, Roman History",
+       "work": "chr:entity:cassius-dio-roman-history",
+       "observation": "chr:observation:lacuscurtius:cassius-dio:50.12.5:1f50fd6b",
+       "locator": "Cassius Dio 50.12.5",
+       "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Cassius_Dio/50*.html#12.5",
+       "quotation": "commanded Actium by land and sea, watching it from above with his army and blockading it with his fleet"
+      }
+     ],
+     "id": "chr:scene:battle-of-actium-seg1#7.2"
+    },
+    {
+     "text": "His ships often carried off the enemy's transports.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Cassius Dio, Roman History",
+       "work": "chr:entity:cassius-dio-roman-history",
+       "observation": "chr:observation:lacuscurtius:cassius-dio:50.13.2:1f50fd6b",
+       "locator": "Cassius Dio 50.13.2",
+       "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Cassius_Dio/50*.html#13.2",
+       "quotation": "often sailed against them with his ships and carried off their transports"
+      }
+     ],
+     "id": "chr:scene:battle-of-actium-seg1#7.3"
+    }
+   ],
+   "legs": [],
+   "id": "chr:scene:battle-of-actium-seg1#7"
+  },
+  {
+   "order": 8,
+   "phase": "isolation",
+   "timeWords": "while they were so engaged",
+   "view": "overview",
+   "title": "Agrippa takes Leucas, Patrae and Corinth",
+   "statements": [
+    {
+     "text": "Agrippa made a sudden dash with his fleet and captured Leucas.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Cassius Dio, Roman History",
+       "work": "chr:entity:cassius-dio-roman-history",
+       "observation": "chr:observation:lacuscurtius:cassius-dio:50.13.5:1f50fd6b",
+       "locator": "Cassius Dio 50.13.5",
+       "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Cassius_Dio/50*.html#13.5",
+       "quotation": "Agrippa made a sudden dash with his fleet and captured Leucas"
+      },
+      {
+       "accordingTo": "Velleius Paterculus, Historiae Romanae",
+       "work": "chr:entity:proposed-work-velleius-paterculus-historiae-romanae",
+       "observation": "chr:observation:lacuscurtius:velleius-paterculus:2.84.2:45a8b33f",
+       "locator": "C. Velleius Paterculus 2.84.2",
+       "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Velleius_Paterculus/2C*.html#84.2",
+       "quotation": "Marcus Agrippa had stormed Leucas"
+      }
+     ],
+     "id": "chr:scene:battle-of-actium-seg1#8.1"
+    },
+    {
+     "text": "From Leucas he took Patrae by beating Quintus Nasidius in a sea-fight.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Cassius Dio, Roman History",
+       "work": "chr:entity:cassius-dio-roman-history",
+       "observation": "chr:observation:lacuscurtius:cassius-dio:50.13.5:1f50fd6b",
+       "locator": "Cassius Dio 50.13.5",
+       "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Cassius_Dio/50*.html#13.5",
+       "quotation": "captured Leucas and the vessels which were there, took Patrae by conquering Quintus Nasidius in a sea-fight"
+      },
+      {
+       "accordingTo": "Velleius Paterculus, Historiae Romanae",
+       "work": "chr:entity:proposed-work-velleius-paterculus-historiae-romanae",
+       "observation": "chr:observation:lacuscurtius:velleius-paterculus:2.84.2:45a8b33f",
+       "locator": "C. Velleius Paterculus 2.84.2",
+       "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Velleius_Paterculus/2C*.html#84.2",
+       "quotation": "had captured Patrae"
+      }
+     ],
+     "id": "chr:scene:battle-of-actium-seg1#8.2"
+    },
+    {
+     "text": "Later he reduced Corinth also.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Cassius Dio, Roman History",
+       "work": "chr:entity:cassius-dio-roman-history",
+       "observation": "chr:observation:lacuscurtius:cassius-dio:50.13.5:1f50fd6b",
+       "locator": "Cassius Dio 50.13.5",
+       "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Cassius_Dio/50*.html#13.5",
+       "quotation": "took Patrae by conquering Quintus Nasidius in a sea-fight, and later reduced Corinth also"
+      },
+      {
+       "accordingTo": "Velleius Paterculus, Historiae Romanae",
+       "work": "chr:entity:proposed-work-velleius-paterculus-historiae-romanae",
+       "observation": "chr:observation:lacuscurtius:velleius-paterculus:2.84.2:45a8b33f",
+       "locator": "C. Velleius Paterculus 2.84.2",
+       "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Velleius_Paterculus/2C*.html#84.2",
+       "quotation": "had seized Corinth"
+      }
+     ],
+     "id": "chr:scene:battle-of-actium-seg1#8.3"
+    }
+   ],
+   "legs": [
+    {
+     "unit": {
+      "entity": "chr:entity:marcus-vipsanius-agrippa",
+      "label": "Marcus Vipsanius Agrippa",
+      "side": "Octavian"
+     },
+     "from": {
+      "label": "Leucas",
+      "lonLat": [
+       20.713116,
+       38.807342
+      ],
+      "lonLatFrom": "the gazetteer (Pleiades 530974)",
+      "entity": "chr:entity:proposed-place-leucas",
+      "status": "proposed"
+     },
+     "to": {
+      "label": "Patrae",
+      "lonLat": [
+       21.738518,
+       38.243265
+      ],
+      "lonLatFrom": "the gazetteer (Pleiades 570567)",
+      "entity": "chr:entity:patras",
+      "status": "proposed",
+      "heldAs": "Patras"
+     },
+     "basis": "sourced",
+     "statement": 2,
+     "note": "Drawn as a line between the named places; the passages give the places, not the route."
+    },
+    {
+     "unit": {
+      "entity": "chr:entity:marcus-vipsanius-agrippa",
+      "label": "Marcus Vipsanius Agrippa",
+      "side": "Octavian"
+     },
+     "from": {
+      "label": "Patrae",
+      "lonLat": [
+       21.738518,
+       38.243265
+      ],
+      "lonLatFrom": "the gazetteer (Pleiades 570567)",
+      "entity": "chr:entity:patras",
+      "status": "proposed",
+      "heldAs": "Patras"
+     },
+     "to": {
+      "label": "Corinth",
+      "lonLat": [
+       22.878614390874485,
+       37.90564164345828
+      ],
+      "lonLatFrom": "the gazetteer (Pleiades 570182)",
+      "entity": "chr:entity:ancient-corinth",
+      "status": "proposed",
+      "heldAs": "Ancient Corinth"
+     },
+     "basis": "sourced",
+     "statement": 3,
+     "note": "Drawn as a line between the named places; the passages give the places, not the route."
+    }
+   ],
+   "ordersOfBattle": {
+    "title": "Two accounts of who commanded",
+    "note": "Who took Patrae and Corinth.",
+    "alternatives": [
+     {
+      "accordingTo": "Cassius Dio, Roman History; Velleius Paterculus, Historiae Romanae",
+      "words": "Agrippa took Patrae and Corinth.",
+      "voices": [
+       {
+        "accordingTo": "Cassius Dio, Roman History",
+        "work": "chr:entity:cassius-dio-roman-history",
+        "observation": "chr:observation:lacuscurtius:cassius-dio:50.13.5:1f50fd6b",
+        "locator": "Cassius Dio 50.13.5",
+        "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Cassius_Dio/50*.html#13.5",
+        "quotation": "later reduced Corinth also"
+       },
+       {
+        "accordingTo": "Velleius Paterculus, Historiae Romanae",
+        "work": "chr:entity:proposed-work-velleius-paterculus-historiae-romanae",
+        "observation": "chr:observation:lacuscurtius:velleius-paterculus:2.84.2:45a8b33f",
+        "locator": "C. Velleius Paterculus 2.84.2",
+        "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Velleius_Paterculus/2C*.html#84.2",
+        "quotation": "Marcus Agrippa had stormed Leucas, had captured Patrae, had seized Corinth"
+       }
+      ]
+     },
+     {
+      "accordingTo": "Wikipedia, Battle of Actium",
+      "words": "Octavian occupied Patrae and Corinth with Agrippa's help.",
+      "voices": [
+       {
+        "accordingTo": "Wikipedia, Battle of Actium",
+        "work": "chr:entity:wikipedia-en-battle-of-actium",
+        "observation": "chr:observation:wikipedia:en:battle-of-actium:0.2:r1378178531",
+        "locator": "Wikipedia 0.2",
+        "url": "https://en.wikipedia.org/w/index.php?title=Battle_of_Actium&oldid=1378178531 (Lead, para. 2)",
+        "quotation": "occupied Patrae and Corinth, where, with the help of Marcus Vipsanius Agrippa"
+       }
+      ]
+     }
+    ]
+   },
+   "id": "chr:scene:battle-of-actium-seg1#8"
+  }
+ ],
+ "footnote": "Generated from the passages the graph holds; places from the gazetteer. Lines between places are drawn: no passage gives a route.",
+ "contentHash": "0b7618506507ecdcaf58ded844fa2fafa238507b5af7ba9741e1c588255ebf03",
+ "check": {
+  "problems": [],
+  "warnings": [],
+  "calls": [
+   {
+    "model": "claude-opus-5-5",
+    "stopReason": "end_turn",
+    "inputTokens": 26397,
+    "outputTokens": 10210
+   },
+   {
+    "model": "claude-opus-5-5",
+    "stopReason": "end_turn",
+    "inputTokens": 31854,
+    "outputTokens": 5510
+   }
+  ],
+  "checkedAt": "2026-11-25T13:32:54+00:00"
+ }
+}

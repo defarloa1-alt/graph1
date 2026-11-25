@@ -32,6 +32,8 @@ from typing import Any, Literal
 
 from pydantic import BaseModel, Field
 
+from GraphRevised.proposals.registry import load_registry
+
 ROOT = Path(__file__).resolve().parents[1]
 CATALOGUE = ROOT / "curation" / "presentations.json"
 PHASES = ROOT / "curation" / "phases.json"
@@ -67,6 +69,7 @@ def graph_profiles(tx: Any, event_id: str, phase_ids: dict[str, str]) -> dict[st
           UNWIND (CASE WHEN size(ms) = 0 THEN [null] ELSE ms END) AS m
           OPTIONAL MATCH (a:Annotation)-[:CONCERNS]->(m)
           OPTIONAL MATCH (a)-[:ANNOTATES]->(:SourceObservation)-[:IN_WORK]->(w:Entity)
+            WHERE NOT coalesce(w.form, '') IN $creative  // an imaginative work is counted as reception, not as a source
           OPTIONAL MATCH (x:Person)-[:PARTICIPATED_IN]->(m)
           OPTIONAL MATCH (g:Group)-[:PARTICIPATED_IN]->(m)
           OPTIONAL MATCH (m)-[:OCCURRED_AT]->(pl:Place)
@@ -80,7 +83,7 @@ def graph_profiles(tx: Any, event_id: str, phase_ids: dict[str, str]) -> dict[st
         RETURN ph.key AS key, size(ms) AS members, sources, persons, groups, places, placesNamed, years,
                count(DISTINCT q) AS questions
         """,
-        phases=[{"key": k, "id": v} for k, v in phase_ids.items()],
+        phases=[{"key": k, "id": v} for k, v in phase_ids.items()], creative=sorted(load_registry().creative_forms),
     ).data()
     out = {}
     for r in rows:
@@ -368,6 +371,7 @@ def check(proposal: dict, prof: dict, catalogue: dict) -> dict[str, list[str]]:
 
 # --- Items for the orchestrator's extend ------------------------------------------------------------
 
+GENERATE_BUILT = {"scene-movement"}  # what scenes/build_scene.py draws
 GENERATE_KIND = {"movement-scene": "scene-movement", "battle-scene": "scene-battle", "flyby": "scene-flyby",
                  "memory-reception": "memory-reception"}
 
@@ -385,9 +389,11 @@ def plan_items(sb: dict, path: Path, inquiry: str | None) -> tuple[list[dict], l
         if seg["kind"] in GENERATE_KIND:
             if "GENERATE" not in actions:
                 held.append(f"segment {seg['order']} ({seg['kind']}): waits for GENERATE")
+            elif GENERATE_KIND[seg["kind"]] not in GENERATE_BUILT:
+                held.append(f"segment {seg['order']} ({seg['kind']}): no worker draws {GENERATE_KIND[seg['kind']]} yet")
             else:
                 items.append({"action": "GENERATE", "target": sb["subject"]["id"], "rationale": "; ".join(seg["why"]),
-                              "expected_outputs": [f"a {seg['kind']} spec in scenes/"], "budget_usd": 1.0, "lens": None,
+                              "expected_outputs": [f"a {seg['kind']} spec in scenes/, with its narration input"], "budget_usd": 1.5, "lens": None,
                               "call": {"worker": "GraphRevised.scenes.build_scene",
                                        "arguments": ["--kind", GENERATE_KIND[seg["kind"]], "--storyboard", str(path),
                                                      "--segment", str(seg["order"])]},

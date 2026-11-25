@@ -46,17 +46,20 @@ class StoryboardCheckTests(unittest.TestCase):
                            seg(["memory"], "timeline", why=["2 events"])]}
         self.assertTrue(any("disagreement shown with it needs" in p for p in check(sb, PROF, CAT)["problems"]))
 
-    def test_approved_segments_wait_for_generate_and_gaps_become_items(self):
+    def test_approved_segments_become_generate_items_and_gaps_become_items(self):
         sb = {"id": "chr:storyboard:t", "subject": {"id": "chr:entity:t"}, "segments": [
             {"order": 1, "status": "approved", "kind": "movement-scene", "why": ["3 movements"], "gaps": [
                 {"what": "coins", "becomes": "source-task", "note": "commemorative issues", "source": "nomisma"},
                 {"what": "a reading", "becomes": "question", "note": "open", "source": None}]},
             {"order": 2, "status": "proposed", "kind": "battle-scene", "why": ["x"], "gaps": []}]}
+        sb["segments"].append({"order": 3, "status": "approved", "kind": "battle-scene", "why": ["x"], "gaps": []})
         items, held = plan_items(sb, Path("storyboards/t.storyboard.json"), None)
-        self.assertTrue(any("waits for GENERATE" in h for h in held))
-        self.assertEqual([(i["action"], i["target"]) for i in items], [("REGISTER", "nomisma")])
-        self.assertEqual(items[0]["origin"], {"storyboard": "chr:storyboard:t", "segment": 1, "gap": 0})
-        self.assertEqual(items[0]["call"]["worker"], "manual")
+        self.assertEqual([(i["action"], i["target"]) for i in items], [("GENERATE", "chr:entity:t"), ("REGISTER", "nomisma")])
+        self.assertEqual(items[0]["call"]["arguments"],
+                         ["--kind", "scene-movement", "--storyboard", str(Path("storyboards/t.storyboard.json")), "--segment", "1"])
+        self.assertEqual(items[1]["origin"], {"storyboard": "chr:storyboard:t", "segment": 1, "gap": 0})
+        self.assertEqual(items[1]["call"]["worker"], "manual")
+        self.assertTrue(any("no worker draws scene-battle" in h for h in held))  # battle scenes are not built
 
 
 if __name__ == "__main__":

@@ -507,6 +507,7 @@ a.ext::after { content: " ↗"; font-size: .85em; }
 .sb-seg.vetoed h4 { text-decoration: line-through; }
 .sb .sb-side { position: sticky; top: 0; align-self: start; }
 .sb-sends { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 4px; font-size: var(--fs-chrome); }
+.sc-set button { font-size: var(--fs-chrome); }
 /* stage modes, path bar, reading panes */
 .pathbar { flex-basis: 100%; display: flex; flex-wrap: wrap; align-items: center; gap: 4px; font-size: var(--fs-body); background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 3px 8px; }
 .pathbar .step { border: 0; background: transparent; padding: 0 2px; color: var(--ink-2); text-decoration: underline; text-underline-offset: 2px; }
@@ -2607,7 +2608,10 @@ function animPlay(on) {
    Every sentence on the side carries its basis and its passages; every line on the map its basis:
    sourced solid, inferred dashed, illustrative faded (D-172). The basemap is the one the source
    animation embedded (its licences are in the scene's terrain note). */
-const SCENES = DATA.scenes || {};
+// every scene of a subject (hand-built first, then generated from a storyboard); the one shown is SCENES[id]
+const SCENE_SETS = DATA.sceneSets || {};
+for (const list of Object.values(SCENE_SETS)) for (const sc of list) if (typeof sc.basemap === "string") sc.basemap = (DATA.basemaps || {})[sc.basemap];
+const SCENES = Object.fromEntries(Object.entries(SCENE_SETS).map(([k, list]) => [k, list[0]]));
 const SIDE_C = { Octavian: "var(--side-o)", Antony: "var(--side-a)" };
 const BASIS_WORD = { sourced: "sourced", inferred: "inferred", illustrative: "drawn", "not-checked": "not checked" };
 let sceneTimer = null;
@@ -2728,7 +2732,7 @@ function renderScene(el) {
       ${x.voices.length ? `<div class="sv-list">${x.voices.map(voice).join("")}</div>` : ""}
       ${x.by ? `<span class="st-by">${x.basis === "not-checked" ? "Asserted by" : "Inference by"} ${esc(x.by)}</span>` : ""}
       ${x.note ? `<span class="st-note">${esc(x.note)}</span>` : ""}</li>`).join("");
-  const alt = (title, a, key) => a ? `<div class="sc-alt ${speaking.has(st.id + ":" + key) ? "speaking" : ""}"><span class="label">${esc(title)}</span><span class="small muted">${esc(a.note)}</span>
+  const alt = (title, a, key) => a ? `<div class="sc-alt ${speaking.has(st.id + ":" + key) ? "speaking" : ""}"><span class="label">${esc(a.title || title)}</span><span class="small muted">${esc(a.note)}</span>
       ${a.alternatives.map(x => `<div class="alt"><b>${esc(x.accordingTo)}</b>${x.words ? `<span>${esc(x.words)}</span>` : ""}
         ${x.antony ? `<span class="small">Antony: ${esc(Object.entries(x.antony).map(([k, v]) => `${k}: ${v.join(", ")}`).join("; "))}</span>` : ""}
         ${x.octavian ? `<span class="small">Octavian: ${esc(Object.entries(x.octavian).map(([k, v]) => `${k}: ${v.join(", ")}`).join("; "))}</span>` : ""}
@@ -2753,13 +2757,14 @@ function renderScene(el) {
       <span class="seg" role="group"><button data-anim-mode="phases" aria-pressed="false">Phases</button><button data-anim-mode="scene" aria-pressed="true">Scene</button></span>
       ${NR ? `<button class="btn" data-captions="1" aria-pressed="${S.captions !== false}" title="Narration, ${esc(NR.persona)}: ${esc(NR.madeBy)}, ${esc(NR.madeAt)}">Captions</button>${NR.audio && S.captions !== false ? `<button class="btn" data-sound="1" aria-pressed="${S.sound !== false}" title="Voiced: ${esc(NR.audio.voice)}, ${esc(NR.audio.generator)}, ${esc(NR.audio.madeAt)}. Made audio, never evidence">Sound</button>` : ""}${NR.stale ?`<span class="pill" title="Written for another version of the scene">narration stale</span>` : ""}` : ""}
       <button class="btn" data-scene-poster="1" aria-pressed="${poster}" title="The scene's cover: the poster's palette, every basis still shown">Poster</button>
-      <span class="pill">${esc(sc.status)}</span><span class="muted small">${esc(sc.scope)}</span></div>
+      ${(SCENE_SETS[S.focus] || []).length > 1 ? `<span class="seg sc-set">${SCENE_SETS[S.focus].map((x, k) => `<button data-scene-set="${k}" aria-pressed="${x === sc}" title="${esc(x.scope)}">${esc(x.title || (x.derivedFrom && x.derivedFrom.storyboard ? "Generated" : "Campaign and battle (hand-built)"))}</button>`).join("")}</span>` : ""}
+      <span class="pill">${esc(sc.status)}</span><span class="muted small">${esc(sc.scope)}</span>${sc.derivedFrom && sc.derivedFrom.storyboard ? `<span class="small muted">drafted from ${sc.derivedFrom.passagesGiven} passages by ${esc(sc.proposedBy)}; every quotation checked word for word</span>` : ""}</div>
     <div class="anv-map">${map}${leaders}${plate}${line ? `<div class="sc-caption b-${esc(line.basis || "transition")}" aria-live="polite">
         <button class="sc-ln" data-scene-line="-1" aria-label="Previous line" ${S.scene.line ? "" : "disabled"}>‹</button>
         <span>${esc(line.text)}</span>
         <button class="sc-ln" data-scene-line="1" aria-label="Next line" ${S.scene.line < lines.length - 1 ? "" : "disabled"}>›</button>
         <span class="sc-lc">${S.scene.line + 1}/${lines.length}${line.basis && line.basis !== "sourced" ? " · " + esc(BASIS_WORD[line.basis]) : ""}</span></div>` : ""}
-      <span class="sc-cap">${battle ? "Ship positions are drawn, not sourced: no passage gives them (a Generalized Abstraction, D-172)." : "Lines: solid sourced, dashed inferred (ours), faded drawn. * a place proposed for this scene."}</span></div>
+      <span class="sc-cap">${battle ? "A reconstruction: the ships are drawn, not sourced. No passage gives their positions, and the sources disagree on who commanded where (a Generalized Abstraction, D-172)." : "Lines: solid sourced, dashed inferred (ours), faded drawn. * a place proposed for this scene."}</span></div>
     <div class="anv-side ${speaking.size ? "sc-reading" : ""}">
       <span class="anno"><b>Scene on the stage.</b> A movement scene (26a), checked against the stored passages. Each sentence says what it rests on: a passage (quoted, with its locator), an inference (and whose), or nothing yet. Positions with no passage are drawn and say so.</span>
       <div class="sc-step"><span class="label">${i + 1} / ${steps.length} · ${esc(st.timeWords)}${st.phase ? ` · phase: ${esc(st.phase.replace(/-/g, " "))}` : st.context ? ` · ${esc(st.context)}` : ""}</span>
@@ -3001,6 +3006,7 @@ document.addEventListener("click", ev => {
   if (d.sceneLine) { sceneStop(); S.scene.line = Math.max(0, (S.scene.line || 0) + +d.sceneLine); return renderAnim(); }
   if (d.captions) { S.captions = S.captions === false; sceneStop(); return renderAnim(); }
   if (d.sound) { S.sound = S.sound === false; sceneStop(); return renderAnim(); }
+  if (d.sceneSet != null) { sceneStop(); SCENES[S.focus] = SCENE_SETS[S.focus][+d.sceneSet]; S.scene = { i: 0, line: 0, playing: false }; return renderAnim(); }
   if (d.scene) {
     const n = SCENES[S.focus].steps.length;
     if (d.scene === "play") { if (S.scene.playing) sceneStop(); else { S.scene.playing = true; sceneTick(); } return renderAnim(); }

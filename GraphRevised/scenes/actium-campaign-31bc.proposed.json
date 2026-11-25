@@ -747,7 +747,8 @@
     }
    ],
    "ordersOfBattle": {
-    "note": "Two orders of battle, and the sources disagree: shown side by side, never merged.",
+    "title": "Three orders of battle",
+    "note": "The sources disagree: two ancient versions and a modern summary that combines them, shown side by side, never merged. The map draws one arrangement: a reconstruction (curator, 2026-11-25).",
     "alternatives": [
      {
       "accordingTo": "Plutarch, Life of Antony",
@@ -770,9 +771,6 @@
        ],
        "right": [
         "Octavian"
-       ],
-       "centre": [
-        "Arruntius (from 66.3: the centre engages him)"
        ]
       },
       "voices": [
@@ -791,16 +789,9 @@
         "locator": "Plutarch Antony 65.2",
         "url": "urn:cts:greekLit:tlg0007.tlg058.perseus-eng2:65.2",
         "quotation": "Caesar posted Agrippa on the left, and reserved the right wing for himself"
-       },
-       {
-        "accordingTo": "Plutarch, Life of Antony",
-        "work": "chr:entity:plutarch-life-of-antony",
-        "observation": "chr:observation:perseus:tlg0007.tlg058.perseus-eng2:66.3:70427323",
-        "locator": "Plutarch Antony 66.3",
-        "url": "urn:cts:greekLit:tlg0007.tlg058.perseus-eng2:66.3",
-        "quotation": "The centre falling into confusion and engaging with Arruntius"
        }
-      ]
+      ],
+      "note": "Plutarch names no commander for Octavian's centre. That Antony's centre engaged Arruntius (66.3) comes later in the fight; it is not his order of battle."
      },
      {
       "accordingTo": "Velleius Paterculus, Historiae Romanae",
@@ -843,6 +834,52 @@
        }
       ],
       "note": "Velleius gives Sosius no wing; the animation's 'Coelius south (Velleius: Sosius)' was its generator's reading."
+     },
+     {
+      "accordingTo": "Wikipedia, Battle of Actium (a modern summary)",
+      "antony": {
+       "right": [
+        "Antony",
+        "Gellius Poplicola"
+       ],
+       "centre": [
+        "Marcus Octavius",
+        "Marcus Insteius"
+       ],
+       "left": [
+        "Sosius"
+       ]
+      },
+      "octavian": {
+       "left": [
+        "Agrippa"
+       ],
+       "centre": [
+        "Arruntius"
+       ],
+       "right": [
+        "Lurius"
+       ]
+      },
+      "voices": [
+       {
+        "accordingTo": "Wikipedia, Battle of Actium",
+        "work": "chr:entity:wikipedia-en-battle-of-actium",
+        "observation": "chr:observation:wikipedia:en:battle-of-actium:2.4:r1378178531",
+        "locator": "Wikipedia 2.4",
+        "url": "https://en.wikipedia.org/w/index.php?title=Battle_of_Actium&oldid=1378178531 (Battle, para. 4)",
+        "quotation": "led by the experienced admiral Agrippa, commanding from the left wing of the fleet, Lucius Arruntius the centre, and Marcus Lurius the right"
+       },
+       {
+        "accordingTo": "Wikipedia, Battle of Actium",
+        "work": "chr:entity:wikipedia-en-battle-of-actium",
+        "observation": "chr:observation:wikipedia:en:battle-of-actium:2.4:r1378178531",
+        "locator": "Wikipedia 2.4",
+        "url": "https://en.wikipedia.org/w/index.php?title=Battle_of_Actium&oldid=1378178531 (Battle, para. 4)",
+        "quotation": "Marcus Octavius and Marcus Insteius commanded the centre, while Gaius Sosius commanded the left wing"
+       }
+      ],
+      "note": "It combines the two: Plutarch's Antonian right and centre, Velleius's Arruntius and Lurius, and a left wing for Sosius that neither ancient passage held gives."
      }
     ]
    },
@@ -864,7 +901,7 @@
       ]
      ],
      "basis": "illustrative",
-     "note": "No passage gives a ship's position; the lines are drawn to orient the reader (D-172)."
+     "note": "A reconstruction: one arrangement drawn to orient the reader, while the sources give three orders of battle and no ship's position (D-172)."
     },
     {
      "unit": {
@@ -883,7 +920,7 @@
       ]
      ],
      "basis": "illustrative",
-     "note": "No passage gives a ship's position; the lines are drawn to orient the reader (D-172)."
+     "note": "A reconstruction: one arrangement drawn to orient the reader, while the sources give three orders of battle and no ship's position (D-172)."
     },
     {
      "unit": {
@@ -902,7 +939,7 @@
       ]
      ],
      "basis": "illustrative",
-     "note": "No passage gives a ship's position; the lines are drawn to orient the reader (D-172)."
+     "note": "A reconstruction: one arrangement drawn to orient the reader, while the sources give three orders of battle and no ship's position (D-172)."
     },
     {
      "unit": {
@@ -921,7 +958,7 @@
       ]
      ],
      "basis": "illustrative",
-     "note": "No passage gives a ship's position; the lines are drawn to orient the reader (D-172)."
+     "note": "A reconstruction: one arrangement drawn to orient the reader, while the sources give three orders of battle and no ship's position (D-172)."
     },
     {
      "unit": {
@@ -940,7 +977,7 @@
       ]
      ],
      "basis": "illustrative",
-     "note": "No passage gives a ship's position; the lines are drawn to orient the reader (D-172)."
+     "note": "A reconstruction: one arrangement drawn to orient the reader, while the sources give three orders of battle and no ship's position (D-172)."
     },
     {
      "unit": {
@@ -959,7 +996,7 @@
       ]
      ],
      "basis": "illustrative",
-     "note": "No passage gives a ship's position; the lines are drawn to orient the reader (D-172)."
+     "note": "A reconstruction: one arrangement drawn to orient the reader, while the sources give three orders of battle and no ship's position (D-172)."
     },
     {
      "unit": {
@@ -978,7 +1015,7 @@
       ]
      ],
      "basis": "illustrative",
-     "note": "No passage gives a ship's position; the lines are drawn to orient the reader (D-172)."
+     "note": "A reconstruction: one arrangement drawn to orient the reader, while the sources give three orders of battle and no ship's position (D-172)."
     },
     {
      "unit": {
@@ -997,7 +1034,7 @@
       ]
      ],
      "basis": "illustrative",
-     "note": "No passage gives a ship's position; the lines are drawn to orient the reader (D-172)."
+     "note": "A reconstruction: one arrangement drawn to orient the reader, while the sources give three orders of battle and no ship's position (D-172)."
     }
    ],
    "id": "chr:scene:actium-campaign-31bc#5"
@@ -1450,10 +1487,26 @@
      ],
      "note": "Dio's reading: panic. Whether the flight was planned is a debated Question in the graph.",
      "id": "chr:scene:actium-campaign-31bc#8.3"
+    },
+    {
+     "text": "Velleius puts it on her: Cleopatra took the initiative in the flight, and Antony chose to go with her rather than stay with his fighting men.",
+     "basis": "sourced",
+     "voices": [
+      {
+       "accordingTo": "Velleius Paterculus, Historiae Romanae",
+       "work": "chr:entity:proposed-work-velleius-paterculus-historiae-romanae",
+       "observation": "chr:observation:lacuscurtius:velleius-paterculus:2.85.3:45a8b33f",
+       "locator": "C. Velleius Paterculus 2.85.3",
+       "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Velleius_Paterculus/2C*.html#85.3",
+       "quotation": "Cleopatra took the initiative in the flight; Antony chose to be the companion of the fleeing queen rather than of his fighting soldiers"
+      }
+     ],
+     "note": "One interpretation: the victors' side of the story, told by a soldier of the next reign. Shown beside Dio's panic and the planned-breakout reading, not over them.",
+     "id": "chr:scene:actium-campaign-31bc#8.4"
     }
    ],
    "disputed": {
-    "words": "Panic, or a planned breakout?",
+    "words": "Panic, her initiative, or a planned breakout?",
     "questions": [
      "chr:entity:proposed-question-did-cleopatra-and-perhaps-antonius-too-secretly-plan-the-flight-before-the-battle-began",
      "chr:entity:proposed-question-did-cleopatra-take-the-decisive-initiative-in-the-flight-from-actium",
@@ -2679,5 +2732,5 @@
   }
  ],
  "footnote": "Not in the scene: the council before the battle (phase 'council'). The date of Alexandria's fall is in no passage held. Places added for the scene (proposed, migration 035): Brundisium, Toryne, Leucas, Methone, Taenarum, Paraetonium; Corcyra is the graph's Corfu (the island).",
- "contentHash": "2e841b723b709562098404b0a65d55abad4827da8a383eb9e85d5d9cd98b7b05"
+ "contentHash": "037e74eff9f4c23edcf51bfd90689fe4653a6ed5333bdbe28441d9b8ff2db603"
 }

@@ -347,6 +347,7 @@ PlanAction = Literal[
     "BRIEF", "FIND", "READ", "LENS", "PHASES", "RECONCILE", "CRITIQUE", "ACCOUNT", "SUB_INQUIRY",
     "REGISTER",  # check a candidate source's rights at the source and register it: by hand, free
     "STORYBOARD",  # propose which presentation for each stretch of the event's timeline (26a §5a, D-179); writes no fact
+    "GENERATE",  # draw an approved storyboard segment: the kind is in the worker's arguments (26a §5, D-179); writes no fact
 ]
 
 

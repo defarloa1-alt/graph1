@@ -21,7 +21,7 @@ from GraphRevised import localdb
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "scenes" / "actium-campaign-31bc.proposed.json"
 WORKS = ["chr:entity:plutarch-life-of-antony", "chr:entity:cassius-dio-roman-history",
-         "chr:entity:proposed-work-velleius-paterculus-historiae-romanae"]
+         "chr:entity:proposed-work-velleius-paterculus-historiae-romanae", "chr:entity:wikipedia-en-battle-of-actium"]
 
 
 def read_passages() -> dict:
@@ -212,22 +212,29 @@ steps = [
            note="Both sources say the rear; 'behind the centre', as the animation had it, is ours, and the map draws it so."),
      ],
      "ordersOfBattle": {
-         "note": "Two orders of battle, and the sources disagree: shown side by side, never merged.",
+         "title": "Three orders of battle",
+         "note": "The sources disagree: two ancient versions and a modern summary that combines them, shown side by side, never merged. The map draws one arrangement: a reconstruction (curator, 2026-11-25).",
          "alternatives": [
              {"accordingTo": "Plutarch, Life of Antony",
               "antony": {"right": ["Antony", "Publicola"], "centre": ["Marcus Octavius", "Marcus Insteius"], "left": ["Coelius"]},
-              "octavian": {"left": ["Agrippa"], "right": ["Octavian"], "centre": ["Arruntius (from 66.3: the centre engages him)"]},
+              "octavian": {"left": ["Agrippa"], "right": ["Octavian"]},
               "voices": [q("Plutarch Antony 65.1", "Antony had the right wing, with Publicola, Coelius the left, and in the centre were Marcus Octavius and Marcus Insteius"),
-                         q("Plutarch Antony 65.2", "Caesar posted Agrippa on the left, and reserved the right wing for himself"),
-                         q("Plutarch Antony 66.3", "The centre falling into confusion and engaging with Arruntius")]},
+                         q("Plutarch Antony 65.2", "Caesar posted Agrippa on the left, and reserved the right wing for himself")],
+              "note": "Plutarch names no commander for Octavian's centre. That Antony's centre engaged Arruntius (66.3) comes later in the fight; it is not his order of battle."},
              {"accordingTo": "Velleius Paterculus, Historiae Romanae",
               "antony": {"fleet": ["Publicola", "Sosius"]},
               "octavian": {"right": ["Lurius"], "left": ["Arruntius"], "overall": ["Agrippa"], "everywhere": ["Octavian"]},
               "voices": [q("C. Velleius Paterculus 2.85.2", "The command of the right wing of Caesar's fleet was entrusted to Marcus Lurius, of the left to Arruntius, while Agrippa had full charge of the entire conflict at sea"),
                          q("C. Velleius Paterculus 2.85.2", "The command of Antony's fleet was entrusted to Publicola and Sosius")],
               "note": "Velleius gives Sosius no wing; the animation's 'Coelius south (Velleius: Sosius)' was its generator's reading."},
+             {"accordingTo": "Wikipedia, Battle of Actium (a modern summary)",
+              "antony": {"right": ["Antony", "Gellius Poplicola"], "centre": ["Marcus Octavius", "Marcus Insteius"], "left": ["Sosius"]},
+              "octavian": {"left": ["Agrippa"], "centre": ["Arruntius"], "right": ["Lurius"]},
+              "voices": [q("Wikipedia 2.4", "led by the experienced admiral Agrippa, commanding from the left wing of the fleet, Lucius Arruntius the centre, and Marcus Lurius the right"),
+                         q("Wikipedia 2.4", "Marcus Octavius and Marcus Insteius commanded the centre, while Gaius Sosius commanded the left wing")],
+              "note": "It combines the two: Plutarch's Antonian right and centre, Velleius's Arruntius and Lurius, and a left wing for Sosius that neither ancient passage held gives."},
          ]},
-     "placements": placements(L0, "No passage gives a ship's position; the lines are drawn to orient the reader (D-172).")},
+     "placements": placements(L0, "A reconstruction: one arrangement drawn to orient the reader, while the sources give three orders of battle and no ship's position (D-172).")},
     {"order": 6, "phase": "engagement", "timeWords": "the sixth hour (about midday)", "view": "battle",
      "title": "Antony's left wing moves first",
      "statements": [
@@ -256,8 +263,11 @@ steps = [
          s("She turns to flight from the strain of waiting, and signals her ships.", "sourced",
            [q("Cassius Dio 50.33.2", "she suddenly turned to flight herself and raised the signal for the others")],
            note="Dio's reading: panic. Whether the flight was planned is a debated Question in the graph."),
+         s("Velleius puts it on her: Cleopatra took the initiative in the flight, and Antony chose to go with her rather than stay with his fighting men.", "sourced",
+           [q("C. Velleius Paterculus 2.85.3", "Cleopatra took the initiative in the flight; Antony chose to be the companion of the fleeing queen rather than of his fighting soldiers")],
+           note="One interpretation: the victors' side of the story, told by a soldier of the next reign. Shown beside Dio's panic and the planned-breakout reading, not over them."),
      ],
-     "disputed": {"words": "Panic, or a planned breakout?", "questions": [Q_PLANNED, Q_INIT, Q_GAP]},
+     "disputed": {"words": "Panic, her initiative, or a planned breakout?", "questions": [Q_PLANNED, Q_INIT, Q_GAP]},
      "locatorNote": "The animation cited Plutarch 66.5 in another edition's numbering; in the text we hold it is 66.3-4.",
      "placements": placements({**LX, "AC": [[20.724, 38.938], [20.735, 38.922]], "CL": [[20.700, 38.930], [20.706, 38.912]]},
                               "The breakout is sourced; the path drawn through the line is ours.")},
