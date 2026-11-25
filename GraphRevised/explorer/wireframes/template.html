@@ -480,6 +480,33 @@ a.ext::after { content: " ↗"; font-size: .85em; }
 .anv-side.sc-reading .speaking { background: rgba(212,179,106,.22); box-shadow: -4px 0 0 #d4b36a; padding: 6px 8px; transition: opacity .3s, background .3s; }
 .sc-zoom { transform-origin: 0 0; transition: transform 1.6s cubic-bezier(.45,0,.2,1); }
 @media (prefers-reduced-motion: reduce) { .sc-zoom { transition: none; } }
+/* storyboard (26a §5a, D-179) */
+.sb-strip { grid-column: 1 / -1; display: flex; gap: 3px; width: 100%; margin-top: 6px; }
+.sb-cell { flex: 1 1 0; min-width: 0; border-top: 5px solid var(--seg); background: color-mix(in srgb, var(--seg) 10%, var(--surface)); padding: 4px 6px; display: flex; flex-direction: column; gap: 1px; border-radius: 0 0 4px 4px; }
+.sb-cl { font-size: var(--fs-label); color: var(--ink); line-height: 1.2; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+.sb-ck { font-family: var(--font-mono); font-size: 10px; color: var(--ink-3); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.sb-seg { border: 1px solid var(--line); border-left: 5px solid var(--seg); border-radius: var(--r); padding: 10px 12px; background: var(--surface); display: flex; flex-direction: column; gap: 6px; }
+.sb-seg header { display: flex; align-items: baseline; gap: 10px; }
+.sb-seg h4 { margin: 0; font-size: var(--fs-read); flex: 1; }
+.sb-n { font-family: var(--font-mono); font-weight: 700; color: var(--seg); }
+.sb-trans { font-family: var(--font-mono); font-size: var(--fs-label); color: var(--ink-2); }
+.sb-kinds { display: flex; gap: 4px; align-items: center; flex-wrap: wrap; }
+.sb-kind { border: 1px solid var(--ink); border-radius: 999px; padding: 1px 9px; font-size: var(--fs-chrome); color: var(--ink); }
+.sb-kind.unbuilt { border-style: dashed; color: var(--ink-2); }
+.sb-plus { color: var(--ink-3); }
+.sb-prof { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: var(--fs-chrome); color: var(--ink-2); }
+.sb-why { margin: 0; padding-left: 18px; font-size: var(--fs-chrome); color: var(--ink); display: flex; flex-direction: column; gap: 2px; }
+.sb-gaps { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 6px; }
+.sb-gap { border-left: 3px solid var(--ink-3); padding-left: 8px; display: flex; flex-direction: column; gap: 1px; font-size: var(--fs-chrome); }
+.sb-gap.g-source-task { border-left-color: var(--seg); }
+.sb-gap.g-question { border-left-style: dashed; }
+.sb-gap .sb-to { font-family: var(--font-mono); font-size: var(--fs-mono); color: var(--ink-3); }
+.sb-act { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+.sb-act button[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.sb-seg.vetoed { opacity: .5; }
+.sb-seg.vetoed h4 { text-decoration: line-through; }
+.sb .sb-side { position: sticky; top: 0; align-self: start; }
+.sb-sends { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 4px; font-size: var(--fs-chrome); }
 /* stage modes, path bar, reading panes */
 .pathbar { flex-basis: 100%; display: flex; flex-wrap: wrap; align-items: center; gap: 4px; font-size: var(--fs-body); background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 3px 8px; }
 .pathbar .step { border: 0; background: transparent; padding: 0 2px; color: var(--ink-2); text-decoration: underline; text-underline-offset: 2px; }
@@ -629,6 +656,7 @@ body.fs #fsBtn { margin-left: auto; }
     <div class="reading cardstage" id="cardStage" hidden></div>
     <div class="reading" id="account" hidden></div>
     <div class="reading" id="planStage" hidden></div>
+    <div class="reading" id="boardStage" hidden></div>
     <div class="reading" id="notes" hidden></div>
     <div class="reading" id="timelineStage" hidden></div>
     <div class="reading" id="chartStage" hidden></div>
@@ -959,7 +987,7 @@ const S = {
   cats: new Set(["factual", "interpretive"]), att: new Set(ATT.map(a => a[0])), // fiction off by default (fix 2, curator 2026-11-18)
   voice: "", from: -100, to: 20, drawerOpen: false, log: [], cites: [], myNotes: {}, mapZoom: 1,
   fs: false, anim: { i: 0, playing: false },
-  planDec: {}, planAllQ: false, scene: { i: 0, playing: false }, animMode: "scene", // the curator's approve / reject / defer per plan item, in this page only (the real write is InquiryPlan.decide)
+  planDec: {}, sbDec: {}, planAllQ: false, scene: { i: 0, playing: false }, animMode: "scene", // the curator's approve / reject / defer per plan item, in this page only (the real write is InquiryPlan.decide)
 };
 
 /* ---------- helpers ---------- */
@@ -1329,6 +1357,7 @@ const SHIP_SVG = (() => {
    plates, gold lines and frames, Cinzel on the sides; the backdrop darkened at the edges so the tree reads */
 const BACKDROPS = DATA.backdrops || {};
 const PLANS = DATA.plans || {}; // front-door runs, newest per focus (D-174)
+const BOARDS = DATA.storyboards || {}; // storyboards, per event (26a §5a, D-179)
 // the poster is the Participants group's cover (curator, 2026-11-23): on unless the reader turned it off
 const posterOn = () => !!(S.poster !== false && S.orderEv && BACKDROPS[S.orderEv]);
 const GOLD = "#d4b36a", CREAM = "#f4ecd8", NIGHT = "#0d1318";
@@ -1543,6 +1572,7 @@ function stand(id, { crumb = true } = {}) {
   if (S.view === "family" && nodeById.get(id).kind !== "Person") S.view = "graph";
   if (S.view === "account" && !ACCOUNT[id]) S.view = "graph";
   if (S.view === "plan" && !PLANS[id]) S.view = "card";
+  if (S.view === "storyboard" && !BOARDS[id]) S.view = "card";
   S.sel = { type: "node", id };
   if (crumb) { const at = S.crumbs.indexOf(id); if (at >= 0) S.crumbs = S.crumbs.slice(0, at + 1); else S.crumbs.push(id); } // back to a place already on the trail cuts the trail to it
   render();
@@ -1595,7 +1625,7 @@ function runCommand(raw) {
   const v = verb.toLowerCase();
   if (v === "help") return addLog(text, `<ul><li><b>jump</b> <i>name</i> — stand on something</li><li><b>why</b> <i>A</i> and <i>B</i> — trace how two things connect</li><li><b>elsewhere</b> <i>31 BC</i> — what else was happening in the world</li><li><b>note</b> <i>text</i> — keep a private note on where you stand</li><li><b>card</b>, <b>graph</b>, <b>timeline</b>, <b>map</b>, <b>chart</b>, <b>animation</b>, <b>account</b>, <b>notes</b> — change what the stage shows</li><li><b>cite</b> — show the citations you have collected</li><li><b>as</b> scholar | student | browsing</li></ul>`);
   if (v === "family" && nodeById.get(S.focus).kind !== "Person") return addLog(text, "Family trees are for people. Stand on a person first.");
-  if (["map", "graph", "facts", "notes", "account", "family", "card", "timeline", "chart", "animation", "plan"].includes(v)) { const m = v === "facts" ? "graph" : v; setView(m); return addLog(text, `The stage shows ${m === "graph" ? "the facts" : "the " + m}.`); }
+  if (["map", "graph", "facts", "notes", "account", "family", "card", "timeline", "chart", "animation", "plan", "storyboard"].includes(v)) { const m = v === "facts" ? "graph" : v; setView(m); return addLog(text, `The stage shows ${m === "graph" ? "the facts" : "the " + m}.`); }
   if (v === "as") { const p = { scholar: "scholar", student: "student", browsing: "browser", browser: "browser" }[arg.toLowerCase()]; if (p) { setPersona(p); return addLog(text, `Now exploring as ${arg}. The facts stay the same; the telling changes.`); } }
   if (v === "cite") return addLog(text, S.cites.length ? `<ol>${S.cites.map(c => `<li>${esc(c)}</li>`).join("")}</ol><div><button class="btn" data-copy-cites>Copy all</button> <span class="muted small">Style: plain locator <span class="mock">mock</span>. A real citation style (Chicago, MLA) comes from each Work's edition record.</span></div>` : "No citations yet. Use the Cite buttons on a card (Student persona).");
   if (v === "note") {
@@ -1892,7 +1922,7 @@ function renderDrawer() {
 }
 
 /* ---------- render: front door ---------- */
-const VERBS = ["why", "path", "elsewhere", "note", "map", "graph", "card", "facts", "notes", "account", "family", "timeline", "chart", "animation", "plan", "cite", "help", "as", "jump", "go"];
+const VERBS = ["why", "path", "elsewhere", "note", "map", "graph", "card", "facts", "notes", "account", "family", "timeline", "chart", "animation", "plan", "storyboard", "cite", "help", "as", "jump", "go"];
 function answersFor(q, big) {
   const hits = findNodes(q).slice(0, big ? 8 : 5);
   const row = big ? "answer" : "row";
@@ -2160,6 +2190,86 @@ function reachBlock(r) {
     <span class="small muted">From the source registry (curation/sources.json). A candidate is never read until its rights are read at the source and it is registered: a free REGISTER item, done by hand.</span>
   </section>`;
 }
+// --- Storyboard (26a §5a, D-179): which presentation for which stretch, with reasons and gaps ---
+const SB_TRANS = { open: "opens", "zoom-in": "zooms in", "zoom-out": "zooms out", cut: "cuts", pan: "pans" };
+const SB_KIND = { "movement-scene": "Campaign map", "battle-scene": "Battle map", timeline: "Timeline", card: "Card",
+  "order-of-battle": "Order of battle", disagreement: "Disagreement", "memory-reception": "Memory and reception",
+  gallery: "Gallery", flyby: "Flyby", narration: "Narration" };
+const SB_HUES = ["#3f7cac", "#b5523b", "#6b8f3a", "#8a5a9e", "#c08a1e", "#3a8f86", "#9e5a6b"];
+const SB_MAKES = ["movement-scene", "battle-scene", "flyby", "memory-reception"];
+function sbDecision(sb, seg) { return S.sbDec[sb.id + ":" + seg.order] || seg.status || "proposed"; }
+function renderBoard() {
+  const el = $("#boardStage");
+  el.hidden = S.view !== "storyboard";
+  if (el.hidden) return;
+  const sb = BOARDS[S.focus];
+  if (!sb) { el.innerHTML = `<p class="muted">No storyboard for this yet.</p>`; return; }
+  const prof = Object.fromEntries(sb.profiles.map(p => [p.key, p]));
+  const segOf = {};
+  sb.segments.forEach((s, n) => s.stretches.forEach(k => { segOf[k] = n; }));
+  const kind = k => sb.kinds[k] || {};
+  const kindChip = k => `<span class="sb-kind ${kind(k).built ? "" : "unbuilt"}" title="${esc(kind(k).answers || "")}${kind(k).built ? "" : " (not built yet)"}">${esc(SB_KIND[k] || k)}</span>`;
+  const when = (sb.proposedAt || "").slice(0, 16).replace("T", " ");
+  const ck = sb.check || { problems: [], warnings: [] };
+  // the timeline strip: every stretch in order, coloured by its segment
+  const strip = sb.profiles.map(p => {
+    const n = segOf[p.key];
+    return `<div class="sb-cell" style="--seg:${SB_HUES[n % SB_HUES.length]}" title="${esc(p.scope || "")}"><span class="sb-cl">${esc(p.label)}</span><span class="sb-ck">${n + 1}. ${esc(SB_KIND[sb.segments[n] && sb.segments[n].kind] || "")}</span></div>`;
+  }).join("");
+  const num = (v, w) => v || v === 0 ? `<span><b>${esc(String(v))}</b> ${w}</span>` : "";
+  const gapTo = g => {
+    const src = g.source && sb.sources[g.source];
+    if (g.becomes === "question") return "a proposed Question";
+    if (g.becomes === "none") return "nothing: said, not filled";
+    if (!src) return "a Question (no registry source named)";
+    return src.status === "candidate" ? `REGISTER ${src.label} (by hand, free)` : `SOURCE_PLAN with ${src.label}`;
+  };
+  const segs = sb.segments.map((s, n) => {
+    const dec = sbDecision(sb, s), rows = s.stretches.map(k => prof[k]).filter(Boolean);
+    const sum = f => rows.reduce((a, r) => a + (r[f] || 0), 0);
+    const ext = Math.max(0, ...rows.map(r => r.extentKm || 0)), grain = rows.map(r => r.grain).filter(Boolean)[0];
+    const steps = rows.flatMap(r => r.sceneSteps || []).sort((a, b) => a - b);
+    const places = rows.reduce((a, r) => a + (r.locatedPlaces || []).length, 0);
+    const gaps = (s.gaps || []).map(g => `<li class="sb-gap g-${esc(g.becomes)}"><b>${esc(g.what)}</b><span>${esc(g.note)}</span><span class="sb-to">becomes ${esc(gapTo(g))}</span></li>`).join("");
+    return `<article class="sb-seg ${esc(dec)}" style="--seg:${SB_HUES[n % SB_HUES.length]}">
+      <header><span class="sb-n">${s.order}</span><h4>${esc(s.title)}</h4><span class="sb-trans">${esc(SB_TRANS[s.transition] || s.transition)}</span></header>
+      <div class="sb-kinds">${kindChip(s.kind)}${(s.with || []).map(k => `<span class="sb-plus">+</span>${kindChip(k)}`).join("")}</div>
+      <div class="sb-span small muted">${s.stretches.map(k => esc((prof[k] || {}).label || k)).join(" · ")}</div>
+      <div class="sb-prof">${num(sum("members"), "events")}${num(sum("sources"), "sources")}${num(places, "places located")}${grain ? `<span>grain <b>${esc(grain)}</b></span>` : ""}${ext ? `<span><b>${ext}</b> km</span>` : ""}${steps.length ? `<span>scene steps <b>${steps.join(", ")}</b></span>` : `<span class="muted">no scene yet</span>`}</div>
+      <ul class="sb-why">${s.why.map(w => `<li>${esc(w)}</li>`).join("")}</ul>
+      ${gaps ? `<div class="label">Gaps</div><ul class="sb-gaps">${gaps}</ul>` : ""}
+      <div class="sb-act"><button class="btn" data-sb-seg="${s.order}" data-sb-dec="approved" aria-pressed="${dec === "approved"}">Approve</button>
+        <button class="btn" data-sb-seg="${s.order}" data-sb-dec="vetoed" aria-pressed="${dec === "vetoed"}">Veto</button>
+        ${kind(s.kind).built ? "" : `<span class="small muted">not built: can be approved, not generated yet</span>`}</div>
+    </article>`;
+  }).join("");
+  // what approval sends to the plan (narrative/storyboard.py --items, then the orchestrator's extend)
+  const sends = sb.segments.filter(s => sbDecision(sb, s) === "approved").flatMap(s => [
+    SB_MAKES.includes(s.kind) ? `<li><code>GENERATE</code> ${esc(SB_KIND[s.kind])}: ${esc(s.title)} <span class="small muted">(waits until GENERATE has its worker)</span></li>` : "",
+    ...(s.gaps || []).filter(g => g.becomes === "source-task" && sb.sources[g.source]).map(g => {
+      const src = sb.sources[g.source];
+      return `<li><code>${src.status === "candidate" ? "REGISTER" : "SOURCE_PLAN"}</code> ${esc(src.label)} <span class="small muted">for: ${esc(g.what)}</span></li>`;
+    }),
+    ...(s.gaps || []).filter(g => g.becomes === "question" || (g.becomes === "source-task" && !sb.sources[g.source])).map(g => `<li><code>Question</code> ${esc(g.what)}</li>`),
+  ]).filter(Boolean);
+  el.innerHTML = `<div class="plan sb">
+    <div class="plan-head">
+      <h3>Storyboard · ${esc(sb.subject.label)}</h3>
+      <span class="meta"><span>${esc(sb.proposedBy)}</span><span>${esc(when)} UTC</span><span>for the ${esc(sb.persona)}</span><span>catalogue v${esc(String(sb.catalogueVersion))}</span>
+        <span class="${ck.problems.length ? "stopped" : ""}">check: ${ck.problems.length} problems, ${ck.warnings.length} warnings</span></span>
+      <span class="anno"><b>Storyboard on the stage.</b> The specialist chose a presentation for each stretch of the event's timeline, from the catalogue (curation/presentations.json), against a profile computed from the graph and the scene. It chooses forms only and writes no fact. Each segment says why, as profile values against the kind's conditions, and what is missing. Approve or veto here (this page only); approved segments and their gaps go to the plan as new items, awaiting you there.</span>
+      <div class="sb-strip">${strip}</div>
+    </div>
+    <section>${segs}</section>
+    <section class="sb-side">
+      <h3>What approval sends to the plan</h3>
+      ${sends.length ? `<ul class="sb-sends">${sends.join("")}</ul>` : `<p class="small muted">Approve a segment to see the items it adds: a GENERATE item for a scene, and an item or a Question for each gap.</p>`}
+      ${(sb.overlays || []).length ? `<h3>Overlays</h3><ul class="sb-why">${sb.overlays.map(o => `<li>${esc(o)}</li>`).join("")}</ul>` : ""}
+      ${ck.warnings.length ? `<h3>Check warnings</h3><ul class="sb-why">${ck.warnings.map(w => `<li>${esc(w)}</li>`).join("")}</ul>` : ""}
+      <p class="small muted">Not yet profiled: the pictures held. Commemorations ${(sb.memory || {}).commemorations || 0}, depictions ${(sb.memory || {}).depictions || 0}. File: ${esc(sb.file)}</p>
+    </section>
+  </div>`;
+}
 function renderPlan() {
   const el = $("#planStage");
   el.hidden = S.view !== "plan";
@@ -2358,12 +2468,12 @@ function renderMap() {
 }
 
 /* ---------- the view switch and the filter chips (stage design, 18 Nov) ---------- */
-const VIEWS = [["card", "Card"], ["graph", "Graph"], ["timeline", "Timeline"], ["map", "Map"], ["chart", "Chart"], ["animation", "Animation"], ["account", "Account"], ["plan", "Plan"]];
+const VIEWS = [["card", "Card"], ["graph", "Graph"], ["timeline", "Timeline"], ["map", "Map"], ["chart", "Chart"], ["animation", "Animation"], ["account", "Account"], ["plan", "Plan"], ["storyboard", "Storyboard"]];
 function renderViewSeg() {
   $("#viewSeg").innerHTML = VIEWS.map(([v, t]) => {
-    const off = (v === "account" && !ACCOUNT[S.focus]) || (v === "plan" && !PLANS[S.focus]);
+    const off = (v === "account" && !ACCOUNT[S.focus]) || (v === "plan" && !PLANS[S.focus]) || (v === "storyboard" && !BOARDS[S.focus]);
     const on = S.view === v || (v === "graph" && S.view === "family");
-    return `<button data-view="${v}" aria-pressed="${on}" ${off ? `disabled title="${v === "plan" ? "No front-door run for this yet" : "No account written for this yet"}"` : ""}>${t}</button>`;
+    return `<button data-view="${v}" aria-pressed="${on}" ${off ? `disabled title="${v === "plan" ? "No front-door run for this yet" : v === "storyboard" ? "No storyboard for this yet" : "No account written for this yet"}"` : ""}>${t}</button>`;
   }).join("");
 }
 function renderChips() {
@@ -2782,7 +2892,7 @@ function renderStanding() {
     : `Standing on <b>${esc(n.fullLabel)}</b> · ${projection().nodes.length - 1} nearby${S.group ? ` · showing ${esc(famLabel(S.group, S.focus))} <button class="linkish" data-family="${esc(S.group)}">show all</button>` : ""}${S.lens ? ` · lens: ${esc(S.lens)}` : ""}`;
 }
 function render() {
-  renderFilters(); renderCard(); renderDrawer(); renderSuggest(); renderPath(); renderRoutes(); renderFlow(); renderMap(); renderCardStage(); renderAccount(); renderPlan(); renderNotes(); renderStanding();
+  renderFilters(); renderCard(); renderDrawer(); renderSuggest(); renderPath(); renderRoutes(); renderFlow(); renderMap(); renderCardStage(); renderAccount(); renderPlan(); renderBoard(); renderNotes(); renderStanding();
   renderViewSeg(); renderChips(); renderStageViews();
   if (cy) { cy.style(cyStyle()); drawCanvas(); }
   renderNav();
@@ -2904,6 +3014,7 @@ document.addEventListener("click", ev => {
   if (d.reachAll) { S.reachAll = !S.reachAll; return renderPlan(); }
   if (d.planRegister) return addLog(`plan: register ${d.planRegister}`, "The front door would add a free item to the plan: read the rights at the source, then register it (curation/sources.json). Nothing is read before that.");
   if (d.planAllq) { S.planAllQ = !S.planAllQ; return renderPlan(); }
+  if (d.sbSeg) { const k = BOARDS[S.focus].id + ":" + d.sbSeg; S.sbDec[k] = S.sbDec[k] === d.sbDec ? "proposed" : d.sbDec; return renderBoard(); }
   if (d.planFocus) return addLog("graph --focus", "The front door would run again for the one you chose, and plan for it. In this wireframe the run is fixed.");
   if (t.id === "fsBtn") return setFs(!S.fs);
   if (d.chip) return openFilterAt(d.chip === "time" ? "cats" : d.chip);

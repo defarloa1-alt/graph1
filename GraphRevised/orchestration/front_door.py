@@ -47,6 +47,7 @@ from GraphRevised.orchestration.contracts import (
 GRAPH_REVISED = Path(__file__).resolve().parents[1]
 RECIPES = GRAPH_REVISED / "curation" / "recipes.json"
 REGISTRY = GRAPH_REVISED / "curation" / "sources.json"
+STORYBOARDS = GRAPH_REVISED / "storyboards"
 LENSES = GRAPH_REVISED / "curation" / "lenses.json"
 INQUIRIES = GRAPH_REVISED / "inquiries"
 PLANS = GRAPH_REVISED / "plans"
@@ -477,6 +478,10 @@ def conditions(focus: IdentityCandidate, inquiry: dict[str, Any] | None, report:
         "sourceUnreadByLens": by_lens,
         "lensQuestionsOpen": bool(lens) and not lens["met"],
         "noPhases": bool(phases) and phases.get("open", 0) + phases.get("accepted", 0) + phases.get("rejected", 0) == 0,
+        # the event has no storyboard yet; planned with its phases when they are planned too (the step waits on
+        # PHASES), so one plan holds both (26a §5a, D-179; curator, 2026-11-25)
+        "noStoryboard": bool(phases) and bool(focus.local_entity_id)
+                        and not (STORYBOARDS / f"{focus.local_entity_id.split(':', 2)[-1]}.storyboard.json").exists(),
     }
 
 

@@ -16,7 +16,7 @@ EXTENDED = {
 
 class RegistryV21Tests(unittest.TestCase):
     def setUp(self):
-        self.registry = load_registry()
+        self.registry = load_registry(REGISTRY_PATH.with_name("predicates.v21.json"))  # pinned: v22 is current (D-180)
         self.old = load_registry(REGISTRY_PATH.with_name("predicates.v20.json"))
 
     def test_kinds_and_categories(self):

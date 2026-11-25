@@ -346,6 +346,7 @@ PlanAction = Literal[
     "FIRST_CONTACT", "HARVEST", "EXPAND", "WIKIPEDIA_CONTACT", "ENRICH", "SOURCE_PLAN", "BUILD_INQUIRY",
     "BRIEF", "FIND", "READ", "LENS", "PHASES", "RECONCILE", "CRITIQUE", "ACCOUNT", "SUB_INQUIRY",
     "REGISTER",  # check a candidate source's rights at the source and register it: by hand, free
+    "STORYBOARD",  # propose which presentation for each stretch of the event's timeline (26a §5a, D-179); writes no fact
 ]
 
 

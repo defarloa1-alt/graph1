@@ -52,6 +52,23 @@ class OfflineTests(unittest.TestCase):
         self.assertTrue(held["lensQuestionsOpen"])
         self.assertTrue(held["noPhases"])
         self.assertFalse(conditions(FOCUS, {"sources": SOURCES}, report(open_=3), ESTIMATES)["noPhases"])
+        self.assertTrue(held["noStoryboard"])  # no phases yet: planned with them, waiting on PHASES
+        self.assertTrue(conditions(FOCUS, {"sources": SOURCES}, report(open_=3), ESTIMATES)["noStoryboard"])
+
+    def test_phases_and_storyboard_are_planned_together(self):
+        held = conditions(FOCUS, {"sources": SOURCES * 2}, report(), ESTIMATES)
+        items, _, _ = plan_items(self.recipe, held, ESTIMATES, self.values, budget=10)
+        phases = next(i for i in items if i.action == "PHASES")
+        board = next(i for i in items if i.action == "STORYBOARD")
+        self.assertIn(phases.item_id, board.depends_on)
+
+    def test_a_storyboard_is_planned_after_the_phases_and_writes_no_fact(self):
+        held = conditions(FOCUS, {"sources": SOURCES * 2}, report(open_=3), ESTIMATES)
+        items, _, calls = plan_items(self.recipe, held, ESTIMATES, self.values, budget=10)
+        board = next(i for i in items if i.action == "STORYBOARD")
+        self.assertEqual(calls[board.item_id], {"worker": "GraphRevised.narrative.storyboard",
+                                                "arguments": ["GraphRevised/inquiries/t.json"]})
+        self.assertIn("writes no fact", board.rationale)
 
     def test_lenses_are_planned_in_the_catalogue_order_whichever_source_lacks_them(self):
         rows = report()

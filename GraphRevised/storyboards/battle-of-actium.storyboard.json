@@ -1,0 +1,605 @@
+{
+ "id": "chr:storyboard:battle-of-actium",
+ "subject": {
+  "id": "chr:entity:battle-of-actium",
+  "label": "Battle of Actium"
+ },
+ "persona": "browser",
+ "catalogueVersion": 1,
+ "scene": "actium-campaign-31bc.proposed.json",
+ "proposedBy": "narrative/storyboard.py with claude-opus-5-5",
+ "proposedAt": "2026-11-25T13:10:50+00:00",
+ "calls": [
+  {
+   "model": "claude-opus-5-5",
+   "stopReason": "end_turn",
+   "inputTokens": 7920,
+   "outputTokens": 3876
+  }
+ ],
+ "profiles": [
+  {
+   "key": "road-to-war",
+   "label": "The road to war",
+   "scope": "From the break between Antony and Octavian to the gathering of the forces in western Greece: the declaration of war, the fleets and armies assembled, the crossings and first positions.",
+   "members": 92,
+   "sources": 7,
+   "persons": 9,
+   "groups": 4,
+   "placesNamed": 11,
+   "locatedPlaces": [
+    "Actium promontory",
+    "Adriatic Sea",
+    "Alexandria",
+    "Athens",
+    "Corfu",
+    "Ephesus",
+    "Epirus",
+    "Ionian Sea",
+    "Patras",
+    "Samos",
+    "Tarentum"
+   ],
+   "years": [],
+   "questions": 0,
+   "sceneSteps": [
+    1,
+    3
+   ],
+   "movements": 1,
+   "units": 0,
+   "alternatives": [],
+   "disputes": 0,
+   "corrections": 0,
+   "statements": {
+    "sourced": 9,
+    "inferred": 2
+   },
+   "grainFrom": "scene view",
+   "grain": "months",
+   "extentKm": 536,
+   "extentFrom": "scene",
+   "extentGraphKm": 1729,
+   "pointsLocated": 16
+  },
+  {
+   "key": "isolation",
+   "label": "Antony's position isolated",
+   "scope": "Operations by Agrippa and Octavian that cut Antony's supply and communications and hemmed in his camp and fleet, by land and sea.",
+   "members": 31,
+   "sources": 5,
+   "persons": 3,
+   "groups": 4,
+   "placesNamed": 4,
+   "locatedPlaces": [
+    "Actium promontory",
+    "Ancient Corinth",
+    "Nicopolis",
+    "Patras"
+   ],
+   "years": [],
+   "questions": 0,
+   "sceneSteps": [
+    2,
+    4
+   ],
+   "movements": 4,
+   "units": 0,
+   "alternatives": [],
+   "disputes": 0,
+   "corrections": 0,
+   "statements": {
+    "sourced": 5,
+    "inferred": 1
+   },
+   "grainFrom": "scene view",
+   "grain": "months",
+   "extentKm": 536,
+   "extentFrom": "scene",
+   "extentGraphKm": 224,
+   "pointsLocated": 12
+  },
+  {
+   "key": "attrition",
+   "label": "Attrition and desertion",
+   "scope": "Hunger, sickness, and losses in Antony's camp, skirmishes before the battle, and the desertion of his allies and officers.",
+   "members": 44,
+   "sources": 6,
+   "persons": 9,
+   "groups": 4,
+   "placesNamed": 1,
+   "locatedPlaces": [
+    "Actium promontory"
+   ],
+   "years": [],
+   "questions": 0,
+   "sceneSteps": [],
+   "movements": 0,
+   "units": 0,
+   "alternatives": [],
+   "disputes": 0,
+   "corrections": 0,
+   "statements": {},
+   "grainFrom": null,
+   "grain": null,
+   "extentKm": 0,
+   "extentFrom": "graph places",
+   "extentGraphKm": 0,
+   "pointsLocated": 1
+  },
+  {
+   "key": "council",
+   "label": "The council and the decision",
+   "scope": "The debate in Antony's camp over fighting on land or at sea or withdrawing, the decision, and the preparations it set in motion, such as burning surplus ships and embarking treasure.",
+   "members": 41,
+   "sources": 5,
+   "persons": 5,
+   "groups": 3,
+   "placesNamed": 0,
+   "locatedPlaces": [],
+   "years": [],
+   "questions": 0,
+   "sceneSteps": [],
+   "movements": 0,
+   "units": 0,
+   "alternatives": [],
+   "disputes": 0,
+   "corrections": 0,
+   "statements": {},
+   "grainFrom": null,
+   "grain": null,
+   "extentKm": 0,
+   "extentFrom": "graph places",
+   "extentGraphKm": 0,
+   "pointsLocated": 0
+  },
+  {
+   "key": "deployment",
+   "label": "The fleets deploy",
+   "scope": "The embarkation, the battle lines and their commanders, the waiting before the fleets close, and the day the fleets come out.",
+   "members": 54,
+   "sources": 6,
+   "persons": 7,
+   "groups": 5,
+   "placesNamed": 1,
+   "locatedPlaces": [
+    "Actium promontory"
+   ],
+   "years": [],
+   "questions": 0,
+   "sceneSteps": [
+    5
+   ],
+   "movements": 0,
+   "units": 8,
+   "alternatives": [
+    "ordersOfBattle"
+   ],
+   "disputes": 0,
+   "corrections": 0,
+   "statements": {
+    "sourced": 5
+   },
+   "grainFrom": "scene view",
+   "grain": "hours",
+   "extentKm": 8,
+   "extentFrom": "scene",
+   "extentGraphKm": 0,
+   "pointsLocated": 16
+  },
+  {
+   "key": "engagement",
+   "label": "The lines engage",
+   "scope": "The fighting before Cleopatra's squadron leaves: the advance, the manner of fighting, and the manoeuvres to outflank or draw the enemy out.",
+   "members": 46,
+   "sources": 5,
+   "persons": 7,
+   "groups": 7,
+   "placesNamed": 0,
+   "locatedPlaces": [],
+   "years": [],
+   "questions": 0,
+   "sceneSteps": [
+    6,
+    7
+   ],
+   "movements": 0,
+   "units": 8,
+   "alternatives": [],
+   "disputes": 0,
+   "corrections": 0,
+   "statements": {
+    "sourced": 4,
+    "inferred": 1
+   },
+   "grainFrom": "scene view",
+   "grain": "hours",
+   "extentKm": 10,
+   "extentFrom": "scene",
+   "extentGraphKm": 0,
+   "pointsLocated": 32
+  },
+  {
+   "key": "breakout",
+   "label": "Cleopatra's squadron breaks through",
+   "scope": "Cleopatra's squadron raising sail, passing through or beyond the fighting, and making for the open sea.",
+   "members": 16,
+   "sources": 6,
+   "persons": 3,
+   "groups": 1,
+   "placesNamed": 0,
+   "locatedPlaces": [],
+   "years": [],
+   "questions": 0,
+   "sceneSteps": [
+    8
+   ],
+   "movements": 0,
+   "units": 8,
+   "alternatives": [],
+   "disputes": 1,
+   "corrections": 0,
+   "statements": {
+    "sourced": 3
+   },
+   "grainFrom": "scene view",
+   "grain": "hours",
+   "extentKm": 10,
+   "extentFrom": "scene",
+   "extentGraphKm": 0,
+   "pointsLocated": 16
+  },
+  {
+   "key": "antony-follows",
+   "label": "Antony follows Cleopatra",
+   "scope": "Antony leaving the battle after the squadron, his passage to Cleopatra's ship, the pursuit, and the voyage away.",
+   "members": 49,
+   "sources": 6,
+   "persons": 8,
+   "groups": 2,
+   "placesNamed": 2,
+   "locatedPlaces": [
+    "Alexandria",
+    "Peloponnese"
+   ],
+   "years": [],
+   "questions": 0,
+   "sceneSteps": [
+    9
+   ],
+   "movements": 0,
+   "units": 8,
+   "alternatives": [],
+   "disputes": 1,
+   "corrections": 1,
+   "statements": {
+    "sourced": 2,
+    "inferred": 1
+   },
+   "grainFrom": "scene view",
+   "grain": "hours",
+   "extentKm": 12,
+   "extentFrom": "scene",
+   "extentGraphKm": 956,
+   "pointsLocated": 16
+  },
+  {
+   "key": "fleet-defeat",
+   "label": "The remaining fleet is defeated",
+   "scope": "The fighting that continued after Antony left, the burning and capture of ships, the fleet's surrender, and the losses.",
+   "members": 37,
+   "sources": 6,
+   "persons": 2,
+   "groups": 4,
+   "placesNamed": 1,
+   "locatedPlaces": [
+    "Actium promontory"
+   ],
+   "years": [],
+   "questions": 0,
+   "sceneSteps": [
+    10
+   ],
+   "movements": 0,
+   "units": 8,
+   "alternatives": [],
+   "disputes": 0,
+   "corrections": 0,
+   "statements": {
+    "sourced": 3
+   },
+   "grainFrom": "scene view",
+   "grain": "hours",
+   "extentKm": 12,
+   "extentFrom": "scene",
+   "extentGraphKm": 0,
+   "pointsLocated": 16
+  },
+  {
+   "key": "army-surrender",
+   "label": "The army surrenders",
+   "scope": "Antony's land army after the sea battle: its waiting, its commanders' flight, its surrender, and the victor's treatment of the defeated.",
+   "members": 23,
+   "sources": 6,
+   "persons": 5,
+   "groups": 3,
+   "placesNamed": 1,
+   "locatedPlaces": [
+    "Alexandria"
+   ],
+   "years": [],
+   "questions": 0,
+   "sceneSteps": [
+    11
+   ],
+   "movements": 0,
+   "units": 8,
+   "alternatives": [],
+   "disputes": 0,
+   "corrections": 1,
+   "statements": {
+    "sourced": 2
+   },
+   "grainFrom": "scene view",
+   "grain": "hours",
+   "extentKm": 12,
+   "extentFrom": "scene",
+   "extentGraphKm": 0,
+   "pointsLocated": 16
+  },
+  {
+   "key": "meaning-memory",
+   "label": "Meaning and memory",
+   "scope": "What came of the battle and how it was remembered: commemoration, monuments and foundations, the victor's own account, and authors' judgements of what it decided.",
+   "members": 12,
+   "sources": 4,
+   "persons": 1,
+   "groups": 0,
+   "placesNamed": 3,
+   "locatedPlaces": [
+    "Actium promontory",
+    "Nicopolis"
+   ],
+   "years": [],
+   "questions": 0,
+   "sceneSteps": [],
+   "movements": 0,
+   "units": 0,
+   "alternatives": [],
+   "disputes": 0,
+   "corrections": 0,
+   "statements": {},
+   "grainFrom": null,
+   "grain": null,
+   "extentKm": 7,
+   "extentFrom": "graph places",
+   "extentGraphKm": 7,
+   "pointsLocated": 2
+  },
+  {
+   "key": "beyond",
+   "label": "Beyond the event's phases (scene steps with no phase)",
+   "scope": "what the scene shows after or around the event",
+   "members": 0,
+   "sceneSteps": [
+    12,
+    13
+   ],
+   "movements": 4,
+   "units": 0,
+   "alternatives": [
+    "routes"
+   ],
+   "disputes": 0,
+   "corrections": 0,
+   "statements": {
+    "sourced": 11,
+    "not-checked": 1
+   },
+   "grain": "months",
+   "grainFrom": "scene view",
+   "extentKm": 1197,
+   "pointsLocated": 11
+  }
+ ],
+ "memory": {
+  "commemorations": 0,
+  "depictions": 0
+ },
+ "segments": [
+  {
+   "order": 1,
+   "status": "proposed",
+   "stretches": [
+    "road-to-war",
+    "isolation"
+   ],
+   "title": "The road to war and Antony hemmed in",
+   "kind": "movement-scene",
+   "with": [],
+   "why": [
+    "grain of months and extent 536 km (scene) in both stretches: the campaign-map view",
+    "11 and 4 located places, against a need of at least 2",
+    "1 movement in the road to war and 4 in the isolation, against a need of at least 1",
+    "the two stretches share the same view and extent, so they are joined",
+    "units 0 in both, so order-of-battle does not fit here"
+   ],
+   "transition": "open",
+   "gaps": [
+    {
+     "what": "Only 1 movement leg for the road to war, though the graph's places span 1729 km (Alexandria, Ephesus, Samos, Athens, Tarentum)",
+     "becomes": "source-task",
+     "note": "Read the crossings and the gathering of the fleets in Plutarch, Antony 56-62, and Cassius Dio 50, for legs between the named places.",
+     "source": "perseus"
+    },
+    {
+     "what": "No units in either stretch, so the forces assembled cannot be shown as fleets or legions",
+     "becomes": "source-task",
+     "note": "Plutarch, Antony 61, gives the numbers and contingents on each side; add them as units.",
+     "source": "perseus"
+    }
+   ]
+  },
+  {
+   "order": 2,
+   "status": "proposed",
+   "stretches": [
+    "attrition",
+    "council"
+   ],
+   "title": "Attrition, desertion and the council",
+   "kind": "timeline",
+   "with": [],
+   "why": [
+    "no grain: neither stretch has sourced statements in the scene",
+    "1 located place for attrition and none for the council, with no movements, so no map fits",
+    "grain rule: no located places means a timeline; this qualifies for nothing richer",
+    "a timeline needs at least 2 events; the profile gives 44 and 41 members but no event count, which should be checked",
+    "the two stretches share the same view, so they are joined"
+   ],
+   "transition": "cut",
+   "gaps": [
+    {
+     "what": "No sourced or dated statements for either stretch, so there is no grain",
+     "becomes": "source-task",
+     "note": "Read the hunger, sickness and desertions (Domitius, Amyntas, Dellius) and the council in Plutarch, Antony 62-64, and Cassius Dio 50.13-15.",
+     "source": "perseus"
+    },
+    {
+     "what": "Movements for the desertions: who crossed from Antony's camp to Octavian's",
+     "becomes": "source-task",
+     "note": "Sourced legs between the two camps would let the attrition stretch join the campaign map.",
+     "source": "lacuscurtius"
+    },
+    {
+     "what": "No located place for the council",
+     "becomes": "question",
+     "note": "Where was the council held: in the camp on the Actium promontory, or elsewhere?",
+     "source": null
+    }
+   ]
+  },
+  {
+   "order": 3,
+   "status": "proposed",
+   "stretches": [
+    "deployment",
+    "engagement",
+    "breakout",
+    "antony-follows",
+    "fleet-defeat",
+    "army-surrender"
+   ],
+   "title": "The battle off Actium",
+   "kind": "battle-scene",
+   "with": [
+    "order-of-battle",
+    "disagreement"
+   ],
+   "why": [
+    "grain of hours in all six stretches",
+    "extent 8 to 12 km (scene), under the 50 km limit",
+    "8 units in each stretch, against a need of at least 2; this also meets order-of-battle",
+    "six named phases, from deployment to surrender, against a need of at least 2",
+    "disagreement: deployment has an alternative (ordersOfBattle); breakout and antony-follows each have 1 dispute; antony-follows and army-surrender each have 1 correction",
+    "for the browser persona, the disagreement is shown as a short aside",
+    "placements are drawn and labelled as drawn, never as where the ships stood"
+   ],
+   "transition": "zoom-in",
+   "gaps": [
+    {
+     "what": "Antony's voyage away runs to 956 km in the graph (Peloponnese, Alexandria) but is held at 12 km in the scene",
+     "becomes": "none",
+     "note": "The scene keeps the battle view; the voyage is carried by the movement scene that follows.",
+     "source": null
+    },
+    {
+     "what": "The army's surrender has Alexandria as its only located place, and its waiting may run to days rather than hours",
+     "becomes": "question",
+     "note": "Where did the land army surrender, and over how many days did it wait?",
+     "source": null
+    }
+   ]
+  },
+  {
+   "order": 4,
+   "status": "proposed",
+   "stretches": [
+    "meaning-memory"
+   ],
+   "title": "Meaning and memory",
+   "kind": "timeline",
+   "with": [],
+   "why": [
+    "memory-reception needs commemorations or depictions of at least 1; the profile holds 0 of each, and the kind is not built",
+    "no grain and no sourced statements",
+    "2 located places (Actium promontory, Nicopolis) only 7 km apart and no movements, so no map fits",
+    "flyby would meet its need of at least 1 located place, but it is not built and does not answer what this stretch is about",
+    "this stretch qualifies for nothing richer than a timeline"
+   ],
+   "transition": "cut",
+   "gaps": [
+    {
+     "what": "Commemorating objects: the victory monument and the foundation of Nicopolis, Actian games, and coins with Actium types",
+     "becomes": "source-task",
+     "note": "Coins of Octavian commemorating the victory would give commemorates links.",
+     "source": "crro"
+    },
+    {
+     "what": "Inscriptions from the campaign memorial at Nicopolis",
+     "becomes": "source-task",
+     "note": "An epigraphic record for the dedication would give a commemorating object with its source.",
+     "source": "lacuscurtius"
+    },
+    {
+     "what": "Later works depicting the battle",
+     "becomes": "source-task",
+     "note": "Paintings and other later images of Actium would give depicts links and pictures for a gallery.",
+     "source": "commons"
+    },
+    {
+     "what": "The victor's own account and later authors' judgements of what the battle decided",
+     "becomes": "source-task",
+     "note": "Res Gestae 25, and Velleius and Cassius Dio on what the battle decided.",
+     "source": "lacuscurtius"
+    }
+   ]
+  },
+  {
+   "order": 5,
+   "status": "proposed",
+   "stretches": [
+    "beyond"
+   ],
+   "title": "Beyond the battle",
+   "kind": "movement-scene",
+   "with": [
+    "disagreement"
+   ],
+   "why": [
+    "grain of months and extent 1197 km: the campaign-map view",
+    "4 movements, against a need of at least 1",
+    "11 points located, against a need of at least 2 located places",
+    "disagreement: an alternative between routes, shown as a short aside, with each route drawn between named places",
+    "statements: 11 sourced and 1 not checked; the unchecked one must be checked before narration"
+   ],
+   "transition": "zoom-out",
+   "gaps": [
+    {
+     "what": "One statement in these scene steps is not checked",
+     "becomes": "source-task",
+     "note": "Check it against the passage before the scene is narrated.",
+     "source": "perseus"
+    }
+   ]
+  }
+ ],
+ "overlays": [
+  "narration over 'The road to war and Antony hemmed in', 'The battle off Actium' and 'Beyond the battle', once the proposed scene is checked; there are no scene steps under the two timelines"
+ ],
+ "check": {
+  "problems": [],
+  "warnings": [],
+  "checkedAt": "2026-11-25T13:10:50+00:00"
+ }
+}

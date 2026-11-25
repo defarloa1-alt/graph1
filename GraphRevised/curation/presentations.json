@@ -1,0 +1,59 @@
+{
+ "_about": "The catalogue of presentations a storyboard specialist may choose from (26a §5a, shape 10). Each kind says what question it answers, what an evidence profile must show for it to fit (checked by code, not judged by the model), what it must never imply, and how far it is built. The specialist chooses forms only; it owns no facts, questions or sources. DRAFT, 2026-11-25; not yet a decision.",
+ "version": 1,
+ "profile": {
+  "_about": "Computed by code for a stretch of the timeline, from the graph; the specialist reads it, never writes it.",
+  "fields": {
+   "statements": "counts by basis: sourced, inferred, not-checked",
+   "events": "event ids in the stretch",
+   "grain": "the finest time unit the sourced statements use: hours, days, months, years, decades, centuries",
+   "locatedPlaces": "places with coordinates named or moved through",
+   "extentKm": "the greatest distance between those places",
+   "movements": "sourced or inferred legs: a unit from one place to another",
+   "units": "groups that act: fleets, wings, legions, embassies",
+   "phases": "named phases of an event",
+   "alternatives": "where two sources give two versions (orders of battle, routes)",
+   "disputes": "open Questions on a statement in the stretch",
+   "corrections": "something an earlier presentation said that the passages contradict",
+   "commemorations": "objects that commemorate an event in the stretch (commemorates)",
+   "depictions": "later works that depict it (depicts)",
+   "pictures": "counts by class: of-the-time, place-today, reconstruction, map, later-imagining, generated"
+  }
+ },
+ "grain": {
+  "_about": "The rule of thumb behind most choices: the time grain and the spatial extent pick the view.",
+  "rules": [
+   "hours and under 50 km: a close map (battle view)",
+   "days to years and over 50 km: a campaign map (overview)",
+   "decades or more, or no located places: a timeline",
+   "a change of view between stretches is a transition: zoom in to a smaller extent, zoom out to a larger one, cut when the places do not overlap"
+  ]
+ },
+ "kinds": [
+  {"id": "card", "answers": "Who or what is this?", "needs": {"entities": ">=1"}, "never": [], "renderer": "node card (26 shape 4)", "built": true},
+  {"id": "timeline", "answers": "In what order, and for how long?", "needs": {"events": ">=2"},
+   "never": ["a precise date where the sources give a range"], "renderer": "Timeline view", "built": true},
+  {"id": "movement-scene", "answers": "Who went where, and in what order?", "needs": {"locatedPlaces": ">=2", "movements": ">=1", "extentKm": ">=50"},
+   "never": ["the road or sea lane taken: legs are drawn between named places and say so"], "renderer": "Animation view, overview map (26a shape 7, type movement)", "built": true},
+  {"id": "battle-scene", "answers": "How did it unfold, hour by hour?", "needs": {"grain": "hours", "phases": ">=2", "units": ">=2", "extentKm": "<50"},
+   "never": ["where ships or men stood: placements are a Generalized Abstraction (D-172), drawn and labelled as drawn"], "renderer": "Animation view, battle map (shape 7, view battle)", "built": true},
+  {"id": "order-of-battle", "answers": "Who commanded what?", "needs": {"units": ">=2"},
+   "never": ["one version where the sources give two"], "renderer": "Participants tree (D-172); inside a scene as ordersOfBattle", "built": true},
+  {"id": "disagreement", "answers": "Where do the sources differ, and how?", "needs": {"any": ["alternatives>=1", "disputes>=1", "corrections>=1"]},
+   "never": ["a winner between versions", "an answer to an open Question"], "renderer": "inside a scene (ordersOfBattle, routes, disputed, corrected); Interpretations view", "built": true},
+  {"id": "memory-reception", "answers": "How was it remembered, and how was it reimagined later?", "needs": {"any": ["commemorations>=1", "depictions>=1"]},
+   "never": ["that a commemorating object is evidence of the event itself", "that a later work is history (imaginative works stay a separate category)"], "renderer": "not built: a closing scene step with the objects and works, each with its source", "built": false},
+  {"id": "gallery", "answers": "What did it look like, and what do we have of it?", "needs": {"pictures": ">=1"},
+   "never": ["a generated picture shown as evidence", "a generated picture of a person"], "renderer": "card gallery (26a shape 8)", "built": true},
+  {"id": "flyby", "answers": "What does the ground look like?", "needs": {"locatedPlaces": ">=1"},
+   "never": ["the landscape of the time where only today's terrain is held"], "renderer": "shape 7, type flyby", "built": false},
+  {"id": "narration", "overlay": true, "answers": "Tell it to me.", "needs": {"checkedScene": true},
+   "never": ["anything a statement does not say (scenes/NARRATION.md)"], "renderer": "captions and voiced clips over a scene (D-178)", "built": true}
+ ],
+ "personas": {
+  "_about": "The persona changes how a kind is shown, not which kinds fit.",
+  "browser": "narration on, locators hidden, disagreement shown as a short aside",
+  "student": "sources named in the narration, disagreement shown in full",
+  "scholar": "locators shown, every alternative and correction open, narration optional"
+ }
+}

@@ -1,0 +1,65 @@
+{
+ "_about": "The worked example for the storyboard specialist (26a §5a, shape 10): the Actium scene's choices written down after the fact, as the model answer. Profiles were computed from actium-campaign-31bc.proposed.json (statement counts, legs, placements, and the greatest distance between the places each stretch names or moves through). Segment 4 is a proposal: nothing for it is in the graph yet.",
+ "id": "chr:storyboard:actium-campaign-31bc",
+ "subject": {"id": "chr:entity:battle-of-actium", "label": "Battle of Actium"},
+ "scope": "the campaign around the battle, the battle, the flight and the end, and how it was remembered",
+ "persona": "browser",
+ "catalogueVersion": 1,
+ "proposedBy": "worked by hand (Claude, UI session), 2026-11-25",
+ "status": "example",
+ "segments": [
+  {
+   "order": 1,
+   "span": {"timeWords": "winter 32/31 BC to summer 31 BC", "sceneSteps": [1, 2, 3, 4]},
+   "profile": {"statements": {"sourced": 14, "inferred": 3}, "grain": "months", "extentKm": 536, "movements": 5,
+               "locatedPlaces": ["Patrae", "Corcyra", "Actium", "Leucas", "Methone", "Corinth", "Brundisium", "Toryne"],
+               "phases": ["road-to-war", "isolation"]},
+   "kind": "movement-scene",
+   "why": ["movements 5 (needs at least 1)", "located places 8 (needs at least 2)", "extent 536 km and a grain of months: a campaign map"],
+   "transition": {"into": "open on the overview map"},
+   "gaps": [{"what": "the routes between posts", "becomes": "none", "note": "no passage gives them; legs stay drawn and say so"}]
+  },
+  {
+   "order": 2,
+   "span": {"timeWords": "2 September 31 BC, morning, to seven days after", "sceneSteps": [5, 6, 7, 8, 9, 10, 11]},
+   "profile": {"statements": {"sourced": 19, "inferred": 2}, "grain": "hours (step 11: days)", "extentKm": 12, "units": 8,
+               "phases": ["deployment", "engagement", "breakout", "antony-follows", "fleet-defeat", "army-surrender"],
+               "alternatives": ["ordersOfBattle (Plutarch, Velleius)"], "disputes": 2, "corrections": 2},
+   "kind": "battle-scene",
+   "with": ["order-of-battle", "disagreement"],
+   "why": ["grain of hours and extent 12 km: a close map", "6 phases and 8 units", "two orders of battle: shown side by side (disagreement), never merged",
+           "two open Questions and two corrections: shown, not resolved"],
+   "transition": {"into": "zoom in from the campaign map to the strait"},
+   "gaps": [{"what": "where the ships stood", "becomes": "none", "note": "no passage gives positions; placements are a Generalized Abstraction (D-172)"}]
+  },
+  {
+   "order": 3,
+   "span": {"timeWords": "September 31 BC to 1 August 30 BC", "sceneSteps": [12, 13]},
+   "profile": {"statements": {"sourced": 11, "not-checked": 1}, "grain": "months", "extentKm": 1197, "movements": 4,
+               "locatedPlaces": ["Actium", "Taenarum", "Paraetonium", "Alexandria", "Pelusium"], "alternatives": ["routes (Plutarch, Dio)"]},
+   "kind": "movement-scene",
+   "with": ["disagreement"],
+   "why": ["movements 4", "extent 1197 km and a grain of months: back to the campaign map", "two routes: both drawn, attributed"],
+   "transition": {"into": "zoom out from the strait to the eastern Mediterranean"},
+   "gaps": [{"what": "the date Alexandria fell, 1 August 30 BC", "becomes": "source-task",
+             "note": "not in any passage held; shown as not checked until one is read"}]
+  },
+  {
+   "order": 4,
+   "span": {"timeWords": "from 31 BC: how the victory was remembered"},
+   "profile": {"statements": {}, "grain": "decades", "commemorations": 0, "depictions": 0},
+   "kind": "memory-reception",
+   "status": "proposed",
+   "why": ["the scene ends on Octavian holding power alone, which Dio dates from Actium: the turn from Republic to Principate",
+           "nothing qualifies yet: commemorations 0, depictions 0"],
+   "transition": {"into": "cut to the objects, after the map"},
+   "gaps": [
+    {"what": "coins and gems that commemorate the victory", "becomes": "source-task", "note": "Nomisma and OCRE, already ranked in the brief (D-177)"},
+    {"what": "the victory monument at Nicopolis", "becomes": "source-task", "note": "the monument's published record; a place already in the scene (Octavian's camp)"},
+    {"what": "whether the Medinaceli reliefs show Actium", "becomes": "question", "note": "a scholarly reading, open"},
+    {"what": "later works that depict the battle (paintings, tapestries)", "becomes": "source-task", "note": "museum records and Commons; imaginative works, shown as such"}
+   ]
+  }
+ ],
+ "overlays": [{"kind": "narration", "segments": [1, 2, 3], "built": true, "note": "D-178: captions and voiced clips, keyed to statement ids"}]
+}

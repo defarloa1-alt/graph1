@@ -322,6 +322,118 @@ available yet; the drawer shows the step's state only. The Plan view
 builder that adds its item to the current plan as a new version; or a recipe
 entry, for media a recipe should always propose. Not built.
 
+## 5a. Shape 10 — Storyboard: which presentation for which stretch (draft, 2026-11-25)
+
+**Status:** adopted (D-179, 2026-11-25), and built except `GENERATE`:
+- the specialist and its check, `narrative/storyboard.py`;
+- the catalogue, `curation/presentations.json`;
+- the `STORYBOARD` action and its recipe step;
+- the Storyboard view in the wireframe.
+
+The first run is `storyboards/battle-of-actium.storyboard.json`. The
+hand-worked example it was modelled on is `scenes/actium-campaign-31bc.storyboard.json`.
+
+A **storyboard specialist** walks an inquiry's timeline and proposes, for each
+stretch, which presentation to use. It owns **choices of form only**: no facts,
+Questions, predicates or sources (unlike the lens specialists, D-137). If a
+form needs something the graph lacks, the specialist files a gap; it never
+writes the fact. The same rule as the rest of this addendum: the agent writes a
+plan, never a fact.
+
+**How it works:**
+
+1. **Catalogue.** Each presentation kind states:
+   - what question it answers;
+   - what an evidence profile must show for it to fit (`needs`);
+   - what it must never imply (`never`);
+   - whether it is built.
+
+   The `never` column carries the provenance rules into the choice of form. A
+   movement scene never implies the route; a battle scene never implies where
+   ships stood; a disagreement view never picks a winner.
+2. **Profile.** Code computes a profile for each stretch from the graph:
+   - statements by basis;
+   - time grain, located places and the extent between them;
+   - movements, units and phases;
+   - alternatives, disputes and corrections;
+   - commemorations and depictions;
+   - pictures by class.
+
+   The model reads the profile; it never writes it. **Grain and extent pick most
+   views:** hours within 50 km give a close map, months over hundreds of km give
+   a campaign map, and decades give a timeline.
+3. **Proposal.** For each segment the specialist gives:
+   - the kind, and any kinds shown with it (`with`);
+   - **why**, as profile values against the catalogue's conditions;
+   - the transition from the last segment: zoom in, zoom out, or cut;
+   - the **gaps**, each becoming a Question, a source task or nothing.
+4. **Check.** Code checks every segment's kind against its profile, as
+   `narration_check.py` does for narrations. Examples it rejects:
+   - a movement scene with one located place;
+   - an order of battle that merges two sources;
+   - a kind whose `needs` the profile does not meet.
+5. **Review.** The curator reads the reasons and the gaps, and approves or
+   vetoes segments: a review of reasoning, not of output. Each approved segment
+   becomes a `GENERATE` plan item (§5) for the builders already in place: the
+   scene builder, the narration and its check, the voice (D-178).
+
+**The record:**
+
+| Field | Meaning |
+|---|---|
+| `id`, `subject`, `scope`, `persona` | What is storyboarded, for whom. The persona changes how a kind is shown, not which kinds fit |
+| `catalogueVersion` | The catalogue the choices were checked against |
+| `segments[].span` | The stretch: time words, events, or scene steps |
+| `segments[].profile` | The computed evidence profile (step 2) |
+| `segments[].kind`, `with` | The chosen presentation, and any shown with it (order of battle, disagreement) |
+| `segments[].why` | The reasons, each a profile value against a condition |
+| `segments[].transition` | How the stage moves from the last segment |
+| `segments[].gaps[]` | `{what, becomes: question \| source-task \| none, note}` |
+| `segments[].status` | proposed, approved, vetoed, built |
+| `overlays[]` | Narration and other layers over segments |
+| `check` | `{problems, warnings}` from the code check |
+
+**The worked example, Actium.** Four segments:
+1. **The campaign, steps 1–4:** a movement scene. Grain of months, 536 km, 5 legs.
+2. **The battle, steps 5–11:** a battle scene, zooming in, shown with the orders
+   of battle and the disagreements. Grain of hours, 12 km, 6 phases, 8 units.
+3. **The flight and the end, steps 12–13:** a movement scene, zooming out. 1,197 km,
+   with the two routes.
+4. **How it was remembered:** a memory and reception segment, proposed. It
+   qualifies on nothing yet; its gaps are the coins (Nomisma, OCRE), the Nicopolis
+   monument, the open reading of the Medinaceli reliefs, and the later paintings.
+
+The narration (D-178) is an overlay on segments 1–3.
+
+**Agreed with the orchestration session (2026-11-25), adopted by the curator (D-179):**
+
+- **Two new actions, D-179 reserved for them.** `STORYBOARD` (the specialist)
+  and `GENERATE` (one action for every kind, the kind in the worker's
+  arguments). Each is added to the closed `PlanAction` only in the same
+  commit as its first worker, with a contract test.
+- **Planning.** A recipe entry, `STORYBOARD`, runs after `PHASES` when the
+  inquiry has phases, so the front door proposes it like any other item.
+- **Approved segments join the plan.** The orchestrator's `extend_plan(state,
+  items, by, source)` adds them as a new plan version (the old one kept); it is
+  owned by the orchestration session. New items arrive awaiting, so plan
+  approval stays the gate.
+- **The item shape.** Per segment, a `GENERATE` item:
+  - target, rationale (the segment's reasons), expected outputs, budget;
+  - a `call`: worker and arguments;
+  - an `origin`: storyboard, segment, and gap if any; kept on the item's call in `<run>.calls.json`.
+- **Gaps go through the same path,** not through the brief's ranking:
+  - a candidate source becomes `REGISTER`;
+  - a registered source not yet in the inquiry becomes `SOURCE_PLAN`;
+  - a source already in the inquiry becomes `FIND` then `READ`;
+  - a source that already has an item is skipped;
+  - a question gap becomes a proposed Question.
+
+**Open:**
+
+- `GENERATE` and its first worker, a general scene builder (drafts a scene from passages, as the Actium builder does by hand);
+- the profile does not yet count the pictures held;
+- the memory and reception layer (`commemorates`, `depicts`), proposed in doc 49, needed before the memory segment can qualify.
+
 ## 6. Node card — additions
 
 Four fields on shape 4 (26 §4):

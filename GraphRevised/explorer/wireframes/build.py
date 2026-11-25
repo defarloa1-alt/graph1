@@ -302,6 +302,23 @@ def load_scenes() -> dict:
     return out
 
 
+def load_storyboards() -> dict:
+    """Each event's storyboard (storyboards/<event>.storyboard.json, 26a §5a, D-179), keyed by its subject; a
+    rejected one is left out. Each gap's registry source gets its label and status, for the Storyboard view."""
+    reg = {s["id"]: s for s in json.loads((ROOT / "curation" / "sources.json").read_text(encoding="utf-8"))["sources"]}
+    cat = json.loads((ROOT / "curation" / "presentations.json").read_text(encoding="utf-8"))
+    out = {}
+    for path in sorted((ROOT / "storyboards").glob("*.storyboard.json")):
+        sb = json.loads(path.read_text(encoding="utf-8"))
+        used = {g.get("source") for s in sb["segments"] for g in s.get("gaps", []) if g.get("source")}
+        sb["sources"] = {i: {"label": reg[i]["label"], "status": reg[i]["status"]} for i in used if i in reg}
+        sb["kinds"] = {k["id"]: {"answers": k["answers"], "built": k["built"], "never": k["never"]} for k in cat["kinds"]}
+        sb["file"] = path.relative_to(ROOT).as_posix()
+        sb.pop("calls", None)
+        out[sb["subject"]["id"]] = sb
+    return out
+
+
 def load_phases() -> dict:
     """Each event's phase keys in the curator's order (curation/phases.json, D-091)."""
     path = ROOT / "curation" / "phases.json"
@@ -333,7 +350,7 @@ def build() -> Path:
         })
     edges = [trim_fact(e["data"]) for e in export["elements"]["edges"]]
     data = {"generatedBy": export.get("generated_by"), "nodes": nodes, "edges": edges,
-            "images": load_images(), "gallery": load_gallery(), "backdrops": load_backdrops(), "plans": load_plans(), "reach": load_reach(), "scenes": load_scenes(), "phases": load_phases()}
+            "images": load_images(), "gallery": load_gallery(), "backdrops": load_backdrops(), "plans": load_plans(), "reach": load_reach(), "scenes": load_scenes(), "storyboards": load_storyboards(), "phases": load_phases()}
     payload = json.dumps(data, ensure_ascii=False).replace("</", "<\\/")
     page = TEMPLATE.read_text(encoding="utf-8").replace("__GRAPH_DATA__", payload)
     OUTPUT.write_text(page, encoding="utf-8")
