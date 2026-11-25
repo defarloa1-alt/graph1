@@ -9,7 +9,7 @@
   "mode": "guided",
   "owner": "curator",
   "visibility": "private",
-  "status": "awaiting_user",
+  "status": "paused",
   "created_at": "2026-11-24T13:43:10.329692+00:00",
   "orientation": {
     "focus": {
@@ -548,8 +548,8 @@
   "plan": {
     "plan_id": "front-door-battle-of-actium-20261124T134305Z",
     "inquiry_id": "chr:inquiry:actium-battle",
-    "version": 1,
-    "previous_version": null,
+    "version": 8,
+    "previous_version": 7,
     "command": "graph \"Battle of Actium\"",
     "mode": "guided",
     "scope": {
@@ -1060,9 +1060,9 @@
         "depends_on": [],
         "lens": "military",
         "decision": {
-          "status": "awaiting",
-          "by": null,
-          "at": null,
+          "status": "approved",
+          "by": "curator",
+          "at": "2026-11-25T13:32:04+00:00",
           "note": null
         }
       },
@@ -1079,9 +1079,9 @@
         "depends_on": [],
         "lens": "military",
         "decision": {
-          "status": "awaiting",
-          "by": null,
-          "at": null,
+          "status": "approved",
+          "by": "curator",
+          "at": "2026-11-25T13:32:04+00:00",
           "note": null
         }
       },
@@ -1098,9 +1098,9 @@
         "depends_on": [],
         "lens": "military",
         "decision": {
-          "status": "awaiting",
-          "by": null,
-          "at": null,
+          "status": "approved",
+          "by": "curator",
+          "at": "2026-11-25T13:32:05+00:00",
           "note": null
         }
       },
@@ -1117,9 +1117,9 @@
         "depends_on": [],
         "lens": "military",
         "decision": {
-          "status": "awaiting",
-          "by": null,
-          "at": null,
+          "status": "approved",
+          "by": "curator",
+          "at": "2026-11-25T13:32:05+00:00",
           "note": null
         }
       },
@@ -1136,9 +1136,9 @@
         "depends_on": [],
         "lens": "military",
         "decision": {
-          "status": "awaiting",
-          "by": null,
-          "at": null,
+          "status": "approved",
+          "by": "curator",
+          "at": "2026-11-25T13:32:06+00:00",
           "note": null
         }
       },
@@ -1155,9 +1155,9 @@
         "depends_on": [],
         "lens": "political",
         "decision": {
-          "status": "awaiting",
-          "by": null,
-          "at": null,
+          "status": "approved",
+          "by": "curator",
+          "at": "2026-11-25T13:32:06+00:00",
           "note": null
         }
       }
@@ -1174,21 +1174,485 @@
       "Left out for the budget ($11.00): READ political Dio ($4.11); READ political Hale ($1.22); READ political Weigall ($5.46); READ political Wikipedia ($1.11); READ political Virgil ($0.43); READ political Strabo ($2.08); READ political Velleius Paterculus ($3.13); READ political Augustus ($0.49); READ economic Plutarch ($3.62); READ economic Dio ($4.11); READ economic Hale ($1.22); READ economic Weigall ($5.46); READ economic Wikipedia ($1.11); READ economic Virgil ($0.43); READ economic Strabo ($2.08); READ economic Velleius Paterculus ($3.13); READ economic Augustus ($0.49); READ social Plutarch ($3.62); READ social Dio ($4.11); READ social Hale ($1.22); READ social Weigall ($5.46); READ social Wikipedia ($1.11); READ social Virgil ($0.43); READ social Strabo ($2.08); READ social Velleius Paterculus ($3.13); READ social Augustus ($0.49); READ religious Plutarch ($3.62); READ religious Dio ($4.11); READ religious Hale ($1.22); READ religious Weigall ($5.46); READ religious Wikipedia ($1.11); READ religious Virgil ($0.43); READ religious Strabo ($2.08); READ religious Velleius Paterculus ($3.13); READ religious Augustus ($0.49); LENS ($0.50)",
       "Rights to read at the source (the registry's upkeep, D-177): Coinage of the Roman Republic Online (CRRO); Library of Congress authorities (LCSH, LCNAF); FAST (OCLC); Wikimedia Commons",
       "442 phase placements wait for the curator's review (not an agent item)",
-      "The scope test (08) and the model's orientation (controversies, traps, lenses) are not built yet (D-174): this brief is read from the graph, the inquiry, and the registries"
+      "The scope test (08) and the model's orientation (controversies, traps, lenses) are not built yet (D-174): this brief is read from the graph, the inquiry, and the registries",
+      "budget $11.00 -> $11.75 by curator at 2026-11-25T13:50:38+00:00: finish P06 after the item cap stopped it at 25 of 30 passages"
     ],
-    "budget_usd": 11.0,
+    "budget_usd": 11.75,
     "scope_approved": false
   },
   "plan_versions": [
-    1
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
   ],
-  "assignments": [],
-  "results": [],
+  "assignments": [
+    {
+      "assignment_id": "front-door-battle-of-actium-20261124T134305Z:P06:1",
+      "item_id": "P06",
+      "worker": "GraphRevised.proposals.passage_reader",
+      "arguments": [
+        "GraphRevised/inquiries/actium-battle.json",
+        "--source",
+        "chr:entity:wikipedia-en-battle-of-actium",
+        "--found",
+        "--unread",
+        "--lens",
+        "military",
+        "--submit"
+      ],
+      "lens": "military",
+      "idempotency_key": "fc0915ddc8d2c019",
+      "started_at": "2026-11-25T13:35:55.958254+00:00"
+    },
+    {
+      "assignment_id": "front-door-battle-of-actium-20261124T134305Z:P06:2",
+      "item_id": "P06",
+      "worker": "GraphRevised.proposals.passage_reader",
+      "arguments": [
+        "GraphRevised/inquiries/actium-battle.json",
+        "--source",
+        "chr:entity:wikipedia-en-battle-of-actium",
+        "--found",
+        "--unread",
+        "--lens",
+        "military",
+        "--submit"
+      ],
+      "lens": "military",
+      "idempotency_key": "fc0915ddc8d2c019",
+      "started_at": "2026-11-25T13:50:53.514373+00:00"
+    },
+    {
+      "assignment_id": "front-door-battle-of-actium-20261124T134305Z:P07:1",
+      "item_id": "P07",
+      "worker": "GraphRevised.proposals.passage_reader",
+      "arguments": [
+        "GraphRevised/inquiries/actium-battle.json",
+        "--source",
+        "chr:entity:proposed-work-virgil-aeneid",
+        "--found",
+        "--unread",
+        "--lens",
+        "military",
+        "--submit"
+      ],
+      "lens": "military",
+      "idempotency_key": "a6e7ca052a30dd94",
+      "started_at": "2026-11-25T13:52:53.428503+00:00"
+    },
+    {
+      "assignment_id": "front-door-battle-of-actium-20261124T134305Z:P07:2",
+      "item_id": "P07",
+      "worker": "GraphRevised.proposals.passage_reader",
+      "arguments": [
+        "GraphRevised/inquiries/actium-battle.json",
+        "--source",
+        "chr:entity:proposed-work-virgil-aeneid",
+        "--found",
+        "--unread",
+        "--lens",
+        "military",
+        "--submit"
+      ],
+      "lens": "military",
+      "idempotency_key": "a6e7ca052a30dd94",
+      "started_at": "2026-11-25T13:54:02.052282+00:00"
+    },
+    {
+      "assignment_id": "front-door-battle-of-actium-20261124T134305Z:P08:1",
+      "item_id": "P08",
+      "worker": "GraphRevised.proposals.passage_reader",
+      "arguments": [
+        "GraphRevised/inquiries/actium-battle.json",
+        "--source",
+        "chr:entity:proposed-work-strabo-geography",
+        "--found",
+        "--unread",
+        "--lens",
+        "military",
+        "--submit"
+      ],
+      "lens": "military",
+      "idempotency_key": "f19996381cc0b1ce",
+      "started_at": "2026-11-25T13:54:33.691420+00:00"
+    },
+    {
+      "assignment_id": "front-door-battle-of-actium-20261124T134305Z:P09:1",
+      "item_id": "P09",
+      "worker": "GraphRevised.proposals.passage_reader",
+      "arguments": [
+        "GraphRevised/inquiries/actium-battle.json",
+        "--source",
+        "chr:entity:proposed-work-velleius-paterculus-historiae-romanae",
+        "--found",
+        "--unread",
+        "--lens",
+        "military",
+        "--submit"
+      ],
+      "lens": "military",
+      "idempotency_key": "7d4471a0c08a3ec0",
+      "started_at": "2026-11-25T13:58:55.157663+00:00"
+    },
+    {
+      "assignment_id": "front-door-battle-of-actium-20261124T134305Z:P10:1",
+      "item_id": "P10",
+      "worker": "GraphRevised.proposals.passage_reader",
+      "arguments": [
+        "GraphRevised/inquiries/actium-battle.json",
+        "--source",
+        "chr:entity:proposed-work-augustus-res-gestae-divi-augusti",
+        "--found",
+        "--unread",
+        "--lens",
+        "military",
+        "--submit"
+      ],
+      "lens": "military",
+      "idempotency_key": "aa4ca23e7568cdcf",
+      "started_at": "2026-11-25T14:03:49.163769+00:00"
+    },
+    {
+      "assignment_id": "front-door-battle-of-actium-20261124T134305Z:P11:1",
+      "item_id": "P11",
+      "worker": "GraphRevised.proposals.passage_reader",
+      "arguments": [
+        "GraphRevised/inquiries/actium-battle.json",
+        "--source",
+        "chr:entity:plutarch-life-of-antony",
+        "--found",
+        "--unread",
+        "--lens",
+        "political",
+        "--submit"
+      ],
+      "lens": "political",
+      "idempotency_key": "53b8c520d3912868",
+      "started_at": "2026-11-25T14:04:21.734320+00:00"
+    }
+  ],
+  "results": [
+    {
+      "assignment_id": "front-door-battle-of-actium-20261124T134305Z:P06:1",
+      "status": "failed",
+      "outputs": [
+        "runs/front-door-battle-of-actium-20261124T134305Z.P06.log"
+      ],
+      "proposal_ids": [
+        "chr:proposal:antony-fleet-at-actium:opposed:octavian-fleet-at-actium:q852dd6bc18:961fe6fb1970",
+        "chr:proposal:augustus:allied-with:mark-antony:q7a06536ac9:d9b3a77fdabe",
+        "chr:proposal:augustus:commanded:octavian-fleet-at-actium:q852dd6bc18:bc1bc049019a",
+        "chr:proposal:augustus:held-authority-over:octavian-army-at-actium:qd8adeae771:f59a5ecedc25",
+        "chr:proposal:augustus:held-authority-over:octavian-fleet-at-actium:qd8adeae771:fe3b7d578e40",
+        "chr:proposal:augustus:opposed:cleopatra:q4fd18477a1:40fc9d6b6683",
+        "chr:proposal:augustus:opposed:mark-antony:q4084efa137:509658860606",
+        "chr:proposal:augustus:opposed:mark-antony:q4fd18477a1:81493d33b847",
+        "chr:proposal:depicted:wikipedia-en-battle-of-actium:octavian-s-squadron-guards-the-sea:resulted-in:depicted:wikipedia-en-battle-of-actium:antony-retires-to-winter-at-patrae:qaebeac93d1:759dfac1d043",
+        "chr:proposal:depicted:wikipedia-en-battle-of-actium:octavian-settles-brundisium-mutiny:occurred-at:proposed-place-brundisium:qaebeac93d1:7a45f5b6978d",
+        "chr:proposal:marcus-vipsanius-agrippa:commanded:octavian-fleet-at-actium-left-wing:q852dd6bc18:cf720b5bac3d",
+        "chr:proposal:marcus-vipsanius-agrippa:commanded:octavian-fleet-at-actium:q852dd6bc18:825a8f693796",
+        "chr:proposal:marcus-vipsanius-agrippa:commanded:octavian-fleet-at-actium:qaebeac93d1:c8f8fc506fd4",
+        "chr:proposal:mark-antony:commanded:antony-fleet-at-actium:q852dd6bc18:9a07bf7d8555",
+        "chr:proposal:mark-antony:commanded:antony-fleet-at-actium:q852dd6bc18:f9daf23b7718",
+        "chr:proposal:mark-antony:held-authority-over:antony-army-at-actium:qaebeac93d1:fdad6c181c35",
+        "chr:proposal:mark-antony:held-authority-over:antony-army-at-actium:qd8adeae771:746d4d5c8634",
+        "chr:proposal:mark-antony:held-authority-over:antony-fleet-at-actium:q852dd6bc18:3d7e8f4055e8",
+        "chr:proposal:mark-antony:served-under:julius-caesar:qaebeac93d1:5248f99aa14b",
+        "chr:proposal:octavian-fleet-at-actium:participated-in:depicted:wikipedia-en-battle-of-actium:part-of-octavian-s-fleet-pursues-antony:qfdb61d1fcd:fefc37924ca6",
+        "chr:proposal:publius-canidius-crassus:commanded:antony-army-at-actium:qaebeac93d1:1b3b07ebf6c6"
+      ],
+      "packet_ids": [],
+      "model": null,
+      "prompt_version": null,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cost_usd": 1.206307,
+      "coverage": {
+        "new_entities": 0,
+        "new_claim_families": 0,
+        "new_evidence": 0,
+        "new_traditions": 0,
+        "new_evidence_classes": [],
+        "gaps_closed": []
+      },
+      "error": "exit code 1; see the log",
+      "finished_at": "2026-11-25T13:42:10.269074+00:00"
+    },
+    {
+      "assignment_id": "front-door-battle-of-actium-20261124T134305Z:P06:2",
+      "status": "ok",
+      "outputs": [
+        "runs/front-door-battle-of-actium-20261124T134305Z.P06.log"
+      ],
+      "proposal_ids": [
+        "chr:proposal:augustus:participated-in:depicted:wikipedia-en-battle-of-actium:octavian-celebrates-triple-triumph:qaebeac93d1:34d4fd3774fc",
+        "chr:proposal:augustus:participated-in:depicted:wikipedia-en-battle-of-actium:octavian-pardons-many-opponents:qaebeac93d1:c88cc16dd1ae",
+        "chr:proposal:battle-of-actium:happened-before:depicted:wikipedia-en-battle-of-actium:octavian-celebrates-triple-triumph:qaebeac93d1:b704af607deb",
+        "chr:proposal:battle-of-actium:happened-before:depicted:wikipedia-en-battle-of-actium:octavian-pardons-many-opponents:qaebeac93d1:e8187cd68277",
+        "chr:proposal:depicted:wikipedia-en-battle-of-actium:antony-fails-to-win-pinarius-s-army:occurred-at:proposed-place-paraetonium:qaebeac93d1:0636ffc7227f",
+        "chr:proposal:depicted:wikipedia-en-battle-of-actium:gallus-advances-on-antony-from-paraetonium:happened-before:depicted:wikipedia-en-battle-of-actium:gallus-defeats-antony:qaebeac93d1:55ff329bc6c3",
+        "chr:proposal:depicted:wikipedia-en-battle-of-actium:gallus-advances-on-antony-from-paraetonium:occurred-at:proposed-place-paraetonium:qaebeac93d1:426ad921da17",
+        "chr:proposal:depicted:wikipedia-en-battle-of-actium:gallus-advances-on-antony-from-paraetonium:occurred:qc3ed55ce5c:5020b32c9b47",
+        "chr:proposal:lucius-pinarius:participated-in:depicted:wikipedia-en-battle-of-actium:antony-fails-to-win-pinarius-s-army:qaebeac93d1:91cf4168bde2",
+        "chr:proposal:mark-antony:participated-in:depicted:wikipedia-en-battle-of-actium:antony-fails-to-win-pinarius-s-army:qaebeac93d1:135e346c930e",
+        "chr:proposal:mark-antony:participated-in:depicted:wikipedia-en-battle-of-actium:gallus-advances-on-antony-from-paraetonium:qaebeac93d1:189457ae9f4e",
+        "chr:proposal:mark-antony:participated-in:depicted:wikipedia-en-battle-of-actium:gallus-defeats-antony:qaebeac93d1:abd8820de7a2",
+        "chr:proposal:proposed-person-gaius-cornelius-gallus:participated-in:depicted:wikipedia-en-battle-of-actium:gallus-advances-on-antony-from-paraetonium:qaebeac93d1:6ccc42cd87c8",
+        "chr:proposal:proposed-person-gaius-cornelius-gallus:participated-in:depicted:wikipedia-en-battle-of-actium:gallus-defeats-antony:qaebeac93d1:cf4e3bbdb3b0"
+      ],
+      "packet_ids": [],
+      "model": null,
+      "prompt_version": null,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cost_usd": 0.44958,
+      "coverage": {
+        "new_entities": 0,
+        "new_claim_families": 0,
+        "new_evidence": 0,
+        "new_traditions": 0,
+        "new_evidence_classes": [],
+        "gaps_closed": []
+      },
+      "error": null,
+      "finished_at": "2026-11-25T13:52:53.415325+00:00"
+    },
+    {
+      "assignment_id": "front-door-battle-of-actium-20261124T134305Z:P07:1",
+      "status": "failed",
+      "outputs": [
+        "runs/front-door-battle-of-actium-20261124T134305Z.P07.log"
+      ],
+      "proposal_ids": [],
+      "packet_ids": [],
+      "model": null,
+      "prompt_version": null,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cost_usd": 0.294038,
+      "coverage": {
+        "new_entities": 0,
+        "new_claim_families": 0,
+        "new_evidence": 0,
+        "new_traditions": 0,
+        "new_evidence_classes": [],
+        "gaps_closed": []
+      },
+      "error": "exit code 1; see the log",
+      "finished_at": "2026-11-25T13:53:02.049941+00:00"
+    },
+    {
+      "assignment_id": "front-door-battle-of-actium-20261124T134305Z:P07:2",
+      "status": "ok",
+      "outputs": [
+        "runs/front-door-battle-of-actium-20261124T134305Z.P07.log"
+      ],
+      "proposal_ids": [
+        "chr:proposal:augustus:commanded:octavian-fleet-at-actium:q431d8f8e9d:98ef3f5549af"
+      ],
+      "packet_ids": [],
+      "model": null,
+      "prompt_version": null,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cost_usd": 0.096838,
+      "coverage": {
+        "new_entities": 0,
+        "new_claim_families": 0,
+        "new_evidence": 0,
+        "new_traditions": 0,
+        "new_evidence_classes": [],
+        "gaps_closed": []
+      },
+      "error": null,
+      "finished_at": "2026-11-25T13:54:33.686773+00:00"
+    },
+    {
+      "assignment_id": "front-door-battle-of-actium-20261124T134305Z:P08:1",
+      "status": "ok",
+      "outputs": [
+        "runs/front-door-battle-of-actium-20261124T134305Z.P08.log"
+      ],
+      "proposal_ids": [
+        "chr:proposal:augustus:opposed:cleopatra:q69f21b805b:81787e14ea98",
+        "chr:proposal:augustus:opposed:mark-antony:q69f21b805b:e6ddd9d31b78",
+        "chr:proposal:augustus:opposed:mark-antony:q87abc58038:3fc59df29e27",
+        "chr:proposal:augustus:participated-in:depicted:proposed-work-strabo-geography:augustus-dedicates-a-tenth-of-captured-vessels:qd87052a065:c54dd7dbc69a",
+        "chr:proposal:augustus:participated-in:depicted:proposed-work-strabo-geography:augustus-pursues-antony-and-cleopatra:q87abc58038:ed1c7e69c7cf",
+        "chr:proposal:augustus:participated-in:depicted:proposed-work-strabo-geography:caesar-at-corinth-bound-for-triumph:q87abc58038:91f357474c52",
+        "chr:proposal:battle-of-actium:happened-before:depicted:proposed-work-strabo-geography:adiatorix-led-in-triumph-executed-with-son:q87abc58038:22038addeff1",
+        "chr:proposal:battle-of-actium:happened-before:depicted:proposed-work-strabo-geography:caesar-at-corinth-bound-for-triumph:q87abc58038:ef600371efdb",
+        "chr:proposal:battle-of-actium:happened-before:depicted:proposed-work-strabo-geography:romans-station-army-at-rhium:q87abc58038:8e8bf0ac85c4",
+        "chr:proposal:cleopatra:participated-in:depicted:proposed-work-strabo-geography:antony-and-cleopatra-flee-actium:q87abc58038:405a99bd6d5f",
+        "chr:proposal:cleopatra:participated-in:depicted:proposed-work-strabo-geography:augustus-pursues-antony-and-cleopatra:q87abc58038:596af66a4deb",
+        "chr:proposal:depicted:proposed-work-strabo-geography:adiatorix-kills-roman-colonists-at-heracleia:occurred:q1c00583a5d:a2dba8945c89",
+        "chr:proposal:depicted:proposed-work-strabo-geography:adiatorix-led-in-triumph-executed-with-son:occurred:qdfd932e2b7:030d81c44734",
+        "chr:proposal:depicted:proposed-work-strabo-geography:agrippa-storms-methone-kills-bogus:occurred-at:proposed-place-methone:q87abc58038:c3e816441fcd",
+        "chr:proposal:depicted:proposed-work-strabo-geography:antony-and-cleopatra-flee-actium:happened-before:depicted:proposed-work-strabo-geography:augustus-pursues-antony-and-cleopatra:q87abc58038:387c39570505",
+        "chr:proposal:depicted:proposed-work-strabo-geography:antony-and-cleopatra-flee-actium:part-of:battle-of-actium:q87abc58038:53b000829bc1",
+        "chr:proposal:depicted:proposed-work-strabo-geography:caesar-at-corinth-bound-for-triumph:occurred-at:ancient-corinth:q87abc58038:f6918811a9e2",
+        "chr:proposal:depicted:proposed-work-strabo-geography:romans-station-army-at-rhium:occurred:qec65d440fe:91c5839dbec7",
+        "chr:proposal:marcus-vipsanius-agrippa:participated-in:depicted:proposed-work-strabo-geography:agrippa-storms-methone-kills-bogus:q87abc58038:efcd3fd1d76d",
+        "chr:proposal:mark-antony:participated-in:depicted:proposed-work-strabo-geography:antony-and-cleopatra-flee-actium:qa4010dcb59:546e9395031a",
+        "chr:proposal:mark-antony:participated-in:depicted:proposed-work-strabo-geography:augustus-pursues-antony-and-cleopatra:q87abc58038:479e45ab442c"
+      ],
+      "packet_ids": [],
+      "model": null,
+      "prompt_version": null,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cost_usd": 1.568436,
+      "coverage": {
+        "new_entities": 0,
+        "new_claim_families": 0,
+        "new_evidence": 0,
+        "new_traditions": 0,
+        "new_evidence_classes": [],
+        "gaps_closed": []
+      },
+      "error": null,
+      "finished_at": "2026-11-25T13:58:55.113494+00:00"
+    },
+    {
+      "assignment_id": "front-door-battle-of-actium-20261124T134305Z:P09:1",
+      "status": "ok",
+      "outputs": [
+        "runs/front-door-battle-of-actium-20261124T134305Z.P09.log"
+      ],
+      "proposal_ids": [
+        "chr:proposal:cleopatra:participated-in:depicted:proposed-work-velleius-paterculus-historiae-romanae:antony-deserts-his-soldiers-for-cleopatra:q98b5c04788:320386c20db6",
+        "chr:proposal:depicted:proposed-work-velleius-paterculus-historiae-romanae:canidius-flees-after-antony:happened-before:depicted:proposed-work-velleius-paterculus-historiae-romanae:antony-s-land-army-surrenders:q98b5c04788:2a94c32b6a59",
+        "chr:proposal:depicted:proposed-work-velleius-paterculus-historiae-romanae:cleopatra-initiates-the-flight:happened-before:depicted:proposed-work-velleius-paterculus-historiae-romanae:antony-deserts-his-soldiers-for-cleopatra:q98b5c04788:2ca9bbb64beb",
+        "chr:proposal:depicted:proposed-work-velleius-paterculus-historiae-romanae:plancus-deserts-antony-for-caesar:occurred:q3e6cdad91d:1806096ef0ae",
+        "chr:proposal:lucius-munatius-plancus:participated-in:depicted:proposed-work-velleius-paterculus-historiae-romanae:plancus-deserts-antony-for-caesar:qca0eefd5e1:f8c17864c893"
+      ],
+      "packet_ids": [],
+      "model": null,
+      "prompt_version": null,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cost_usd": 2.1336,
+      "coverage": {
+        "new_entities": 0,
+        "new_claim_families": 0,
+        "new_evidence": 0,
+        "new_traditions": 0,
+        "new_evidence_classes": [],
+        "gaps_closed": []
+      },
+      "error": null,
+      "finished_at": "2026-11-25T14:03:49.151370+00:00"
+    },
+    {
+      "assignment_id": "front-door-battle-of-actium-20261124T134305Z:P10:1",
+      "status": "ok",
+      "outputs": [
+        "runs/front-door-battle-of-actium-20261124T134305Z.P10.log"
+      ],
+      "proposal_ids": [],
+      "packet_ids": [],
+      "model": null,
+      "prompt_version": null,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cost_usd": 0.384271,
+      "coverage": {
+        "new_entities": 0,
+        "new_claim_families": 0,
+        "new_evidence": 0,
+        "new_traditions": 0,
+        "new_evidence_classes": [],
+        "gaps_closed": []
+      },
+      "error": null,
+      "finished_at": "2026-11-25T14:04:21.716600+00:00"
+    },
+    {
+      "assignment_id": "front-door-battle-of-actium-20261124T134305Z:P11:1",
+      "status": "ok",
+      "outputs": [
+        "runs/front-door-battle-of-actium-20261124T134305Z.P11.log"
+      ],
+      "proposal_ids": [
+        "chr:proposal:augustus:opposed:cleopatra:q267cd6d7b5:9fd177712245",
+        "chr:proposal:augustus:opposed:mark-antony:qc67b4f8f98:a20207879263",
+        "chr:proposal:augustus:opposed:mark-antony:qc67b4f8f98:d18f688898c9",
+        "chr:proposal:augustus:participated-in:depicted:plutarch-life-of-antony:caesar-answers-antony-s-accusations:qc67b4f8f98:2a4db6b5c3e5",
+        "chr:proposal:augustus:participated-in:depicted:plutarch-life-of-antony:caesar-denounces-antony-to-senate-and-people:qc67b4f8f98:4ae4f5365ca8",
+        "chr:proposal:augustus:participated-in:depicted:plutarch-life-of-antony:caesar-s-war-taxes-provoke-unrest-in-italy:qc67b4f8f98:17edb01181f9",
+        "chr:proposal:augustus:participated-in:depicted:plutarch-life-of-antony:kings-amyntas-and-deiotarus-defect-to-caesar:qc67b4f8f98:fb5aacf9999a",
+        "chr:proposal:augustus:participated-in:depicted:plutarch-life-of-antony:octavian-permits-octavia-to-sail:qc67b4f8f98:757d42c8cd65",
+        "chr:proposal:augustus:participated-in:depicted:plutarch-life-of-antony:rome-votes-war-on-cleopatra:qc67b4f8f98:beea9ed53242",
+        "chr:proposal:caesarion:participated-in:depicted:plutarch-life-of-antony:antony-declares-cleopatra-queen:qc67b4f8f98:7da09f8f1e7b",
+        "chr:proposal:cleopatra:participated-in:depicted:plutarch-life-of-antony:antony-declares-cleopatra-queen:qc67b4f8f98:6799560e45ae",
+        "chr:proposal:cleopatra:participated-in:depicted:plutarch-life-of-antony:cleopatra-s-arguments-prevail-with-antony:qc67b4f8f98:7488580d5610",
+        "chr:proposal:depicted:plutarch-life-of-antony:antony-declares-cleopatra-queen:happened-before:depicted:plutarch-life-of-antony:antony-proclaims-his-sons-kings-of-kings:qc67b4f8f98:80983ba89af6",
+        "chr:proposal:depicted:plutarch-life-of-antony:caesar-answers-antony-s-accusations:triggered-by:depicted:plutarch-life-of-antony:antony-sends-counter-accusations-against-caesar:qc67b4f8f98:3e47804c0bcb",
+        "chr:proposal:depicted:plutarch-life-of-antony:cleopatra-bribes-canidius-to-plead-for-her:happened-before:depicted:plutarch-life-of-antony:cleopatra-s-arguments-prevail-with-antony:qc67b4f8f98:0ec6a7376f34",
+        "chr:proposal:depicted:plutarch-life-of-antony:rome-votes-war-on-cleopatra:occurred:q267cd6d7b5:55ef612c1166",
+        "chr:proposal:gaius-julius-eurycles:opposed:mark-antony:q3702dfda42:695836d86714",
+        "chr:proposal:mark-antony:participated-in:depicted:plutarch-life-of-antony:antony-declares-cleopatra-queen:qc67b4f8f98:6f292f98e539",
+        "chr:proposal:mark-antony:participated-in:depicted:plutarch-life-of-antony:antony-proclaims-his-sons-kings-of-kings:qc67b4f8f98:9cc3aa65241e",
+        "chr:proposal:mark-antony:participated-in:depicted:plutarch-life-of-antony:antony-sends-counter-accusations-against-caesar:qc67b4f8f98:64652228b30a",
+        "chr:proposal:mark-antony:participated-in:depicted:plutarch-life-of-antony:antony-sends-men-to-eject-octavia:qc67b4f8f98:17dc6de299e8",
+        "chr:proposal:mark-antony:participated-in:depicted:plutarch-life-of-antony:caesar-answers-antony-s-accusations:qc67b4f8f98:b911942994e6",
+        "chr:proposal:mark-antony:participated-in:depicted:plutarch-life-of-antony:cleopatra-s-arguments-prevail-with-antony:qc67b4f8f98:07391696de9e",
+        "chr:proposal:octavia-the-younger:participated-in:depicted:plutarch-life-of-antony:octavian-permits-octavia-to-sail:qc67b4f8f98:1d2420a115b2"
+      ],
+      "packet_ids": [],
+      "model": null,
+      "prompt_version": null,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cost_usd": 3.554203,
+      "coverage": {
+        "new_entities": 0,
+        "new_claim_families": 0,
+        "new_evidence": 0,
+        "new_traditions": 0,
+        "new_evidence_classes": [],
+        "gaps_closed": []
+      },
+      "error": null,
+      "finished_at": "2026-11-25T14:14:03.107192+00:00"
+    }
+  ],
   "packets": [],
   "reconciliations": [],
   "verdicts": [],
-  "interrupts": [],
-  "set_aside": [],
-  "spent_usd": 0.0,
+  "interrupts": [
+    {
+      "interrupt_id": "front-door-battle-of-actium-20261124T134305Z:1",
+      "reason": "deviation",
+      "question": "P06 failed (exit code 1; see the log): retry, modify, or reject it?",
+      "options": [],
+      "item_id": "P06",
+      "raised_at": "2026-11-25T13:42:10.269645+00:00",
+      "answer": "retry",
+      "answered_by": "curator",
+      "answered_at": "2026-11-25T13:50:38+00:00"
+    },
+    {
+      "interrupt_id": "front-door-battle-of-actium-20261124T134305Z:2",
+      "reason": "deviation",
+      "question": "P07 failed (exit code 1; see the log): retry, modify, or reject it?",
+      "options": [],
+      "item_id": "P07",
+      "raised_at": "2026-11-25T13:53:02.050160+00:00",
+      "answer": "retry",
+      "answered_by": "curator",
+      "answered_at": "2026-11-25T13:53:59+00:00"
+    }
+  ],
+  "set_aside": [
+    "front-door-battle-of-actium-20261124T134305Z:P06:1",
+    "front-door-battle-of-actium-20261124T134305Z:P07:1"
+  ],
+  "spent_usd": 9.687273,
   "stopping_explanation": null
 }
