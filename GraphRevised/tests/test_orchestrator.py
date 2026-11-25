@@ -205,3 +205,48 @@ class OrchestratorTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class ExtendTests(unittest.TestCase):
+    """The small builder (26a §5): items added as a new plan version, awaiting decisions."""
+
+    setUp = OrchestratorTests.setUp
+
+    def test_extend_adds_awaiting_items_with_calls_and_origin(self):
+        from GraphRevised.orchestration.orchestrator import extend, save_calls
+        state, calls = load(self.run_path)
+        items = [
+            {"action": "REGISTER", "target": "nomisma", "rationale": "coins commemorating Actium need Nomisma",
+             "expected_outputs": ["its rights quoted"], "budget_usd": 0,
+             "call": {"worker": "manual", "instructions": "read the rights"},
+             "origin": {"storyboard": "chr:storyboard:t", "segment": 3, "gap": 0}},
+            {"action": "FIND", "target": "chr:entity:w2", "rationale": "find the passages for segment 3",
+             "expected_outputs": ["found passages"], "budget_usd": 0, "call": {"worker": "fake.free", "arguments": []}},
+            {"action": "READ", "target": "chr:entity:w2", "rationale": "read the passages for segment 3",
+             "expected_outputs": ["proposals"], "budget_usd": 0, "after_index": [1],
+             "call": {"worker": "fake.free", "arguments": []}},
+            {"action": "READ", "target": "chr:entity:w", "rationale": "already planned, so skipped",
+             "expected_outputs": ["proposals"], "budget_usd": 0, "call": {"worker": "fake.free", "arguments": []}},
+        ]
+        state, calls, skipped = extend(state, calls, self.run_path, items, "curator", after=["P01"])
+        save_calls(state, calls, self.run_path)
+        state.save(self.run_path)
+        self.assertEqual([i.item_id for i in state.plan.items], ["P01", "P02", "P03", "P04", "P05", "P06"])
+        self.assertEqual(len(skipped), 1)
+        self.assertEqual(state.plan.item("P06").depends_on, ["P01", "P05"])
+        self.assertTrue(all(state.plan.item(i).decision.status == "awaiting" for i in ("P04", "P05", "P06")))
+        self.assertEqual(state.plan.version, 2)
+        self.assertTrue(self.run_path.with_name(f"{RUN}.plan-v1.json").exists())
+        state, calls = load(self.run_path)
+        self.assertEqual(calls["P04"]["origin"]["segment"], 3)
+        again, _, skipped = extend(state, calls, self.run_path, items[:1], "curator")
+        self.assertEqual(again.plan.version, 2)  # the same origin twice adds nothing
+        self.assertEqual(len(skipped), 1)
+
+    def test_extend_refuses_past_the_budget(self):
+        from GraphRevised.orchestration.orchestrator import extend
+        state, calls = load(self.run_path)
+        item = {"action": "READ", "target": "chr:entity:w3", "rationale": "a costly reading item",
+                "expected_outputs": ["proposals"], "budget_usd": 2.0, "call": {"worker": "fake.paid", "arguments": []}}
+        with self.assertRaises(ValueError):
+            extend(state, calls, self.run_path, [item], "curator")

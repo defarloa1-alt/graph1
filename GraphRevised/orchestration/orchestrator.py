@@ -7,6 +7,7 @@ time, from the front door's run file, checkpointing every step there.
     python -m GraphRevised.orchestration.orchestrator answer <run file> <interrupt id> --answer ... --by NAME
     python -m GraphRevised.orchestration.orchestrator retry <run file> P03 --by NAME   # after a failure
     python -m GraphRevised.orchestration.orchestrator budget <run file> 12.5 --by NAME [--note ...]
+    python -m GraphRevised.orchestration.orchestrator extend <run file> <items.json> --by NAME [--after P09]
     python -m GraphRevised.orchestration.orchestrator run <run file> [--execute] [--budget-name NAME] [--items N]
 
 The run file is the front door's (orchestration/front_door.py): an InquiryRunState, with each item's
@@ -83,6 +84,14 @@ def save(state: InquiryRunState, run_path: Path) -> None:
     os.replace(tmp, run_path)  # never a half-written run file
 
 
+def save_calls(state: InquiryRunState, calls: dict[str, dict[str, Any]], run_path: Path) -> None:
+    path = calls_path(run_path)
+    tmp = path.with_name(path.name + ".tmp")
+    tmp.write_text(json.dumps({"runId": state.run_id, "calls": calls}, indent=2, ensure_ascii=False) + "\n",
+                   encoding="utf-8")
+    os.replace(tmp, path)
+
+
 def new_plan(state: InquiryRunState, plan: InquiryPlan, run_path: Path) -> InquiryRunState:
     """Keep the version replaced in its own file; the run file holds the new one."""
     old = state.plan
@@ -138,6 +147,71 @@ def answer(state: InquiryRunState, interrupt_id: str, text: str, by: str) -> Inq
     if status is RunStatus.AWAITING_USER and not [i for i in interrupts if i.open]:
         status = RunStatus.PAUSED
     return state.model_copy(update={"interrupts": interrupts, "status": status})
+
+
+def _next_ids(plan: InquiryPlan, n: int) -> list[str]:
+    top = max((int(i.item_id[1:]) for i in plan.items), default=0)
+    return [f"P{k:02d}" if k < 100 else f"P{k:03d}" for k in range(top + 1, top + 1 + n)]
+
+
+def extend(state: InquiryRunState, calls: dict[str, dict[str, Any]], run_path: Path, items: list[dict[str, Any]],
+           by: str, after: list[str] | None = None) -> tuple[InquiryRunState, dict[str, dict[str, Any]], list[str]]:
+    """Add items to the plan as a new version, each awaiting the curator's decision (the "small builder"
+    of 26a §5; a storyboard's approved segments and its source-task gaps come in this way).
+
+    Each item is a PlanItem's fields without item_id or decision, plus `call` (its worker call, as in the
+    calls file), optional `origin` (where it came from, kept on the call: e.g. {storyboard, segment, gap}),
+    and optional `after_index` (earlier entries of this same list it depends on). `after` names plan items
+    every new item depends on (e.g. the STORYBOARD item). An item whose action and target, or whose origin,
+    the plan already holds is skipped and reported. Returns the state, the calls, and what was skipped."""
+    if state.plan is None:
+        raise ValueError("the run has no plan to extend")
+    plan = state.plan
+    after = list(after or [])
+    unknown = [a for a in after if a not in {i.item_id for i in plan.items}]
+    if unknown:
+        raise ValueError(f"--after names {unknown}, which are not items of the plan")
+    held = {(i.action, i.target) for i in plan.items}
+    origins = [c.get("origin") for c in calls.values() if c.get("origin")]
+    kept, skipped, index_to_id = [], [], {}
+    for n, raw in enumerate(items):
+        if raw.get("origin") and raw["origin"] in origins:
+            skipped.append(f"entry {n}: its origin {raw['origin']} is already planned")
+            continue
+        if (raw["action"], raw["target"]) in held:
+            skipped.append(f"entry {n}: {raw['action']} {raw['target']} is already planned")
+            continue
+        held.add((raw["action"], raw["target"]))
+        kept.append((n, raw))
+    ids = _next_ids(plan, len(kept))
+    new_items, new_calls = [], {}
+    for item_id, (n, raw) in zip(ids, kept):
+        index_to_id[n] = item_id
+        missing = [i for i in raw.get("after_index", []) if i not in index_to_id]
+        if missing:
+            raise ValueError(f"entry {n} depends on entries {missing}, which are not earlier kept entries")
+        fields = {k: v for k, v in raw.items() if k not in ("call", "origin", "after_index")}
+        new_items.append(PlanItem.model_validate(fields | {
+            "item_id": item_id, "depends_on": [*after, *fields.get("depends_on", []),
+                                               *(index_to_id[i] for i in raw.get("after_index", []))]}))
+        if "call" not in raw:
+            raise ValueError(f"entry {n} has no call: say which worker runs it, or 'manual' with instructions")
+        new_calls[item_id] = dict(raw["call"]) | ({"origin": raw["origin"]} if raw.get("origin") else {})
+    if not new_items:
+        return state, calls, skipped
+    total = sum(i.budget_usd for i in plan.items) + sum(i.budget_usd for i in new_items)
+    if total > plan.budget_usd + 1e-9:
+        raise ValueError(f"the items would need ${total:.2f}, over the plan's ${plan.budget_usd:.2f}: "
+                         "raise the plan's budget first (the budget subcommand), or add fewer items")
+    note = f"extended by {by} at {_now()}: {', '.join(ids)} added"
+    new = InquiryPlan.model_validate(plan.model_dump() | {
+        "items": [*(i.model_dump() for i in plan.items), *(i.model_dump() for i in new_items)],
+        "version": plan.version + 1, "previous_version": plan.version,
+        "unresolved_questions": [*plan.unresolved_questions, note]})
+    state = new_plan(state, new, run_path)
+    if state.status in (RunStatus.DONE, RunStatus.STOPPED):
+        state = state.model_copy(update={"status": RunStatus.AWAITING_USER, "stopping_explanation": None})
+    return state, calls | new_calls, skipped
 
 
 # --- Running -------------------------------------------------------------------------------------
@@ -375,7 +449,7 @@ def _graph_proposals() -> tuple[Callable[[str], list[str]], Callable[[], None]]:
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = parser.add_subparsers(dest="action", required=True)
-    for name in ("show", "decide", "approve-all", "answer", "retry", "budget", "run"):
+    for name in ("show", "decide", "approve-all", "answer", "retry", "budget", "extend", "run"):
         p = sub.add_parser(name)
         p.add_argument("run_file", type=Path)
         if name == "decide":
@@ -390,7 +464,10 @@ def main(argv: list[str] | None = None) -> int:
         if name == "budget":
             p.add_argument("usd", type=float)
             p.add_argument("--note")
-        if name in ("decide", "approve-all", "answer", "retry", "budget"):
+        if name == "extend":
+            p.add_argument("items_file", type=Path, help="a JSON list of items to add (see extend())")
+            p.add_argument("--after", action="append", default=[], help="a plan item every new item depends on")
+        if name in ("decide", "approve-all", "answer", "retry", "budget", "extend"):
             p.add_argument("--by", required=True)
         if name == "run":
             p.add_argument("--execute", action="store_true", help="run the items (default: show what would run)")
@@ -420,6 +497,12 @@ def main(argv: list[str] | None = None) -> int:
             state = retry(state, run_path, args.item, args.by)
         elif args.action == "budget":
             state = set_budget(state, run_path, args.usd, args.by, args.note)
+        elif args.action == "extend":
+            items = json.loads(args.items_file.read_text(encoding="utf-8"))
+            state, calls, skipped = extend(state, calls, run_path, items, args.by, args.after)
+            for line in skipped:
+                print(f"skipped {line}")
+            save_calls(state, calls, run_path)
         elif not args.execute:
             print(text(state, calls))
             print("\nDry run: nothing was run. Add --execute to run the next item"
