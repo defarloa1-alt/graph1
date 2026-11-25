@@ -28,7 +28,8 @@ next, until --items have run or it must stop. For each item it:
 4. records the result: ok or failed by exit code, the cost from the ledger, the proposals stored
    while it ran.
 
-The meter also caps each item (CHRYSTALLUM_RUN_CAP) at 1.5 times its estimate: a call that could pass
+The meter also caps each item (CHRYSTALLUM_RUN_CAP) at 1.5 times its estimate, plus room for one
+worst-case call (CALL_HEADROOM): a call that could pass
 it is refused, and the worker fails. It stops (31 §3.12) on a failure or a cost over 1.5 times the estimate (each an interrupt for the
 curator), on an open interrupt, on the plan's budget, or when nothing more can run, and says why.
 Reconciliation, the critic, and the "no new independent evidence" measure (§3.5, §3.6, §3.8) are not
@@ -55,6 +56,8 @@ from GraphRevised.orchestration.contracts import (
 GRAPH_REVISED = Path(__file__).resolve().parents[1]
 REPO = GRAPH_REVISED.parent
 COST_OVERRUN = 1.5  # a cost past this multiple of the item's estimate stops the run
+CALL_HEADROOM = 0.50  # the meter refuses a call by its worst case (about $0.48 for a lens reading), so the
+                      # cap leaves room for one more such call: else a small item stops after its first
 DECISIONS = {"approve": "approved", "reject": "rejected", "defer": "deferred", "modify": "modified"}
 
 Runner = Callable[[list[str], dict[str, str], Path], int]  # (command, environment, log) -> exit code
@@ -342,7 +345,7 @@ def step(state: InquiryRunState, calls: dict[str, dict[str, Any]], run_path: Pat
     if budget_name and item.budget_usd > 0:
         environment[ENV] = budget_name
         # the item's cap, in the meter: a call that could pass it is refused (counting earlier attempts)
-        environment[RUN_CAP_ENV] = f"{item.budget_usd * COST_OVERRUN + run_cost(label, ledger):.2f}"
+        environment[RUN_CAP_ENV] = f"{item.budget_usd * COST_OVERRUN + CALL_HEADROOM + run_cost(label, ledger):.2f}"
     else:
         environment.pop(ENV, None)  # a free item gets no budget, so a model call in it is refused
         environment.pop(RUN_CAP_ENV, None)

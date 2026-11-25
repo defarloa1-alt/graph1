@@ -91,7 +91,7 @@ class OrchestratorTests(unittest.TestCase):
         self.cost = "0.80"
         state, message = self.step(state, calls)
         self.assertEqual(self.ran[-1], ("fake.paid", f"{RUN}:P02", "test"))
-        self.assertEqual(self.caps, [None, "1.50"])  # the meter caps the paid item at 1.5x its estimate
+        self.assertEqual(self.caps, [None, "2.00"])  # 1.5x its estimate, plus one worst-case call
         self.assertEqual(state.spent_usd, 0.8)
         state, message = self.step(state, calls)
         self.assertEqual(state.status, RunStatus.DONE)
